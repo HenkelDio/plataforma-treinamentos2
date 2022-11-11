@@ -47,7 +47,7 @@ function Header(){
                             <li><a href="/contas">Configurações</a></li>
                         </ul>
                     </div>
-                    <div className="logout-side-menu">
+                    <div className={styles.logoutSideMenu}>
                     <p>Sair <BsArrowBarRight /></p>
                 </div>
                 </div>
@@ -64,13 +64,13 @@ function Header(){
                 <div className={styles.infoHeader}>
                     <div className="greetings-header">
                         <p>Olá, Souza</p><p onClick={()=>{animateArrow()}} className='MdArrowDropDownCircle'><MdArrowDropDownCircle /></p>
-                        <div className='logout-container'>
+                        <div className={styles.logoutContainer}>
                             <p>Sair <BsArrowBarRight /></p>
                         </div>
                     </div>
-                    <div className='separator'></div>
-                    <div className="features-header">
-                        <ul className='features'>
+                    <div className={styles.separator}></div>
+                    <div className={styles.featuresHeader}>
+                        <ul className={styles.features}>
                             <li><a href="/">Criar</a></li>
                             <li><a href="/">Contas</a></li>
                             <li><a href="/">Configurações</a></li>

@@ -1,6 +1,5 @@
 
-import { useRef, useState } from "react"
-import Axios from "axios"
+import { useRef } from "react"
 
 export default function PdfUploader() {
 

@@ -1,9 +1,8 @@
-
-import PdfUploader from "./pages/pdfUplader";
+import Header from "./components/header";
 
 function App() {
   return (
-    <PdfUploader />
+    <Header />
   );
 }
 
