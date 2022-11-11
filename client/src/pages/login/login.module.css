@@ -116,6 +116,11 @@
     color: #017828;
 }
 
+.errorMessage{
+    margin-bottom: 20px;
+    color: rgb(210, 55, 55);
+}
+
 /*
 *  END LOGIN BODY STYLES
 */
