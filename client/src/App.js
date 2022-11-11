@@ -1,8 +1,9 @@
-import Login from "./pages/login";
+
+import PdfUploader from "./pages/pdfUplader";
 
 function App() {
   return (
-   <Login / >
+    <PdfUploader />
   );
 }
 
