@@ -1,9 +1,9 @@
-import Login from "./pages/login";
-import Header from "./components/header";
+
+import PdfUploader from "./pages/pdfUplader";
 
 function App() {
   return (
-   <Header / >
+    <PdfUploader />
   );
 }
 
