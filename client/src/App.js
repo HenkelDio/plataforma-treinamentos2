@@ -1,8 +1,8 @@
-import Header from "./components/header";
+import ControlPanel from "./pages/controlPanel";
 
 function App() {
   return (
-    <Header />
+    <ControlPanel />
   );
 }
 
