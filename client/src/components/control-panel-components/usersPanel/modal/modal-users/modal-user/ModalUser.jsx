@@ -20,6 +20,14 @@ export default function modalUser() {
         .required("O campo 'confirme a senha é obrigatório")
     })
 
+    const handleSubmit = (values) =>{
+
+        console.log(values)
+
+        let sucessMessage = document.getElementById("sucessMessage")
+        sucessMessage.style.display = "block"
+    }
+
     return (
         <div className={styles.ModalUser}>
             <h2>Novo usuário</h2>
@@ -27,6 +35,7 @@ export default function modalUser() {
             <Formik
             initialValues={{}}
             validationSchema={validateUser}
+            onSubmit={handleSubmit}
             >
             <Form className={styles.form}>
                 <div className={styles.inputBox}>
@@ -69,6 +78,9 @@ export default function modalUser() {
                     component='p'
                     className={styles.errorMessage}
                     />
+                </div>
+                <div id="sucessMessage" className={styles.sucessMessage}>
+                    <p>Usuário adicionado com sucesso!</p>
                 </div>
                 <button type='submit' className={styles.createButton}>Criar</button>
             </Form>

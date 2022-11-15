@@ -39,6 +39,22 @@
     padding-left: 10px;
 }
 
+.sucessMessage{
+    display: none;
+
+    margin-top: 20px;
+
+    border-radius: 5px;
+
+    background-color: #83e2a3;
+    padding: 5px;
+}
+
+.sucessMessage p{
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
 .createButton{
     display: flex;
     justify-content: center;
@@ -63,7 +79,7 @@
     background-color:#076025;
 }
 
-.ModalCompany .form .inputBox .errorMessage{
+.ModalAdmin .form .inputBox .errorMessage{
     text-align: left;
     font-size: 20px;
     color: red;
