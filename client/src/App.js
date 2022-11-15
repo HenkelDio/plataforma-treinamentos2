@@ -1,8 +1,8 @@
-import ControlPanel from "./pages/controlPanel";
+import Login from "./pages/login"
 
 function App() {
   return (
-    <ControlPanel />
+    <Login />
   );
 }
 
