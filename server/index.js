@@ -4,13 +4,19 @@ const app = express()
 const cors = require("cors")
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
-const fs = require("fs")
 
 app.use(cors())
 app.use(bodyParser.json())
 app.use(fileUpload())
 
+const DB = require("./STDB").models;
+console.log(DB)
 const port = 3001
+
+app.post("/loginUser", async (req, res) => {
+    let values = req.body.values
+    
+})
 
 app.post("/fileUploader", async (req, res) => {
     if (!req.files || Object.keys(req.files).length === 0) {
