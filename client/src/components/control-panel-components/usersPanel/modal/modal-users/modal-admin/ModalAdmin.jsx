@@ -1,4 +1,5 @@
 import styles from "./modalAdmin.module.css"
+import Axios from "axios"
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup'
 
@@ -20,9 +21,13 @@ export default function modalAdmin() {
         .required("O campo 'confirme a senha é obrigatório")
     })
 
-    const handleSubmit = (values) =>{
-
-        console.log(values)
+    const handleSubmit = async (values) =>{
+        
+        Axios.post("http://localhost:3001/registerAdmin", { values }).then(res => {
+            if (res) {
+                console.log(res.data)
+            }
+        })
 
         let sucessMessage = document.getElementById("sucessMessage")
         sucessMessage.style.display = "block"

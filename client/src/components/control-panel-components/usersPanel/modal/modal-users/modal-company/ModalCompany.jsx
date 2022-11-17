@@ -1,5 +1,6 @@
 import styles from "./modalCompany.module.css"
 import { Field, Formik, Form, ErrorMessage } from 'formik';
+import Axios from "axios"
 import * as yup from 'yup'
 
 export default function modalCompany() {    
@@ -20,9 +21,13 @@ export default function modalCompany() {
         .required("O campo 'confirme a senha é obrigatório")
     })
 
-    const handleSubmit = (values) =>{
+    const handleSubmit = async (values) =>{
 
-        console.log(values)
+        await Axios.post("http://localhost:3001/registerCompany", { values }).then(res => {
+            if (res) {
+                console.log(res.data)
+            }
+        })
 
         let sucessMessage = document.getElementById("sucessMessage")
         sucessMessage.style.display = "block"
@@ -39,7 +44,7 @@ export default function modalCompany() {
             >
             <Form className={styles.form}>
                 <div className={styles.inputBox}>
-                    <Field name="name" placeholder="Digite o nome"></Field>
+                    <Field name="name" placeholder="Digite o nome da empresa"></Field>
                     <ErrorMessage 
                     name='name'
                     component='p'

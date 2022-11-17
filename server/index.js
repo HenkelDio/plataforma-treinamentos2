@@ -10,8 +10,22 @@ app.use(bodyParser.json())
 app.use(fileUpload())
 
 const DB = require("./STDB").models;
-
+console.log(DB)
 const port = 3001
+
+async function searchEmail(email) {
+    let cond = "notFound"
+    for (let modelColumn of [
+        ["Admins", "admin_email"],
+        ["Companies", "company_email"],
+        ["Users", "user_email"]
+    ]) {
+        if (await DB[modelColumn[0]].findOne({ where: { [modelColumn[1]]: email } })) {
+            cond = "alreadyRegistred"
+        }
+    }
+    return cond;
+}
 
 app.post("/loginUser", async (req, res) => {
     let values = req.body.values
@@ -53,6 +67,56 @@ app.post("/loginUser", async (req, res) => {
         }
     }
 
+})
+
+app.post("/registerAdmin", async (req, res) => {
+    let values = req.body.values;
+    if (await searchEmail(values.email) === "notFound") {
+        await DB.Admins.create({
+            admin_name: values.name,
+            admin_email: values.email,
+            admin_password: values.password
+        })
+        res.send({ "gotRegistred": true })
+    } else {
+        res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
+    }
+    res.send();
+})
+
+app.post("/registerCompany", async (req, res) => {
+    let values = req.body.values
+    if (await searchEmail(values.email) === "notFound") {
+        await DB.Companies.create({
+            company_name: "Code & Code",
+            company_email: "willian@codecode.com",
+            company_register: "12345678912345",
+            company_telephone: "41992730206",
+            company_contact: "Willian Henkel",
+            company_password: "CodeCode123"
+        })
+        res.send({ "gotRegistred": true })
+    } else {
+        res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
+    }
+})
+
+app.post("/registerUser", async (req, res) => {
+    let values = req.body.values
+
+    if (await searchEmail(values.email) === "notFound") {
+        DB.Users.create({
+            user_name: 'Emanuel Henkel',
+            user_email: 'emanuel.henkel@codecode.com',
+            user_register: '10708348904',
+            user_telephone: '41992730206',
+            user_company_id: 1,
+            user_password: 'Emanuel2002',
+        })
+        res.send({ "gotRegstred": true })
+    } else {
+        res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
+    }
 })
 
 app.post("/fileUploader", async (req, res) => {
