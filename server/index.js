@@ -144,6 +144,8 @@ app.get("/getUsers/:userType", async (req, res) => {
     res.send(users);
 })
 
+
+
 app.listen(port, () => {
     console.log("Listen in PORT 3001")
 })

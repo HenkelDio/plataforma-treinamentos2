@@ -62,6 +62,7 @@ export default function UsersPanel(props){
                     {
                         (userType === "Admins") && listUsers.map((val)=>{
                             return <Admin 
+                            id={val.admin_id}
                             name={val.admin_name}
                             email={val.admin_email}
                             />
@@ -70,16 +71,24 @@ export default function UsersPanel(props){
                     {
                         (userType === "Users") && listUsers.map((val)=>{
                             return <User
+                            id={val.user_id}
                             name={val.user_name}
                             email={val.user_email}
+                            register={val.user_register}
+                            phone={val.user_telephone}
+                            id_company={val.user_company_id}
                             />
                         })
                     }
                     {
                         (userType === "Companies") && listUsers.map((val)=>{
                             return <Company 
+                            id={val.company_id}
                             name={val.company_name}
                             email={val.company_email}
+                            contact={val.company_contact}
+                            register={val.company_register}
+                            phone={val.company_telephone}
                             />
                         })
                     }

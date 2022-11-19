@@ -1,8 +1,32 @@
 import styles from "../usersSelect.module.css"
+import { useState } from "react";
+import ModalEditCompany from "./modalEditCompany";
 
 export default function Company(props){
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    const openModal = () =>{
+        setIsOpen(true)
+    }
+
+    const closeModal = () =>{
+        setIsOpen(false)
+    }
+
     return(
-        <div className={styles.card}>
+    <>
+        <ModalEditCompany 
+        openModal={modalIsOpen} 
+        closeModal={closeModal} 
+        id={props.id}
+        name={props.name}
+        email={props.email}
+        contact={props.contact}
+        register={props.register}
+        phone={props.phone}
+        />
+
+        <div onClick={openModal} className={styles.card}>
             <div className={styles.name}>
                 <p>{props.name}</p>
             </div>
@@ -13,6 +37,7 @@ export default function Company(props){
                 <button>Editar</button>
             </div>
         </div>
+    </>
 
     )
 }
