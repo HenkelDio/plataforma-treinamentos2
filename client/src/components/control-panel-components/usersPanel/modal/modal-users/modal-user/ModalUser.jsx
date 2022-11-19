@@ -1,10 +1,13 @@
 import styles from "./modalUser.module.css"
 import Axios from "axios"
 import SelectCompany from "./selectCompany";
+import { useState } from "react";
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup'
 
-export default function modalUser() {    
+export default function ModalUser() {    
+
+    const [userCompanyId, setUserCompanyId] = useState(0);
 
     const validateUser = yup.object().shape({
         name: yup.string()
@@ -23,7 +26,7 @@ export default function modalUser() {
     })
 
     const handleSubmit = async (values) =>{
-
+        values.companyId = userCompanyId;
         await Axios.post("http://localhost:3001/registerUser", { values }).then(res => {
             if (res) {
                 console.log(res.data)
@@ -67,7 +70,7 @@ export default function modalUser() {
                     <Field name="telephone" placeholder="Telefone"></Field>
                 </div>
                 <div className={styles.inputBox}>
-                    <SelectCompany />
+                    <SelectCompany setUserCompanyId={setUserCompanyId} />
                 </div>
                 <div className={styles.inputBox}>
                     <Field name="password" placeholder="Crie uma senha"></Field>

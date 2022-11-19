@@ -88,12 +88,12 @@ app.post("/registerCompany", async (req, res) => {
     let values = req.body.values
     if (await searchEmail(values.email) === "notFound") {
         await DB.Companies.create({
-            company_name: "Code & Code",
-            company_email: "willian@codecode.com",
-            company_register: "12345678912345",
-            company_telephone: "41992730206",
-            company_contact: "Willian Henkel",
-            company_password: "CodeCode123"
+            company_name: values.name,
+            company_email: values.email,
+            company_register: values.cnpj,
+            company_telephone: values.telephone,
+            company_contact: values.contact,
+            company_password: values.password
         })
         res.send({ "gotRegistred": true })
     } else {
@@ -106,12 +106,12 @@ app.post("/registerUser", async (req, res) => {
 
     if (await searchEmail(values.email) === "notFound") {
         DB.Users.create({
-            user_name: 'Emanuel Henkel',
-            user_email: 'emanuel.henkel@codecode.com',
-            user_register: '10708348904',
-            user_telephone: '41992730206',
-            user_company_id: 1,
-            user_password: 'Emanuel2002',
+            user_name: values.name,
+            user_email: values.email,
+            user_register: values.cpf,
+            user_telephone: values.telephone,
+            user_company_id: values.companyId,
+            user_password: values.password,
         })
         res.send({ "gotRegstred": true })
     } else {
