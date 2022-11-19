@@ -41,6 +41,7 @@ export default function ModalEditUser(props){
                 </div>
             </div>
             <div className={styles.footerModal}>
+                <button onClick={props.closeModal} className={styles.close}>Fechar</button>
                 <button className={styles.delete}>Excluir</button>
                 <button className={styles.save}>Salvar</button>
             </div>

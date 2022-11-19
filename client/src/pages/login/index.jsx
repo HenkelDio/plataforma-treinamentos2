@@ -1,8 +1,11 @@
 import styles from "./login.module.css";
+import { useContext } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from 'yup';
 import { BsFileLockFill } from "react-icons/bs"
 import Axios from "axios"
+import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate  } from "react-router-dom";
 
 
 const validationEmail = yup.object().shape({
@@ -14,17 +17,33 @@ const validationEmail = yup.object().shape({
         .required("O campo 'senha' é obrigatório")
 })
 
-const handleLogin = async values => {
-    //recebe valores do form e verifica na rota loginUser. Rsultado retorna se usuário foi authenticado e permissão
-    await Axios.post("http://localhost:3001/loginUser", { values }).then(res => {
-        if (res) {
-            console.log(res.data)
-        }
-    })
-}
-
 
 export default function Login() {
+
+    const { setAuth, auth } = useContext(AuthContext)
+
+    const navigate = useNavigate();
+
+    const handleLogin = async values => {
+        //recebe valores do form e verifica na rota loginUser. Rsultado retorna se usuário foi authenticado e permissão
+        await Axios.post("http://localhost:3001/loginUser", { values }).then(res => {
+            if (res) {
+                
+                if(res.data.permission === "company"){
+                    console.log(res.data.permission)
+                    setAuth(true)
+                } else if (res.data.permission === "admin"){
+                    console.log(res.data.permission)
+                    navigate("/painel")
+                } else if (res.data.permission === "user"){
+                    console.log(res.data.permission)
+                 } else {
+                    console.log("conta nao encotrada")
+                 }
+            }
+        })
+    }
+
     return (
         <div className={styles.loginContainer}>
             <div className={styles.innerLoginContainer}>

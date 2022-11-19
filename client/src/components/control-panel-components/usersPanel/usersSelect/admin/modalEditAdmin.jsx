@@ -54,6 +54,7 @@ export default function ModalEditAdmin(props){
                 </div>
             </div>
             <div className={styles.footerModal}>
+                <button onClick={props.closeModal} className={styles.close}>Fechar</button>
                 <button className={styles.delete}>Excluir</button>
                 <button onClick={handleEditValues} className={styles.save}>Salvar</button>
             </div>
