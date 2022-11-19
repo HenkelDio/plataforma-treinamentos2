@@ -60,12 +60,20 @@ export default function UsersPanel(props){
                 </div>
                 <div className={styles.list}>
                     {
-                        (userType === "Admins") &&
-                            <Admin listUsers={listUsers} />
+                        (userType === "Admins") && listUsers.map((val)=>{
+                            return <Admin 
+                            name={val.admin_name}
+                            email={val.admin_email}
+                            />
+                        })
                     }
                     {
-                        (userType === "Users") &&
-                            <User listUsers={listUsers} />
+                        (userType === "Users") && listUsers.map((val)=>{
+                            return <User
+                            name={val.user_name}
+                            email={val.user_email}
+                            />
+                        })
                     }
                     {
                         (userType === "Companies") && listUsers.map((val)=>{
