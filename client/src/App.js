@@ -1,8 +1,8 @@
-import ControlPanel from "./pages/controlPanel";
+import AppRoutes from "./AppRoutes";
 
 function App() {
   return (
-    <ControlPanel />
+    <AppRoutes />
   );
 }
 

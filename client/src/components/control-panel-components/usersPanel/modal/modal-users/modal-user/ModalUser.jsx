@@ -1,5 +1,6 @@
 import styles from "./modalUser.module.css"
 import Axios from "axios"
+import SelectCompany from "./selectCompany";
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup'
 
@@ -66,7 +67,7 @@ export default function modalUser() {
                     <Field name="telephone" placeholder="Telefone"></Field>
                 </div>
                 <div className={styles.inputBox}>
-                    <Field name="companyRegister" placeholder="Empresa Responsável"></Field>
+                    <SelectCompany />
                 </div>
                 <div className={styles.inputBox}>
                     <Field name="password" placeholder="Crie uma senha"></Field>

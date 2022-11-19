@@ -30,7 +30,7 @@ export default function TrainingsPanel(props){
                     <input type="text" placeholder='Qual treinamento está procurando?'></input>
                </div>
                <div className={styles.list}>
-
+                    
                </div>
             </div>
         </div>
