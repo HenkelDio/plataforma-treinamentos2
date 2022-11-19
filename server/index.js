@@ -136,8 +136,12 @@ app.post("/fileUploader", async (req, res) => {
     }
 })
 
-app.get("/getCompany", (req, res)=>{
+app.get("/getUsers/:userType", async (req, res) => {
+    let userType = req.params.userType;
     
+    let users = await DB[userType].findAll();
+
+    res.send(users);
 })
 
 app.listen(port, () => {

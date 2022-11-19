@@ -9,9 +9,9 @@ import Axios from "axios"
 
 
 export default function UsersPanel(props){
-    const [modalIsOpen, setIsOpen] = useState(false)
-    const [userType, setUserType] = useState("")
-    const [listCompany, setListCompany] = useState([])
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [userType, setUserType] = useState("");
+    const [listUsers, setListUsers] = useState([]);
 
     const openModal = () =>{
         setIsOpen(true)
@@ -20,15 +20,19 @@ export default function UsersPanel(props){
     const closeModal = () =>{
         setIsOpen(false)
     }
+    
+    useEffect(_ => {
+        const getUsers = async _ => {
+            await Axios.get(`http://localhost:3001/getUsers/${userType}`).then(res => {
+                if (res) {
+                    setListUsers(res.data)
+                }
+            })
+        }
+        getUsers()
+    }, [userType])
 
-    useEffect(()=>{
-        Axios.get("http://localhost:3001/getCompany")
-        .then((response)=>{
-            setListCompany(response.data)
-        })
-    },[])
-
-
+    
     return(
         <div className={styles.UsersPanel}>
 
@@ -49,23 +53,23 @@ export default function UsersPanel(props){
                 <div className={styles.selectTypeAccount}>
                     <select onChange={e=>setUserType(e.target.value)}>
                         <option disabled selected="selected">Selecione o Tipo</option>
-                        <option value="admin">Administrador</option>
-                        <option value="company">Empresa</option>
-                        <option value="user">Usuário</option>
+                        <option value="Admins">Administrador</option>
+                        <option value="Companies">Empresa</option>
+                        <option value="Users">Usuário</option>
                     </select>
                 </div>
                 <div className={styles.list}>
                     {
-                        (userType === "admin") &&
-                            <Admin />
+                        (userType === "Admins") &&
+                            <Admin listUsers={listUsers} />
                     }
                     {
-                        (userType === "user") &&
-                            <User />
+                        (userType === "Users") &&
+                            <User listUsers={listUsers} />
                     }
                     {
-                        (userType === "company") &&
-                            <Company />
+                        (userType === "Companies") &&
+                            <Company listUsers={listUsers} />
                     }
                 </div>
             </div>
