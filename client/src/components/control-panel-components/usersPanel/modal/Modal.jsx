@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 import styles from "./modal.module.css"
-import { useState, useEffect} from "react";
+import { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io"
 import ModalCompany from "./modal-users/modal-company/ModalCompany";
 import ModalUser from "./modal-users/modal-user/ModalUser";
@@ -10,7 +10,7 @@ export default function ModalAddUser(props){
     const [userType, setUserType] = useState("")
 
     const nextPage = () =>{
-        if(userType == ""){
+        if(userType === ""){
             alert("Selecione algum tipo de usuário")
         } else{
             let bodyModal = document.getElementById("bodyModal")
