@@ -136,6 +136,10 @@ app.post("/fileUploader", async (req, res) => {
     }
 })
 
+app.get("/getCompany", (req, res)=>{
+    
+})
+
 app.listen(port, () => {
     console.log("Listen in PORT 3001")
 })

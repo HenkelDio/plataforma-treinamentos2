@@ -73,6 +73,11 @@
     margin-top: 20px;
 }
 
+.list{
+    margin-top: 30px;
+    padding: 20px;
+}
+
 /*USER PANEL MOBILE*/
 
 @media (max-width: 700px){
