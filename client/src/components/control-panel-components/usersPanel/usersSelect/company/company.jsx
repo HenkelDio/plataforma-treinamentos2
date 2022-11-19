@@ -1,13 +1,13 @@
 import styles from "../usersSelect.module.css"
 
-export default function Company(){
+export default function Company(props){
     return(
         <div className={styles.card}>
             <div className={styles.name}>
-                <p>Willian</p>
+                <p>{props.name}</p>
             </div>
             <div className={styles.email}>
-                <p>willianhenkel@gmail.com</p>
+                <p>{props.email}</p>
             </div>
             <div className={styles.features}>
                 <button>Editar</button>

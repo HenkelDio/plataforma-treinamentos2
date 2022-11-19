@@ -68,8 +68,12 @@ export default function UsersPanel(props){
                             <User listUsers={listUsers} />
                     }
                     {
-                        (userType === "Companies") &&
-                            <Company listUsers={listUsers} />
+                        (userType === "Companies") && listUsers.map((val)=>{
+                            return <Company 
+                            name={val.company_name}
+                            email={val.company_email}
+                            />
+                        })
                     }
                 </div>
             </div>
