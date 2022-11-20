@@ -1,0 +1,92 @@
+.ModalCompany{
+    padding: 20px;
+    width: 50%;
+
+    text-align: center;
+
+    margin: 0 auto;
+
+}
+
+.ModalCompany h2,
+.ModalCompany p{
+    font-family: var(--inter);
+    opacity: 0.8;
+    font-size: 1.5rem;
+}
+
+.ModalCompany .form{
+    margin-top: 40px;
+}
+
+.ModalCompany .form .inputBox{
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 20px;
+}
+
+.ModalCompany .form .inputBox input{
+    height: 50px;
+
+    border: 2px solid #ccc;
+    outline: none;
+    border-radius: 5px;
+
+    font-size: 1.2rem;
+    font-family: var(--inter);
+
+    padding-left: 10px;
+}
+
+.sucessMessage{
+    display: none;
+
+    margin-top: 20px;
+
+    border-radius: 5px;
+
+    background-color: #83e2a3;
+    padding: 5px;
+}
+
+.sucessMessage p{
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+.createButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+
+    width: 100%;
+    padding: 10px 0px;
+
+    font-size: 1.3rem;
+
+    border: none;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+
+    cursor: pointer;
+    color: white;
+    background-color: #017828;
+}
+
+.createButton:hover{
+    background-color: #076025;
+}
+
+.ModalCompany .form .inputBox .errorMessage{
+    text-align: left;
+    font-size: 20px;
+    color: red;
+}
+
+@media (max-width: 700px){
+    .ModalCompany{
+        width: 100%;
+    } 
+}

@@ -20,7 +20,7 @@ const validationEmail = yup.object().shape({
 
 export default function Login() {
 
-    const { setAuth, auth } = useContext(AuthContext)
+    const { setAuth, login } = useContext(AuthContext)
 
     const navigate = useNavigate();
 
@@ -32,14 +32,19 @@ export default function Login() {
                 if(res.data.permission === "company"){
                     console.log(res.data.permission)
                     setAuth(true)
+                    navigate("/painel-empresa")
+                    
                 } else if (res.data.permission === "admin"){
                     console.log(res.data.permission)
+                    setAuth(true)
                     navigate("/painel")
                 } else if (res.data.permission === "user"){
                     console.log(res.data.permission)
                  } else {
                     console.log("conta nao encotrada")
                  }
+
+                 login(values.email, values.password)
             }
         })
     }
