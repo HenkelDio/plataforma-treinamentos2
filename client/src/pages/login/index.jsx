@@ -20,7 +20,7 @@ const validationEmail = yup.object().shape({
 
 export default function Login() {
 
-    const { setAuth, login } = useContext(AuthContext)
+    const { setAuth } = useContext(AuthContext)
 
     const navigate = useNavigate();
 
@@ -43,9 +43,9 @@ export default function Login() {
                  } else {
                     console.log("conta nao encotrada")
                  }
-
-                 login(values.email, values.password)
             }
+
+            
         })
     }
 
