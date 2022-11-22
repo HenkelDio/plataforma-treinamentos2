@@ -67,12 +67,6 @@ export default function HomePanel({onSubmit}){
                     </div>
                     <p>Gerenciar e criar usuários</p>
                 </div>
-                <div onClick={setPageTrainings} className={styles.boxOption}>
-                    <div className={styles.iconOption}>
-                        <p><FaBook /></p>
-                    </div>
-                    <p>Editar e criar treinamentos</p>
-                </div>
                 <div onClick={setPageSettings} className={styles.boxOption}>
                     <div className={styles.iconOption}>
                         <p><AiFillSetting /></p>

@@ -67,4 +67,7 @@
     .iconPanel{
         display: none;
     }
+    .controlPanel{
+        height: 100%;
+    }
 }

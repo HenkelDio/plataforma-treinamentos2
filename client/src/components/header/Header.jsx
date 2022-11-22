@@ -156,7 +156,7 @@ function Header({onSubmit}){
                         <p className={styles.name}>Souza</p>
                         <hr></hr>
                         <div className={styles.profileConfigs}>
-                            <p>Minha conta</p>
+                            <p onClick={setPageSettings}>Minha conta</p>
                             <p onClick={logoutUser}>Sair</p>
                         </div>
                     </div>

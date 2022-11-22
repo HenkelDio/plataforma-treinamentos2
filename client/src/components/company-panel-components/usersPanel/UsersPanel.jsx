@@ -10,7 +10,7 @@ import Axios from "axios"
 
 export default function UsersPanel(props){
     const [modalIsOpen, setIsOpen] = useState(false);
-    const [userType, setUserType] = useState("");
+    const [userType, setUserType] = useState("Admins");
     const [listUsers, setListUsers] = useState([]);
 
     const openModal = () =>{
@@ -49,15 +49,7 @@ export default function UsersPanel(props){
                 </div>
             </div>
             <div className={styles.listUsers}>
-                <p>Selecione o Usuário</p>
-                <div className={styles.selectTypeAccount}>
-                    <select onChange={e=>setUserType(e.target.value)}>
-                        <option disabled selected="selected">Selecione o Tipo</option>
-                        <option value="Admins">Administrador</option>
-                        <option value="Companies">Empresa</option>
-                        <option value="Users">Usuário</option>
-                    </select>
-                </div>
+                <p>Usuários</p>
                 <div className={styles.list}>
                     {
                         (userType === "Admins") && listUsers.map((val)=>{
@@ -65,30 +57,6 @@ export default function UsersPanel(props){
                             id={val.admin_id}
                             name={val.admin_name}
                             email={val.admin_email}
-                            />
-                        })
-                    }
-                    {
-                        (userType === "Users") && listUsers.map((val)=>{
-                            return <User
-                            id={val.user_id}
-                            name={val.user_name}
-                            email={val.user_email}
-                            register={val.user_register}
-                            phone={val.user_telephone}
-                            id_company={val.user_company_id}
-                            />
-                        })
-                    }
-                    {
-                        (userType === "Companies") && listUsers.map((val)=>{
-                            return <Company 
-                            id={val.company_id}
-                            name={val.company_name}
-                            email={val.company_email}
-                            contact={val.company_contact}
-                            register={val.company_register}
-                            phone={val.company_telephone}
                             />
                         })
                     }

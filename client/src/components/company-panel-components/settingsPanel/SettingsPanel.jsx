@@ -23,7 +23,7 @@ export default function SettingsPanel(){
                             <h4>willianhenkel@gmail.com</h4>
                         </div>
                         <div style={{marginBottom: "10px"}} className={styles.type}>
-                            <h4>Administrador</h4>
+                            <h4>Empresa</h4>
                         </div>
                         <div className={styles.options}>
                             <button>Editar</button>
