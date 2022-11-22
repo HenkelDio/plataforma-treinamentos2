@@ -1,6 +1,6 @@
 import styles from "./modal.module.css";
 import Modal from 'react-modal';
-import PdfUploader from "../../../../pages/pdfUplader";
+import Pdf from "../../../../pages/pdfUplader";
 import { Formik, Form, ErrorMessage, Field } from "formik"
 import { IoIosArrowBack } from "react-icons/io"
 
@@ -50,7 +50,7 @@ export default function ModalCreateTraining(props){
                                     <Field as="textarea" className={styles.content} name="content" placeholder="Digite o conteúdo aqui"></Field>
                                 </div>
                             </div>
-                            <PdfUploader />
+                            <Pdf />
                             <input type="submit" value="Salvar" className={styles.saveBtn}></input>
                         </Form>
                         </Formik>
