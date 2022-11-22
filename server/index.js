@@ -4,6 +4,7 @@ const app = express()
 const cors = require("cors")
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
+const { application } = require("express");
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -67,7 +68,7 @@ app.post("/loginUser", async (req, res) => {
         }
     }
 
-})
+});
 
 app.post("/registerAdmin", async (req, res) => {
     let values = req.body.values;
@@ -82,7 +83,7 @@ app.post("/registerAdmin", async (req, res) => {
         res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
     }
     res.send();
-})
+});
 
 app.post("/registerCompany", async (req, res) => {
     let values = req.body.values
@@ -99,7 +100,7 @@ app.post("/registerCompany", async (req, res) => {
     } else {
         res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
     }
-})
+});
 
 app.post("/registerUser", async (req, res) => {
     let values = req.body.values
@@ -117,7 +118,7 @@ app.post("/registerUser", async (req, res) => {
     } else {
         res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
     }
-})
+});
 
 app.post("/fileUploader", async (req, res) => {
     if (!req.files || Object.keys(req.files).length === 0) {
@@ -134,18 +135,54 @@ app.post("/fileUploader", async (req, res) => {
         })
 
     }
-})
+});
 
 app.get("/getUsers/:userType", async (req, res) => {
     let userType = req.params.userType;
-    
+
     let users = await DB[userType].findAll();
 
     res.send(users);
-})
+});
 
+app.post("/removeUser", async (req, res) => {
+    let type = req.body.type;
+    let typeId = (
+        type === "Admins" ? "admin_id" : (
+            type === "Companies" ? "company_id" : (
+                type === "Users" ? "user_id" : ""
+            )
+        )
+    )
+    let id = req.body.id;
+
+    DB[type].destroy({
+        where: {
+            [typeId]: id
+        }
+    })
+});
+
+app.post("/editUser", async (req, res) => {
+    let type = req.body.type;
+    let typeId = (
+        type === "Admins" ? "admin_id" : (
+            type === "Companies" ? "company_id" : (
+                type === "Users" ? "user_id" : ""
+            )
+        )
+    )
+    let id = req.body.id;
+    let userInfo = req.body.userInfo;
+
+    DB[type].update(userInfo, {
+        where: {
+            [typeId]: id
+        }
+    })
+});
 
 
 app.listen(port, () => {
     console.log("Listen in PORT 3001")
-})
+});
