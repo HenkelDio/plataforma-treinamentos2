@@ -1,16 +1,41 @@
 import Modal from "react-modal";
 import styles from "../modalEdit.module.css";
+import { useState } from "react"
+import Axios from "axios"
 
-export default function ModalEditUser(props){
+export default function ModalEditUser(props) {
 
-    return(
+    const [userInfo, setUserInfo] = useState({});
+
+    function excluirUser() {
+        Axios.post("http://localhost:3001/removeUser", {
+            type: "Users",
+            id: props.id
+        })
+    }
+
+    function editInfo(field, value) {
+        let previousState = userInfo
+        previousState[field] = value
+        setUserInfo(previousState)
+    }
+
+    function sendEdit() {
+        Axios.post("http://localhost:3001/editUser", {
+            type: "Users",
+            id: props.id,
+            userInfo
+        })
+    }
+
+    return (
         <Modal
-        isOpen={props.openModal}
-        onRequestClose={props.closeModal}
-        contentLabel="Exemplo"
-        overlayClassName={styles.modalOverlay}
-        className={styles.modal}
-        ariaHideApp={false}>
+            isOpen={props.openModal}
+            onRequestClose={props.closeModal}
+            contentLabel="Exemplo"
+            overlayClassName={styles.modalOverlay}
+            className={styles.modal}
+            ariaHideApp={false}>
             <div className={styles.headerModal}>
                 <h2>Editar</h2>
             </div>
@@ -21,19 +46,19 @@ export default function ModalEditUser(props){
                 </div>
                 <div className={styles.boxInput}>
                     <label htmlFor="name">Nome</label>
-                    <input type="text" name="name" defaultValue={props.name}></input>
+                    <input type="text" name="name" defaultValue={props.name} onChange={e => editInfo("user_name", e.target.value)}></input>
                 </div>
                 <div className={styles.boxInput}>
                     <label htmlFor="email">E-mail</label>
-                    <input type="text" name="email" defaultValue={props.email}></input>
+                    <input type="text" name="email" defaultValue={props.email} onChange={e => editInfo("user_email", e.target.value)} ></input>
                 </div>
                 <div className={styles.boxInput}>
                     <label htmlFor="register">CPF</label>
-                    <input type="text" name="register" defaultValue={props.register}></input>
+                    <input type="text" name="register" defaultValue={props.register} onChange={e => editInfo("user_register", e.target.value)} ></input>
                 </div>
                 <div className={styles.boxInput}>
                     <label htmlFor="phone">Telefone</label>
-                    <input type="text" name="phone" defaultValue={props.phone}></input>
+                    <input type="text" name="phone" defaultValue={props.phone} onChange={e => editInfo("user_telephone", e.target.value)} ></input>
                 </div>
                 <div className={styles.boxInput}>
                     <label htmlFor="id_company">Registrado na empresa</label>
@@ -42,8 +67,8 @@ export default function ModalEditUser(props){
             </div>
             <div className={styles.footerModal}>
                 <button onClick={props.closeModal} className={styles.close}>Fechar</button>
-                <button className={styles.delete}>Excluir</button>
-                <button className={styles.save}>Salvar</button>
+                <button className={styles.delete} onClick={excluirUser} >Excluir</button>
+                <button className={styles.save} onClick={sendEdit}>Salvar</button>
             </div>
         </Modal>
     )

@@ -4,28 +4,27 @@ import styles from "../modalEdit.module.css";
 import Axios from "axios";
 
 export default function ModalEditAdmin(props){
-    const [editValues, setEditValues] = useState({
-        id: props.id,
-        name: props.name,
-        email: props.email
-    })
+    const [userInfo, setuserInfo] = useState({});
 
-    const handleEditValues = async =>{
-        Axios.put("http://localhost:3001/editAdmin", {
-            id: editValues.id,
-            name: editValues.name,
-            email: editValues.email
+    function excluirAdmin() {
+        Axios.post(`http://localhost:3001/removeUser`, {
+            type: "Admins",
+            id: props.id
         })
-        
-        props.closeModal()
-        document.location.reload()
     }
 
-    const handleChangeValues = value =>{
-        setEditValues(prevValues=>({
-            ...prevValues,
-            [value.target.id]: value.target.value,
-        }))
+    function editInfo(field, value) {
+        let previousState = userInfo;
+        previousState[field] = value;
+        setuserInfo(previousState);
+    }
+
+    function sendEdit() {
+        Axios.post("http://localhost:3001/editUser", {
+            type: "Admins",
+            id: props.id,
+            userInfo
+        })
     }
 
     return(
@@ -46,17 +45,17 @@ export default function ModalEditAdmin(props){
                 </div>
                 <div className={styles.boxInput}>
                     <label htmlFor="name">Nome</label>
-                    <input type="text" name="name" onChange={handleChangeValues} defaultValue={props.name}></input>
+                    <input type="text" name="name" onChange={e => editInfo("admin_name", e.target.value)} defaultValue={props.name}></input>
                 </div>
                 <div className={styles.boxInput}>
                     <label htmlFor="email">E-mail</label>
-                    <input type="text" name="email" onChange={handleChangeValues} defaultValue={props.email}></input>
+                    <input type="text" name="email" onChange={e => editInfo("admin_email", e.target.value)} defaultValue={props.email}></input>
                 </div>
             </div>
             <div className={styles.footerModal}>
-                <button onClick={props.closeModal} className={styles.close}>Fechar</button>
-                <button className={styles.delete}>Excluir</button>
-                <button onClick={handleEditValues} className={styles.save}>Salvar</button>
+                <button onClick={props.closeModal} className={styles.close} >Fechar</button>
+                <button className={styles.delete} onClick={excluirAdmin} >Excluir</button>
+                <button className={styles.save} onClick={sendEdit} >Salvar</button>
             </div>
         </Modal>
     )
