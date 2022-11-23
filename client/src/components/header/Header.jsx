@@ -6,6 +6,7 @@ import { IoIosArrowBack } from "react-icons/io"
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/AuthContext"
+import logo from "../../assets/logo.png"
 
 function Header({onSubmit}){
     const [homePage, setHomePage] = useState('home')
@@ -130,7 +131,7 @@ function Header({onSubmit}){
 
             <div className={styles.innerHeader}>
                 <div className={styles.logo}>
-                    <h1>Souza Treinamentos</h1>
+                    <img src={logo}></img>
                 </div>
                 <div className={styles.menu} id="menu">
                     <ul>
