@@ -191,7 +191,11 @@ app.post("/createCourse", async (req, res) => {
 
 })
 
-app.get()
+app.get("/Courses", async (req, res) => {
+    let courses = await DB.Courses.findAll();
+
+    res.send(courses)
+})
 
 
 app.listen(port, () => {
