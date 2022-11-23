@@ -161,3 +161,9 @@
         font-size: 1.5rem;
     }
 }
+
+@media (min-width: 1800px){
+    .modal{
+        height: 700px;
+    }
+}
