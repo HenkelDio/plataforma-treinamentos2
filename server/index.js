@@ -4,7 +4,7 @@ const app = express()
 const cors = require("cors")
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
-const { application } = require("express");
+const { mkdirSync, openSync, appendFileSync, readdirSync } = require("fs")
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -32,7 +32,6 @@ app.post("/loginUser", async (req, res) => {
     let values = req.body.values
 
     if (values.email && values.password) {
-        console.log(values)
         let admin = await DB.Admins.findOne({
             where: {
                 admin_email: values.email,
@@ -120,23 +119,6 @@ app.post("/registerUser", async (req, res) => {
     }
 });
 
-app.post("/fileUploader", async (req, res) => {
-    if (!req.files || Object.keys(req.files).length === 0) {
-        res.status(400).send("Nenhum arquivo foi enviado")
-    } else {
-        let fileUploaded = true
-        req.files.uploadedFile.mv(`${__dirname}\\treinamentos\\${req.files.uploadedFile.name}`, (err) => {
-            if (err) {
-                console.error(err)
-                res.send("Caralho deu merda willian deu muita merda")
-            } else {
-                res.send("Deu tudo certo willllll ahahahahahahaha :) :) :)")
-            }
-        })
-
-    }
-});
-
 app.get("/getUsers/:userType", async (req, res) => {
     let userType = req.params.userType;
 
@@ -181,6 +163,35 @@ app.post("/editUser", async (req, res) => {
         }
     })
 });
+
+app.post("/createCourse", async (req, res) => {
+
+    if (!readdirSync("./treinamentos").includes(req.body.courseName)) {
+
+        let coursePath = `./treinamentos/${req.body.courseName}`
+        mkdirSync(coursePath)
+        
+        req.files.courseFile.mv(coursePath + "\\" + req.files.courseFile.name)
+
+        openSync(coursePath + "//" + req.body.courseName.replace(" ", "_").toLowerCase() + ".txt", "w", "777");
+        appendFileSync(coursePath + "//" + req.body.courseName.replace(" ", "_").toLowerCase() + ".txt", req.body.courseDescrit)
+
+        DB.Courses.create({
+            course_title: req.body.courseName,
+            content_path: coursePath,
+            course_hours: req.body.hoursCourse,
+            registrations: 0
+        });
+
+        res.send({ registeredCourse: true })
+
+    } else {
+        res.send({ registeredCourse: false, reason: "Already registred" })
+    }
+
+})
+
+app.get()
 
 
 app.listen(port, () => {

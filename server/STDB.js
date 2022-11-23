@@ -106,6 +106,31 @@ if (conex) {
         }
     })
 
+    const Courses = DB.define("Courses", {
+        course_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false, 
+            autoIncrement: true, 
+            primaryKey: true
+        },
+        course_title: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        content_path: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        course_hours: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        registrations: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        }
+    })
+
     DB.sync()
 }
 module.exports = DB;
