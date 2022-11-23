@@ -50,7 +50,6 @@ export default function ModalCreateTraining(props){
                                     <Field as="textarea" className={styles.content} name="content" placeholder="Digite o conteúdo aqui"></Field>
                                 </div>
                             </div>
-                            <Pdf />
                             <input type="submit" value="Salvar" className={styles.saveBtn}></input>
                         </Form>
                         </Formik>

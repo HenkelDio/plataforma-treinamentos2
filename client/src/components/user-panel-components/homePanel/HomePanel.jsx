@@ -1,8 +1,4 @@
 import styles from "./homePanel.module.css";
-
-import { HiUsers } from "react-icons/hi";
-import { FaBook } from "react-icons/fa";
-import { AiFillSetting } from "react-icons/ai";
 import { useState } from "react";
 
 export default function HomePanel({ onSubmit }) {
@@ -14,31 +10,6 @@ export default function HomePanel({ onSubmit }) {
     onSubmit({ page });
   };
 
-  const setPageUsers = () => {
-    setUsersPage("users");
-    handlePageHomePanel(usersPage);
-
-    let menuLabels = document.querySelectorAll("#menu ul li");
-    for (let i = 0; i < menuLabels.length; i++) {
-      menuLabels[i].style.borderBottom = "none";
-    }
-
-    let userLabel = document.getElementById("users");
-    userLabel.style.borderBottom = "2px solid #ccc";
-  };
-
-  const setPageTrainings = () => {
-    setTrainingsPage("trainings");
-    handlePageHomePanel(trainingsPage);
-
-    let menuLabels = document.querySelectorAll("#menu ul li");
-    for (let i = 0; i < menuLabels.length; i++) {
-      menuLabels[i].style.borderBottom = "none";
-    }
-
-    let trainingLabel = document.getElementById("trainings");
-    trainingLabel.style.borderBottom = "2px solid #ccc";
-  };
 
   const setPageSettings = () => {
     setSettingsPage("settings");
