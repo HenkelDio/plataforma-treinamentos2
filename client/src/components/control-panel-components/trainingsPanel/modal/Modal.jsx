@@ -35,6 +35,8 @@ export default function ModalCreateTraining(props){
                 console.log(res.data)
             }
         })
+
+        closeModal()
     }
 
     return(

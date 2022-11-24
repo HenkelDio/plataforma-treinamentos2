@@ -165,16 +165,16 @@ app.post("/editUser", async (req, res) => {
 });
 
 app.post("/createCourse", async (req, res) => {
+    
+    if (!readdirSync(`${__dirname}/treinamentos`).includes(req.body.courseName)) {
 
-    if (!readdirSync(`${_dirname}/treinamentos`).includes(req.body.courseName)) {
-
-        let coursePath = `${__dirname}\\treinamentos\\${req.body.courseName}`
+        let coursePath = `${__dirname}/treinamentos/${req.body.courseName}`
         mkdirSync(coursePath)
-        
-        req.files.courseFile.mv(coursePath + "\\" + req.files.courseFile.name)
 
-        openSync(coursePath + "\\" + req.body.courseName.replace(" ", "_").toLowerCase() + ".txt", "w", "777");
-        appendFileSync(coursePath + "\\" + req.body.courseName.replace(" ", "_").toLowerCase() + ".txt", req.body.courseDescrit)
+        req.files.courseFile.mv(coursePath + "/" + req.files.courseFile.name)
+
+        openSync(coursePath + "/" + req.body.courseName.replace(/[ ]/g, "_").toLowerCase() + ".txt", "w", "777");
+        appendFileSync(coursePath + "/" + req.body.courseName.replace(/[ ]/g, "_").toLowerCase() + ".txt", req.body.courseDescrit)
 
         DB.Courses.create({
             course_title: req.body.courseName,
