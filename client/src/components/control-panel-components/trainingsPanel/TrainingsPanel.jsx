@@ -14,6 +14,7 @@ export default function TrainingsPanel(props){
             await Axios.get("http://localhost:3001/Courses").then(res => {
                 if (res) {
                     setListTraining(res.data)
+                    console.log(res.data)
                 }
             })
         }
@@ -44,7 +45,15 @@ export default function TrainingsPanel(props){
                     <input type="text" placeholder='Qual treinamento está procurando?'></input>
                </div>
                <div className={styles.list}>
-                    <Training />
+                    {
+                        listTraining.map((val)=>{
+                            return <Training 
+                            data={val}
+                            />
+                        })
+                    }
+
+                    
                </div>
             </div>
         </div>

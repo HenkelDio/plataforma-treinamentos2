@@ -3,6 +3,7 @@ import ModalEdit from "./modal/modalEdit";
 import { useState } from "react";
 
 export default function Training(props){
+
     const [modalIsOpen, setIsOpen] = useState(false);
 
     const openModal = () =>{
@@ -18,16 +19,11 @@ export default function Training(props){
         <ModalEdit 
         openModal={modalIsOpen} 
         closeModal={closeModal} 
-        id={props.id}
-        name={props.name}
-        email={props.email}
-        contact={props.contact}
-        register={props.register}
-        phone={props.phone}
+        data={props.data}
         />
     <div onClick={openModal} className={styles.card}>
         <div className={styles.title}>
-          <p>NR 20</p>
+          <p>{props.data.course_title}</p>
         </div>
         <div className={styles.features}>
           <button>Editar</button>

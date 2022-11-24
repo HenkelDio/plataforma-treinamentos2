@@ -21,7 +21,7 @@ export default function ModalTraining(props){
           aqui vai o conteudo
         </div>
         <div className={styles.features}>
-          <button>Continuar</button>
+          <button>ir para a prova</button>
           <button>Fechar</button>
         </div>
       </div>
