@@ -4,7 +4,7 @@ const app = express()
 const cors = require("cors")
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
-const { mkdirSync, openSync, appendFileSync, readdirSync } = require("fs")
+const { mkdirSync, openSync, appendFileSync, readdirSync, readFileSync } = require("fs")
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -193,6 +193,13 @@ app.post("/createCourse", async (req, res) => {
 
 app.get("/Courses", async (req, res) => {
     let courses = await DB.Courses.findAll();
+    
+    courses.map(course => (
+        course.dataValues.content = readFileSync(course.dataValues.content_path + "\\" + course.dataValues.course_title.replace(/[ ]/g, "_") + ".txt", "latin1")
+    ))
+
+    console.log(courses)
+
     res.send(courses)
 })
 
