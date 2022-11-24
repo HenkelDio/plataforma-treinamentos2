@@ -2,6 +2,7 @@ import styles from './trainingsPanel.module.css';
 import ModalCreateTraining from './modal/Modal';
 import Training from './trainingsSelect/Training';
 import { useEffect, useState } from 'react';
+import Axios from "axios";
 import {IoIosAdd} from 'react-icons/io'
 
 export default function TrainingsPanel(props){
@@ -9,8 +10,15 @@ export default function TrainingsPanel(props){
     const [listTraining, setListTraining] = useState([])
 
     useEffect(_=>{
-        
-    },[])
+        const getCourse = async _ => {
+            await Axios.get("http://localhost:3001/Courses").then(res => {
+                if (res) {
+                    setListTraining(res.data)
+                }
+            })
+        }
+        getCourse()
+    }, [listTraining])
 
     const closeModal = () =>{
         setIsOpen(false)
