@@ -10,7 +10,21 @@ export default function ModalTraining(props){
     overlayClassName={styles.modalOverlay}
     className={styles.modal}
     ariaHideApp={false}>
-      
+      <div className={styles.headerModal}>
+        <h1>NR 20: Combate contra o Incêndio</h1>
+      </div>
+      <div className={styles.bodyModal}>
+        <div className={styles.pdf}>
+          aqui vai o pdf
+        </div>
+        <div className={styles.content}>
+          aqui vai o conteudo
+        </div>
+        <div className={styles.features}>
+          <button>Continuar</button>
+          <button>Fechar</button>
+        </div>
+      </div>
     </Modal>
   )
 }
