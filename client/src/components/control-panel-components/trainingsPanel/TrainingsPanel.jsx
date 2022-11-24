@@ -18,7 +18,7 @@ export default function TrainingsPanel(props){
             })
         }
         getCourse()
-    }, [listTraining])
+    }, [])
 
     const closeModal = () =>{
         setIsOpen(false)
