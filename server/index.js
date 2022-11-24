@@ -39,7 +39,7 @@ app.post("/loginUser", async (req, res) => {
             }
         })
         if (admin) {
-            res.send({ "authenticated": true, "permission": "admin", "name": 'Willian' })
+            res.send({ "authenticated": true, "permission": "admin", "name": admin.dataValues.admin_name })
         } else {
             let company = await DB.Companies.findOne({
                 where: {
@@ -49,7 +49,7 @@ app.post("/loginUser", async (req, res) => {
             })
 
             if (company) {
-                res.send({ "authenticated": true, "permission": "company" })
+                res.send({ "authenticated": true, "permission": "company", "name":  company.dataValues.company_name})
             } else {
                 let user = await DB.Users.findOne({
                     where: {
@@ -59,7 +59,7 @@ app.post("/loginUser", async (req, res) => {
                 })
 
                 if (user) {
-                    res.send({ "authenticated": true, "permission": "user" })
+                    res.send({ "authenticated": true, "permission": "user", "name": user.dataValues.user_name })
                 } else {
                     res.send({ "authenticated": false })
                 }
@@ -168,13 +168,13 @@ app.post("/createCourse", async (req, res) => {
 
     if (!readdirSync("./treinamentos").includes(req.body.courseName)) {
 
-        let coursePath = `./treinamentos/${req.body.courseName}`
+        let coursePath = `${__dirname}\\treinamentos\\${req.body.courseName}`
         mkdirSync(coursePath)
         
         req.files.courseFile.mv(coursePath + "\\" + req.files.courseFile.name)
 
-        openSync(coursePath + "//" + req.body.courseName.replace(" ", "_").toLowerCase() + ".txt", "w", "777");
-        appendFileSync(coursePath + "//" + req.body.courseName.replace(" ", "_").toLowerCase() + ".txt", req.body.courseDescrit)
+        openSync(coursePath + "\\" + req.body.courseName.replace(" ", "_").toLowerCase() + ".txt", "w", "777");
+        appendFileSync(coursePath + "\\" + req.body.courseName.replace(" ", "_").toLowerCase() + ".txt", req.body.courseDescrit)
 
         DB.Courses.create({
             course_title: req.body.courseName,
@@ -193,9 +193,9 @@ app.post("/createCourse", async (req, res) => {
 
 app.get("/Courses", async (req, res) => {
     let courses = await DB.Courses.findAll();
-
     res.send(courses)
 })
+
 
 
 app.listen(port, () => {
