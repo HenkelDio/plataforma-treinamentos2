@@ -1,12 +1,16 @@
 import styles from './trainingsPanel.module.css';
 import ModalCreateTraining from './modal/Modal';
 import Training from './trainingsSelect/Training';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {IoIosAdd} from 'react-icons/io'
 
 export default function TrainingsPanel(props){
     const [modalIsOpen, setIsOpen] = useState(false)
     const [listTraining, setListTraining] = useState([])
+
+    useEffect(_=>{
+        
+    },[])
 
     const closeModal = () =>{
         setIsOpen(false)
