@@ -20,7 +20,7 @@ export default function TrainingBox(){
        closeModal={closeModal} 
       />
 
-      <div className={styles.trainingBox}>
+      <div onClick={openModal} className={styles.trainingBox}>
         <p>NR 20: Inflamáveis e Combustíveis</p>
       </div>
     </>
