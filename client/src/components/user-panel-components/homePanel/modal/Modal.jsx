@@ -10,6 +10,7 @@ export default function ModalTraining(){
     overlayClassName={styles.modalOverlay}
     className={styles.modal}
     ariaHideApp={false}>
+      
     </Modal>
   )
 }
