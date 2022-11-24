@@ -166,7 +166,7 @@ app.post("/editUser", async (req, res) => {
 
 app.post("/createCourse", async (req, res) => {
 
-    if (!readdirSync("./treinamentos").includes(req.body.courseName)) {
+    if (!readdirSync(`${_dirname}/treinamentos`).includes(req.body.courseName)) {
 
         let coursePath = `${__dirname}\\treinamentos\\${req.body.courseName}`
         mkdirSync(coursePath)
