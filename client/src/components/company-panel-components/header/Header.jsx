@@ -3,12 +3,20 @@ import { useState } from "react"
 import { CgProfile } from "react-icons/cg"
 import { BiMenuAltRight } from "react-icons/bi"
 import { IoIosArrowBack } from "react-icons/io"
+import { useContext } from "react"
+import { AuthContext } from "../../../contexts/AuthContext"
 
 function Header({onSubmit}){
     const [homePage, setHomePage] = useState('home')
     const [usersPage, setUsersPage] = useState('users')
     const [trainingsPage, setTrainingsPage] = useState('trainings')
     const [settingsPage, setSettingsPage] = useState('settings')
+
+    const { name, logoutUser } = useContext(AuthContext)
+
+    const logout = () =>{
+        logoutUser()
+    }
 
     const handlePage = (page) =>{
         onSubmit({page})
@@ -130,7 +138,7 @@ function Header({onSubmit}){
                         <hr></hr>
                         <div className={styles.profileConfigs}>
                             <p>Minha conta</p>
-                            <p>Sair</p>
+                            <p onClick={logout}>Sair</p>
                         </div>
                     </div>
                 </div>
