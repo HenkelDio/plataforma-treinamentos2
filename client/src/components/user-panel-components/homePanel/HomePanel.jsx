@@ -1,4 +1,5 @@
 import styles from "./homePanel.module.css";
+import TrainingBox from "./trainings/TrainingBox";
 import { useState } from "react";
 
 export default function HomePanel({ onSubmit }) {
@@ -31,9 +32,7 @@ export default function HomePanel({ onSubmit }) {
           <h2>Você está matriculado em</h2>
         </div>
         <div className={styles.bodyHomePanel}>
-          <div className={styles.trainingBox}>
-            <p>NR 20: Inflamáveis e Combustíveis</p>
-          </div>
+          <TrainingBox />
         </div>
       </div>
     </>
