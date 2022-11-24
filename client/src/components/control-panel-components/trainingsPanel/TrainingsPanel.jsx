@@ -1,10 +1,12 @@
 import styles from './trainingsPanel.module.css';
 import ModalCreateTraining from './modal/Modal';
+import Training from './trainingsSelect/Training';
 import { useState } from 'react';
 import {IoIosAdd} from 'react-icons/io'
 
 export default function TrainingsPanel(props){
     const [modalIsOpen, setIsOpen] = useState(false)
+    const [listTraining, setListTraining] = useState([])
 
     const closeModal = () =>{
         setIsOpen(false)
@@ -30,7 +32,7 @@ export default function TrainingsPanel(props){
                     <input type="text" placeholder='Qual treinamento está procurando?'></input>
                </div>
                <div className={styles.list}>
-                    
+                    <Training />
                </div>
             </div>
         </div>

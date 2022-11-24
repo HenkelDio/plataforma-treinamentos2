@@ -32,7 +32,7 @@ export default function Login() {
             console.log(res.data.permission);
             navigate("/painel-empresa");
           } else if (res.data.permission === "admin") {
-            console.log(res.data.permission);
+            console.log(res.data);
             navigate("/painel");
           } else if (res.data.permission === "user") {
             console.log(res.data.permission);
@@ -42,7 +42,7 @@ export default function Login() {
           }
         }
 
-        login(values.email, values.password) // integração com o context
+        login(values.email, values.password, res.data.name) // integração com o context
       }
     );
   };

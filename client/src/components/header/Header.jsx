@@ -4,7 +4,6 @@ import { CgProfile } from "react-icons/cg"
 import { BiMenuAltRight } from "react-icons/bi"
 import { IoIosArrowBack } from "react-icons/io"
 import { useContext } from "react"
-import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/AuthContext"
 import logo from "../../assets/logo.png"
 
@@ -14,13 +13,10 @@ function Header({onSubmit}){
     const [trainingsPage, setTrainingsPage] = useState('trainings')
     const [settingsPage, setSettingsPage] = useState('settings')
 
-    const { logout } = useContext(AuthContext)
-    
-    const navigate = useNavigate()
+    const { name, logoutUser } = useContext(AuthContext)
 
-    const logoutUser = () =>{
-        navigate("/");
-        logout();
+    const logout = () =>{
+        logoutUser()
     }
 
     const handlePage = (page) =>{
@@ -113,7 +109,7 @@ function Header({onSubmit}){
 
                     <div className={styles.profile}>
                         <p className={styles.icon}><CgProfile /></p>
-                        <p className={styles.name}>Souza</p>
+                        <p className={styles.name}>{name}</p>
                     </div>
                     <hr></hr>
                     <div className={styles.menuMobile}>
@@ -154,11 +150,11 @@ function Header({onSubmit}){
                             <p>X</p>
                         </div>
                         <p className={styles.icon}><CgProfile /></p>
-                        <p className={styles.name}>Souza</p>
+                        <p className={styles.name}>{name}</p>
                         <hr></hr>
                         <div className={styles.profileConfigs}>
                             <p onClick={setPageSettings}>Minha conta</p>
-                            <p onClick={logoutUser}>Sair</p>
+                            <p onClick={logout}>Sair</p>
                         </div>
                     </div>
                 </div>

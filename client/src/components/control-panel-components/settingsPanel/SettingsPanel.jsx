@@ -1,7 +1,12 @@
 import styles from './settingsPanel.module.css';
 import { CgProfile } from "react-icons/cg"
+import { useContext } from 'react';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 export default function SettingsPanel(){
+    
+    const { name, email, permission } = useContext(AuthContext)
+
     return(
         <div className={styles.settingsPanel}>
 
@@ -17,10 +22,10 @@ export default function SettingsPanel(){
                     </div>
                     <div className={styles.profileData}>
                         <div style={{marginBottom: "10px"}} className={styles.name}>
-                            <h4>Willian José Henkel de Deus</h4>
+                            <h4>{name}</h4>
                         </div>
                         <div style={{marginBottom: "10px"}} className={styles.email}>
-                            <h4>willianhenkel@gmail.com</h4>
+                            <h4>{email}</h4>
                         </div>
                         <div style={{marginBottom: "10px"}} className={styles.type}>
                             <h4>Administrador</h4>

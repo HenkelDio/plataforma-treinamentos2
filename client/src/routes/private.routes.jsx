@@ -5,25 +5,22 @@ import CompanyPanel from "../pages/companyPanel/companyPanel";
 import UserPanel from "../pages/userPanel";
 import { AuthProvider } from "../contexts/AuthContext";
 import { AuthContext } from "../contexts/AuthContext";
-import { useContext,useEffect } from "react";
+import { useContext } from "react";
 
 const PrivateRoutes = () => {
 
   const Private =({children}) =>{
-    const { authenticated, setUser } = useContext(AuthContext);
+    const { authenticated, loading } = useContext(AuthContext);
 
-    useEffect(()=>{
-      const recoveredUser = localStorage.getItem('user'); 
-  
-      if(recoveredUser){
-          setUser(JSON.parse(recoveredUser))
-      }
-  
-    },[])
+    if(loading){
+      return <div className="load">Carregando</div>
+    }
 
-    console.log(authenticated)
+    if(!authenticated){
+      return <Navigate to="/" />
+    };
 
-    return (authenticated ? children : <Navigate to="/" />);
+    return children;
   }
 
   return (

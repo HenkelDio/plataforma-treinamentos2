@@ -156,6 +156,40 @@
 
     outline: none;
 }
+
+.filePdf{
+    display: none;
+}
+
+.fileBox{
+    width: 80%;
+    padding: 20px;
+
+    border: 2px dotted #ccc;
+
+    margin-bottom: 20px;
+}
+
+.labelAddFile{
+    display: flex;
+    align-items: center;
+
+    font-weight: bold;
+    font-family: var(--inter);
+    opacity: 0.9;
+    
+    cursor: pointer;
+
+    padding: 15px;
+
+    background-color: rgba(204, 204, 204, 0.663);
+}
+
+.labelAddFile:hover{
+    background-color: #ccc;
+}
+
+
 .saveBtn{
     width: 200px;
     padding: 10px 0px;
@@ -175,6 +209,7 @@
 .saveBtn:hover{
     background-color:#076025;
 }
+
 
 /* MODAL MOBILE */
 

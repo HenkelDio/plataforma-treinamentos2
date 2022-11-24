@@ -3,6 +3,7 @@ import styles from "./modal.module.css";
 import Modal from 'react-modal';
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { IoIosArrowBack } from "react-icons/io";
+import {IoIosAdd} from 'react-icons/io'
 import { useState } from "react";
 import Axios from "axios"
 
@@ -70,8 +71,19 @@ export default function ModalCreateTraining(props){
                                     <div className={styles.placeholderTime}>horas</div>
                                 </div>
                             </div>
-                            <div className={styles.inputBox}>
-                                <input type="file" accept=".pdf" onChange={e => setCourseFile(e.target.files[0])}/>
+                            <div className={styles.fileBox}>
+                                <label 
+                                className={styles.labelAddFile} 
+                                htmlFor="filePdf">
+                                    <IoIosAdd />
+                                    Adicionar PDF
+                                    <input 
+                                    type="file" 
+                                    id="filePdf" 
+                                    className={styles.filePdf} 
+                                    accept=".pdf" 
+                                    onChange={e => setCourseFile(e.target.files[0])}/>
+                                </label>
                             </div>
                             <div className={styles.inputBox}>
                                 <div className={styles.contentBox}>

@@ -39,7 +39,7 @@ app.post("/loginUser", async (req, res) => {
             }
         })
         if (admin) {
-            res.send({ "authenticated": true, "permission": "admin" })
+            res.send({ "authenticated": true, "permission": "admin", "name": 'Willian' })
         } else {
             let company = await DB.Companies.findOne({
                 where: {
