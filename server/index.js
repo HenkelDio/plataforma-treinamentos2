@@ -198,8 +198,6 @@ app.get("/Courses", async (req, res) => {
         course.dataValues.content = readFileSync(course.dataValues.content_path + "\\" + course.dataValues.course_title.replace(/[ ]/g, "_") + ".txt", "latin1")
     ))
 
-    console.log(courses)
-
     res.send(courses)
 })
 
