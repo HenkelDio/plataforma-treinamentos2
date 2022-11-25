@@ -195,7 +195,7 @@ app.get("/Courses", async (req, res) => {
     let courses = await DB.Courses.findAll();
     
     courses.map(course => (
-        course.dataValues.content = readFileSync(course.dataValues.content_path + "/" + course.dataValues.course_title.replace(/[ ]/g, "_") + ".txt", "latin1")
+        course.dataValues.content = readFileSync(course.dataValues.content_path + "/" + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "latin1")
     ))
 
     res.send(courses)
