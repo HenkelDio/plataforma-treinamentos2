@@ -2,7 +2,7 @@ import styles from "./trainingBox.module.css"
 import ModalTraining from "../modal/Modal"
 import { useState } from "react";
 
-export default function TrainingBox(){
+export default function TrainingBox(props){
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const openModal = () =>{
@@ -17,11 +17,12 @@ export default function TrainingBox(){
     <>
       <ModalTraining 
        openModal={modalIsOpen} 
-       closeModal={closeModal} 
+       closeModal={closeModal}
+       data={props}
       />
 
       <div onClick={openModal} className={styles.trainingBox}>
-        <p>NR 20: Inflamáveis e Combustíveis</p>
+        <p>{props.data.course_title}</p>
       </div>
     </>
   )

@@ -2,6 +2,9 @@ import Modal from 'react-modal';
 import styles from "./modal.module.css";
 
 export default function ModalTraining(props){
+
+  console.log(props)
+
   return(
     <Modal 
     isOpen={props.openModal}
@@ -12,22 +15,20 @@ export default function ModalTraining(props){
     ariaHideApp={false}>
       <div className={styles.modalTraining}>
         <div className={styles.headerModal}>
-          <h1>NR 20: Combate contra o Incêndio</h1>
+          <h1>{props.data.data.course_title}</h1>
         </div>
         <div className={styles.bodyModal}>
           <div className={styles.pdf}>
             aqui vai o pdf
           </div>
           <div className={styles.content}>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, nemo quos praesentium cupiditate eligendi minima ab expedita aperiam reprehenderit corporis ullam nesciunt? Quam provident explicabo earum laborum ipsa alias asperiores.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, nemo quos praesentium cupiditate eligendi minima ab expedita aperiam reprehenderit corporis ullam nesciunt? Quam provident explicabo earum laborum ipsa alias asperiores.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, nemo quos praesentium cupiditate eligendi minima ab expedita aperiam reprehenderit corporis ullam nesciunt? Quam provident explicabo earum laborum ipsa alias asperiores.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, nemo quos praesentium cupiditate eligendi minima ab expedita aperiam reprehenderit corporis ullam nesciunt? Quam provident explicabo earum laborum ipsa alias asperiores.
+            <p>
+              {props.data.data.content}
             </p>
           </div>
           <div className={styles.features}>
             <button>ir para a prova</button>
-            <button>Fechar</button>
+            <button onClick={props.closeModal}>Fechar</button>
           </div>
         </div>
       </div>

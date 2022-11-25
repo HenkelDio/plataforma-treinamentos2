@@ -3,7 +3,7 @@ import styles from "./modalEdit.module.css";
 
 export default function ModalEdit(props){
     
-    console.log(props)
+    
 
     return(
         <Modal
@@ -27,7 +27,7 @@ export default function ModalEdit(props){
                 </div>
                 <div className={styles.boxInput}>
                     <label htmlFor="content">Conteúdo</label>
-                    <textarea name="content" className={styles.content} defaultValue={props.data.course_content}></textarea>
+                    <textarea name="content" className={styles.content} defaultValue={props.data.content}></textarea>
                 </div>
             </div>
             <div className={styles.footerModal}>
