@@ -18,7 +18,15 @@
 }
 
 .header .innerHeader .logo{
-    font-size: .7rem;
+    position: relative;
+    width: 200px;
+    height: 100%;
+}
+
+.header .innerHeader .logo img{
+    position: absolute;
+    top: -25px;
+    width: 90%;
 }
 
 .header .innerHeader .menu{
@@ -208,6 +216,14 @@
 .closeSideMenuIcon{
     font-size: 2rem;
     width: 100%;
+}
+
+@media (max-width: 845px){
+    .header .innerHeader .logo img{
+        position: absolute;
+        top: -10px;
+        width: 90%;
+    }
 }
 
 @media (max-width: 700px){
