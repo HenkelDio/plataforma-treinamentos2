@@ -4,7 +4,8 @@ const app = express()
 const cors = require("cors")
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
-const { mkdirSync, openSync, appendFileSync, readdirSync, readFileSync } = require("fs")
+const { mkdirSync, openSync, appendFileSync, readdirSync, readFileSync, unlinkSync,
+    closeSync, rmdirSync } = require("fs");
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -28,6 +29,15 @@ async function searchEmail(email) {
     return cond;
 }
 
+function deleteDir(dir) {
+    
+    for (let obj of readdirSync(dir)) {
+        unlinkSync(dir + "/" + obj)
+    }
+    
+    rmdirSync(dir)
+}
+
 app.post("/loginUser", async (req, res) => {
     let values = req.body.values
 
@@ -49,7 +59,7 @@ app.post("/loginUser", async (req, res) => {
             })
 
             if (company) {
-                res.send({ "authenticated": true, "permission": "company", "name":  company.dataValues.company_name})
+                res.send({ "authenticated": true, "permission": "company", "name": company.dataValues.company_name })
             } else {
                 let user = await DB.Users.findOne({
                     where: {
@@ -165,7 +175,7 @@ app.post("/editUser", async (req, res) => {
 });
 
 app.post("/createCourse", async (req, res) => {
-    
+
     if (!readdirSync(`${__dirname}/treinamentos`).includes(req.body.courseName)) {
 
         let coursePath = `${__dirname}/treinamentos/${req.body.courseName}`
@@ -173,8 +183,9 @@ app.post("/createCourse", async (req, res) => {
 
         req.files.courseFile.mv(coursePath + "/" + req.files.courseFile.name)
 
-        openSync(coursePath + "/" + req.body.courseName.replace(/[ ]/g, "_").toLowerCase() + ".txt", "w", "777");
-        appendFileSync(coursePath + "/" + req.body.courseName.replace(/[ ]/g, "_").toLowerCase() + ".txt", req.body.courseDescrit)
+        let fileDescriptor = openSync(coursePath + "/" + req.body.courseName.replace(/[ ]/g, "_").toLowerCase() + ".txt", "w", "777");
+        appendFileSync(coursePath + "/" + req.body.courseName.replace(/[ ]/g, "_").toLowerCase() + ".txt", req.body.courseDescrit);
+        closeSync(fileDescriptor);
 
         DB.Courses.create({
             course_title: req.body.courseName,
@@ -193,12 +204,31 @@ app.post("/createCourse", async (req, res) => {
 
 app.get("/Courses", async (req, res) => {
     let courses = await DB.Courses.findAll();
-    
+
     courses.map(course => (
         course.dataValues.content = readFileSync(course.dataValues.content_path + "/" + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "latin1")
     ))
 
     res.send(courses)
+})
+
+app.delete("/deleteCourse/:courseId", async (req, res) => {
+    let course = await DB.Courses.findOne({
+        where: {
+            course_id: req.params.courseId
+        }
+    })
+
+    deleteDir(course.content_path)
+
+    await DB.Courses.destroy({
+        where: {
+            course_id: req.params.courseId
+        }
+    })
+
+    res.sendStatus(200)
+
 })
 
 
