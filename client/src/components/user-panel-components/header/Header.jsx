@@ -3,12 +3,20 @@ import { useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { BiMenuAltRight } from "react-icons/bi";
 import { IoIosArrowBack } from "react-icons/io";
+import { useContext } from "react"
+import { AuthContext } from "../../../contexts/AuthContext";
 
 function Header({ onSubmit }) {
   const [homePage, setHomePage] = useState("home");
   const [usersPage, setUsersPage] = useState("users");
   const [trainingsPage, setTrainingsPage] = useState("trainings");
   const [settingsPage, setSettingsPage] = useState("settings");
+
+  const { name, logoutUser } = useContext(AuthContext)
+
+  const logout = () =>{
+    logoutUser()
+  }
 
   const handlePage = (page) => {
     onSubmit({ page });
@@ -88,7 +96,7 @@ function Header({ onSubmit }) {
             <p className={styles.icon}>
               <CgProfile />
             </p>
-            <p className={styles.name}>Usuário</p>
+            <p className={styles.name}>{name}</p>
           </div>
           <hr></hr>
           <div className={styles.menuMobile}>
@@ -98,7 +106,7 @@ function Header({ onSubmit }) {
             </ul>
           </div>
           <button className={styles.buttonAcessAccount}>MINHA CONTA</button>
-          <button className={styles.buttonLoggoutAccount}>SAIR</button>
+          <button onClick={logout} className={styles.buttonLoggoutAccount}>SAIR</button>
         </div>
       </div>
 
@@ -133,11 +141,11 @@ function Header({ onSubmit }) {
             <p className={styles.icon}>
               <CgProfile />
             </p>
-            <p className={styles.name}>Usuário</p>
+            <p className={styles.name}>{name}</p>
             <hr></hr>
             <div className={styles.profileConfigs}>
               <p>Minha conta</p>
-              <p>Sair</p>
+              <p onClick={logout}>Sair</p>
             </div>
           </div>
         </div>
