@@ -39,7 +39,6 @@ function deleteDir(dir) {
 }
 
 app.post("/loginUser", async (req, res) => {
-    console.log(req.body, " tentou acessar")
     let values = req.body.values
 
     if (values.email && values.password) {
@@ -116,7 +115,7 @@ app.post("/registerUser", async (req, res) => {
     let values = req.body.values
 
     if (await searchEmail(values.email) === "notFound") {
-        DB.Users.create({
+        await DB.Users.create({
             user_name: values.name,
             user_email: values.email,
             user_register: values.cpf,
