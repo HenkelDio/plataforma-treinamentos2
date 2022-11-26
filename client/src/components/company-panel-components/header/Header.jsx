@@ -5,6 +5,7 @@ import { BiMenuAltRight } from "react-icons/bi"
 import { IoIosArrowBack } from "react-icons/io"
 import { useContext } from "react"
 import { AuthContext } from "../../../contexts/AuthContext"
+import logo from "../../../assets/logo.png"
 
 function Header({onSubmit}){
     const [homePage, setHomePage] = useState('home')
@@ -89,13 +90,13 @@ function Header({onSubmit}){
 
             <div className={styles.sideMenu} id="sideMenu">
                 <div className={styles.innerSideMenu}>
-                    <div  onClick={closeSideMenu} className={styles.closeSideMenuIcon}>
+                    <div onClick={closeSideMenu} className={styles.closeSideMenuIcon}>
                         <p><IoIosArrowBack/></p>
                     </div>
 
                     <div className={styles.profile}>
                         <p className={styles.icon}><CgProfile /></p>
-                        <p className={styles.name}>Empresa</p>
+                        <p className={styles.name}>{name}</p>
                     </div>
                     <hr></hr>
                     <div className={styles.menuMobile}>
@@ -112,7 +113,7 @@ function Header({onSubmit}){
 
             <div className={styles.innerHeader}>
                 <div className={styles.logo}>
-                    <h1>Souza Treinamentos</h1>
+                    <img src={logo}></img>
                 </div>
                 <div className={styles.menu} id="menu">
                     <ul>
@@ -134,7 +135,7 @@ function Header({onSubmit}){
                             <p>X</p>
                         </div>
                         <p className={styles.icon}><CgProfile /></p>
-                        <p className={styles.name}>Empresa</p>
+                        <p className={styles.name}>{name}</p>
                         <hr></hr>
                         <div className={styles.profileConfigs}>
                             <p>Minha conta</p>
