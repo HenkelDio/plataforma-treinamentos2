@@ -25,7 +25,7 @@ export default function Login() {
 
   const handleLogin = async (values) => {
     //recebe valores do form e verifica na rota loginUser. Rsultado retorna se usuário foi authenticado e permissão
-    await Axios.post("http://localhost:3001/loginUser", { values }).then(
+    await Axios.post("http://191.101.71.229:3001/loginUser", { values }).then(
       (res) => {
         if (res) {
           if (res.data.permission === "company") {
