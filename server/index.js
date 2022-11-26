@@ -39,6 +39,7 @@ function deleteDir(dir) {
 }
 
 app.post("/loginUser", async (req, res) => {
+    console.log(req.body, " tentou acessar")
     let values = req.body.values
 
     if (values.email && values.password) {
