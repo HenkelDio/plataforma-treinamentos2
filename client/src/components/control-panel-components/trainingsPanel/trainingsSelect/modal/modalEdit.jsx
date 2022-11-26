@@ -1,9 +1,18 @@
 import Modal from "react-modal";
 import styles from "./modalEdit.module.css";
+import Axios from "axios"
 
 export default function ModalEdit(props){
-    
-    
+
+    function deleteCourse() {
+        let { course_id } =  props.data
+        
+        Axios.delete(`http://localhost:3001/deleteCourse/${course_id}`).then(res => {
+            if (res) {
+                console.log(res)
+            }
+        })
+    }
 
     return(
         <Modal
@@ -32,7 +41,7 @@ export default function ModalEdit(props){
             </div>
             <div className={styles.footerModal}>
                 <button onClick={props.closeModal} className={styles.close}>Fechar</button>
-                <button className={styles.delete}>Excluir</button>
+                <button className={styles.delete} onClick={deleteCourse}>Excluir</button>
                 <button className={styles.save}>Salvar</button>
             </div>
         </Modal>
