@@ -22,8 +22,8 @@ export default function modalCompany() {
     })
 
     const handleSubmit = async (values) =>{
-        
-        await Axios.post("http://localhost:3001/registerCompany", { values }).then(res => {
+        let route = "http://191.101.71.229:3001/registerCompany"
+        await Axios.post(route, { values }).then(res => {
             if (res) {
                 console.log(res.data)
             }

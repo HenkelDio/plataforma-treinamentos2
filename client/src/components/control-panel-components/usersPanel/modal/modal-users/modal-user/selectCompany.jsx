@@ -10,7 +10,8 @@ export default function SelectCompany(props){
 
     useEffect(_ => {
         const getCompanies = async _ => {
-            await Axios.get(`http://localhost:3001/getUsers/${userType}`).then(res => {
+            let route = `http://191.101.71.229:3001/getUsers/${userType}`
+            await Axios.get(route).then(res => {
                 if (res) {
                     setCompanies(res.data)
                 }

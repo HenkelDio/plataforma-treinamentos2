@@ -11,7 +11,8 @@ export default function TrainingsPanel(props){
 
     useEffect(_=>{
         const getCourse = async _ => {
-            await Axios.get("http://localhost:3001/Courses").then(res => {
+            let route = "http://191.101.71.229:3001/Courses"
+            await Axios.get(route).then(res => {
                 if (res) {
                     setListTraining(res.data)
                     console.log(res.data)

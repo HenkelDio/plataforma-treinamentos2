@@ -8,7 +8,8 @@ export default function ModalEditUser(props) {
     const [userInfo, setUserInfo] = useState({});
 
     function excluirUser() {
-        Axios.post("http://localhost:3001/removeUser", {
+        let route = "http://191.101.71.299:3001/removeUser"
+        Axios.post(route, {
             type: "Users",
             id: props.id
         })
@@ -21,7 +22,8 @@ export default function ModalEditUser(props) {
     }
 
     function sendEdit() {
-        Axios.post("http://localhost:3001/editUser", {
+        let route = "http://191.101.71.229:3001/editUser"
+        Axios.post(route, {
             type: "Users",
             id: props.id,
             userInfo

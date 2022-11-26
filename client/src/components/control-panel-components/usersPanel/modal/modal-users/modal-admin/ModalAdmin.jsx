@@ -23,7 +23,8 @@ export default function modalAdmin() {
 
     const handleSubmit = async (values) =>{
         
-        Axios.post("http://localhost:3001/registerAdmin", { values }).then(res => {
+        let route = "http://191.101.71.229:3001/registerAdmin"
+        Axios.post(route, { values }).then(res => {
             if (res) {
                 console.log(res.data)
             }

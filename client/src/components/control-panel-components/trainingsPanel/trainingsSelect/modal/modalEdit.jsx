@@ -6,8 +6,8 @@ export default function ModalEdit(props){
 
     function deleteCourse() {
         let { course_id } =  props.data
-        
-        Axios.delete(`http://localhost:3001/deleteCourse/${course_id}`).then(res => {
+        let route = `http://191.101.71.229:3001/deleteCourse/${course_id}`
+        Axios.delete(route).then(res => {
             if (res) {
                 console.log(res)
             }

@@ -27,7 +27,8 @@ export default function ModalUser() {
 
     const handleSubmit = async (values) =>{
         values.companyId = userCompanyId;
-        await Axios.post("http://localhost:3001/registerUser", { values }).then(res => {
+        let route = "http://191.101.71.229:3001/registerUser"
+        await Axios.post(route, { values }).then(res => {
             if (res) {
                 console.log(res.data)
             }

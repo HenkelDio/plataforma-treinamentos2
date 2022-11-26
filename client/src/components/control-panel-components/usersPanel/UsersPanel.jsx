@@ -23,7 +23,8 @@ export default function UsersPanel(props){
     
     useEffect(_ => {
         const getUsers = async _ => {
-            await Axios.get(`http://localhost:3001/getUsers/${userType}`).then(res => {
+            let route = `http://191.101.71.229:3001/getUsers/${userType}`
+            await Axios.get(route).then(res => {
                 if (res) {
                     setListUsers(res.data)
                 }
