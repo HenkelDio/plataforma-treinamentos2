@@ -13,14 +13,14 @@ const options = {
     key: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/privkey.pem")
 }
 
-const httpsServer = https.createServer(options, app);
+const httpsPort = 4000
+https.createServer(options, app).listen(httpsPort, _ => console.log(`Server rodando na porta ${httpsPort}`));
 
 app.use(cors())
 app.use(bodyParser.json())
 app.use(fileUpload())
 
 const DB = require("./STDB").models;
-const port = 3001
 
 async function searchEmail(email) {
     let cond = "notFound"
@@ -46,6 +46,7 @@ function deleteDir(dir) {
 }
 
 app.post("/loginUser", async (req, res) => {
+    console.log("emanuel")
     let values = req.body.values
 
     if (values.email && values.password) {
@@ -237,6 +238,3 @@ app.delete("/deleteCourse/:courseId", async (req, res) => {
     res.sendStatus(200)
 
 })
-
-
-httpsServer.listen(3001)
