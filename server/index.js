@@ -6,11 +6,11 @@ const https = require("https");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const { mkdirSync, openSync, appendFileSync, readdirSync, readFileSync, unlinkSync,
-    closeSync, rmdirSync, fstat } = require("fs");
+    closeSync, rmdirSync } = require("fs");
 
 const options = {
-    key: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/cert.pem", "utf-8"),
-    cert: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/privkey.pem", "utf-8")
+    key: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/cert.pem", "utf8"),
+    cert: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/privkey.pem", "utf8")
 }
 
 const httpsServer = https.createServer(options, (req, res) => {
