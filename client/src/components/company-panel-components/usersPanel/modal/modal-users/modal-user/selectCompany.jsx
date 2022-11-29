@@ -10,7 +10,7 @@ export default function SelectCompany(props){
 
     useEffect(_ => {
         const getCompanies = async _ => {
-            await Axios.get(`http://localhost:3001/getUsers/${userType}`).then(res => {
+            await Axios.get(`https://souzatreinamentosst.com.br:4000/getUsers/${userType}`).then(res => {
                 if (res) {
                     setCompanies(res.data)
                 }

@@ -2,18 +2,25 @@
 const express = require("express");
 const app = express()
 const cors = require("cors")
+const https = require("https");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const { mkdirSync, openSync, appendFileSync, readdirSync, readFileSync, unlinkSync,
     closeSync, rmdirSync } = require("fs");
+
+const options = {
+    cert: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/cert.pem"),
+    key: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/privkey.pem")
+}
+
+const httpsPort = 4000
+https.createServer(options, app).listen(httpsPort, _ => console.log(`Server rodando na porta ${httpsPort}`));
 
 app.use(cors())
 app.use(bodyParser.json())
 app.use(fileUpload())
 
 const DB = require("./STDB").models;
-console.log(DB)
-const port = 3001
 
 async function searchEmail(email) {
     let cond = "notFound"
@@ -30,11 +37,11 @@ async function searchEmail(email) {
 }
 
 function deleteDir(dir) {
-    
+
     for (let obj of readdirSync(dir)) {
         unlinkSync(dir + "/" + obj)
     }
-    
+
     rmdirSync(dir)
 }
 
@@ -112,6 +119,7 @@ app.post("/registerCompany", async (req, res) => {
 });
 
 app.post("/registerUser", async (req, res) => {
+    console.log("reg user")
     let values = req.body.values
 
     if (await searchEmail(values.email) === "notFound") {
@@ -230,9 +238,3 @@ app.delete("/deleteCourse/:courseId", async (req, res) => {
     res.sendStatus(200)
 
 })
-
-
-
-app.listen(port, () => {
-    console.log("Listen in PORT 3001")
-});

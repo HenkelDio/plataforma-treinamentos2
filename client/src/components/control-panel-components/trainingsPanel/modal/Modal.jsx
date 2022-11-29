@@ -27,7 +27,7 @@ export default function ModalCreateTraining(props){
         formData.append("courseFile", courseFile, courseFile.name);
         formData.append("courseDescrit", courseDescrit)
         
-        let route = "http://191.101.71.229:3001/createCourse"
+        let route = `${require("../../../../defaultRoute")}/createCourse`
         await Axios.post(route, formData, {
             headers : {
                 "Content-Type": "multipart/form-data"

@@ -23,7 +23,7 @@ export default function modalAdmin() {
 
     const handleSubmit = async (values) =>{
         
-        Axios.post("http://localhost:3001/registerAdmin", { values }).then(res => {
+        Axios.post("https://souzatreinamentosst.com.br:4000/registerAdmin", { values }).then(res => {
             if (res) {
                 console.log(res.data)
             }
