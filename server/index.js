@@ -2,17 +2,24 @@
 const express = require("express");
 const app = express()
 const cors = require("cors")
+const https = require("https");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const { mkdirSync, openSync, appendFileSync, readdirSync, readFileSync, unlinkSync,
-    closeSync, rmdirSync } = require("fs");
+    closeSync, rmdirSync, fstat } = require("fs");
+
+const options = {
+    key: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/cert.pem"),
+    cert: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/privkey.pem")
+}
+
+const httpsServer = https.createServer(options, app);
 
 app.use(cors())
 app.use(bodyParser.json())
 app.use(fileUpload())
 
 const DB = require("./STDB").models;
-console.log(readdirSync("/etc/letsencrypt/live/souzatreinamentosst.com.br"))
 const port = 3001
 
 async function searchEmail(email) {
@@ -30,11 +37,11 @@ async function searchEmail(email) {
 }
 
 function deleteDir(dir) {
-    
+
     for (let obj of readdirSync(dir)) {
         unlinkSync(dir + "/" + obj)
     }
-    
+
     rmdirSync(dir)
 }
 
@@ -232,7 +239,4 @@ app.delete("/deleteCourse/:courseId", async (req, res) => {
 })
 
 
-
-app.listen(port, () => {
-    console.log("Listen in PORT 3001")
-});
+httpsServer.listen(3001)
