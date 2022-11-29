@@ -38,7 +38,8 @@ export default function ModalCreateTraining(props){
             }
         })
 
-        closeModal()
+        let sucessMessage = document.getElementById("sucessMessage")
+        sucessMessage.style.display = "block";
     }
 
     return(
@@ -95,6 +96,9 @@ export default function ModalCreateTraining(props){
                                 <div className={styles.contentBox}>
                                     <Field as="textarea" className={styles.content} name="content" placeholder="Digite o conteúdo aqui" onChange={e => setCourseDescrit(e.target.value)} ></Field>
                                 </div>
+                            </div>
+                            <div id="sucessMessage" className={styles.sucessMessage}>
+                                <p>Treinamento adicionado com sucesso!</p>
                             </div>
                             <input type="button" value="Salvar" className={styles.saveBtn} onClick={createCourse} ></input>
                         </Form>

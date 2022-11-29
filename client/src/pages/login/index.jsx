@@ -14,7 +14,6 @@ const validationEmail = yup.object().shape({
     .required("O campo 'e-mail' é obrigatório"),
   password: yup
     .string()
-    .min(6, "Campo 'senha' muito curto (min. 6)")
     .required("O campo 'senha' é obrigatório"),
 });
 
@@ -39,7 +38,9 @@ export default function Login() {
             console.log(res.data.permission);
             navigate("/painel-usuario");
           } else {
-            console.log("conta nao encotrada");
+            let alertMessage = document.getElementById("alertMessage")
+            alertMessage.style.display = "block";
+            return;
           }
         }
 
@@ -95,9 +96,12 @@ export default function Login() {
               <div className={styles.loginButton}>
                 <button type="submit">ENTRAR</button>
               </div>
+              <div id="alertMessage" className={styles.alertMessage}>
+                  <p>E-mail ou senha incorreta</p>
+              </div>
               <div className={styles.loginOpt}>
-                <a href="/">Esqueceu a senha?</a>
-                <a href="/">Não tem uma conta?</a>
+                <a href="https://wa.me/5541996588728/">Esqueceu a senha?</a>
+                <a href="https://wa.me/5541996588728/">Não tem uma conta?</a>
               </div>
             </Form>
           </Formik>
