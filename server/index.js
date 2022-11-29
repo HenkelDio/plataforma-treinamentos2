@@ -130,7 +130,7 @@ app.post("/registerUser", async (req, res) => {
             user_company_id: values.companyId,
             user_password: values.password
         })
-        res.send({ "gotRegstred": true })
+        res.send({ "gotRegistred": true })
     } else {
         res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
     }
