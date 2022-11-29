@@ -9,8 +9,8 @@ const { mkdirSync, openSync, appendFileSync, readdirSync, readFileSync, unlinkSy
     closeSync, rmdirSync, fstat } = require("fs");
 
 const options = {
-    key: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/cert.pem"),
-    cert: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/privkey.pem")
+    key: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/cert.pem", "utf-8"),
+    cert: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/privkey.pem", "utf-8")
 }
 
 const httpsServer = https.createServer(options, (req, res) => {
