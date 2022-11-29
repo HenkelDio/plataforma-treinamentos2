@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 app.use(fileUpload())
 
 const DB = require("./STDB").models;
-console.log(DB)
+console.log(__dirname)
 const port = 3001
 
 async function searchEmail(email) {
