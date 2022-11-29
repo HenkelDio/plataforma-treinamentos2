@@ -30,13 +30,22 @@ export default function ModalUser() {
         console.log(values)
         let route = `${require("../../../../../../defaultRoute")}/registerUser`
         await Axios.post(route, { values }).then(res => {
-            if (res) {
-                console.log(res.data)
+            if (res.data.gotRegistred === true) {
+
+                let alertMessage = document.getElementById("alertMessage")
+                alertMessage.style.display = "none"
+
+                let sucessMessage = document.getElementById("sucessMessage")
+                sucessMessage.style.display = "block"
+                setTimeout(()=>{
+                    document.location.reload()
+                },2000)
+                
+            } else {
+                let alertMessage = document.getElementById("alertMessage")
+                alertMessage.style.display = "block"
             }
         })
-
-        let sucessMessage = document.getElementById("sucessMessage")
-        sucessMessage.style.display = "block"
     }
 
     return (
@@ -92,6 +101,9 @@ export default function ModalUser() {
                 </div>
                 <div id="sucessMessage" className={styles.sucessMessage}>
                     <p>Usuário adicionado com sucesso!</p>
+                </div>
+                <div id="alertMessage" className={styles.alertMessage}>
+                    <p>Esse usuário já existe!</p>
                 </div>
                 <button type='submit' className={styles.createButton}>Criar</button>
             </Form>

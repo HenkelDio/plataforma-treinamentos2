@@ -1,9 +1,10 @@
 import styles from "./modalAdmin.module.css"
+import { useState } from "react";
 import Axios from "axios"
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup'
 
-export default function modalAdmin() {    
+export default function ModalAdmin() { 
 
     const validateAdmin = yup.object().shape({
         name: yup.string()
@@ -25,13 +26,22 @@ export default function modalAdmin() {
         
         let route = `${require("../../../../../../defaultRoute")}/registerAdmin`
         Axios.post(route, { values }).then(res => {
-            if (res) {
-                console.log(res.data)
+            if (res.data.gotRegistred === true) {
+
+                let alertMessage = document.getElementById("alertMessage")
+                alertMessage.style.display = "none"
+
+                let sucessMessage = document.getElementById("sucessMessage")
+                sucessMessage.style.display = "block"
+                setTimeout(()=>{
+                    document.location.reload()
+                },2000)
+                
+            } else {
+                let alertMessage = document.getElementById("alertMessage")
+                alertMessage.style.display = "block"
             }
         })
-
-        let sucessMessage = document.getElementById("sucessMessage")
-        sucessMessage.style.display = "block"
     }
 
     return (
@@ -78,6 +88,9 @@ export default function modalAdmin() {
                 </div>
                 <div id="sucessMessage" className={styles.sucessMessage}>
                     <p>Usuário adicionado com sucesso!</p>
+                </div>
+                <div id="alertMessage" className={styles.alertMessage}>
+                    <p>Esse usuário já existe!</p>
                 </div>
                 <button type='submit' className={styles.createButton}>Criar</button>
             </Form>

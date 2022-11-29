@@ -13,6 +13,10 @@ export default function ModalEditUser(props) {
             type: "Users",
             id: props.id
         })
+        setTimeout(()=>{
+            alert("Usuário excluído com sucesso")
+            document.location.reload()
+        },1000)
     }
 
     function editInfo(field, value) {
@@ -28,6 +32,10 @@ export default function ModalEditUser(props) {
             id: props.id,
             userInfo
         })
+        setTimeout(()=>{
+            alert("Usuário editado com sucesso")
+            document.location.reload()
+        },1000)
     }
 
     return (
