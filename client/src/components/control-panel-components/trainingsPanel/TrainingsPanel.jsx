@@ -16,11 +16,20 @@ export default function TrainingsPanel(props){
                 if (res) {
                     setListTraining(res.data)
                     console.log(res.data)
+                    search(res.data[0].course_title)
+                    
                 }
             })
         }
         getCourse()
     }, [])
+
+    const search = (data) => {
+        let search = document.getElementById("search")
+        
+        console.log(data)
+
+    }
 
     const closeModal = () =>{
         setIsOpen(false)
@@ -43,7 +52,7 @@ export default function TrainingsPanel(props){
             </div>
             <div className={styles.listTrainings}>
                <div className={styles.searchTraining}>
-                    <input type="text" placeholder='Qual treinamento está procurando?'></input>
+                    <input type="text" id="search"  placeholder='Qual treinamento está procurando?'></input>
                </div>
                <div className={styles.list}>
                     {
