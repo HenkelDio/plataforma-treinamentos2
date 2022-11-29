@@ -15,12 +15,6 @@ export default function ModalCreateTraining(props){
     const [courseFile, setCourseFile] = useState();
     const [courseDescrit, setCourseDescrit] = useState("");
 
-    const handlePdfActivate = () =>{
-        if(courseFile){
-            let labelAddFile = document.getElementById("labelAddFile")
-            labelAddFile.styles.backgroundColor = "green  "
-        }
-    }
 
     const closeModal = () =>{
         props.closeModal()
@@ -86,7 +80,6 @@ export default function ModalCreateTraining(props){
                                 id="labelAddFile"
                                 className={styles.labelAddFile} 
                                 htmlFor="filePdf"
-                                onClick={handlePdfActivate}
                                 >
                                     <IoIosAdd />
                                     Adicionar PDF
