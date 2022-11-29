@@ -23,7 +23,7 @@ export default function modalCompany() {
 
     const handleSubmit = async (values) =>{
         
-        await Axios.post("http://localhost:3001/registerCompany", { values }).then(res => {
+        await Axios.post("https://souzatreinamentosst.com.br:4000/registerCompany", { values }).then(res => {
             if (res) {
                 console.log(res.data)
             }

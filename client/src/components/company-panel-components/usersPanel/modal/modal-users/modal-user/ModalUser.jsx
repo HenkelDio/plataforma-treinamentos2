@@ -27,7 +27,7 @@ export default function ModalUser() {
 
     const handleSubmit = async (values) =>{
         values.companyId = userCompanyId;
-        await Axios.post("http://localhost:3001/registerUser", { values }).then(res => {
+        await Axios.post("https://souzatreinamentosst.com.br:4000/registerUser", { values }).then(res => {
             if (res) {
                 console.log(res.data)
             }

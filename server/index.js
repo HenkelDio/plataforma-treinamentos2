@@ -46,7 +46,6 @@ function deleteDir(dir) {
 }
 
 app.post("/loginUser", async (req, res) => {
-    console.log("emanuel")
     let values = req.body.values
 
     if (values.email && values.password) {
@@ -120,6 +119,7 @@ app.post("/registerCompany", async (req, res) => {
 });
 
 app.post("/registerUser", async (req, res) => {
+    console.log("reg user")
     let values = req.body.values
 
     if (await searchEmail(values.email) === "notFound") {

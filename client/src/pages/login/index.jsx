@@ -25,7 +25,7 @@ export default function Login() {
 
   const handleLogin = async (values) => {
     //recebe valores do form e verifica na rota loginUser. Rsultado retorna se usuário foi authenticado e permissão
-    let route  = "https://191.101.71.229:3001/loginUser"
+    let route  = `${require("../../defaultRoute")}/loginUser`
     await Axios.post(route, { values }).then(
       (res) => {
         if (res) {

@@ -8,7 +8,7 @@ export default function ModalEditCompany(props){
     const [userInfo, setUserInfo] = useState({});
     
     function excluirCompany() {
-        let route = "http://191.101.71.229:3001/removeUser"
+        let route = `${require("../../../../../defaultRoute")}/removeUser`
         Axios.post(route, {
             type: "Companies",
             id: props.id
@@ -22,7 +22,7 @@ export default function ModalEditCompany(props){
     }
     
     function sendEdit() {
-        let route = "http://191.101.71.229:3001/editUser"
+        let route = `${require("../../../../../defaultRoute")}/editUser`
         Axios.post(route, {
             type: "Companies",
             id: props.id,

@@ -7,7 +7,7 @@ export default function ModalEditAdmin(props){
     const [userInfo, setuserInfo] = useState({});
 
     function excluirAdmin() {
-        let route = `http://191.101.71.229:3001/removeUser`
+        let route = `${require("../../../../../defaultRoute")}/removeUser`
         Axios.post(route, {
             type: "Admins",
             id: props.id
@@ -21,7 +21,7 @@ export default function ModalEditAdmin(props){
     }
 
     function sendEdit() {
-        let route = "http://191.101.229:3001/editUser"
+        let route = `${require("../../../../../defaultRoute")}/editUser`
         Axios.post(route, {
             type: "Admins",
             id: props.id,
