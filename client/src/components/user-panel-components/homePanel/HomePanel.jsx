@@ -44,7 +44,7 @@ export default function HomePanel({ onSubmit }) {
     <>
       <div className={styles.homePanel}>
         <div className={styles.headerHomePanel}>
-          <h2>Você está matriculado em</h2>
+          <h2>Você está matriculado em:</h2>
         </div>
         <div className={styles.bodyHomePanel}>
           {
