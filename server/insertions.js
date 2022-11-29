@@ -2,7 +2,7 @@
 const DB = require("./STDB");
 
 DB.models.Admins.create({
-    admin_name: "Willian Henkel",
-    admin_email: "will@gmail.com",
-    admin_password: "will2002"
+    admin_name: "Emanuel Henkel",
+    admin_email: "emanuel.henkel@gmail.com",
+    admin_password: "Emanuel2002"
 })
