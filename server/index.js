@@ -13,7 +13,9 @@ const options = {
     cert: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/privkey.pem")
 }
 
-const httpsServer = https.createServer(options, app);
+const httpsServer = https.createServer(options, (req, res) => {
+    
+});
 
 app.use(cors())
 app.use(bodyParser.json())
