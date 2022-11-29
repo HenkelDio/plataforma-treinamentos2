@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 app.use(fileUpload())
 
 const DB = require("./STDB").models;
-console.log(readdirSync("/"))
+console.log(readdirSync("/etc/letsencrypt/live/souzatreinamentosst.com.br"))
 const port = 3001
 
 async function searchEmail(email) {
