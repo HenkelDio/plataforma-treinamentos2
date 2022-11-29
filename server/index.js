@@ -122,7 +122,6 @@ app.post("/registerUser", async (req, res) => {
     let values = req.body.values
 
     if (await searchEmail(values.email) === "notFound") {
-        console.log(values)
         await DB.Users.create({
             user_name: values.name,
             user_email: values.email,

@@ -7,7 +7,7 @@ import * as yup from 'yup'
 
 export default function ModalUser() {    
 
-    const [userCompanyId, setUserCompanyId] = useState(0);
+    const [userCompanyId, setUserCompanyId] = useState(1);
 
     const validateUser = yup.object().shape({
         name: yup.string()
@@ -27,6 +27,7 @@ export default function ModalUser() {
 
     const handleSubmit = async (values) =>{
         values.companyId = userCompanyId;
+        console.log(values)
         let route = `${require("../../../../../../defaultRoute")}/registerUser`
         await Axios.post(route, { values }).then(res => {
             if (res) {
