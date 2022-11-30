@@ -104,7 +104,6 @@ app.post("/registerAdmin", async (req, res) => {
     let values = req.body.values;
     let DBColumns = ["name", "email", "password"];
     if (valuesVerification(values, DBColumns)) {
-        console.log("passou na verificação")
         if (await searchEmail(values.email) === "notFound") {
             await DB.Admins.create({
                 admin_name: values.name,
@@ -116,7 +115,6 @@ app.post("/registerAdmin", async (req, res) => {
             res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
         }
     } else {
-        console.log("não passou na verificação")
         res.send({ "gotRegistred": false, "reason": "invalidValues" })
     }
 });
