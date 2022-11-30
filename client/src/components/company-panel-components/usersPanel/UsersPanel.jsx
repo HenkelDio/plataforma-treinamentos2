@@ -11,7 +11,7 @@ import Axios from "axios"
 export default function UsersPanel(props){
     const [modalIsOpen, setIsOpen] = useState(false);
     const [listUsers, setListUsers] = useState([]);
-    const companyEmail = JSON.stringify(localStorage["user"].email)
+    const companyEmail = JSON.parse(localStorage["user"]).email
 
     const openModal = () =>{
         setIsOpen(true)
@@ -23,9 +23,11 @@ export default function UsersPanel(props){
     
     useEffect(_ => {
         const getUsers = async _ => {
+            console.log(companyEmail)
             let route = `${require("../../../defaultRoute")}/getUsersCompany/${companyEmail}`
             await Axios.get(route).then(res => {
                 if (res) {
+                    console.log(res.data)
                     setListUsers(res.data)
                 }
             })

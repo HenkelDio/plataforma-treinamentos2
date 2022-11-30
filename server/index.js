@@ -174,7 +174,27 @@ app.get("/getUsers/:userType", async (req, res) => {
 
 app.get("/getUsersCompany/:companyEmail", async (req, res) => {
     let companyEmail = req.params.companyEmail;
-    console.log(companyEmail);
+    
+    let company = await DB.Companies.findOne({
+        where: {
+            company_email: companyEmail
+        }
+    })
+    company = company.dataValues;
+
+    let companyId = company.company_id;
+
+    let usersCompany = await DB.Users.findAll({
+        where: {
+            user_company_id: companyId
+        }
+    })
+    usersCompany.map(userCompany => {
+        return userCompany.dataValues
+    })
+
+    res.send(usersCompany)
+
 })
 
 app.post("/removeUser", async (req, res) => {
