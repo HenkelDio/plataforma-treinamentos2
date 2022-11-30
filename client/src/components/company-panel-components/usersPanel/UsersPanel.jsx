@@ -10,8 +10,8 @@ import Axios from "axios"
 
 export default function UsersPanel(props){
     const [modalIsOpen, setIsOpen] = useState(false);
-    const [userType, setUserType] = useState("Admins");
     const [listUsers, setListUsers] = useState([]);
+    const companyEmail = JSON.stringify(localStorage["user"].email)
 
     const openModal = () =>{
         setIsOpen(true)
@@ -23,7 +23,7 @@ export default function UsersPanel(props){
     
     useEffect(_ => {
         const getUsers = async _ => {
-            let route = `${require("../../../defaultRoute")}/getUsers/${userType}`
+            let route = `${require("../../../defaultRoute")}/getUsersCompany/${companyEmail}`
             await Axios.get(route).then(res => {
                 if (res) {
                     setListUsers(res.data)
@@ -31,7 +31,7 @@ export default function UsersPanel(props){
             })
         }
         getUsers()
-    }, [userType])
+    }, [])
 
     
     return(
@@ -53,13 +53,7 @@ export default function UsersPanel(props){
                 <p>Usuários</p>
                 <div className={styles.list}>
                     {
-                        (userType === "Admins") && listUsers.map((val)=>{
-                            return <Admin 
-                            id={val.admin_id}
-                            name={val.admin_name}
-                            email={val.admin_email}
-                            />
-                        })
+                        
                     }
                 </div>
             </div>
