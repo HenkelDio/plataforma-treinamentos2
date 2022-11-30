@@ -27,7 +27,6 @@ export default function UsersPanel(props){
             let route = `${require("../../../defaultRoute")}/getUsersCompany/${companyEmail}`
             await Axios.get(route).then(res => {
                 if (res) {
-                    console.log(res.data)
                     setListUsers(res.data)
                 }
             })

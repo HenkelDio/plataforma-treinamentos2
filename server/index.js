@@ -40,7 +40,6 @@ async function searchEmail(email) {
 }
 
 function valuesVerification(values, expValues) {
-    console.log(values, Object.keys(values, expValues))
     //Verifica se todas as chaves esperadas estão na variável values
     for (let expValue of expValues) {
         if (!Object.keys(values).includes(expValue)) {
@@ -64,12 +63,13 @@ app.post("/loginUser", async (req, res) => {
     let DBColumns = ["email", "password"];
 
     if (valuesVerification(values, DBColumns)) {
+        
         let admin = await DB.Admins.findOne({
             where: {
-                admin_email: values.email,
-                admin_password: values.password
+                admin_email: values.email
             }
         })
+        console.log(admin.dataValues.password, values.password)
         if (admin) {
             res.send({ "authenticated": true, "permission": "admin", "name": admin.dataValues.admin_name })
         } else {
