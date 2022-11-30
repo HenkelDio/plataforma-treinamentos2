@@ -62,3 +62,20 @@
   font-size: 1.1rem;
   opacity: 0.8;
 }
+
+@media (max-width: 700px){
+  .ModalDeleteTraining{
+    width: 90%;
+    height: 280px;
+  }
+  .ModalDeleteTraining .containerModalDeleteTraining .optionsModalDeleteTraining{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+  }
+  .ModalDeleteTraining .containerModalDeleteTraining .optionsModalDeleteTraining button{
+      width: 90%;
+      margin-top: 10px;
+      height: 50px;
+  }
+}

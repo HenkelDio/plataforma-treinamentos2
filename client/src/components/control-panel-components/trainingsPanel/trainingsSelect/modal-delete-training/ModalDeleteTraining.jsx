@@ -4,15 +4,18 @@ import Axios from "axios";
 
 export default function ModalDeleteTraining(props) {
 
-  console.log(props)
+  console.log(props.data)
 
   function deleteCourse() {
     let { course_id } =  props.data
     let route = `${require("../../../../../defaultRoute")}/deleteCourse/${course_id}`
     Axios.delete(route).then(res => {
-        if (res) {
-            console.log(res)
-        }
+      let sucessMessage = document.getElementById("sucessMessage")
+      sucessMessage.style.display = "block"
+  
+      setTimeout(()=>{
+          document.location.reload()
+      },1000)
     })
 }
 
@@ -33,7 +36,7 @@ export default function ModalDeleteTraining(props) {
               <button onClick={props.closeModal}>Não</button>
             </div>
             <div id="sucessMessage" className={styles.sucessMessage}>
-                <p>Usuário deletado com sucesso!</p>
+                <p>Treinamento deletado com sucesso!</p>
             </div>
           </div>
           

@@ -24,7 +24,7 @@ export default function ModalEdit(props){
         className={styles.modal}
         ariaHideApp={false}>
 
-            <ModalDeleteTraining openModal={modalIsOpen} closeModal={closeModal} id={props.id}/>
+            <ModalDeleteTraining openModal={modalIsOpen} closeModal={closeModal} data={props.data}/>
 
             <div className={styles.headerModal}>
                 <h2>Editar</h2>
