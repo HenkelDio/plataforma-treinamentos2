@@ -11,6 +11,8 @@ export default function Pdf() {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
+  console.log(sample)
+
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
     setPageNumber(1);
@@ -35,7 +37,7 @@ export default function Pdf() {
         options={{ workerSrc: "/pdf.worker.js" }}
         onLoadSuccess={onDocumentLoadSuccess}
       >
-        <Page pageNumber={pageNumber} />
+        <Page scale="1.0" pageNumber={pageNumber} />
       </Document>
       <div className={styles.control}>
         <p>
