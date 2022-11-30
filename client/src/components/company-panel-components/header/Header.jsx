@@ -6,13 +6,24 @@ import { IoIosArrowBack } from "react-icons/io"
 import { useContext } from "react"
 import { AuthContext } from "../../../contexts/AuthContext"
 import logo from "../../../assets/logo.png"
+import ModalLogout from "./modal-logout/ModalLogout"
 
 function Header({onSubmit}){
     const [homePage, setHomePage] = useState('home')
     const [usersPage, setUsersPage] = useState('users')
     const [settingsPage, setSettingsPage] = useState('settings')
+    const [modalIsOpen, setIsOpen] = useState(false);
 
     const { name, logoutUser } = useContext(AuthContext)
+
+    const openModal = () =>{
+        setIsOpen(true)
+        closeSideMenu()
+    }
+
+    const closeModal = () =>{
+        setIsOpen(false)
+    }
 
     const logout = () =>{
         logoutUser()
@@ -87,6 +98,8 @@ function Header({onSubmit}){
     return(
         <div className={styles.header}>
 
+        <ModalLogout openModal={modalIsOpen} closeModal={closeModal} />
+
             <div className={styles.sideMenu} id="sideMenu">
                 <div className={styles.innerSideMenu}>
                     <div onClick={closeSideMenu} className={styles.closeSideMenuIcon}>
@@ -106,7 +119,7 @@ function Header({onSubmit}){
                         </ul>
                     </div>
                     <button onClick={setPageSettings} className={styles.buttonAcessAccount}>MINHA CONTA</button>
-                    <button className={styles.buttonLoggoutAccount}>SAIR</button>
+                    <button onClick={openModal} className={styles.buttonLoggoutAccount}>SAIR</button>
                 </div>
             </div>
 
@@ -138,7 +151,7 @@ function Header({onSubmit}){
                         <hr></hr>
                         <div className={styles.profileConfigs}>
                             <p onClick={setPageSettings}>Minha conta</p>
-                            <p onClick={logout}>Sair</p>
+                            <p onClick={openModal}>Sair</p>
                         </div>
                     </div>
                 </div>

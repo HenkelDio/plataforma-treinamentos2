@@ -4,11 +4,9 @@ import { CgProfile } from "react-icons/cg"
 import { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthContext';
 import ModalEditUser from './modal/edit-user/modal';
-import ModalLogout from './modal/logout-user/modal';
 
 export default function SettingsPanel(props){
     const [modalEditIsOpen, setIsOpenEdit] = useState(false);
-    const [modalLogoutIsOpen, setIsOpenLogout] = useState(false);
 
     const { name, email } = useContext(AuthContext)
 
@@ -20,27 +18,12 @@ export default function SettingsPanel(props){
         setIsOpenEdit(false)
     }
 
-    const openModalLogout = () =>{
-        setIsOpenLogout(true)
-    }
-
-    const closeModalLogout = () =>{
-        setIsOpenLogout(false)
-    }
-
     return(
         <div className={styles.settingsPanel}>
 
         <ModalEditUser 
             openModal={modalEditIsOpen} 
             closeModal={closeModalEdit} 
-            name={name}
-            email={email}
-        />  
-
-        <ModalLogout 
-            openModal={modalLogoutIsOpen} 
-            closeModal={closeModalLogout} 
             name={name}
             email={email}
         />  
@@ -67,7 +50,6 @@ export default function SettingsPanel(props){
                         </div>
                         <div className={styles.options}>
                             <button onClick={openModalEdit}>Editar</button>
-                            <button onClick={openModalLogout}>Sair da conta</button>
                         </div>
                     </div>
                     
