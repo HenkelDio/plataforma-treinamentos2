@@ -1,23 +1,19 @@
 import Modal from "react-modal";
 import styles from "../modalEdit.module.css";
 import Axios from "axios"
+import ModalDeleteCompany from "../modal-delete-user/ModalDeleteCompany";
 import { useState } from "react";
 
 export default function ModalEditCompany(props){
-
     const [userInfo, setUserInfo] = useState({});
-    
-    function excluirCompany() {
-        let route = `${require("../../../../../defaultRoute")}/removeUser`
-        Axios.post(route, {
-            type: "Companies",
-            id: props.id
-        })
+    const [modalIsOpen, setIsOpen] = useState(false);
 
-        setTimeout(()=>{
-            alert("Usuário excluído com sucesso")
-            document.location.reload()
-        },1000)
+    const openModal = () =>{
+        setIsOpen(true)
+    }
+
+    const closeModal = () =>{
+        setIsOpen(false)
     }
 
     function editInfo(field, value) {
@@ -47,6 +43,9 @@ export default function ModalEditCompany(props){
         overlayClassName={styles.modalOverlay}
         className={styles.modal}
         ariaHideApp={false}>
+
+            <ModalDeleteCompany openModal={modalIsOpen} closeModal={closeModal} id={props.id}/>
+
             <div className={styles.headerModal}>
                 <h2>Editar</h2>
             </div>
@@ -78,7 +77,7 @@ export default function ModalEditCompany(props){
             </div>
             <div className={styles.footerModal}>
                 <button onClick={props.closeModal} className={styles.close}>Fechar</button>
-                <button className={styles.delete} onClick={excluirCompany}>Excluir</button>
+                <button className={styles.delete} onClick={openModal}>Excluir</button>
                 <button className={styles.save} onClick={sendEdit} >Salvar</button>
             </div>
         </Modal>

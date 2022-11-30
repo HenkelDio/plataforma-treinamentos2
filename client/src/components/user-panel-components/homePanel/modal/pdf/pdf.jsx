@@ -11,21 +11,48 @@ export default function Pdf() {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
+  console.log(sample)
+
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
+    setPageNumber(1);
+  }
+
+  function changePage(offset) {
+    setPageNumber(prevPageNumber => prevPageNumber + offset);
+  }
+
+  function previousPage() {
+    changePage(-1);
+  }
+
+  function nextPage() {
+    changePage(1);
   }
 
   return (
     <div className={styles.document}>
-      <Document file={sample} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page pageNumber={pageNumber} />
+      <Document
+        file={sample}
+        options={{ workerSrc: "/pdf.worker.js" }}
+        onLoadSuccess={onDocumentLoadSuccess}
+      >
+        <Page scale="1.0" pageNumber={pageNumber} />
       </Document>
       <div className={styles.control}>
         <p>
-          <p><b>próxima</b></p>
-          Page {pageNumber} of {numPages}
-          <p><b>anterior</b></p>
+          Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
         </p>
+        <button type="button" disabled={pageNumber <= 1} onClick={previousPage}>
+          Previous
+        </button>
+        <button
+          type="button"
+          disabled={pageNumber >= numPages}
+          onClick={nextPage}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-
+import styles from "./modalUser.module.css"
 import { useState, useEffect } from "react"
 import Axios from "axios"
 
@@ -22,7 +22,8 @@ export default function SelectCompany(props){
     
     return(
         <>
-            <select onChange={e => setUserCompanyId(e.target.value)}>
+            <select className={styles.selectCompany}
+            onChange={e => setUserCompanyId(e.target.value)}>
                 {
                     companies.map(company => (
                         <option key={company.company_id} value={company.company_id}>{company.company_name}</option>

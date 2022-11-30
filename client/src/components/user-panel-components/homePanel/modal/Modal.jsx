@@ -1,6 +1,6 @@
 import Modal from 'react-modal';
 import styles from "./modal.module.css";
-import Pdf from "./pdf/pdf.jsx"
+import FramePdf from './pdf/FramePdf';
 
 export default function ModalTraining(props){
 
@@ -20,7 +20,7 @@ export default function ModalTraining(props){
         </div>
         <div className={styles.bodyModal}>
           <div className={styles.pdf}>
-            <Pdf />
+            <FramePdf />
           </div>
           <div className={styles.content}>
             <p>

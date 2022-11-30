@@ -1,17 +1,18 @@
 import Modal from "react-modal";
 import styles from "./modalEdit.module.css";
+import ModalDeleteTraining from "../modal-delete-training/ModalDeleteTraining.jsx"
 import Axios from "axios"
+import { useState } from "react"
 
 export default function ModalEdit(props){
+    const [modalIsOpen, setIsOpen] = useState(false);
 
-    function deleteCourse() {
-        let { course_id } =  props.data
-        let route = `${require("../../../../../defaultRoute")}/deleteCourse/${course_id}`
-        Axios.delete(route).then(res => {
-            if (res) {
-                console.log(res)
-            }
-        })
+    const openModal = () =>{
+        setIsOpen(true)
+    }
+
+    const closeModal = () =>{
+        setIsOpen(false)
     }
 
     return(
@@ -22,6 +23,9 @@ export default function ModalEdit(props){
         overlayClassName={styles.modalOverlay}
         className={styles.modal}
         ariaHideApp={false}>
+
+            <ModalDeleteTraining openModal={modalIsOpen} closeModal={closeModal} data={props.data}/>
+
             <div className={styles.headerModal}>
                 <h2>Editar</h2>
             </div>
@@ -41,7 +45,7 @@ export default function ModalEdit(props){
             </div>
             <div className={styles.footerModal}>
                 <button onClick={props.closeModal} className={styles.close}>Fechar</button>
-                <button className={styles.delete} onClick={deleteCourse}>Excluir</button>
+                <button className={styles.delete} onClick={openModal}>Excluir</button>
                 <button className={styles.save}>Salvar</button>
             </div>
         </Modal>

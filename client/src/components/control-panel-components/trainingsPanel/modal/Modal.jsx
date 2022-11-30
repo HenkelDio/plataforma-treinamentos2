@@ -2,6 +2,7 @@
 import styles from "./modal.module.css";
 import Modal from 'react-modal';
 import { Formik, Form, ErrorMessage, Field } from "formik";
+import * as yup from "yup";
 import { IoIosArrowBack } from "react-icons/io";
 import {IoIosAdd} from 'react-icons/io'
 import { useState } from "react";
@@ -41,6 +42,7 @@ export default function ModalCreateTraining(props){
         let sucessMessage = document.getElementById("sucessMessage")
         sucessMessage.style.display = "block";
     }
+
 
     return(
         <div className={styles.modalCreateTraining}>

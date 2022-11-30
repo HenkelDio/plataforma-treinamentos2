@@ -19,7 +19,11 @@ body{
     box-sizing: border-box;
     font-family: var(--roboto)
 }
-/* 
+
 .react-pdf__Document{
-    
-} */
+    display: flex;
+    justify-content: center;
+
+} 
+
+
