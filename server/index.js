@@ -190,10 +190,10 @@ app.get("/getUsersCompany/:companyEmail", async (req, res) => {
         }
     })
     usersCompany.map(userCompany => {
-        console.log(userCompany)
+        return userCompany.dataValues
     })
 
-    res.send()
+    res.send(usersCompany)
 
 })
 
