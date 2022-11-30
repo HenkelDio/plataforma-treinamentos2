@@ -69,7 +69,7 @@ app.post("/loginUser", async (req, res) => {
                 admin_email: values.email
             }
         })
-        console.log(admin.dataValues.admin_password, values.password)
+        console.log(admin.dataValues.admin_password === values.password)
         if (admin) {
             res.send({ "authenticated": true, "permission": "admin", "name": admin.dataValues.admin_name })
         } else {
