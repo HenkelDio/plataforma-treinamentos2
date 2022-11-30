@@ -69,17 +69,16 @@ app.post("/loginUser", async (req, res) => {
                 admin_email: values.email
             }
         })
-        console.log(admin.dataValues.admin_password === values.password)
-        if (admin) {
+        
+        if (admin.dataValues.admin_password === values.password) {
             res.send({ "authenticated": true, "permission": "admin", "name": admin.dataValues.admin_name })
         } else {
             let company = await DB.Companies.findOne({
                 where: {
-                    company_email: values.email,
-                    company_password: values.password
+                    company_email: values.email
                 }
-            })
-            if (company) {
+            });
+            if (company.dataValues.company_password === values.password) {
                 res.send({ "authenticated": true, "permission": "company", "name": company.dataValues.company_name })
             } else {
                 let user = await DB.Users.findOne({
@@ -88,7 +87,7 @@ app.post("/loginUser", async (req, res) => {
                         user_password: values.password
                     }
                 })
-                if (user) {
+                if (user.dataValues.user_password === values.password) {
                     res.send({ "authenticated": true, "permission": "user", "name": user.dataValues.user_name })
                 } else {
                     res.send({ "authenticated": false })
