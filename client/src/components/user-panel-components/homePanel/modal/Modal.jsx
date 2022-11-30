@@ -19,7 +19,7 @@ export default function ModalTraining(props){
         </div>
         <div className={styles.bodyModal}>
           <div className={styles.pdf}>
-            aqui vai o pdf
+            
           </div>
           <div className={styles.content}>
             <p>

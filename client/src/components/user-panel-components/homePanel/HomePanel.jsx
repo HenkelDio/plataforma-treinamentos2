@@ -11,7 +11,7 @@ export default function HomePanel({ onSubmit }) {
 
   useEffect(_=>{
     const getCourse = async _ => {
-      let route = `${require("../../../defaultRoute")}/Course`
+      let route = `${require("../../../defaultRoute")}/Courses`
         await Axios.get(route).then(res => {
             if (res) {
                 setListTraining(res.data)

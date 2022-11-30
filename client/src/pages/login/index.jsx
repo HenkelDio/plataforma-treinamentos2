@@ -101,7 +101,7 @@ export default function Login() {
               </div>
               <div className={styles.loginOpt}>
                 <a href="https://wa.me/5541996588728/">Esqueceu a senha?</a>
-                <a href="https://wa.me/5541996588728/">Não tem uma conta?</a>
+                <a href='https://wa.me/5541996588728?text=Tenho interesse em criar uma conta na ST Treinamentos!'>Não tem uma conta?</a>
               </div>
             </Form>
           </Formik>
