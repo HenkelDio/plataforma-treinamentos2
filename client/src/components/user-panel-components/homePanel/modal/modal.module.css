@@ -17,12 +17,15 @@
 }
 
 .pdf{
-  width: 100%;
-  height: 500px;
+  height: 540px;
 
-  overflow-y: auto;
+  overflow: hidden;
 
   background-color: #ccc;
+
+  border: 2px solid rgb(69, 69, 69);
+  border-radius: 10px;
+
 
 }
 
