@@ -172,6 +172,11 @@ app.get("/getUsers/:userType", async (req, res) => {
     res.send(users);
 });
 
+app.get("/getUsersCompany/:companyEmail", async (req, res) => {
+    let companyEmail = req.params.companyEmail;
+    console.log(companyEmail);
+})
+
 app.post("/removeUser", async (req, res) => {
     let type = req.body.type;
     let typeId = (
