@@ -62,41 +62,42 @@ app.post("/loginUser", async (req, res) => {
     let values = req.body.values;
     let DBColumns = ["email", "password"];
 
+    let cond = { "authenticated": false }
     if (valuesVerification(values, DBColumns)) {
-        
         let admin = await DB.Admins.findOne({
             where: {
                 admin_email: values.email
             }
-        })
-        
-        if (admin.dataValues.admin_password === values.password) {
-            res.send({ "authenticated": true, "permission": "admin", "name": admin.dataValues.admin_name })
-        } else {
-            let company = await DB.Companies.findOne({
-                where: {
-                    company_email: values.email
-                }
-            });
-            if (company.dataValues.company_password === values.password) {
-                res.send({ "authenticated": true, "permission": "company", "name": company.dataValues.company_name })
+        });
+        if (admin) {
+            if (admin.dataValues.admin_password === values.password) {
+                cond = { "authenticated": true, "permission": "admin", "name": admin.dataValues.admin_name }
             } else {
-                let user = await DB.Users.findOne({
+                let company = await DB.Companies.findOne({
                     where: {
-                        user_email: values.email,
-                        user_password: values.password
+                        company_email: values.email
                     }
-                })
-                if (user.dataValues.user_password === values.password) {
-                    res.send({ "authenticated": true, "permission": "user", "name": user.dataValues.user_name })
-                } else {
-                    res.send({ "authenticated": false })
+                });
+                if (company) {
+                    if (company.dataValues.company_password === values.password) {
+                        cond = { "authenticated": true, "permission": "company", "name": company.dataValues.company_name }
+                    } else {
+                        let user = await DB.Users.findOne({
+                            where: {
+                                user_email: values.email
+                            }
+                        });
+                        if (user) {
+                            if (user.dataValues.user_password === values.password) {
+                                cond = { "authenticated": true, "permission": "user", "name": user.dataValues.user_name }
+                            }
+                        }
+                    }
                 }
             }
         }
-    } else {
-        res.send({ "authenticated": false })
     }
+    res.send(cond)
 });
 
 app.post("/registerAdmin", async (req, res) => {
@@ -173,7 +174,7 @@ app.get("/getUsers/:userType", async (req, res) => {
 
 app.get("/getUsersCompany/:companyEmail", async (req, res) => {
     let companyEmail = req.params.companyEmail;
-    
+
     let company = await DB.Companies.findOne({
         where: {
             company_email: companyEmail
@@ -278,7 +279,7 @@ app.delete("/deleteCourse/:courseId", async (req, res) => {
             course_id: req.params.courseId
         }
     })
-    
+
     let courseDir = course.content_path
     for (let obj of readdirSync(courseDir)) {
         unlinkSync(courseDir + "/" + obj)
