@@ -10,7 +10,6 @@ import logo from "../../../assets/logo.png"
 function Header({onSubmit}){
     const [homePage, setHomePage] = useState('home')
     const [usersPage, setUsersPage] = useState('users')
-    const [trainingsPage, setTrainingsPage] = useState('trainings')
     const [settingsPage, setSettingsPage] = useState('settings')
 
     const { name, logoutUser } = useContext(AuthContext)
@@ -106,7 +105,7 @@ function Header({onSubmit}){
                             <li onClick={setPageSettings}>CONFIGURAÇÕES</li>
                         </ul>
                     </div>
-                    <button className={styles.buttonAcessAccount}>MINHA CONTA</button>
+                    <button onClick={setPageSettings} className={styles.buttonAcessAccount}>MINHA CONTA</button>
                     <button className={styles.buttonLoggoutAccount}>SAIR</button>
                 </div>
             </div>
@@ -138,7 +137,7 @@ function Header({onSubmit}){
                         <p className={styles.name}>{name}</p>
                         <hr></hr>
                         <div className={styles.profileConfigs}>
-                            <p>Minha conta</p>
+                            <p onClick={setPageSettings}>Minha conta</p>
                             <p onClick={logout}>Sair</p>
                         </div>
                     </div>
