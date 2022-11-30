@@ -101,6 +101,27 @@
     color: red;
 }
 
+.selectCompany{
+    background-color: transparent;
+
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    outline: none;
+
+    padding: 5px;
+    margin: 0;
+
+    color: rgb(72, 72, 72);
+    font-family: inherit;
+    font-size: inherit;
+
+    cursor:pointer;
+
+    line-height: inherit;
+
+    height: 50px;
+}
+
 @media (max-width: 700px){
     .ModalUser{
         width: 100%;

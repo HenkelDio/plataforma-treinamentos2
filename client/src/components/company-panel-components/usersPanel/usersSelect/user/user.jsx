@@ -5,6 +5,8 @@ import ModalEditUser from "./modalEditUser"
 export default function User(props){
     const [modalIsOpen, setIsOpen] = useState(false);
 
+    console.log("user", props)
+
     const openModal = () =>{
         setIsOpen(true)
     }
@@ -18,20 +20,20 @@ export default function User(props){
         <ModalEditUser 
         openModal={modalIsOpen} 
         closeModal={closeModal} 
-        id={props.id}
-        name={props.name}
-        email={props.email}
-        id_company={props.id_company}
-        register={props.register}
-        phone={props.phone}
+        id={props.data.user_id}
+        name={props.data.user_name}
+        email={props.data.user_email}
+        id_company={props.data.user_company_id}
+        register={props.data.user_register}
+        phone={props.data.user_telephone}
         />
         
         <div onClick={openModal} className={styles.card}>
             <div className={styles.name}>
-                <p>{props.name}</p>
+                <p>{props.data.user_name}</p>
             </div>
             <div className={styles.email}>
-                <p>{props.email}</p>
+                <p>{props.data.user_email}</p>
             </div>
             <div className={styles.features}>
                 <button>Editar</button>

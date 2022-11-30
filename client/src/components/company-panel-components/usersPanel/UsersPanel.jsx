@@ -1,8 +1,6 @@
 import styles from "./usersPanel.module.css"
 import ModalAddUser from "./modal/Modal"
-import Admin from "./usersSelect/admin/admin"
 import User from "./usersSelect/user/user"
-import Company from "./usersSelect/company/company"
 import { useState, useEffect } from "react"
 import {IoIosAdd} from 'react-icons/io'
 import Axios from "axios"
@@ -55,7 +53,11 @@ export default function UsersPanel(props){
                 <p>Usuários</p>
                 <div className={styles.list}>
                     {
-                        
+                    listUsers.map((val)=>{
+                        return <User 
+                        data={val}
+                        />    
+                    })
                     }
                 </div>
             </div>
