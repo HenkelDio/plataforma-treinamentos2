@@ -102,7 +102,7 @@ app.post("/loginUser", async (req, res) => {
 
 app.post("/registerAdmin", async (req, res) => {
     let values = req.body.values;
-    let DBColumns = ["admin_name", "admin_email", "admin_password"];
+    let DBColumns = ["name", "email", "password"];
     if (valuesVerification(values, DBColumns)) {
         console.log("passou na verificação")
         if (await searchEmail(values.email) === "notFound") {
@@ -123,7 +123,7 @@ app.post("/registerAdmin", async (req, res) => {
 
 app.post("/registerCompany", async (req, res) => {
     let values = req.body.values
-    let DBColumns = ["company_name", "company_email", "company_register", "company_telephone", "company_contact", "company_password"]
+    let DBColumns = ["name", "email", "cnpj", "telephone", "contact", "password"]
     if (valuesVerification(values, DBColumns)) {
         if (await searchEmail(values.email) === "notFound") {
             await DB.Companies.create({
@@ -145,7 +145,7 @@ app.post("/registerCompany", async (req, res) => {
 
 app.post("/registerUser", async (req, res) => {
     let values = req.body.value
-    let DBColumns = ["user_name", "user_email", "user_register", "user_telephone", "user_company_id", "user_password"]
+    let DBColumns = ["name", "mail", "cpf", "telephone", "companyId", "password"]
 
     if (valuesVerification(values, DBColumns)) {
         if (await searchEmail(values.email) === "notFound") {
