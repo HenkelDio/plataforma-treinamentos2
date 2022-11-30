@@ -183,7 +183,17 @@ app.get("/getUsersCompany/:companyEmail", async (req, res) => {
     company = company.dataValues;
 
     let companyId = company.company_id;
-    console.log(company, companyId)
+
+    let usersCompany = await DB.Users.findAll({
+        where: {
+            user_company_id: companyId
+        }
+    })
+    usersCompany.map(userCompany => {
+        console.log(userCompany)
+    })
+
+    res.send()
 
 })
 
