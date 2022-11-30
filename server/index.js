@@ -5,12 +5,15 @@ const cors = require("cors")
 const https = require("https");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
-const { mkdirSync, openSync, appendFileSync, readdirSync, readFileSync, unlinkSync,
-    closeSync, rmdirSync } = require("fs");
+const { mkdirSync, openSync, appendFileSync, readdirSync,
+    readFileSync, unlinkSync, closeSync, rmdirSync } = require("fs");
+
+const certPath = "/etc/letsencrypt/live/souzatreinamentosst.com.br/cert.pem"
+const keyPath = "/etc/letsencrypt/live/souzatreinamentosst.com.br/privkey.pem"
 
 const options = {
-    cert: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/cert.pem"),
-    key: readFileSync("/etc/letsencrypt/live/souzatreinamentosst.com.br/privkey.pem")
+    cert: readFileSync(certPath),
+    key: readFileSync(keyPath)
 }
 
 const httpsPort = 4000
@@ -36,19 +39,31 @@ async function searchEmail(email) {
     return cond;
 }
 
-function deleteDir(dir) {
+function valuesVerification(values, expValues) {
 
-    for (let obj of readdirSync(dir)) {
-        unlinkSync(dir + "/" + obj)
+    //Verifica se todas as chaves esperadas estão na variável values
+    for (let expValue of expValues) {
+        if (!Object.keys(values).includes(expValue)) {
+            return false
+        }
     }
 
-    rmdirSync(dir)
+    //Verifica se há vazios
+    for (let value of Object.values(values)) {
+        if (!(!!value) || value.length > 255) {
+            return false
+        }
+    }
+
+    return true;
+
 }
 
 app.post("/loginUser", async (req, res) => {
-    let values = req.body.values
+    let values = req.body.values;
+    let DBColumns = ["email", "password"];
 
-    if (values.email && values.password) {
+    if (valuesVerification(values, DBColumns)) {
         let admin = await DB.Admins.findOne({
             where: {
                 admin_email: values.email,
@@ -64,7 +79,6 @@ app.post("/loginUser", async (req, res) => {
                     company_password: values.password
                 }
             })
-
             if (company) {
                 res.send({ "authenticated": true, "permission": "company", "name": company.dataValues.company_name })
             } else {
@@ -74,7 +88,6 @@ app.post("/loginUser", async (req, res) => {
                         user_password: values.password
                     }
                 })
-
                 if (user) {
                     res.send({ "authenticated": true, "permission": "user", "name": user.dataValues.user_name })
                 } else {
@@ -82,57 +95,72 @@ app.post("/loginUser", async (req, res) => {
                 }
             }
         }
+    } else {
+        res.send({ "authenticated": false })
     }
-
 });
 
 app.post("/registerAdmin", async (req, res) => {
     let values = req.body.values;
-    if (await searchEmail(values.email) === "notFound") {
-        await DB.Admins.create({
-            admin_name: values.name,
-            admin_email: values.email,
-            admin_password: values.password
-        })
-        res.send({ "gotRegistred": true })
+    let DBColumns = ["admin_name", "admin_email", "admin_password"];
+    if (valuesVerification(values, DBColumns)) {
+        if (await searchEmail(values.email) === "notFound") {
+            await DB.Admins.create({
+                admin_name: values.name,
+                admin_email: values.email,
+                admin_password: values.password
+            })
+            res.send({ "gotRegistred": true })
+        } else {
+            res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
+        }
     } else {
-        res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
+        res.send({ "gotRegistred": false, "reason": "invalidValues" })
     }
-    res.send();
 });
 
 app.post("/registerCompany", async (req, res) => {
     let values = req.body.values
-    if (await searchEmail(values.email) === "notFound") {
-        await DB.Companies.create({
-            company_name: values.name,
-            company_email: values.email,
-            company_register: values.cnpj,
-            company_telephone: values.telephone,
-            company_contact: values.contact,
-            company_password: values.password
-        })
-        res.send({ "gotRegistred": true })
+    let DBColumns = ["company_name", "company_email", "company_register", "company_telephone", "company_contact", "company_password"]
+    if (valuesVerification(values, DBColumns)) {
+        if (await searchEmail(values.email) === "notFound") {
+            await DB.Companies.create({
+                company_name: values.name,
+                company_email: values.email,
+                company_register: values.cnpj,
+                company_telephone: values.telephone,
+                company_contact: values.contact,
+                company_password: values.password
+            })
+            res.send({ "gotRegistred": true })
+        } else {
+            res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
+        }
     } else {
-        res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
+        res.send({ "gotRegistred": false, "reason": "invalidValues" })
     }
 });
 
 app.post("/registerUser", async (req, res) => {
-    let values = req.body.values
+    let values = req.body.value
+    let DBColumns = ["user_name", "user_email", "user_register", "user_telephone", "user_company_id", "user_password"]
 
-    if (await searchEmail(values.email) === "notFound") {
-        await DB.Users.create({
-            user_name: values.name,
-            user_email: values.email,
-            user_register: values.cpf,
-            user_telephone: values.telephone,
-            user_company_id: values.companyId,
-            user_password: values.password
-        })
-        res.send({ "gotRegistred": true })
+    if (valuesVerification(values, DBColumns)) {
+        if (await searchEmail(values.email) === "notFound") {
+            await DB.Users.create({
+                user_name: values.name,
+                user_email: values.email,
+                user_register: values.cpf,
+                user_telephone: values.telephone,
+                user_company_id: values.companyId,
+                user_password: values.password
+            })
+            res.send({ "gotRegistred": true })
+        } else {
+            res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
+        }
     } else {
-        res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
+        res.send({ "gotRegistred": false, "reason": "invalidValues" })
     }
 });
 
@@ -182,20 +210,21 @@ app.post("/editUser", async (req, res) => {
 });
 
 app.post("/createCourse", async (req, res) => {
+    let courseName = req.body.courseName.replace(/[ ]/g, "_").toLowerCase()
 
-    if (!readdirSync(`${__dirname}/treinamentos`).includes(req.body.courseName)) {
+    if (!readdirSync(`${__dirname}/treinamentos`).includes(courseName)) {
 
-        let coursePath = `${__dirname}/treinamentos/${req.body.courseName}`
+        let coursePath = `${__dirname}/treinamentos/${courseName}`
         mkdirSync(coursePath)
 
         req.files.courseFile.mv(coursePath + "/" + req.files.courseFile.name)
 
-        let fileDescriptor = openSync(coursePath + "/" + req.body.courseName.replace(/[ ]/g, "_").toLowerCase() + ".txt", "w", "777");
-        appendFileSync(coursePath + "/" + req.body.courseName.replace(/[ ]/g, "_").toLowerCase() + ".txt", req.body.courseDescrit);
+        let fileDescriptor = openSync(coursePath + "/" + courseName + ".txt", "w", "777");
+        appendFileSync(coursePath + "/" + courseName + ".txt", req.body.courseDescrit);
         closeSync(fileDescriptor);
 
         DB.Courses.create({
-            course_title: req.body.courseName,
+            course_title: courseName,
             content_path: coursePath,
             course_hours: req.body.hoursCourse,
             registrations: 0
@@ -225,8 +254,12 @@ app.delete("/deleteCourse/:courseId", async (req, res) => {
             course_id: req.params.courseId
         }
     })
-
-    deleteDir(course.content_path)
+    
+    let courseDir = course.content_path
+    for (let obj of readdirSync(courseDir)) {
+        unlinkSync(courseDir + "/" + obj)
+    }
+    rmdirSync(courseDir)
 
     await DB.Courses.destroy({
         where: {
