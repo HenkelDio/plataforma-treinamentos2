@@ -40,7 +40,7 @@ async function searchEmail(email) {
 }
 
 function valuesVerification(values, expValues) {
-
+    console.log(values, Object.keys(values, expValues))
     //Verifica se todas as chaves esperadas estão na variável values
     for (let expValue of expValues) {
         if (!Object.keys(values).includes(expValue)) {
