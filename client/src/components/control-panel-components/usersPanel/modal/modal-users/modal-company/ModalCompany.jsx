@@ -24,13 +24,21 @@ export default function modalCompany() {
     const handleSubmit = async (values) =>{
         let route = `${require("../../../../../../defaultRoute")}/registerCompany`
         await Axios.post(route, { values }).then(res => {
-            if (res) {
-                console.log(res.data)
+            if (res.data.gotRegistred === true) {
+                let alertMessage = document.getElementById("alertMessage")
+                alertMessage.style.display = "none"
+
+                let sucessMessage = document.getElementById("sucessMessage")
+                sucessMessage.style.display = "block"
+                setTimeout(()=>{
+                    document.location.reload()
+                },2000)
+                
+            } else {
+                let alertMessage = document.getElementById("alertMessage")
+                alertMessage.style.display = "block"
             }
         })
-
-        let sucessMessage = document.getElementById("sucessMessage")
-        sucessMessage.style.display = "block"
     }
 
     return (
@@ -86,6 +94,9 @@ export default function modalCompany() {
                 </div>
                 <div id="sucessMessage" className={styles.sucessMessage}>
                     <p>Usuário adicionado com sucesso!</p>
+                </div>
+                <div id="alertMessage" className={styles.alertMessage}>
+                    <p>Esse usuário já existe!</p>
                 </div>
                 <button type='submit' className={styles.createButton}>Criar</button>
             </Form>

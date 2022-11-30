@@ -121,7 +121,7 @@ function Header({onSubmit}){
                         </ul>
                     </div>
                     <button className={styles.buttonAcessAccount}>MINHA CONTA</button>
-                    <button className={styles.buttonLoggoutAccount}>SAIR</button>
+                    <button onClick={logout} className={styles.buttonLoggoutAccount}>SAIR</button>
                 </div>
             </div>
 

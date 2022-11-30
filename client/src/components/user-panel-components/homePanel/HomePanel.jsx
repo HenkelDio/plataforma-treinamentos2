@@ -11,7 +11,7 @@ export default function HomePanel({ onSubmit }) {
 
   useEffect(_=>{
     const getCourse = async _ => {
-      let route = `${require("../../../defaultRoute")}/Course`
+      let route = `${require("../../../defaultRoute")}/Courses`
         await Axios.get(route).then(res => {
             if (res) {
                 setListTraining(res.data)
@@ -44,7 +44,7 @@ export default function HomePanel({ onSubmit }) {
     <>
       <div className={styles.homePanel}>
         <div className={styles.headerHomePanel}>
-          <h2>Você está matriculado em</h2>
+          <h2>Você está matriculado em:</h2>
         </div>
         <div className={styles.bodyHomePanel}>
           {

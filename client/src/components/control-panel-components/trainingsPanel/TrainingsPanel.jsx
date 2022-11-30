@@ -6,8 +6,9 @@ import Axios from "axios";
 import {IoIosAdd} from 'react-icons/io'
 
 export default function TrainingsPanel(props){
-    const [modalIsOpen, setIsOpen] = useState(false)
-    const [listTraining, setListTraining] = useState([])
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [listTraining, setListTraining] = useState([]);
+    const [search, setSearch] = useState("");
 
     useEffect(_=>{
         const getCourse = async _ => {
@@ -15,12 +16,14 @@ export default function TrainingsPanel(props){
             await Axios.get(route).then(res => {
                 if (res) {
                     setListTraining(res.data)
-                    console.log(res.data)
                 }
             })
         }
         getCourse()
     }, [])
+
+    // const trainingFiltered = listTraining
+    //     .filter((training) => training.includes(search));
 
     const closeModal = () =>{
         setIsOpen(false)
@@ -43,7 +46,14 @@ export default function TrainingsPanel(props){
             </div>
             <div className={styles.listTrainings}>
                <div className={styles.searchTraining}>
-                    <input type="text" placeholder='Qual treinamento está procurando?'></input>
+                    {/* <input 
+                    value={search}
+                    onChange={(e)=>setSearch(e.target.value)}
+                    type="text" 
+                    id="search"  
+                    placeholder='Qual treinamento está procurando?'
+                    ></input> */}
+                    <h3>Treinamentos Criados</h3>
                </div>
                <div className={styles.list}>
                     {
