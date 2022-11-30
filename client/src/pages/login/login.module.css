@@ -136,6 +136,37 @@
     color: rgb(210, 55, 55);
 }
 
+.showPassword{
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+
+    margin-bottom: 10px;
+
+    width: 90%;
+}
+.showPassword label{
+    cursor: pointer;
+
+    font-family: var(--inter);
+    font-weight: bold;
+    opacity: 0.8;
+
+    user-select: none;
+}
+
+.loginContainer .innerLoginContainer .showPassword .showPass{
+    width: 20px;
+    height: 20px;
+
+    cursor: pointer;
+
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
 /*
 *  END LOGIN BODY STYLES
 */

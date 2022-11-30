@@ -40,4 +40,7 @@
     .features button{
         display: none;
     }
+    .card{
+        font-size: 0.8rem;
+    }
 }

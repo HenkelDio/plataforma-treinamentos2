@@ -1,5 +1,5 @@
 import styles from "./login.module.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { BsFileLockFill } from "react-icons/bs";
@@ -19,8 +19,19 @@ const validationEmail = yup.object().shape({
 
 export default function Login() {
   const { authenticated, login } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState("password")
 
   const navigate = useNavigate();
+
+  const showPasswordHandle = () =>{
+    let showPass = document.getElementById("showPass")
+    if(showPass.checked){
+      setShowPassword("text")
+    } else {
+      setShowPassword("password")
+    }
+    
+  }
 
   const handleLogin = async (values) => {
     //recebe valores do form e verifica na rota loginUser. Rsultado retorna se usuário foi authenticado e permissão
@@ -64,7 +75,10 @@ export default function Login() {
         </div>
         <div className={styles.loginBody}>
           <Formik
-            initialValues={{}}
+            initialValues={{
+              email: "",
+              password: ""
+            }}
             validationSchema={validationEmail}
             onSubmit={handleLogin}
           >
@@ -86,13 +100,24 @@ export default function Login() {
                   name="password"
                   placeholder="Senha *"
                   className="input"
+                  type={showPassword}
                 ></Field>
+                <div className={styles.showPassword}>
+                  <input 
+                  id="showPass" 
+                  className={styles.showPass} 
+                  type="checkbox"
+                  onClick={showPasswordHandle}
+                  ></input>
+                  <label htmlFor="showPass">mostrar senha</label>
+                </div>
                 <ErrorMessage
                   name="password"
                   component="p"
                   className={styles.errorMessage}
                 />
               </div>
+              
               <div className={styles.loginButton}>
                 <button type="submit">ENTRAR</button>
               </div>
