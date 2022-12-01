@@ -1,4 +1,4 @@
-import sample from "./firstlook.pdf"
+
 import Axios from "axios";
 import { useEffect, useState } from "react";
 
