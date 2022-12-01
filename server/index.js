@@ -142,7 +142,7 @@ app.post("/registerCompany", async (req, res) => {
 });
 
 app.post("/registerUser", async (req, res) => {
-    let values = req.body.value
+    let values = req.body.values
     let DBColumns = ["name", "mail", "cpf", "telephone", "companyId", "password"]
 
     if (valuesVerification(values, DBColumns)) {
