@@ -278,7 +278,7 @@ app.get("/getCourse/:courseId", async (req, res) => {
 
     let course = await DB.Courses.findByPk(courseId);
 
-    res.sendFile(cours.dataValues.content_path + "/" + readdirSync(course.dataValues.content_path)[0])
+    res.sendFile(course.dataValues.content_path + "/" +readdirSync(course.dataValues.content_path)[0])
 
 })
 
