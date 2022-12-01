@@ -1,4 +1,4 @@
-import sample from "./firstlook.pdf"
+
 import Axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -17,7 +17,7 @@ export default function FramePdf(props) {
 
   return(
     <>
-      <object data={sample} type="application/pdf" width="100%" height="100%">
+      <object data={pdf} type="application/pdf" width="100%" height="100%">
       </object>
     </>
   )
