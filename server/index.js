@@ -284,7 +284,7 @@ app.get("/getCourse/:courseId", async (req, res) => {
     courseDir = courseDir.split("/")[(courseDir.split("/").length - 1)];
 
     let coursePdf = readdirSync(course.dataValues.content_path)[0];
-
+    console.log(courseDir, coursePdf)
     res.send({ "courseDir": courseDir, "coursePdf": coursePdf  })
 
 })
