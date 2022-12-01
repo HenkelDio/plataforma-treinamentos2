@@ -278,6 +278,9 @@ app.get("/getCourse/:courseId", async (req, res) => {
 
     let course = await DB.Courses.findByPk(courseId);
 
+    console.log(course)
+
+    res.send()
 
 
 })
