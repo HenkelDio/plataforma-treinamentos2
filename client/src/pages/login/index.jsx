@@ -39,6 +39,7 @@ export default function Login() {
     await Axios.post(route, { values }).then(
       (res) => {
         if (res) {
+          console.log(res.data)
           if (res.data.permission === "company") {
             console.log(res.data.permission);
             navigate("/painel-empresa");
