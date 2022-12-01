@@ -276,7 +276,7 @@ app.get("/Courses", async (req, res) => {
 app.get("/getCourse/:courseId", async (req, res) => {
     let courseId = req.params.courseId;
 
-    let course = await DB.Courses.findByPk(course);
+    let course = await DB.Courses.findByPk(courseId);
     console.log(course)
 })
 
