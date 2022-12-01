@@ -1,6 +1,5 @@
 
 import Axios from "axios";
-import { Document, Page } from  "react-pdf"
 import { useEffect, useState } from "react";
 
 export default function FramePdf(props) {
@@ -14,15 +13,11 @@ export default function FramePdf(props) {
       })
     }
     getCourse()
-  }, [])
+  }, []);
 
   return(
     <>
-      <iframe 
-      type="application/pdf" 
-      width="100%" 
-      height="100%">
-      </iframe>
+      <iframe src={require("https://souzatreinamentosst.com.br:4000/treinamentos/javascript.pdf")} type="application/pdf" width="100%" height="100%" />
     </>
   )
 }
