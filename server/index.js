@@ -266,10 +266,9 @@ app.post("/createCourse", async (req, res) => {
 app.get("/Courses", async (req, res) => {
     let courses = await DB.Courses.findAll();
 
-    courses.map(course => {
-        console.log(course.dataValues.content_path, readdirSync(course.dataValues.content_path))
-        // course.dataValues.content = readFileSync(course.dataValues.content_path + "/" + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "latin1")
-    })
+    courses.map(course => (
+        course.dataValues.content = readFileSync(course.dataValues.content_path + "/" + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "latin1")
+    ))
 
     res.send(courses)
 })
