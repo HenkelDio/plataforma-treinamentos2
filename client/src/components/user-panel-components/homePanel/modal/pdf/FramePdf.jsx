@@ -9,15 +9,15 @@ export default function FramePdf(props) {
     const getCourse = async _ => {
       let route = `${require("../../../../../defaultRoute")}/getCourse/${props.courseId}`;
       await Axios.get(route).then(res => {
-        console.log(res)
+        setPdfInfo(res.data)
       })
     }
     getCourse()
   }, []);
 
-  return(
+  return( pdfInfo ? 
     <>
       <iframe src={`https://souzatreinamentosst.com.br:4000/${pdfInfo.courseDir}/${pdfInfo.coursePdf}`} type="application/pdf" width="100%" height="100%" />
-    </>
+    </> : <></>
   )
 }
