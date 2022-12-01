@@ -268,7 +268,7 @@ app.get("/Courses", async (req, res) => {
     let pdf = "";
 
     console.log(courses)
-    for (let course of course) {
+    for (let course of courses) {
         course.dataValues.content = readFileSync(course.dataValues.content_path + "/" + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "latin1")
     }
     console.log(courses)
