@@ -242,10 +242,10 @@ app.post("/createCourse", async (req, res) => {
         let coursePath = `${__dirname}/treinamentos/${courseName}`
         mkdirSync(coursePath)
 
-        req.files.courseFile.mv(coursePath + "/" + req.files.courseFile.name)
+        req.files.courseFile.mv(coursePath + "/1." + req.files.courseFile.name)
 
-        let fileDescriptor = openSync(coursePath + "/" + courseName + ".txt", "w", "777");
-        appendFileSync(coursePath + "/" + courseName + ".txt", req.body.courseDescrit);
+        let fileDescriptor = openSync(coursePath + "/2." + courseName + ".txt", "w", "777");
+        appendFileSync(coursePath + "/2." + courseName + ".txt", req.body.courseDescrit);
         closeSync(fileDescriptor);
 
         DB.Courses.create({
@@ -267,7 +267,7 @@ app.get("/Courses", async (req, res) => {
     let courses = await DB.Courses.findAll();
     
     for (let course of courses) {
-        course.dataValues.content = readFileSync(course.dataValues.content_path + "/" + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "latin1")
+        course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "latin1")
     }
     
     res.send(courses)
@@ -277,7 +277,9 @@ app.get("/getCourse/:courseId", async (req, res) => {
     let courseId = req.params.courseId;
 
     let course = await DB.Courses.findByPk(courseId);
-    console.log(course)
+
+
+
 })
 
 app.delete("/deleteCourse/:courseId", async (req, res) => {
