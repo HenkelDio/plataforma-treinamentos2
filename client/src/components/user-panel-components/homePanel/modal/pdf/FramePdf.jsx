@@ -7,7 +7,7 @@ export default function FramePdf(props) {
 
   useEffect(_ => {
     const getCourse = async _ => {
-      let route = `https://souzatreinamentosst.com.br:4000/getCouse/${props.courseId}`;
+      let route = `https://souzatreinamentosst.com.br:4000/getCourse/${props.courseId}`;
       await Axios.get(route).then(res => {
         console.log(res)
       })
