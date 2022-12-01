@@ -281,7 +281,7 @@ app.get("/getCourse/:courseId", async (req, res) => {
     let course = await DB.Courses.findByPk(courseId);
 
     let courseDir = course.dataValues.content_path;
-    courseDir = courseDir.split("/")[(courseDir.splt("/").length - 1)];
+    courseDir = courseDir.split("/")[(courseDir.split("/").length - 1)];
 
     let coursePdf = readdirSync(course.dataValues.content_path)[0];
 
