@@ -72,28 +72,26 @@ app.post("/loginUser", async (req, res) => {
         if (admin) {
             if (admin.dataValues.admin_password === values.password) {
                 cond = { "authenticated": true, "permission": "admin", "name": admin.dataValues.admin_name }
+            }
+        } else {
+            let company = await DB.Companies.findOne({
+                where: {
+                    company_email: values.email
+                }
+            });
+            if (company) {
+                if (company.dataValues.company_password === values.password) {
+                    cond = { "authenticated": true, "permission": "company", "name": company.dataValues.company_name }
+                }
             } else {
-                let company = await DB.Companies.findOne({
+                let user = await DB.Users.findOne({
                     where: {
-                        company_email: values.email
+                        user_email: values.email
                     }
                 });
-                
-                if (company) {
-                    console.log(company)
-                    if (company.dataValues.company_password === values.password) {
-                        cond = { "authenticated": true, "permission": "company", "name": company.dataValues.company_name }
-                    } else {
-                        let user = await DB.Users.findOne({
-                            where: {
-                                user_email: values.email
-                            }
-                        });
-                        if (user) {
-                            if (user.dataValues.user_password === values.password) {
-                                cond = { "authenticated": true, "permission": "user", "name": user.dataValues.user_name }
-                            }
-                        }
+                if (user) {
+                    if (user.dataValues.user_password === values.password) {
+                        cond = { "authenticated": true, "permission": "user", "name": user.dataValues.user_name }
                     }
                 }
             }
