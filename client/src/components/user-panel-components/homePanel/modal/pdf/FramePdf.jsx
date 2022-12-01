@@ -1,5 +1,6 @@
 
 import Axios from "axios";
+import { Document, Page } from  "react-pdf"
 import { useEffect, useState } from "react";
 
 export default function FramePdf(props) {
@@ -9,7 +10,7 @@ export default function FramePdf(props) {
     const getCourse = async _ => {
       let route = `${require("../../../../../defaultRoute")}/getCourse/${props.courseId}`;
       await Axios.get(route).then(res => {
-        console.log(res.data)
+        setPdf(res)
       })
     }
     getCourse()
@@ -17,12 +18,9 @@ export default function FramePdf(props) {
 
   return(
     <>
-      <iframe 
-      src= 
-      type="application/pdf" 
-      width="100%" 
-      height="100%">
-      </iframe>
+      <Document file={pdf}>
+        <Page pageNumber={1} />
+      </Document>
     </>
   )
 }
