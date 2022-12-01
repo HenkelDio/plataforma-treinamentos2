@@ -78,7 +78,9 @@ app.post("/loginUser", async (req, res) => {
                         company_email: values.email
                     }
                 });
+                
                 if (company) {
+                    console.log(company)
                     if (company.dataValues.company_password === values.password) {
                         cond = { "authenticated": true, "permission": "company", "name": company.dataValues.company_name }
                     } else {
