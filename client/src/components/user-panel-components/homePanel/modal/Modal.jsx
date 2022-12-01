@@ -3,6 +3,7 @@ import styles from "./modal.module.css";
 import FramePdf from './pdf/FramePdf';
 import ModalConclusion from './confirm-conclusion-modal/ModalConclusion';
 import { useState } from 'react';
+import sample from "./pdf/firstlook.pdf"
 
 export default function ModalTraining(props){
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +36,7 @@ export default function ModalTraining(props){
           <div className={styles.pdf}>
             <FramePdf />
           </div>
+          <a href={sample}>Download PDF</a>
           <div className={styles.content}>
             <p>
               {props.data.data.content}
