@@ -276,6 +276,7 @@ app.get("/Courses", async (req, res) => {
 });
 
 app.get("/getCourse/:courseId", async (req, res) => {
+    console.log(req.params)
     let courseId = req.params.courseId;
 
     let course = await DB.Courses.findByPk(courseId);
@@ -284,7 +285,6 @@ app.get("/getCourse/:courseId", async (req, res) => {
     courseDir = courseDir.split("/")[(courseDir.split("/").length - 1)];
 
     let coursePdf = readdirSync(course.dataValues.content_path)[0];
-    console.log(courseDir, coursePdf)
     res.send({ "courseDir": courseDir, "coursePdf": coursePdf  })
 
 })

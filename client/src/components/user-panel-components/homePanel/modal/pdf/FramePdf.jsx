@@ -9,9 +9,7 @@ export default function FramePdf(props) {
     const getCourse = async _ => {
       let route = `${require("../../../../../defaultRoute")}/getCourse/${props.courseId}`;
       await Axios.get(route).then(res => {
-        if (res) {
-          setPdfInfo(res.data)
-        }
+        console.log(res)
       })
     }
     getCourse()
