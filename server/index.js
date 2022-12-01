@@ -261,18 +261,20 @@ app.post("/createCourse", async (req, res) => {
         res.send({ registeredCourse: false, reason: "Already registred" })
     }
 
-})
+});
 
 app.get("/Courses", async (req, res) => {
     let courses = await DB.Courses.findAll();
-    let pdf = "";
-
-    console.log(courses)
+    
     for (let course of courses) {
         course.dataValues.content = readFileSync(course.dataValues.content_path + "/" + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "latin1")
     }
-    console.log(courses)
+    
     res.send(courses)
+});
+
+app.get("/getCourse/:courseId", async (req, res) => {
+    console.log(req.params);
 })
 
 app.delete("/deleteCourse/:courseId", async (req, res) => {
@@ -296,4 +298,4 @@ app.delete("/deleteCourse/:courseId", async (req, res) => {
 
     res.sendStatus(200)
 
-})
+});
