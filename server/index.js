@@ -249,7 +249,7 @@ app.post("/createCourse", async (req, res) => {
         closeSync(fileDescriptor);
 
         DB.Courses.create({
-            course_title: courseName,
+            course_title: req.body.courseName,
             content_path: coursePath,
             course_hours: req.body.hoursCourse,
             registrations: 0
