@@ -265,14 +265,21 @@ app.post("/createCourse", async (req, res) => {
 
 app.get("/Courses", async (req, res) => {
     let courses = await DB.Courses.findAll();
+    let pdf = "";
 
     for (let course of courses) {
-        console.log(course.dataValues.content_path, readdirSync(course.dataValues.content_path))
+        for (let obj of readdirSync(course.dataValues.content_path)) {
+            if (obj.includes(".pdf")) {
+                pdf = course.dataValues.content_path + "/" + obj
+            }
+        }
     }
+
     courses.map(course => (
         course.dataValues.content = readFileSync(course.dataValues.content_path + "/" + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "latin1")
     ))
 
+    console.log(pdf)
     res.send(courses)
 })
 
