@@ -9,7 +9,7 @@ export default function FramePdf(props) {
     const getCourse = async _ => {
       let route = `${require("../../../../../defaultRoute")}/getCourse/${props.courseId}`;
       await Axios.get(route).then(res => {
-        console.log(res)
+        console.log(res.data)
       })
     }
     getCourse()
@@ -17,8 +17,12 @@ export default function FramePdf(props) {
 
   return(
     <>
-      <object data={pdf} type="application/pdf" width="100%" height="100%">
-      </object>
+      <iframe 
+      src= 
+      type="application/pdf" 
+      width="100%" 
+      height="100%">
+      </iframe>
     </>
   )
 }

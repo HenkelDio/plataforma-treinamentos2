@@ -1,6 +1,5 @@
 export default function InputBoxQuestion(props){
 
-  console.log("box:", props)
 
   return(
     <>

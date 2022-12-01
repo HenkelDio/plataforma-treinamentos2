@@ -5,8 +5,6 @@ import InputBoxQuestion from "./inputBoxQuestion";
 
 export default function ModalQuestion(props){
 
-  console.log(questions[0].options)
-
   return(
     <>
     <Modal
