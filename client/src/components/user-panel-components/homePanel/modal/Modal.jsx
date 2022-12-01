@@ -36,7 +36,7 @@ export default function ModalTraining(props){
           <div className={styles.pdf}>
             <FramePdf />
           </div>
-          <a href={sample}>Download PDF</a>
+          <a href={sample}>Ou faça download PDF</a>
           <div className={styles.content}>
             <p>
               {props.data.data.content}
