@@ -17,7 +17,7 @@ export default function FramePdf(props) {
 
   return(
     <>
-      <iframe src={} type="application/pdf" width="100%" height="100%" />
+      <iframe src={"https://souzatreinamentosst.com.br:4000/javascript.pdf"} type="application/pdf" width="100%" height="100%" />
     </>
   )
 }

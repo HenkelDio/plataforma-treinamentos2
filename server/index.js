@@ -22,7 +22,7 @@ https.createServer(options, app).listen(httpsPort, _ => console.log(`Server roda
 app.use(cors())
 app.use(bodyParser.json())
 app.use(fileUpload())
-app.use("/treinamentos", express.static(`${__dirname}/treinamentos`));
+app.use(express.static(`${__dirname}/treinamentos`));
 console.log("Arquivos disponiveis")
 
 const DB = require("./STDB").models;
