@@ -1,10 +1,20 @@
 import Modal from 'react-modal';
 import styles from "./modal.module.css";
 import FramePdf from './pdf/FramePdf';
+import ModalConclusion from './confirm-conclusion-modal/ModalConclusion';
+import { useState } from 'react';
 
 export default function ModalTraining(props){
+  const [isOpen, setIsOpen] = useState(false);
 
-  console.log(props)
+  const openModal = () =>{
+    setIsOpen(true)
+  }
+
+  const closeModal = () =>{
+    setIsOpen(false)
+  }
+  
 
   return(
     <Modal 
@@ -14,6 +24,9 @@ export default function ModalTraining(props){
     overlayClassName={styles.modalOverlay}
     className={styles.modal}
     ariaHideApp={false}>
+
+      <ModalConclusion openModal={isOpen} closeModal={closeModal} data={props}/>
+
       <div className={styles.modalTraining}>
         <div className={styles.headerModal}>
           <h1>{props.data.data.course_title}</h1>
@@ -28,7 +41,7 @@ export default function ModalTraining(props){
             </p>
           </div>
           <div className={styles.features}>
-            <button>ir para a prova</button>
+            <button onClick={openModal}>Concluir Treinamento</button>
             <button onClick={props.closeModal}>Fechar</button>
           </div>
         </div>

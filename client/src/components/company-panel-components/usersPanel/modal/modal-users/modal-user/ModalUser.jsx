@@ -1,6 +1,5 @@
 import styles from "./modalUser.module.css"
 import Axios from "axios"
-import SelectCompany from "./selectCompany";
 import { useState } from "react";
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup'
@@ -80,9 +79,6 @@ export default function ModalUser() {
                 </div>
                 <div className={styles.inputBox}>
                     <Field name="telephone" placeholder="Telefone"></Field>
-                </div>
-                <div className={styles.inputBox}>
-                    <SelectCompany setUserCompanyId={setUserCompanyId} />
                 </div>
                 <div className={styles.inputBox}>
                     <Field name="password" placeholder="Crie uma senha"></Field>
