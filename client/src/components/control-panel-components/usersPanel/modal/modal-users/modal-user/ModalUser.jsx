@@ -30,7 +30,7 @@ export default function ModalUser() {
     const handleSubmit = async (values) =>{
         values.companyId = userCompanyId;
         values.selectedCourses = selected
-        values.admin = True
+        values.admin = true
         let route = `${require("../../../../../../defaultRoute")}/registerUser`
         await Axios.post(route, { values }).then(res => {
             if (res.data.gotRegistred === true) {
