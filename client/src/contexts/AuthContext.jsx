@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) =>{
   const [loading, setLoading] = useState(true)
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
+  const [permission, setPermission] = useState("");
 
   const navigate = useNavigate()
 
@@ -18,6 +19,7 @@ export const AuthProvider = ({ children }) =>{
         setUser(recoveredUser)
         setName(recoveredUser.name)
         setEmail(recoveredUser.email)
+        setPermission(recoveredUser.permission)
         
     }
 
@@ -26,13 +28,14 @@ export const AuthProvider = ({ children }) =>{
 
   },[])
 
-  const login = (email, password, name) => {
-    console.log("login auth", {email, password, name})    
+  const login = (email, password, name, permission) => {
+    console.log("login auth", {email, name, permission})    
 
     const loggedUser = {
         id: "123",
         email,
-        name
+        name,
+        permission
     }
 
     localStorage.setItem('user', JSON.stringify(loggedUser))
@@ -40,6 +43,7 @@ export const AuthProvider = ({ children }) =>{
     setEmail(email)
     setName(name)
     setUser(loggedUser)
+    setPermission(permission)
 }
 
 const logoutUser = () =>{
@@ -51,7 +55,7 @@ const logoutUser = () =>{
 }
 
   return (
-    <AuthContext.Provider value={{authenticated: !!user, user, loading, login, logoutUser, name, email}}>
+    <AuthContext.Provider value={{authenticated: !!user, user, loading, login, logoutUser, name, email, permission, setPermission}}>
       {children}
     </AuthContext.Provider>
   );
