@@ -18,7 +18,7 @@ const validationEmail = yup.object().shape({
 });
 
 export default function Login() {
-  const { authenticated, login } = useContext(AuthContext);
+  const { authenticated, login, setPermission } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState("password")
 
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ export default function Login() {
           }
         }
 
-        login(values.email, values.password, res.data.name) // integração com o context
+        login(values.email, values.password, res.data.name, res.data.permission) // integração com o context
       }
     );
   };

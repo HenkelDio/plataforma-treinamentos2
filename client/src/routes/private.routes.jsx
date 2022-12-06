@@ -9,8 +9,8 @@ import { useContext } from "react";
 
 const PrivateRoutes = () => {
 
-  const Private =({children}) =>{
-    const { authenticated, loading } = useContext(AuthContext);
+  const PrivateAdmin =({children}) =>{
+    const { authenticated, loading, permission } = useContext(AuthContext);
 
     if(loading){
       return <div className="load">Carregando</div>
@@ -20,7 +20,47 @@ const PrivateRoutes = () => {
       return <Navigate to="/" />
     };
 
-    return children;
+    if(permission === 'admin'){
+      return children;
+    } else {
+      return <Navigate to="/" />
+    }
+  }
+  
+  const PrivateCompany =({children}) =>{
+    const { authenticated, loading, permission } = useContext(AuthContext);
+
+    if(loading){
+      return <div className="load">Carregando</div>
+    }
+
+    if(!authenticated){
+      return <Navigate to="/" />
+    };
+
+    if(permission === 'company'){
+      return children;
+    } else {
+      return <Navigate to="/" />
+    }
+  }
+
+  const PrivateUser =({children}) =>{
+    const { authenticated, loading, permission } = useContext(AuthContext);
+
+    if(loading){
+      return <div className="load">Carregando</div>
+    }
+
+    if(!authenticated){
+      return <Navigate to="/" />
+    };
+
+    if(permission === 'user'){
+      return children;
+    } else {
+      return <Navigate to="/" />
+    }
   }
 
   return (
@@ -28,9 +68,9 @@ const PrivateRoutes = () => {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/painel" element={<Private><ControlPanel /></Private>} />
-          <Route path="/painel-empresa" element={<Private><CompanyPanel /></Private>} />
-          <Route path="/painel-usuario" element={<Private><UserPanel /></Private>} />
+          <Route path="/painel" element={<PrivateAdmin><ControlPanel /></PrivateAdmin>} />
+          <Route path="/painel-empresa" element={<PrivateCompany><CompanyPanel /></PrivateCompany>} />
+          <Route path="/painel-usuario" element={<PrivateUser><UserPanel /></PrivateUser>} />
         </Routes>
       </AuthProvider>
     </Router>
