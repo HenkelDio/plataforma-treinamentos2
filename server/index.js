@@ -157,7 +157,7 @@ app.post("/registerUser", async (req, res) => {
                 user_company_id: values.companyId,
                 user_password: values.password
             });
-            
+
             for (let course of values.selectedCourses) {
                 await DB.UsersRegistrations.create({
                     course_id: course.value,
@@ -274,22 +274,29 @@ app.post("/createCourse", async (req, res) => {
 
 });
 
-app.get("/Courses/:userType", async (req, res) => {
+app.get("/Courses/:userType/:userId", async (req, res) => {
     const userType = req.params.userType;
+    const userId = req.params.userId
     if (userType === "admin") {
-        
+
         let courses = await DB.Courses.findAll();
 
         courses.map(course => {
             course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "utf8");
         })
-        
+
         res.send(courses)
     } else if (userType === "usualUser") {
-        
+
         let courses = [];
 
-        res.send("Userinválido")
+        for (let userRegister of await DB.UsersRegistrations.findAll({ where: { user_id: userId } })) {
+            let course = await DB.Courses.findOne({ where: { course_id: userRegister.dataValues.course_id } });
+            course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "utf8");
+            courses.push(course)
+        }
+
+        res.send(courses)
     }
 });
 
@@ -303,7 +310,7 @@ app.get("/getCourse/:courseId", async (req, res) => {
     courseDir = courseDir.split("/")[(courseDir.split("/").length - 1)];
 
     let coursePdf = readdirSync(course.dataValues.content_path)[0];
-    res.send({ "courseDir": courseDir, "coursePdf": coursePdf  })
+    res.send({ "courseDir": courseDir, "coursePdf": coursePdf })
 
 })
 

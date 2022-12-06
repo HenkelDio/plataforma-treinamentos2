@@ -8,13 +8,14 @@ export default function HomePanel({ onSubmit }) {
   const [trainingsPage, setTrainingsPage] = useState("trainings");
   const [settingsPage, setSettingsPage] = useState("settings");
   const [listTraining, setListTraining] = useState([])
-  console.log(JSON.parse(localStorage["user"]).id)
   useEffect(_=>{
     const getCourse = async _ => {
       let userType = "usualUser"
-      let route = `${require("../../../defaultRoute")}/Courses/${userType}`
+      let userId = JSON.parse(localStorage["user"]).id
+      let route = `${require("../../../defaultRoute")}/Courses/${userType}/${userId}`
         await Axios.get(route).then(res => {
             if (res) {
+                console.log(res)
                 setListTraining(res.data)
             }
         })
