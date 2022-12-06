@@ -73,7 +73,7 @@ app.post("/loginUser", async (req, res) => {
         });
         if (admin) {
             if (admin.dataValues.admin_password === values.password) {
-                cond = { "authenticated": true, "permission": "admin", "name": admin.dataValues.admin_name }
+                cond = { "authenticated": true, "permission": "admin", "name": admin.dataValues.admin_name, "id": admin.dataValues.admin_id }
             }
         } else {
             let company = await DB.Companies.findOne({

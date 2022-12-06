@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) =>{
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [permission, setPermission] = useState("");
+  const [id, setId] = useState("");
 
   const navigate = useNavigate()
 
@@ -20,7 +21,7 @@ export const AuthProvider = ({ children }) =>{
         setName(recoveredUser.name)
         setEmail(recoveredUser.email)
         setPermission(recoveredUser.permission)
-        
+        setId(recoveredUser.id)
     }
 
     setLoading(false)
@@ -29,10 +30,10 @@ export const AuthProvider = ({ children }) =>{
   },[])
 
   const login = (id, email, password, name, permission) => {
-    console.log("login auth", {email, name, permission})    
+    console.log("login auth", {id, email, name, permission})    
 
     const loggedUser = {
-        id: id,
+        id,
         email,
         name,
         permission
@@ -44,6 +45,7 @@ export const AuthProvider = ({ children }) =>{
     setName(name)
     setUser(loggedUser)
     setPermission(permission)
+    setId(id)
 }
 
 const logoutUser = () =>{
