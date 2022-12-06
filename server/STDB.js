@@ -176,7 +176,7 @@ if (conex) {
             type: DataTypes.INTEGER,
             allowNull: false,
         }, 
-        staut: {
+        status: {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: "incomplete"

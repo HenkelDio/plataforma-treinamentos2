@@ -29,9 +29,10 @@ export default function ModalUser() {
 
     const handleSubmit = async (values) =>{
         values.companyId = userCompanyId;
+        values.selectedCourses = selected
+        values.admin = True
         let route = `${require("../../../../../../defaultRoute")}/registerUser`
         await Axios.post(route, { values }).then(res => {
-            console.log(res.data)
             if (res.data.gotRegistred === true) {
                 let alertMessage = document.getElementById("alertMessage")
                 alertMessage.style.display = "none"

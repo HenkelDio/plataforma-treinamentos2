@@ -156,7 +156,17 @@ app.post("/registerUser", async (req, res) => {
                 user_telephone: values.telephone,
                 user_company_id: values.companyId,
                 user_password: values.password
-            })
+            });
+
+            if (values.admin) {
+                for (let course of values.selectedCourses) {
+                    let courseInfo = await DB.Courses.findOne( { where: { course_id: course.value } })
+                    console.log(course, courseInfo)
+                }
+            } else if (values.company) {
+
+            }
+
             res.send({ "gotRegistred": true })
         } else {
             res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
