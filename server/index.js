@@ -163,7 +163,7 @@ app.post("/registerUser", async (req, res) => {
                     let courseInfo = await DB.Courses.findOne( { where: { course_id: course.value } })
                     DB.UsersRegistration.create({
                         user_id: user.dataValues.user_id,
-                        
+                        course_id: courseInfo.dataValues.course_id
                     })
                 }
             } else if (values.company) {
