@@ -267,14 +267,14 @@ app.post("/createCourse", async (req, res) => {
 
 app.get("/Courses/:userType", async (req, res) => {
     const userType = req.params.userType;
-    console.log(userType)
     if (userType === "admin") {
         
         let courses = await DB.Courses.findAll();
 
         courses.map(course => {
-            console.log(course)
+            course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "").toLowerCase() + ".txt", "utf8");
         })
+        console.log(courses)
     } else {
         res.send("Userinválido")
     }
