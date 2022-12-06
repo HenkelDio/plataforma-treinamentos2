@@ -267,7 +267,7 @@ app.post("/createCourse", async (req, res) => {
 
 app.get("/Courses/:userType", async (req, res) => {
     const userType = req.params.userType;
-
+    console.log(userType)
     if (userType === "admin") {
         
         let courses = await DB.Courses.findAll();

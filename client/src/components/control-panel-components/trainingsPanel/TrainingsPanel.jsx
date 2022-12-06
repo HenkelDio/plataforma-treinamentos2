@@ -11,16 +11,17 @@ export default function TrainingsPanel(props){
     const [search, setSearch] = useState("");
 
     useEffect(_=>{
-        const getCourse = async _ => {
+        const getCourses = async _ => {
             let userType = "admin"
             let route = `${require("../../../defaultRoute")}/Courses/${userType}`
             await Axios.get(route).then(res => {
                 if (res) {
+                    
                     setListTraining(res.data)
                 }
             })
         }
-        getCourse()
+        getCourses()
     }, [])
 
     // const trainingFiltered = listTraining

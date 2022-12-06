@@ -11,7 +11,8 @@ const SelectRegistration = (props) => {
 
   useEffect(_ => {
     const getcourses = async _ => {
-      await Axios.get(`${require("../../../../../../defaultRoute")}/Courses/admin`, res => {
+      let userType = "admin"
+      await Axios.get(`${require("../../../../../../defaultRoute")}/Courses/${userType}`, res => {
         if (res) {
           console.log(res)
         }
