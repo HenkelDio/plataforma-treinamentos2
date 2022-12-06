@@ -161,7 +161,10 @@ app.post("/registerUser", async (req, res) => {
             if (values.admin) {
                 for (let course of values.selectedCourses) {
                     let courseInfo = await DB.Courses.findOne( { where: { course_id: course.value } })
-                    console.log(course, courseInfo)
+                    DB.UsersRegistration.create({
+                        company_registration_id: 1,
+                        
+                    })
                 }
             } else if (values.company) {
 
