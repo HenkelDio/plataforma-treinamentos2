@@ -158,7 +158,7 @@ app.post("/registerUser", async (req, res) => {
                 user_password: values.password
             });
             
-            for (let course of values.selected) {
+            for (let course of values.selectedCourses) {
                 await DB.UsersRegistrations.create({
                     course_id: course.selected,
                     user_id: user.dataValues.user_id,
