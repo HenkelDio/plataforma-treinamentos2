@@ -171,7 +171,14 @@ if (conex) {
                 model: CompaniesRegistrations,
                 key: "company_registration_id"
             }
-        }, 
+        },
+        course_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: Courses,
+                key: "course_id"
+            }
+        },
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,

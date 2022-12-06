@@ -149,20 +149,20 @@ app.post("/registerUser", async (req, res) => {
 
     if (valuesVerification(values, DBColumns)) {
         if (await searchEmail(values.email) === "notFound") {
-            // await DB.Users.create({
-            //     user_name: values.name,
-            //     user_email: values.email,
-            //     user_register: values.cpf,
-            //     user_telephone: values.telephone,
-            //     user_company_id: values.companyId,
-            //     user_password: values.password
-            // });
+            let user = await DB.Users.create({
+                user_name: values.name,
+                user_email: values.email,
+                user_register: values.cpf,
+                user_telephone: values.telephone,
+                user_company_id: values.companyId,
+                user_password: values.password
+            });
 
             if (values.admin) {
                 for (let course of values.selectedCourses) {
                     let courseInfo = await DB.Courses.findOne( { where: { course_id: course.value } })
                     DB.UsersRegistration.create({
-                        company_registration_id: 1,
+                        user_id: user.dataValues.user_id,
                         
                     })
                 }
