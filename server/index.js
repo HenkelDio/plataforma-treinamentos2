@@ -272,7 +272,7 @@ app.get("/Courses/:userType", async (req, res) => {
         let courses = await DB.Courses.findAll();
 
         courses.map(course => {
-            course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "").toLowerCase() + ".txt", "utf8");
+            course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "utf8");
         })
         console.log(courses)
     } else {
