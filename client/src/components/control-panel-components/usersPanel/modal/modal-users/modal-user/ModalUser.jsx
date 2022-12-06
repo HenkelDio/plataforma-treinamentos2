@@ -9,6 +9,7 @@ import * as yup from 'yup'
 export default function ModalUser() {    
 
     const [userCompanyId, setUserCompanyId] = useState(1);
+    const [selected, setSelected] = useState([]);
 
     const validateUser = yup.object().shape({
         name: yup.string()
@@ -27,25 +28,26 @@ export default function ModalUser() {
     })
 
     const handleSubmit = async (values) =>{
-        values.companyId = userCompanyId;
-        let route = `${require("../../../../../../defaultRoute")}/registerUser`
-        await Axios.post(route, { values }).then(res => {
-            console.log(res.data)
-            if (res.data.gotRegistred === true) {
-                let alertMessage = document.getElementById("alertMessage")
-                alertMessage.style.display = "none"
+        console.log(values, selected)
+        // values.companyId = userCompanyId;
+        // let route = `${require("../../../../../../defaultRoute")}/registerUser`
+        // await Axios.post(route, { values }).then(res => {
+        //     console.log(res.data)
+        //     if (res.data.gotRegistred === true) {
+        //         let alertMessage = document.getElementById("alertMessage")
+        //         alertMessage.style.display = "none"
 
-                let sucessMessage = document.getElementById("sucessMessage")
-                sucessMessage.style.display = "block"
-                setTimeout(()=>{
-                    document.location.reload()
-                },2000)
+        //         let sucessMessage = document.getElementById("sucessMessage")
+        //         sucessMessage.style.display = "block"
+        //         setTimeout(()=>{
+        //             document.location.reload()
+        //         },2000)
                 
-            } else {
-                let alertMessage = document.getElementById("alertMessage")
-                alertMessage.style.display = "block"
-            }
-        })
+        //     } else {
+        //         let alertMessage = document.getElementById("alertMessage")
+        //         alertMessage.style.display = "block"
+        //     }
+        // })
     }
 
     return (
@@ -100,7 +102,7 @@ export default function ModalUser() {
                     />
                 </div>
                 <div className={styles.inputBox}>
-                    <SelectRegistration/>
+                    <SelectRegistration selected={selected} setSelected={setSelected} />
                 </div>
                 <div id="sucessMessage" className={styles.sucessMessage}>
                     <p>Usuário adicionado com sucesso!</p>
