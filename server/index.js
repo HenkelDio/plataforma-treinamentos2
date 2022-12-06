@@ -274,7 +274,8 @@ app.get("/Courses/:userType", async (req, res) => {
         courses.map(course => {
             course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "utf8");
         })
-        console.log(courses)
+        
+        res.send(courses)
     } else {
         res.send("Userinválido")
     }
