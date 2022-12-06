@@ -173,6 +173,7 @@
     cursor: pointer;
 
     padding: 15px;
+    margin-bottom: 20px;
 
     background-color: rgba(204, 204, 204, 0.663);
 }
@@ -234,6 +235,14 @@
     opacity: 0.8;
 }
 
+.errorMessage{
+    text-align: left;
+    font-size: 20px;
+    color: red;
+    opacity: 0.8;
+    font-size: 1rem !important; 
+}
+
 
 /* MODAL MOBILE */
 
@@ -261,6 +270,7 @@
         height: 60px;
     }
     .time input{
+        width: 90%;
         height: 60px;
     }
     .time .placeholderTime{
@@ -271,6 +281,9 @@
         font-size: 1.2rem;
     }
     .saveBtn{
+        width: 100%;
+    }
+    .fileBox{
         width: 100%;
     }
     

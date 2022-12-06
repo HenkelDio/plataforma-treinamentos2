@@ -1,4 +1,3 @@
-
 import styles from "./modal.module.css";
 import Modal from 'react-modal';
 import { Formik, Form, ErrorMessage, Field } from "formik";
@@ -16,9 +15,15 @@ export default function ModalCreateTraining(props){
     const [courseFile, setCourseFile] = useState();
     const [courseDescrit, setCourseDescrit] = useState("");
 
-
     const closeModal = () =>{
         props.closeModal()
+    }
+
+    const fileSelected = () =>{
+        let fileReceived = document.getElementById("fileReceived")
+        let labelAddFile = document.getElementById('labelAddFile')
+        labelAddFile.style.backgroundColor = "rgb(81, 176, 80)";
+        fileReceived.innerText = "ARQUIVO ADICIONADO"
     }
 
     async function createCourse() {
@@ -79,6 +84,11 @@ export default function ModalCreateTraining(props){
                         <Form className={styles.form}>
                             <div className={styles.inputBox}>
                                 <Field name="title" className={styles.title} placeholder="Digite o título do treinamento" onChange={e => setCourseName(e.target.value)} ></Field>
+                                <ErrorMessage
+                                name="title"
+                                component="p"
+                                className={styles.errorMessage}
+                                />
                             </div>
                             <div className={styles.inputBox}>
                                 <div className={styles.time}>
@@ -86,11 +96,12 @@ export default function ModalCreateTraining(props){
                                     <div className={styles.placeholderTime}>horas</div>
                                 </div>
                             </div>
-                            <div className={styles.fileBox}>
+                            <div id="fileBox" className={styles.fileBox}>
                                 <label 
                                 id="labelAddFile"
                                 className={styles.labelAddFile} 
                                 htmlFor="filePdf"
+                                onChange={fileSelected}
                                 >
                                     <IoIosAdd />
                                     Adicionar PDF
@@ -101,6 +112,7 @@ export default function ModalCreateTraining(props){
                                     accept=".pdf" 
                                     onChange={e => setCourseFile(e.target.files[0])}/>
                                 </label>
+                                <p id="fileReceived"><b></b></p>
                             </div>
                             <div className={styles.inputBox}>
                                 <div className={styles.contentBox}>
