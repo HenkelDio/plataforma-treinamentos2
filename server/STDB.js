@@ -166,11 +166,8 @@ if (conex) {
             autoIncrement: true
         }, 
         company_id: {
-            type: DataTypes.INTEGER, 
-            references: {
-                model: CompaniesRegistrations,
-                key: "company_id"
-            }
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
         course_id: {
             type: DataTypes.INTEGER,
