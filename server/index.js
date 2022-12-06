@@ -157,17 +157,13 @@ app.post("/registerUser", async (req, res) => {
                 user_company_id: values.companyId,
                 user_password: values.password
             });
-
-            if (values.admin) {
-                for (let course of values.selectedCourses) {
-                    let courseInfo = await DB.Courses.findOne( { where: { course_id: course.value } })
-                    DB.UsersRegistration.create({
-                        user_id: user.dataValues.user_id,
-                        course_id: courseInfo.dataValues.course_id
-                    })
-                }
-            } else if (values.company) {
-
+            
+            for (let course of values.selected) {
+                await DB.UsersRegistrations.create({
+                    course_id: course.selected,
+                    user_id: user.dataValues.user_id,
+                    company_id: values.companyId
+                })
             }
 
             res.send({ "gotRegistred": true })
