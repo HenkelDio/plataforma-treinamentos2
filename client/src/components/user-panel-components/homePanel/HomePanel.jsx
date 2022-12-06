@@ -15,7 +15,6 @@ export default function HomePanel({ onSubmit }) {
       let route = `${require("../../../defaultRoute")}/Courses/${userType}/${userId}`
         await Axios.get(route).then(res => {
             if (res) {
-                console.log(res)
                 setListTraining(res.data)
             }
         })
