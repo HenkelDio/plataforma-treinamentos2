@@ -5,21 +5,26 @@ import styles from "./modalUser.module.css"
 
 const SelectRegistration = (props) => {
 
-  const {selected, setSelected} = props
+  const { selected, setSelected } = props
 
   const [options, setOptions] = useState([]);
 
   useEffect(_ => {
-    const getcourses = async _ => {
+    const getCourses = async _ => {
       let userType = "admin"
-      await Axios.get(`${require("../../../../../../defaultRoute")}/Courses/${userType}`, res => {
+      await Axios.get(`${require("../../../../../../defaultRoute")}/Courses/${userType}`).then(res => {
         if (res) {
-          console.log(res)
+          let courses = []
+          res.data.map(course => {
+            courses.push({label: course.course_title, value: course.course_id})
+          })
+          setOptions(courses)
         }
       })
     }
-    getcourses();
+    getCourses();
   }, [])
+
   const customValueRenderer = (selected, _options) => {
     return selected.length
       ? selected.map(({ label }) => "✔️ " + label)

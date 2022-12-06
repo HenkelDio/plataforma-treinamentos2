@@ -28,26 +28,25 @@ export default function ModalUser() {
     })
 
     const handleSubmit = async (values) =>{
-        console.log(values, selected)
-        // values.companyId = userCompanyId;
-        // let route = `${require("../../../../../../defaultRoute")}/registerUser`
-        // await Axios.post(route, { values }).then(res => {
-        //     console.log(res.data)
-        //     if (res.data.gotRegistred === true) {
-        //         let alertMessage = document.getElementById("alertMessage")
-        //         alertMessage.style.display = "none"
+        values.companyId = userCompanyId;
+        let route = `${require("../../../../../../defaultRoute")}/registerUser`
+        await Axios.post(route, { values }).then(res => {
+            console.log(res.data)
+            if (res.data.gotRegistred === true) {
+                let alertMessage = document.getElementById("alertMessage")
+                alertMessage.style.display = "none"
 
-        //         let sucessMessage = document.getElementById("sucessMessage")
-        //         sucessMessage.style.display = "block"
-        //         setTimeout(()=>{
-        //             document.location.reload()
-        //         },2000)
+                let sucessMessage = document.getElementById("sucessMessage")
+                sucessMessage.style.display = "block"
+                setTimeout(()=>{
+                    document.location.reload()
+                },2000)
                 
-        //     } else {
-        //         let alertMessage = document.getElementById("alertMessage")
-        //         alertMessage.style.display = "block"
-        //     }
-        // })
+            } else {
+                let alertMessage = document.getElementById("alertMessage")
+                alertMessage.style.display = "block"
+            }
+        })
     }
 
     return (

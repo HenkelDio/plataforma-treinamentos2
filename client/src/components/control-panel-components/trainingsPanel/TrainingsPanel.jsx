@@ -16,7 +16,6 @@ export default function TrainingsPanel(props){
             let route = `${require("../../../defaultRoute")}/Courses/${userType}`
             await Axios.get(route).then(res => {
                 if (res) {
-                    console.log(res)
                     setListTraining(res.data)
                 }
             })
