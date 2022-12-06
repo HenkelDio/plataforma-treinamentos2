@@ -28,11 +28,11 @@ export const AuthProvider = ({ children }) =>{
 
   },[])
 
-  const login = (email, password, name, permission) => {
+  const login = (id, email, password, name, permission) => {
     console.log("login auth", {email, name, permission})    
 
     const loggedUser = {
-        id: "123",
+        id: id,
         email,
         name,
         permission

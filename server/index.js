@@ -93,7 +93,7 @@ app.post("/loginUser", async (req, res) => {
                 });
                 if (user) {
                     if (user.dataValues.user_password === values.password) {
-                        cond = { "authenticated": true, "permission": "user", "name": user.dataValues.user_name }
+                        cond = { "authenticated": true, "permission": "user", "name": user.dataValues.user_name, "id": user.dataValues.user_id }
                     }
                 }
             }
@@ -285,7 +285,10 @@ app.get("/Courses/:userType", async (req, res) => {
         })
         
         res.send(courses)
-    } else {
+    } else if (userType === "usualUser") {
+        
+        let courses = [];
+
         res.send("Userinválido")
     }
 });
