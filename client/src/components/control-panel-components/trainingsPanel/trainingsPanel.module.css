@@ -48,6 +48,10 @@
     padding: 20px 50px;
 }
 
+.listTrainings .searchTraining h3{
+    opacity: .8;
+}
+
 .listTrainings .searchTraining input{
     width: 60%;
     height: 40px;

@@ -34,13 +34,21 @@ export default function ModalCreateTraining(props){
                 "Content-Type": "multipart/form-data"
             }
         }).then(res => {
-            if (res) {
-                console.log(res.data)
+
+            if (res.data.registeredCourse === true) {
+                let sucessMessage = document.getElementById("sucessMessage")
+                sucessMessage.style.display = "block";
+                setTimeout(()=>{
+                    document.location.reload()
+                },2000)
+            } else {
+                console.log(res.data.registeredCourse)
+                let alertMessage = document.getElementById("alertMessage")
+                alertMessage.style.display = "block"
             }
         })
 
-        let sucessMessage = document.getElementById("sucessMessage")
-        sucessMessage.style.display = "block";
+        
     }
 
 
@@ -101,6 +109,9 @@ export default function ModalCreateTraining(props){
                             </div>
                             <div id="sucessMessage" className={styles.sucessMessage}>
                                 <p>Treinamento adicionado com sucesso!</p>
+                            </div>
+                            <div id="alertMessage" className={styles.alertMessage}>
+                                <p>Esse treinamento já está cadastrado!</p>
                             </div>
                             <input type="button" value="Salvar" className={styles.saveBtn} onClick={createCourse} ></input>
                         </Form>

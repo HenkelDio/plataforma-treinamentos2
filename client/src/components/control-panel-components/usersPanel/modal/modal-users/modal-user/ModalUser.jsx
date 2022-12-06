@@ -1,6 +1,7 @@
 import styles from "./modalUser.module.css"
 import Axios from "axios"
 import SelectCompany from "./selectCompany";
+import SelectRegistration from "./SelectRegistrations";
 import { useState } from "react";
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup'
@@ -97,6 +98,9 @@ export default function ModalUser() {
                     component='p'
                     className={styles.errorMessage}
                     />
+                </div>
+                <div className={styles.inputBox}>
+                    <SelectRegistration/>
                 </div>
                 <div id="sucessMessage" className={styles.sucessMessage}>
                     <p>Usuário adicionado com sucesso!</p>
