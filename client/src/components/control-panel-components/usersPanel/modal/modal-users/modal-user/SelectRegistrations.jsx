@@ -1,15 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MultiSelect } from "react-multi-select-component";
+import Axios from "axios"
 import styles from "./modalUser.module.css"
 
-const options = [
-  { label: "NR 20", value: "nr20" },
-  { label: "NR 25", value: "nr21" },
-];
+const SelectRegistration = (props) => {
 
+  const { selected, setSelected } = props
 
-const SelectRegistration = () => {
-  const [selected, setSelected] = useState([]);
+  const [options, setOptions] = useState([]);
+
+  useEffect(_ => {
+    const getCourses = async _ => {
+      let userType = "admin"
+      await Axios.get(`${require("../../../../../../defaultRoute")}/Courses/${userType}`).then(res => {
+        if (res) {
+          let courses = []
+          res.data.map(course => {
+            courses.push({label: course.course_title, value: course.course_id})
+          })
+          setOptions(courses)
+        }
+      })
+    }
+    getCourses();
+  }, [])
 
   const customValueRenderer = (selected, _options) => {
     return selected.length

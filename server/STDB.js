@@ -131,6 +131,58 @@ if (conex) {
         }
     })
 
+    const CompaniesRegistrations = DB.define("CompaniesRegistrations", {
+        company_registration_id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true, 
+            allowNull: false, 
+            autoIncrement: true
+        }, 
+        company_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: Companies, 
+                key: "company_id"
+            }
+        }, 
+        course_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: Courses, 
+                key: "course_id"
+            }
+        },
+        n_users: {
+            type: DataTypes.INTEGER, 
+            defaultValue: 0
+        }
+    })
+
+    const UsersRegistrations = DB.define("UsersRegistrations", {
+        user_registration_id: {
+            type: DataTypes.INTEGER, 
+            primaryKey: true, 
+            allowNull: false, 
+            autoIncrement: true
+        }, 
+        company_registration_id: {
+            type: DataTypes.INTEGER, 
+            references: {
+                model: CompaniesRegistrations,
+                key: "company_registration_id"
+            }
+        }, 
+        user_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }, 
+        staut: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "incomplete"
+        }
+    })
+
     DB.sync()
 }
 module.exports = DB;

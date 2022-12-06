@@ -265,14 +265,20 @@ app.post("/createCourse", async (req, res) => {
 
 });
 
-app.get("/Courses", async (req, res) => {
-    let courses = await DB.Courses.findAll();
-    
-    for (let course of courses) {
-        course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "utf8")
+app.get("/Courses/:userType", async (req, res) => {
+    const userType = req.params.userType;
+    if (userType === "admin") {
+        
+        let courses = await DB.Courses.findAll();
+
+        courses.map(course => {
+            course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "utf8");
+        })
+        
+        res.send(courses)
+    } else {
+        res.send("Userinválido")
     }
-    
-    res.send(courses)
 });
 
 app.get("/getCourse/:courseId", async (req, res) => {

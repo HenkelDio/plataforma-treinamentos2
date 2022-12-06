@@ -9,6 +9,7 @@ import * as yup from 'yup'
 export default function ModalUser() {    
 
     const [userCompanyId, setUserCompanyId] = useState(1);
+    const [selected, setSelected] = useState([]);
 
     const validateUser = yup.object().shape({
         name: yup.string()
@@ -100,7 +101,7 @@ export default function ModalUser() {
                     />
                 </div>
                 <div className={styles.inputBox}>
-                    <SelectRegistration/>
+                    <SelectRegistration selected={selected} setSelected={setSelected} />
                 </div>
                 <div id="sucessMessage" className={styles.sucessMessage}>
                     <p>Usuário adicionado com sucesso!</p>
