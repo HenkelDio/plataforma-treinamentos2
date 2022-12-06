@@ -160,7 +160,7 @@ app.post("/registerUser", async (req, res) => {
             
             for (let course of values.selectedCourses) {
                 await DB.UsersRegistrations.create({
-                    course_id: course.selected,
+                    course_id: course.value,
                     user_id: user.dataValues.user_id,
                     company_id: values.companyId
                 })
