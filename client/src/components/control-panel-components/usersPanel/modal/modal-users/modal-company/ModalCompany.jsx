@@ -74,7 +74,7 @@ export default function ModalCompany() {
     const handleSubmit = async (values) =>{
         values.telephone = values.telephone.replace(/[ ()-]/g,'')
         values.cnpj = values.cnpj.replace(/[. -/]/g,'')
-        console.log(values)
+        values.selectedCourses = selected
         let route = `${require("../../../../../../defaultRoute")}/registerCompany`
         await Axios.post(route, { values }).then(res => {
             if (res.data.gotRegistred === true) {
