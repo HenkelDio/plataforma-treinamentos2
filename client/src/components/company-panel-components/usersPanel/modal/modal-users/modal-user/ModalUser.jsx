@@ -4,9 +4,7 @@ import { useState } from "react";
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup'
 
-export default function ModalUser() {    
-
-    const [userCompanyId, setUserCompanyId] = useState(0);
+export default function ModalUser() {
 
     const validateUser = yup.object().shape({
         name: yup.string()
@@ -25,7 +23,7 @@ export default function ModalUser() {
     })
 
     const handleSubmit = async (values) =>{
-        values.companyId = userCompanyId;
+        values.companyId = JSON.parse(localStorage["user"]).id;
         await Axios.post("https://souzatreinamentosst.com.br:4000/registerUser", { values }).then(res => {
             if (res.data.gotRegistred === true) {
                 console.log(res.data)
