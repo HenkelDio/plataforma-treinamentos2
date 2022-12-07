@@ -36,12 +36,12 @@ export default function ModalCreateTraining(props){
         fileReceived.innerText = "ARQUIVO ADICIONADO"
     }
 
-    async function createCourse() {
+    async function createCourse(values) {
         let formData = new FormData();
-        formData.append("courseName", courseName);
+        formData.append("courseName", values.title);
         formData.append("hoursCourse", hoursCourse);
         formData.append("courseFile", courseFile, courseFile.name);
-        formData.append("courseDescrit", courseDescrit)
+        formData.append("courseDescrit", values.title)
         
         let route = `${require("../../../../defaultRoute")}/createCourse`
         await Axios.post(route, formData, {
@@ -62,8 +62,6 @@ export default function ModalCreateTraining(props){
                 alertMessage.style.display = "block"
             }
         })
-
-        
     }
 
 
@@ -95,7 +93,7 @@ export default function ModalCreateTraining(props){
                         >
                         <Form className={styles.form}>
                             <div className={styles.inputBox}>
-                                <Field name="title" className={styles.title} placeholder="Digite o título do treinamento" onChange={e => setCourseName(e.target.value)} ></Field>
+                                <Field name="title" className={styles.title} placeholder="Digite o título do treinamento" ></Field>
                                 <ErrorMessage
                                 name="title"
                                 component="p"
@@ -128,7 +126,7 @@ export default function ModalCreateTraining(props){
                             </div>
                             <div className={styles.inputBox}>
                                 <div className={styles.contentBox}>
-                                    <Field as="textarea" className={styles.content} name="content" placeholder="Digite o conteúdo aqui" onChange={e => setCourseDescrit(e.target.value)} ></Field>
+                                    <Field as="textarea" className={styles.content} name="content" placeholder="Digite o conteúdo aqui" ></Field>
                                 </div>
                             </div>
                             <div id="sucessMessage" className={styles.sucessMessage}>
