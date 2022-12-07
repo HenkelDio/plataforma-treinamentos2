@@ -19,6 +19,16 @@ export default function ModalCreateTraining(props){
         props.closeModal()
     }
 
+    const validateCourse = yup.object().shape({
+        title: yup.string()
+        .min(6, "Campo 'nome' muito curto (min. 6)")
+        .max(70, "Campo 'nome' muito longo (max. 70")
+        .required("O campo 'nome' é obrigatório")
+        .matches(
+            /^([a-zA-Z1-9àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð '])+$/u,
+            'Insert only normal character')
+    })
+
     const fileSelected = () =>{
         let fileReceived = document.getElementById("fileReceived")
         let labelAddFile = document.getElementById('labelAddFile')
@@ -80,6 +90,8 @@ export default function ModalCreateTraining(props){
                     <div className={styles.formAddTraining}>
                         <Formik
                         initialValues={{}}
+                        validationSchema={validateCourse}
+                        onSubmit={createCourse}
                         >
                         <Form className={styles.form}>
                             <div className={styles.inputBox}>
@@ -125,7 +137,7 @@ export default function ModalCreateTraining(props){
                             <div id="alertMessage" className={styles.alertMessage}>
                                 <p>Esse treinamento já está cadastrado!</p>
                             </div>
-                            <input type="button" value="Salvar" className={styles.saveBtn} onClick={createCourse} ></input>
+                            <button type='file'className={styles.saveBtn} >Salvar</button>
                         </Form>
                         </Formik>
                     </div>
