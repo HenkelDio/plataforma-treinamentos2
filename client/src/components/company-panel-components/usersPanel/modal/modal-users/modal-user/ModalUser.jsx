@@ -2,10 +2,11 @@ import styles from "./modalUser.module.css"
 import Axios from "axios"
 import { useState } from "react";
 import { Field, Formik, Form, ErrorMessage } from 'formik';
+import SelectRegistration from "./SelectRegistrations";
 import * as yup from 'yup'
 
 export default function ModalUser() {    
-
+    const [selected, setSelected] = useState([]);
     const [userCompanyId, setUserCompanyId] = useState(0);
 
     const validateUser = yup.object().shape({
@@ -93,6 +94,9 @@ export default function ModalUser() {
                     component='p'
                     className={styles.errorMessage}
                     />
+                </div>
+                <div className={styles.inputBox}>
+                    <SelectRegistration selected={selected} setSelected={setSelected} />
                 </div>
                 <div id="sucessMessage" className={styles.sucessMessage}>
                     <p>Usuário adicionado com sucesso!</p>

@@ -1,7 +1,48 @@
 import styles from "./modalCompany.module.css"
 import { Field, Formik, Form, ErrorMessage } from 'formik';
+import MaskedInput from "react-text-mask";
 import Axios from "axios"
 import * as yup from 'yup'
+
+const phoneNumberMask = [
+    "(",
+    /[1-9]/,
+    /\d/,
+    ")",
+    " ",
+    /\d/,
+    " ",
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    "-",
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/
+  ];
+
+  const cnpjMask = [
+    /[0-9]/,
+    /\d/,
+    ".",
+    /\d/,
+    /\d/,
+    /\d/,
+    ".",
+    /\d/,
+    /\d/,
+    /\d/,
+    "/",
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    "-",
+    /\d/,
+    /\d/,
+  ];
 
 export default function modalCompany() {    
 
@@ -20,12 +61,17 @@ export default function modalCompany() {
         .oneOf([yup.ref("password"), null], "As senhas devem ser iguais")
         .required("O campo 'confirme a senha é obrigatório"),
         telephone: yup.string()
-        .max(11, "Digite no máximo 11 digitos"),
+        .min(16, "Digite no máximo 16 digitos")
+        .max(16, "Digite no máximo 16 digitos"),
         cnpj: yup.string()
-        .max(14, "Digite no máximo 14 digitos")
+        .min(18, "Digite no máximo 18 digitos")
+        .max(18, "Digite no máximo 18 digitos")
     })
 
     const handleSubmit = async (values) =>{
+        values.telephone = values.telephone.replace(/[ ()-]/g,'')
+        values.cnpj = values.cnpj.replace(/[. -/]/g,'')
+        console.log(values)
         let route = `${require("../../../../../../defaultRoute")}/registerCompany`
         await Axios.post(route, { values }).then(res => {
             if (res.data.gotRegistred === true) {
@@ -72,20 +118,32 @@ export default function modalCompany() {
                     />
                 </div>
                 <div className={styles.inputBox}>
-                    <Field name="cnpj" placeholder="Digite o CNPJ (sem pontos ou barra)"></Field>
-                    <ErrorMessage 
-                    name='cnpj'
-                    component='p'
-                    className={styles.errorMessage}
-                    />
+                <Field
+                    name="cnpj">
+                    {({ field }) => (
+                        <MaskedInput
+                        {...field}
+                        mask={cnpjMask}
+                        id="cnpj"
+                        placeholder="CNPJ"
+                        type="text"
+                        />
+                    )}
+                    </Field>
                 </div>
                 <div className={styles.inputBox}>
-                    <Field name="telephone" placeholder="Telefone (sem pontuação)"></Field>
-                    <ErrorMessage 
-                    name='telephone'
-                    component='p'
-                    className={styles.errorMessage}
-                    />
+                    <Field
+                    name="telephone">
+                    {({ field }) => (
+                        <MaskedInput
+                        {...field}
+                        mask={phoneNumberMask}
+                        id="telephone"
+                        placeholder="Telefone"
+                        type="text"
+                        />
+                    )}
+                    </Field>
                 </div>
                 <div className={styles.inputBox}>
                     <Field name="contact" placeholder="Responsável"></Field>
