@@ -61,7 +61,6 @@ function valuesVerification(values, expValues) {
 
 app.post("/loginUser", async (req, res) => {
     let values = req.body.values;
-    console.log(values)
     let DBColumns = ["email", "password"];
 
     let cond = { "authenticated": false }
@@ -83,7 +82,6 @@ app.post("/loginUser", async (req, res) => {
             });
             if (company) {
                 if (company.dataValues.company_password === values.password) {
-                    console.log(company)
                     cond = { "authenticated": true, "permission": "company", "name": company.dataValues.company_name, "id": company.dataValues.company_id }
                 }
             } else {
@@ -287,6 +285,18 @@ app.get("/Courses/:userType/:userId", async (req, res) => {
         })
 
         res.send(courses)
+    } else if (userType === "company") {
+        
+        let courses = []
+
+        for (let companyRegister of await DB.CmpaniesRegistrations.findAll({ where: { company_id: userId }})) {
+            let course = await DB.Courses.findOne({ where: { course_id: companyRegister.dataValues.course_id } });
+            course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "utf8");
+            courses.push(course)
+        }
+
+        res.send(courses)
+
     } else if (userType === "usualUser") {
 
         let courses = [];
