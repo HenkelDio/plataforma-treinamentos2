@@ -302,7 +302,6 @@ app.get("/Courses/:userType/:userId", async (req, res) => {
 });
 
 app.get("/getCourse/:courseId", async (req, res) => {
-    console.log(req.params)
     let courseId = req.params.courseId;
 
     let course = await DB.Courses.findByPk(courseId);
