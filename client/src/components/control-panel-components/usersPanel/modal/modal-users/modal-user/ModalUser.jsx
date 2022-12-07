@@ -4,10 +4,30 @@ import SelectCompany from "./selectCompany";
 import SelectRegistration from "./SelectRegistrations";
 import { useState } from "react";
 import { Field, Formik, Form, ErrorMessage } from 'formik';
+import MaskedInput from "react-text-mask";
 import * as yup from 'yup'
 
-export default function ModalUser() {    
+const phoneNumberMask = [
+    "(",
+    /[1-9]/,
+    /\d/,
+    ")",
+    " ",
+    /\d/,
+    " ",
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    "-",
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/
+  ];
 
+export default function ModalUser() {    
+    
     const [userCompanyId, setUserCompanyId] = useState(1);
     const [selected, setSelected] = useState([]);
 
@@ -24,12 +44,15 @@ export default function ModalUser() {
         .required("O campo 'senha' é obrigatório"),
         confirmPassword: yup.string()
         .oneOf([yup.ref("password"), null], "As senhas devem ser iguais")
-        .required("O campo 'confirme a senha é obrigatório")
+        .required("O campo 'confirme a senha é obrigatório"),
+        cpf: yup.string()
+        .max(11, 'Digite no máximo 11 digitos')
     })
 
     const handleSubmit = async (values) =>{
         values.companyId = userCompanyId;
-        values.selectedCourses = selected
+        values.selectedCourses = selected;
+        values.telephone = values.telephone.replace(/[ ()-]/g,'')
         let route = `${require("../../../../../../defaultRoute")}/registerUser`
         await Axios.post(route, { values }).then(res => {
             if (res.data.gotRegistred === true) {
@@ -77,9 +100,25 @@ export default function ModalUser() {
                 </div>
                 <div className={styles.inputBox}>
                     <Field name="cpf" placeholder="Digite o CPF"></Field>
+                    <ErrorMessage 
+                    name='cpf'
+                    component='p'
+                    className={styles.errorMessage}
+                    />
                 </div>
                 <div className={styles.inputBox}>
-                    <Field name="telephone" placeholder="Telefone"></Field>
+                <Field
+                name="telephone"
+                render={({ field }) => (
+                <MaskedInput
+                  {...field}
+                  mask={phoneNumberMask}
+                  id="telephone"
+                  placeholder="Telefone"
+                  type="text"
+                />
+              )}
+            />
                 </div>
                 <div className={styles.inputBox}>
                     <SelectCompany setUserCompanyId={setUserCompanyId} />

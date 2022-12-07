@@ -42,5 +42,9 @@
     }
     .card{
         font-size: 0.8rem;
+        flex-direction: column;
+    }
+    .name{
+        margin-bottom: 10px;
     }
 }

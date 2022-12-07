@@ -18,7 +18,11 @@ export default function modalCompany() {
         .required("O campo 'senha' é obrigatório"),
         confirmPassword: yup.string()
         .oneOf([yup.ref("password"), null], "As senhas devem ser iguais")
-        .required("O campo 'confirme a senha é obrigatório")
+        .required("O campo 'confirme a senha é obrigatório"),
+        telephone: yup.string()
+        .max(11, "Digite no máximo 11 digitos"),
+        cnpj: yup.string()
+        .max(14, "Digite no máximo 14 digitos")
     })
 
     const handleSubmit = async (values) =>{
@@ -68,10 +72,20 @@ export default function modalCompany() {
                     />
                 </div>
                 <div className={styles.inputBox}>
-                    <Field name="cnpj" placeholder="Digite o CNPJ"></Field>
+                    <Field name="cnpj" placeholder="Digite o CNPJ (sem pontos ou barra)"></Field>
+                    <ErrorMessage 
+                    name='cnpj'
+                    component='p'
+                    className={styles.errorMessage}
+                    />
                 </div>
                 <div className={styles.inputBox}>
-                    <Field name="telephone" placeholder="Telefone"></Field>
+                    <Field name="telephone" placeholder="Telefone (sem pontuação)"></Field>
+                    <ErrorMessage 
+                    name='telephone'
+                    component='p'
+                    className={styles.errorMessage}
+                    />
                 </div>
                 <div className={styles.inputBox}>
                     <Field name="contact" placeholder="Responsável"></Field>
