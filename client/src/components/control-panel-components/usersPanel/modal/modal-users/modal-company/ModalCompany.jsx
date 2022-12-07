@@ -1,8 +1,10 @@
 import styles from "./modalCompany.module.css"
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import MaskedInput from "react-text-mask";
+import SelectRegistration from "../../../../../company-panel-components/usersPanel/modal/modal-users/modal-user/SelectRegistrations";
 import Axios from "axios"
 import * as yup from 'yup'
+import { useState } from "react";
 
 const phoneNumberMask = [
     "(",
@@ -44,7 +46,8 @@ const phoneNumberMask = [
     /\d/,
   ];
 
-export default function modalCompany() {    
+export default function ModalCompany() {    
+    const [selected, setSelected] = useState([]);
 
     const validateCompany = yup.object().shape({
         name: yup.string()
@@ -163,6 +166,9 @@ export default function modalCompany() {
                     component='p'
                     className={styles.errorMessage}
                     />
+                </div>
+                <div className={styles.inputBox}>
+                    <SelectRegistration selected={selected} setSelected={setSelected} />
                 </div>
                 <div id="sucessMessage" className={styles.sucessMessage}>
                     <p>Usuário adicionado com sucesso!</p>
