@@ -156,7 +156,7 @@ export default function ModalUser() {
                     />
                 </div>
                 <div className={styles.inputBox}>
-                    <SelectRegistration selected={selected} setSelected={setSelected} />
+                    <SelectRegistration companyId={userCompanyId} selected={selected} setSelected={setSelected} />
                 </div>
                 <div id="sucessMessage" className={styles.sucessMessage}>
                     <p>Usuário adicionado com sucesso!</p>

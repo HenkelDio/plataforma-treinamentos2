@@ -1,7 +1,7 @@
 import styles from "./modalCompany.module.css"
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import MaskedInput from "react-text-mask";
-import SelectRegistration from "../../../../../company-panel-components/usersPanel/modal/modal-users/modal-user/SelectRegistrations";
+import SelectRegistration from "./SelectRegistrations";
 import Axios from "axios"
 import * as yup from 'yup'
 import { useState } from "react";
