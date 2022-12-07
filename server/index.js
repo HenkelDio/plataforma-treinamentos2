@@ -103,6 +103,7 @@ app.post("/loginUser", async (req, res) => {
 
 app.post("/registerAdmin", async (req, res) => {
     let values = req.body.values;
+    console.log(values)
     let DBColumns = ["name", "email", "password"];
     if (valuesVerification(values, DBColumns)) {
         if (await searchEmail(values.email) === "notFound") {
@@ -111,6 +112,7 @@ app.post("/registerAdmin", async (req, res) => {
                 admin_email: values.email,
                 admin_password: values.password
             })
+            
             res.send({ "gotRegistred": true })
         } else {
             res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
@@ -125,7 +127,7 @@ app.post("/registerCompany", async (req, res) => {
     let DBColumns = ["name", "email", "cnpj", "telephone", "contact", "password"]
     if (valuesVerification(values, DBColumns)) {
         if (await searchEmail(values.email) === "notFound") {
-            await DB.Companies.create({
+            let company = await DB.Companies.create({
                 company_name: values.name,
                 company_email: values.email,
                 company_register: values.cnpj,
@@ -133,6 +135,14 @@ app.post("/registerCompany", async (req, res) => {
                 company_contact: values.contact,
                 company_password: values.password
             })
+
+            for (let course of values.selectedCourses) {
+                await DB.CompaniesRegistrations.create({
+                    company_id: company.dataValues.company_id,
+                    course_id: course.value
+                })
+            }
+            
             res.send({ "gotRegistred": true })
         } else {
             res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
@@ -286,15 +296,15 @@ app.get("/Courses/:userType/:userId", async (req, res) => {
 
         res.send(courses)
     } else if (userType === "company") {
-        
+        console.log(userType, userId)
         let courses = []
 
-        for (let companyRegister of await DB.CmpaniesRegistrations.findAll({ where: { company_id: userId }})) {
+        for (let companyRegister of await DB.CompaniesRegistrations.findAll({ where: { company_id: userId }})) {
             let course = await DB.Courses.findOne({ where: { course_id: companyRegister.dataValues.course_id } });
             course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "utf8");
             courses.push(course)
         }
-
+        console.log(courses)
         res.send(courses)
 
     } else if (userType === "usualUser") {

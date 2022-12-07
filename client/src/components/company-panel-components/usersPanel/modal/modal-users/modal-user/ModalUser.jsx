@@ -44,7 +44,7 @@ const cpfMask = [
 
 export default function ModalUser() {    
     const [selected, setSelected] = useState([]);
-    const [userCompanyId, setUserCompanyId] = useState(0);
+    const userCompanyId = JSON.parse(localStorage["user"]).id
 
     const validateUser = yup.object().shape({
         name: yup.string()
@@ -66,6 +66,7 @@ export default function ModalUser() {
         values.companyId = userCompanyId;
         values.telephone = values.telephone.replace(/[ ()-]/g,'')
         values.cpf = values.cpf.replace(/[. -]/g,'')
+        values.selectedCourses = selected
         await Axios.post("https://souzatreinamentosst.com.br:4000/registerUser", { values }).then(res => {
             if (res.data.gotRegistred === true) {
                 console.log(res.data)
@@ -156,7 +157,7 @@ export default function ModalUser() {
                     />
                 </div>
                 <div className={styles.inputBox}>
-                    <SelectRegistration selected={selected} setSelected={setSelected} />
+                    <SelectRegistration companyId={userCompanyId} selected={selected} setSelected={setSelected} />
                 </div>
                 <div id="sucessMessage" className={styles.sucessMessage}>
                     <p>Usuário adicionado com sucesso!</p>
