@@ -70,8 +70,7 @@ export default function ModalUser() {
         values.companyId = userCompanyId;
         values.selectedCourses = selected;
         values.telephone = values.telephone.replace(/[ ()-]/g,'')
-        values.cpf = values.cpf.replace(/[.]/g,'')
-        console.log(values.cpf)
+        values.cpf = values.cpf.replace(/[. -]/g,'')
         let route = `${require("../../../../../../defaultRoute")}/registerUser`
         await Axios.post(route, { values }).then(res => {
             if (res.data.gotRegistred === true) {
