@@ -326,6 +326,18 @@ app.delete("/deleteCourse/:courseId", async (req, res) => {
         unlinkSync(courseDir + "/" + obj)
     }
     rmdirSync(courseDir)
+    
+    await DB.UsersRegistrations.destroy({
+        where: {
+            course_id: req.params.courseId
+        }
+    })
+
+    await DB.CompaniesRegistrations.destroy({
+        where: {
+            course_id: req.params.courseId
+        }
+    })
 
     await DB.Courses.destroy({
         where: {
