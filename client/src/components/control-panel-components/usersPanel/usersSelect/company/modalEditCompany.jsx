@@ -3,10 +3,12 @@ import styles from "../modalEdit.module.css";
 import Axios from "axios"
 import ModalDeleteCompany from "../modal-delete-user/ModalDeleteCompany";
 import { useState } from "react";
+import SelectRegistration from "./SelectRegistrations";
 
 export default function ModalEditCompany(props){
     const [userInfo, setUserInfo] = useState({});
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [selected, setSelected] = useState([]);
 
     const openModal = () =>{
         setIsOpen(true)
@@ -73,6 +75,10 @@ export default function ModalEditCompany(props){
                 <div className={styles.boxInput}>
                     <label htmlFor="phone">Telefone</label>
                     <input type="text" name="phone" defaultValue={props.phone} onChange={e => editInfo("company_telephone", e.target.value)} ></input>
+                </div>
+                <div className={styles.boxInput}>
+                    <label>Treinamentos disponíveis nessa empresa</label>
+                    <SelectRegistration selected={selected} setSelected={setSelected} />
                 </div>
             </div>
             <div className={styles.footerModal}>

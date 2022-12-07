@@ -1,12 +1,14 @@
 import Modal from "react-modal";
 import styles from "../modalEdit.module.css";
 import ModalDeleteUser from "../modal-delete-user/ModalDeleteUser";
+import SelectRegistration from "./SelectRegistrations";
 import { useState } from "react"
 import Axios from "axios"
 
 export default function ModalEditUser(props) {
     const [userInfo, setUserInfo] = useState({});
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [selected, setSelected] = useState([]);
 
     const openModal = () =>{
         setIsOpen(true)
@@ -75,6 +77,10 @@ export default function ModalEditUser(props) {
                 <div className={styles.boxInput}>
                     <label htmlFor="id_company">Registrado na empresa</label>
                     <input type="text" name="id_company" defaultValue={props.id_company}></input>
+                </div>
+                <div className={styles.boxInput}>
+                    <label>Matrículado em</label>
+                    <SelectRegistration selected={selected} setSelected={setSelected} />
                 </div>
             </div>
             <div className={styles.footerModal}>
