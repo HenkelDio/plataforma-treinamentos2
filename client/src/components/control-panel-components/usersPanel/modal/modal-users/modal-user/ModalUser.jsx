@@ -26,6 +26,23 @@ const phoneNumberMask = [
     /\d/
   ];
 
+const cpfMask = [
+    /[1-9]/,
+    /\d/,
+    /\d/,
+    ".",
+    /\d/,
+    /\d/,
+    /\d/,
+    ".",
+    /\d/,
+    /\d/,
+    /\d/,
+    "-",
+    /\d/,
+    /\d/
+  ];
+
 export default function ModalUser() {    
     
     const [userCompanyId, setUserCompanyId] = useState(1);
@@ -46,13 +63,15 @@ export default function ModalUser() {
         .oneOf([yup.ref("password"), null], "As senhas devem ser iguais")
         .required("O campo 'confirme a senha é obrigatório"),
         cpf: yup.string()
-        .max(11, 'Digite no máximo 11 digitos')
+        .max(14, 'Digite no máximo 11 digitos')
     })
 
     const handleSubmit = async (values) =>{
         values.companyId = userCompanyId;
         values.selectedCourses = selected;
         values.telephone = values.telephone.replace(/[ ()-]/g,'')
+        values.cpf = values.cpf.replace(/[.]/g,'')
+        console.log(values.cpf)
         let route = `${require("../../../../../../defaultRoute")}/registerUser`
         await Axios.post(route, { values }).then(res => {
             if (res.data.gotRegistred === true) {
@@ -99,7 +118,17 @@ export default function ModalUser() {
                     />
                 </div>
                 <div className={styles.inputBox}>
-                    <Field name="cpf" placeholder="Digite o CPF"></Field>
+                    <Field name="cpf">
+                    {({ field }) => (
+                        <MaskedInput
+                        {...field}
+                        mask={cpfMask}
+                        id="cpf"
+                        placeholder="CPF"
+                        type="text"
+                        />
+                    )}
+                    </Field>
                     <ErrorMessage 
                     name='cpf'
                     component='p'
@@ -108,8 +137,8 @@ export default function ModalUser() {
                 </div>
                 <div className={styles.inputBox}>
                 <Field
-                name="telephone"
-                render={({ field }) => (
+                name="telephone">
+                {({ field }) => (
                 <MaskedInput
                   {...field}
                   mask={phoneNumberMask}
@@ -118,7 +147,7 @@ export default function ModalUser() {
                   type="text"
                 />
               )}
-            />
+            </Field>
                 </div>
                 <div className={styles.inputBox}>
                     <SelectCompany setUserCompanyId={setUserCompanyId} />
