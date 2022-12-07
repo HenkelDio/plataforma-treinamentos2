@@ -2,8 +2,45 @@ import styles from "./modalUser.module.css"
 import Axios from "axios"
 import { useState } from "react";
 import { Field, Formik, Form, ErrorMessage } from 'formik';
+import MaskedInput from "react-text-mask";
 import SelectRegistration from "./SelectRegistrations";
 import * as yup from 'yup'
+
+const phoneNumberMask = [
+    "(",
+    /[1-9]/,
+    /\d/,
+    ")",
+    " ",
+    /\d/,
+    " ",
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    "-",
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/
+  ];
+
+const cpfMask = [
+    /[0-9]/,
+    /\d/,
+    /\d/,
+    ".",
+    /\d/,
+    /\d/,
+    /\d/,
+    ".",
+    /\d/,
+    /\d/,
+    /\d/,
+    "-",
+    /\d/,
+    /\d/
+  ];
 
 export default function ModalUser() {    
     const [selected, setSelected] = useState([]);
@@ -26,7 +63,9 @@ export default function ModalUser() {
     })
 
     const handleSubmit = async (values) =>{
-        values.companyId = JSON.parse(localStorage["user"]).id;
+        values.companyId = userCompanyId;
+        values.telephone = values.telephone.replace(/[ ()-]/g,'')
+        values.cpf = values.cpf.replace(/[. -]/g,'')
         await Axios.post("https://souzatreinamentosst.com.br:4000/registerUser", { values }).then(res => {
             if (res.data.gotRegistred === true) {
                 console.log(res.data)
@@ -74,10 +113,31 @@ export default function ModalUser() {
                     />
                 </div>
                 <div className={styles.inputBox}>
-                    <Field name="cpf" placeholder="Digite o CPF"></Field>
+                <Field name="cpf">
+                    {({ field }) => (
+                        <MaskedInput
+                        {...field}
+                        mask={cpfMask}
+                        id="cpf"
+                        placeholder="CPF"
+                        type="text"
+                        />
+                    )}
+                    </Field>
                 </div>
                 <div className={styles.inputBox}>
-                    <Field name="telephone" placeholder="Telefone"></Field>
+                <Field
+                name="telephone">
+                {({ field }) => (
+                    <MaskedInput
+                    {...field}
+                    mask={phoneNumberMask}
+                    id="telephone"
+                    placeholder="Telefone"
+                    type="text"
+                    />
+                )}
+                </Field>
                 </div>
                 <div className={styles.inputBox}>
                     <Field name="password" placeholder="Crie uma senha"></Field>
