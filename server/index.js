@@ -23,7 +23,6 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(fileUpload())
 app.use(express.static(`${__dirname}/treinamentos`));
-console.log("Arquivos disponiveis")
 
 const DB = require("./STDB").models;
 
@@ -62,6 +61,7 @@ function valuesVerification(values, expValues) {
 
 app.post("/loginUser", async (req, res) => {
     let values = req.body.values;
+    console.log(values)
     let DBColumns = ["email", "password"];
 
     let cond = { "authenticated": false }
