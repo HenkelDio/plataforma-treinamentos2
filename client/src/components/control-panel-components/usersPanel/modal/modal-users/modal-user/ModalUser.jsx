@@ -27,7 +27,7 @@ const phoneNumberMask = [
   ];
 
 const cpfMask = [
-    /[1-9]/,
+    /[0-9]/,
     /\d/,
     /\d/,
     ".",
@@ -138,15 +138,15 @@ export default function ModalUser() {
                 <Field
                 name="telephone">
                 {({ field }) => (
-                <MaskedInput
-                  {...field}
-                  mask={phoneNumberMask}
-                  id="telephone"
-                  placeholder="Telefone"
-                  type="text"
-                />
-              )}
-            </Field>
+                    <MaskedInput
+                    {...field}
+                    mask={phoneNumberMask}
+                    id="telephone"
+                    placeholder="Telefone"
+                    type="text"
+                    />
+                )}
+                </Field>
                 </div>
                 <div className={styles.inputBox}>
                     <SelectCompany setUserCompanyId={setUserCompanyId} />

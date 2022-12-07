@@ -21,12 +21,12 @@ export default function ModalCreateTraining(props){
 
     const validateCourse = yup.object().shape({
         title: yup.string()
-        .min(6, "Campo 'nome' muito curto (min. 6)")
-        .max(70, "Campo 'nome' muito longo (max. 70")
-        .required("O campo 'nome' é obrigatório")
+        .min(6, "Campo 'título' muito curto (min. 6)")
+        .max(70, "Campo 'título' muito longo (max. 70")
+        .required("O campo 'título' é obrigatório")
         .matches(
             /^([a-zA-Z1-9àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð '])+$/u,
-            'Insert only normal character')
+            'Não é permitido usar caracteres especiais (ex. /, -, _, @, $, #)')
     })
 
     const fileSelected = () =>{
