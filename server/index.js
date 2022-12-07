@@ -23,7 +23,6 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(fileUpload())
 app.use(express.static(`${__dirname}/treinamentos`));
-console.log("Arquivos disponiveis")
 
 const DB = require("./STDB").models;
 
@@ -62,6 +61,7 @@ function valuesVerification(values, expValues) {
 
 app.post("/loginUser", async (req, res) => {
     let values = req.body.values;
+    console.log(values)
     let DBColumns = ["email", "password"];
 
     let cond = { "authenticated": false }
@@ -302,7 +302,6 @@ app.get("/Courses/:userType/:userId", async (req, res) => {
 });
 
 app.get("/getCourse/:courseId", async (req, res) => {
-    console.log(req.params)
     let courseId = req.params.courseId;
 
     let course = await DB.Courses.findByPk(courseId);
