@@ -55,7 +55,7 @@ export default function Login() {
             return;
           }
         }
-
+        
         login(res.data.id, values.email, values.password, res.data.name, res.data.permission) // integração com o context
       }
     );
