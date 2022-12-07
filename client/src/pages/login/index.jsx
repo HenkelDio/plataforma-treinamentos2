@@ -41,13 +41,10 @@ export default function Login() {
         if (res) {
           console.log(res.data)
           if (res.data.permission === "company") {
-            console.log(res.data.permission);
             navigate("/painel-empresa");
           } else if (res.data.permission === "admin") {
-            console.log(res.data);
             navigate("/painel");
           } else if (res.data.permission === "user") {
-            console.log(res.data.permission);
             navigate("/painel-usuario");
           } else {
             let alertMessage = document.getElementById("alertMessage")
@@ -55,7 +52,6 @@ export default function Login() {
             return;
           }
         }
-        
         login(res.data.id, values.email, values.password, res.data.name, res.data.permission) // integração com o context
       }
     );

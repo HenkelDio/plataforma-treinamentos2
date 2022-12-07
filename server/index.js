@@ -83,6 +83,7 @@ app.post("/loginUser", async (req, res) => {
             });
             if (company) {
                 if (company.dataValues.company_password === values.password) {
+                    console.log(company)
                     cond = { "authenticated": true, "permission": "company", "name": company.dataValues.company_name, "id": company.dataValues.company_id }
                 }
             } else {
