@@ -159,7 +159,7 @@
 }
 
 .sucessMessage{
-    display: block;
+    display: none;
 
     margin-top: 20px;
 
@@ -182,7 +182,7 @@
     }
     .ModalDeleteUser{
         width: 90%;
-        height: 280px;
+        height: 300px;
     }
     .ModalDeleteUser .containerModalDeleteUser .optionsModalDeleteUser{
         display: flex;
