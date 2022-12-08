@@ -118,7 +118,6 @@ const closeModal = () =>{
           <div className={styles.menuMobile}>
             <ul>
               <li onClick={setPageHome}>TREINAMENTOS</li>
-              <li onClick={setPageSettings}>CONFIGURAÇÕES</li>
             </ul>
           </div>
           <button className={styles.buttonAcessAccount}>MINHA CONTA</button>
@@ -134,9 +133,6 @@ const closeModal = () =>{
           <ul>
             <li onClick={setPageHome} id="home" className={styles.selected}>
               treinamentos
-            </li>
-            <li onClick={setPageSettings} id="settings">
-              configurações
             </li>
           </ul>
         </div>
@@ -160,7 +156,6 @@ const closeModal = () =>{
             <p className={styles.name}>{name}</p>
             <hr></hr>
             <div className={styles.profileConfigs}>
-              <p>Minha conta</p>
               <p onClick={openModal}>Sair</p>
             </div>
           </div>
