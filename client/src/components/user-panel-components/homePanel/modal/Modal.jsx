@@ -7,6 +7,9 @@ import sample from "./pdf/firstlook.pdf"
 
 export default function ModalTraining(props){
   const [isOpen, setIsOpen] = useState(false);
+
+  console.log(props)
+
   const openModal = () =>{
     setIsOpen(true)
   }
@@ -35,7 +38,7 @@ export default function ModalTraining(props){
           <div className={styles.pdf}>
             <FramePdf courseId={props.data.data.course_id}/>
           </div>
-          <a href={sample}>Ou faça download PDF</a>
+          {/* <a href={sample}>Ou faça download PDF</a> */}
           <div className={styles.content}>
             <p>
               {props.data.data.content}
