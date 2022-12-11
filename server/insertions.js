@@ -8,6 +8,12 @@ const insertions = async _ => {
         admin_email: "emanuel.henkel@gmail.com",
         admin_password: "Emanuel2002"
     });
+
+    await DB.models.Admins.create({
+        admin_name: "Willian Henkel",
+        admin_email: "willianhenkel@gmail.com",
+        admin_password: "Will2002"
+    });
     
     await DB.models.Companies.create({
         company_name: "Souza Treinamentos",
@@ -17,9 +23,6 @@ const insertions = async _ => {
         company_email: "root@st.com.br",
         company_password: "root"
     });
-    
-    await DB.models.CompaniesRegistrations.create({
-        company_id: 1
-    })
 }
+
 insertions()
