@@ -5,5 +5,5 @@ for (let course of fs.readdirSync("./treinamentos")) {
     for (let file of fs.readdirSync("./treinamentos/" + course)) {
         fs.unlinkSync("./treinamentos/" + course + "/" + file)
     }
-    fs.rmDir("./treinamentos/" + course)
+    fs.rmDirSync("./treinamentos/" + course)
 }
