@@ -263,7 +263,7 @@ app.post("/createCourse", async (req, res) => {
         mkdirSync(coursePath)
 
         req.files.courseFile.mv(coursePath + "/1." + req.files.courseFile.name)
-
+        console.log(req.body.courseDescrit)
         let fileDescriptor = openSync(coursePath + "/2." + courseName + ".txt", "w", "777");
         appendFileSync(coursePath + "/2." + courseName + ".txt", req.body.courseDescrit);
         closeSync(fileDescriptor);
