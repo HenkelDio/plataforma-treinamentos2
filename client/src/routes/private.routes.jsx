@@ -3,6 +3,7 @@ import ControlPanel from "../pages/controlPanel";
 import Login from "../pages/login";
 import CompanyPanel from "../pages/companyPanel/companyPanel";
 import UserPanel from "../pages/userPanel";
+import LandingPage from "../pages/landingPage";
 import { AuthProvider } from "../contexts/AuthContext";
 import { AuthContext } from "../contexts/AuthContext";
 import { useContext } from "react";
@@ -67,7 +68,8 @@ const PrivateRoutes = () => {
     <Router>
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/painel" element={<PrivateAdmin><ControlPanel /></PrivateAdmin>} />
           <Route path="/painel-empresa" element={<PrivateCompany><CompanyPanel /></PrivateCompany>} />
           <Route path="/painel-usuario" element={<PrivateUser><UserPanel /></PrivateUser>} />
