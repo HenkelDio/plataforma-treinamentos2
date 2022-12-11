@@ -140,10 +140,7 @@ if (conex) {
         }, 
         company_id: {
             type: DataTypes.INTEGER,
-            references: {
-                model: Companies, 
-                key: "company_id"
-            }
+            allowNull: false
         }, 
         course_id: {
             type: DataTypes.INTEGER,
