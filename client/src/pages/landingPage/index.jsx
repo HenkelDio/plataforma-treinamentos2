@@ -18,6 +18,12 @@ export default function LandingPage(){
             </ul>
           </div>
         </div>
+        <div className={styles.details}>
+          <div className={styles.detailsText}>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias excepturi aperiam molestias veritatis! Cumque consectetur mollitia voluptate aliquid eius modi aut quo reiciendis distinctio. Reprehenderit ipsum corrupti nesciunt ipsam. Vitae.</p>
+            <button>ACESSAR</button>
+          </div>
+        </div>
       </div>
     </div>
   )
