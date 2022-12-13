@@ -30,6 +30,23 @@ function onscrollHeader(){
 export default function LandingPage(){
   return(
     <div className={styles.LandingPage}>
+
+      <div className={styles.mobileMenu}>
+        <div className={styles.menu}>
+          <div className={styles.innerMenu}>
+            <div className={styles.logo}>
+              <img src={logo}></img>
+            </div>
+            <ul>
+              <li>Sobre</li>
+              <li>Treinamentos</li>
+              <li>Contato</li>
+              <li><a href="/login"><button className={styles.btnOpenLogin}>ENTRAR</button></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <div className={styles.header}>
         <div id="innerHeader" className={styles.innerHeader}>
           <div className={styles.logo}>
