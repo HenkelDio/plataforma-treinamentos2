@@ -85,7 +85,7 @@ export default function LandingPage(){
           <div className={styles.displayCoursesContainer}>
             <div className={styles.card} id="card1">
               <div className={styles.headerCard}>
-                <img src='https://ingracio.adv.br/wp-content/uploads/2021/11/equipamento-protecao-individual-epi-980x535.jpg'></img>
+                <img src='https://ingracio.adv.br/wp-content/uploads/2021/11/equipamento-protecao-individual-epi-980x535.jpg' alt='img'></img>
               </div>
               <div className={styles.bodyCard}>
                 <div className={styles.titleCard}>
