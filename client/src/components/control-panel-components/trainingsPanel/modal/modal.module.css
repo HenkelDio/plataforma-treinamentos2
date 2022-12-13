@@ -141,6 +141,8 @@
     
     padding: 10px;
 
+    margin-bottom: 50px;
+
     border: 2px solid #ccc;
     border-radius: 10px;
 
@@ -242,6 +244,7 @@
     opacity: 0.8;
     font-size: 1rem !important; 
 }
+
 
 
 /* MODAL MOBILE */
