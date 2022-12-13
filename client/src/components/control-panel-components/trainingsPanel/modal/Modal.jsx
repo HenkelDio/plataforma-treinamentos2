@@ -6,6 +6,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import {IoIosAdd} from 'react-icons/io'
 import { useState } from "react";
 import Axios from "axios"
+import Question from "./question/Question";
 
 
 export default function ModalCreateTraining(props){
@@ -129,6 +130,17 @@ export default function ModalCreateTraining(props){
                                     <Field as="textarea" className={styles.content} name="content" placeholder="Digite o conteúdo aqui" ></Field>
                                 </div>
                             </div>
+
+
+                            <p>Adicione a prova</p>
+                            <Question number={'Primeira Questão'}/>
+                            <Question number={'Segunda Questão'}/>
+                            <Question number={'Terceira Questão'}/>
+                            <Question number={'Quarta Questão'}/>
+                            <Question number={'Quinta Questão'}/>
+                            
+
+
                             <div id="sucessMessage" className={styles.sucessMessage}>
                                 <p>Treinamento adicionado com sucesso!</p>
                             </div>
@@ -140,6 +152,7 @@ export default function ModalCreateTraining(props){
                         </Formik>
                     </div>
                 </div>
+
             </Modal>
         </div>
     )
