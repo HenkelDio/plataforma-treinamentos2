@@ -2,7 +2,7 @@
   width: 100%;
   height: 100vh;
   background: rgb(1,120,40);
-  background: linear-gradient(180deg, rgb(5, 82, 31) 0%, rgb(10, 149, 65) 100%);
+  background: linear-gradient(180deg, rgb(5, 82, 31) 0%, rgb(17, 176, 80) 100%);
 }
 
 .header .innerHeader{
@@ -79,18 +79,43 @@
   color: white;
 }
 
-.detailsText{
-  width: 600px;
+.details{
+  display: flex;
 
-  font-size: 1.2rem;
+  position: absolute; 
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.detailsText{
+  width: 700px;
+
+  font-size: 1.5rem;
 
   text-align: left;
 
   margin-top: 100px;
-  margin-left: 100px;
   padding: 20px 60px;
 
   color: white;
+}
+
+.details .image{
+  width: 500px;
+  height: 476px;
+
+  border-radius: 20px;
+
+  opacity: 0.8;
+
+  transition: 0.2s;
+
+  background-image: url('https://ead.nrtreinamentos.com.br/files/1628269540curso-reciclagem-nr-20-avancado-1.jpg');
+}
+
+.details .image:hover{
+  opacity: 1;
 }
 
 .detailsText p{
@@ -109,7 +134,16 @@
 
   font-weight: bold;
   
+  transition: 0.1s;
+
   cursor: pointer;
+}
+
+
+.detailsText button:hover{
+  background-color: rgb(63, 63, 63);
+
+  color: white;
 }
 
 .bodyPage{
@@ -130,9 +164,111 @@
   width: 1000px;
 
   text-align: left;
-  margin: 100px auto;
+  margin: 0 auto;
 }
 
 .about p{
-  font-size: 1.1rem
+  font-size: 1.1rem;
+  
+  margin-bottom: 20px;
+}
+
+.courses{
+  width: 100%;
+
+  height: 80vh;
+
+  margin-top: 50px;
+}
+
+.displayCoursesContainer{
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: row;
+
+  width: 80%;
+
+  padding: 20px;
+}
+
+.displayCoursesContainer .card{
+  position: relative;
+
+  left: 20px;
+
+  opacity: 0;
+
+  margin: 10px;
+
+  width: 33.3%;
+
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.3);
+
+  border-radius: 20px;
+  
+  height: 500px;
+
+  transition: 0.2s;
+}
+
+.displayCoursesContainer .card:hover{
+  box-shadow: 0px 10px 20px -3px rgba(0,0,0,0.5);
+
+  margin: 15px;
+}
+
+.card .headerCard img{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+
+  width: 100%; 
+  height: 200px; 
+  object-fit:cover;
+  object-position: 50% 30%; 
+}
+
+.card .headerCard{
+  width: 100%;
+}
+
+.card .bodyCard{
+  position: relative;
+
+  height: calc(480px - 200px);
+
+  padding: 15px;
+}
+
+.card .bodyCard .titleCard h2{
+  opacity: 0.8;
+
+  font-family: var(--inter);
+
+  margin-bottom: 15px;
+}
+
+.card .bodyCard .detailsCard{
+  opacity: 0.8;
+}
+
+.acessButton{
+  position: absolute;
+  bottom: 0;
+}
+
+.acessButton button{
+  padding: 10px;
+
+  width: 200px;
+
+  cursor: pointer;
+
+  background-color: #017828;
+  color: white;
+  font-weight: 500;
+
+  border: none;
+  border-radius: 10px;
+
 }
