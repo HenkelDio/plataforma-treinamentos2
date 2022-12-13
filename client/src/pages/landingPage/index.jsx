@@ -4,7 +4,7 @@ import logo from '../../assets/logo.png'
 window.onscroll = function() {onscrollHeader()}
 
 function onscrollHeader(){
-  if(document.documentElement.scrollTop > 600){
+  if(document.documentElement.scrollTop > 600 && window.innerWidth > 700){
     let innerHeader = document.getElementById("innerHeader")
     innerHeader.style.position = "fixed"
     innerHeader.style.backgroundColor = "rgb(63, 63, 63)"
@@ -20,9 +20,16 @@ function onscrollHeader(){
     card3.style.left = 0;
 
   } else {
-    let innerHeader = document.getElementById("innerHeader")
-    innerHeader.style.position = "sticky"
-    innerHeader.style.backgroundColor = "transparent"
+    if(window.innerWidth < 700){
+      let innerHeader = document.getElementById("innerHeader")
+      innerHeader.style.position = "relative"
+      console.log('habilitado mobile')
+    } else{
+      let innerHeader = document.getElementById("innerHeader")
+      innerHeader.style.position = "sticky"
+      innerHeader.style.backgroundColor = "transparent"
+    }
+    
   }
 }
   

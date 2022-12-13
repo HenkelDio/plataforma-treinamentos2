@@ -313,19 +313,24 @@
 
 @media (max-width: 700px){
   .header .innerHeader .logo img{
-    width: 80%;
+    width: 100%;
     top: -10px;
   }
   .header .innerHeader{
     padding: 0;
-  }
-  .header .innerHeader{
     height: 60px;
+    
+    z-index: 999;
+    position: relative;
   }
   .detailsText{
     width: 100%;
   }
   .details{
     width: 100%;
+    position: relative; 
+  }
+  .header{
+    background: rgb(1,120,40);
   }
 }
