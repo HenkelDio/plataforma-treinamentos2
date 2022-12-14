@@ -255,7 +255,7 @@ app.post("/editUser", async (req, res) => {
 });
 
 app.post("/createCourse", async (req, res) => {
-    console.log(typeof(req.body.examQuestion), req.body.examQuestion[0], req.body.examQuestion.length)
+    console.log(typeof(JSON.parse(req.body.examQuestion)), JSON.parse(req.body.examQuestion), req.body.examQuestion.length)
     let courseName = req.body.courseName.replace(/[ ]/g, "_").toLowerCase()
 
     if (!readdirSync(`${__dirname}/treinamentos`).includes(courseName)) {
