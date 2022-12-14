@@ -42,7 +42,7 @@ export default function ModalCreateTraining(props){
         formData.append("hoursCourse", hoursCourse);
         formData.append("courseFile", courseFile, courseFile.name);
         formData.append("courseDescrit", values.content)
-        formData.append("examQuestion", questions)
+        formData.append("examQuestion", JSON.parse(questions))
         
         let route = `${require("../../../../defaultRoute")}/createCourse`
         await Axios.post(route, formData, {

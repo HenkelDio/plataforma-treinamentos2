@@ -168,10 +168,7 @@ if (conex) {
         },
         course_id: {
             type: DataTypes.INTEGER,
-            references: {
-                model: Courses,
-                key: "course_id"
-            }
+            allowNull: false
         },
         user_id: {
             type: DataTypes.INTEGER,
