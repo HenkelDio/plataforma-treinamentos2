@@ -8,7 +8,7 @@
 .header .innerHeader{
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 2;
 
   display: flex;
   width: 100%;
@@ -154,7 +154,7 @@
 
 .bodyPage{
   width: 100%;
-  height: 50vh;
+  height: auto;
 }
 
 .title{
@@ -299,6 +299,19 @@
   
   width: 100%;
   height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  z-index: 3;
+
+}
+
+.openMenuIcon{
+  display: none;
+
+  color: white;
+  font-size: 1.5rem;
+
 }
 
 .mobileMenu .menu{
@@ -322,6 +335,9 @@
 }
 
 @media (max-width: 900px){
+  .openMenuIcon{
+    display: block;
+  }
   .mobileMenu{
     display: none;
   }
@@ -333,14 +349,19 @@
   }
   .header .innerHeader{
     padding: 0;
+
+    padding-right: 20px;
+
     height: 60px;
     
+    align-items: center;
+
     z-index: 999;
     position: relative;
   }
   .header .innerHeader .logo img{
     width: 100%;
-    top: -10px;
+    top: -25px;
   }
   .header .innerHeader .menu{
     display: none;
@@ -373,6 +394,12 @@
   }
   .detailsText p{
     font-family: var(--inter);
+  }
+  .about{
+    width: 100%;
+    padding: 20px;
+
+    height: auto;
   }
   .courses{
     height: auto;

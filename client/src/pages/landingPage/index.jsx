@@ -1,5 +1,6 @@
 import styles from './index.module.css';
 import logo from '../../assets/logo.png'
+import {TiThMenu} from "react-icons/ti"
 
 window.onscroll = function() {onscrollHeader()}
 
@@ -39,13 +40,19 @@ function onscrollHeader(){
     
   }
 }
+
+function openSideMenu() {
+  let mobileMenu = document.getElementById("mobileMenu")
+  mobileMenu.style.display = 'block';
+  mobileMenu.style.width = '100%';
+}
   
 
 export default function LandingPage(){
   return(
     <div className={styles.LandingPage}>
 
-      <div className={styles.mobileMenu}>
+      <div className={styles.mobileMenu} id="mobileMenu">
         <div className={styles.menu}>
           <div className={styles.innerMenu}>
             <div className={styles.logo}>
@@ -66,6 +73,11 @@ export default function LandingPage(){
           <div className={styles.logo}>
             <img src={logo}></img>
           </div>
+          
+          <div onClick={openSideMenu} className={styles.openMenuIcon}>
+            <TiThMenu />
+          </div>
+
           <div className={styles.menu}>
             <ul>
               <li><a href="#">Sobre</a></li>
