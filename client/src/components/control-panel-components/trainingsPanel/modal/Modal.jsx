@@ -19,6 +19,22 @@ export default function ModalCreateTraining(props){
         props.closeModal()
     }
 
+    const addQuestion = () => {
+
+        const listQuestion = state
+
+        setState([
+            ...state,
+            {
+                name: "1"
+            }
+        ])
+    }
+
+    const removeQuestion = () => {
+        state.pop();
+    }
+
     const validateCourse = yup.object().shape({
         title: yup.string()
         .min(6, "Campo 'título' muito curto (min. 6)")
@@ -133,13 +149,13 @@ export default function ModalCreateTraining(props){
 
 
                             <p>Adicione a prova</p>
+                            <Question number={'Primeira Questão'}/>
+                            <Question number={'Segunda Questão'}/>
+                            <Question number={'Terceira Questão'}/>
+                            <Question number={'Quarta Questão'}/>
+                            <Question number={'Quinta Questão'}/>
+                            
 
-                            <CreateExam questions={questions} setQuestions={setQuestions} />
-                            {/* <Question number={'Primeira Questão'} />
-                            <Question number={'Segunda Questão'} />
-                            <Question number={'Terceira Questão'} />
-                            <Question number={'Quarta Questão'} />
-                            <Question number={'Quinta Questão'} /> */}
 
                             <div id="sucessMessage" className={styles.sucessMessage}>
                                 <p>Treinamento adicionado com sucesso!</p>
