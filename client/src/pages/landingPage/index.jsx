@@ -43,8 +43,9 @@ function onscrollHeader(){
 
 function openSideMenu() {
   let mobileMenu = document.getElementById("mobileMenu")
-  mobileMenu.style.display = 'block';
-  mobileMenu.style.width = '100%';
+  mobileMenu.style.height = '100%';
+  let menu = document.getElementById("menu")
+  menu.style.display = 'block';
 }
   
 
@@ -53,16 +54,13 @@ export default function LandingPage(){
     <div className={styles.LandingPage}>
 
       <div className={styles.mobileMenu} id="mobileMenu">
-        <div className={styles.menu}>
+        <div className={styles.menu} id="menu">
           <div className={styles.innerMenu}>
-            <div className={styles.logo}>
-              <img src={logo}></img>
-            </div>
             <ul>
-              <li>Sobre</li>
-              <li>Treinamentos</li>
-              <li>Contato</li>
-              <li><a href="/login"><button className={styles.btnOpenLogin}>ENTRAR</button></a></li>
+              <li><a href='/'><p>Sobre</p></a></li>
+              <li><a href='/'><p>Treinamentos</p></a></li>
+              <li><a href='/'><p>Contato</p></a></li>
+              <li><a href="/login"><button className={styles.btnOpenLoginMobile}>ENTRAR</button></a></li>
             </ul>
           </div>
         </div>

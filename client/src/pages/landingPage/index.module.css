@@ -293,17 +293,16 @@
 
 /*mobile menu */
 .mobileMenu{
-  display: none;
-
-  position: absolute;
+  position: relative;
   
   width: 100%;
-  height: 100vh;
+  height: 0%;
 
   background-color: rgba(0, 0, 0, 0.5);
 
   z-index: 3;
 
+  transition: 0.5;
 }
 
 .openMenuIcon{
@@ -315,8 +314,45 @@
 }
 
 .mobileMenu .menu{
+  height: 100%;
+
+  display: none;
+
   background-color: white;
 }
+
+.mobileMenu .menu .innerMenu ul li{
+  padding: 20px;
+
+  border-bottom: 2px solid #ccc;
+
+  font-weight: bold;
+
+  list-style: none;
+}
+
+.mobileMenu .menu .innerMenu ul li a{
+  color: black;
+
+  font-size: 1.2rem;
+}
+
+.btnOpenLoginMobile{
+  width: 100%;
+  height: 50px;
+
+  cursor: pointer;
+
+  border: none;
+  border-radius: 20px;
+
+  font-weight: 500;
+
+  background: rgb(9, 72, 30);
+
+  color: white;
+}
+
 
 @media (max-width: 1200px){
   .detailsText{
@@ -339,7 +375,8 @@
     display: block;
   }
   .mobileMenu{
-    display: none;
+    width: 100%;
+    height: 0px;
   }
   .header{
     height: auto;
