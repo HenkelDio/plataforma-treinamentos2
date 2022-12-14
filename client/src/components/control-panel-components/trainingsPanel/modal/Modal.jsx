@@ -15,9 +15,28 @@ export default function ModalCreateTraining(props){
     const [hoursCourse, setHoursCourse] = useState("");
     const [courseFile, setCourseFile] = useState();
     const [courseDescrit, setCourseDescrit] = useState("");
+    const [state, setState] = useState([
+        {'nome':'Question'},
+    ])
 
     const closeModal = () =>{
         props.closeModal()
+    }
+
+    const addQuestion = () => {
+
+        const listQuestion = state
+
+        setState([
+            ...state,
+            {
+                name: "1"
+            }
+        ])
+    }
+
+    const removeQuestion = () => {
+        state.pop();
     }
 
     const validateCourse = yup.object().shape({
@@ -133,11 +152,16 @@ export default function ModalCreateTraining(props){
 
 
                             <p>Adicione a prova</p>
-                            <Question number={'Primeira Questão'}/>
-                            <Question number={'Segunda Questão'}/>
-                            <Question number={'Terceira Questão'}/>
-                            <Question number={'Quarta Questão'}/>
-                            <Question number={'Quinta Questão'}/>
+                           
+                            {
+                                state.map((val)=>{
+                                    return <Question />
+                                })
+                            }
+
+                        <input type="button" value="add" onClick={addQuestion}></input>
+                        <input type="button" value="remove" onClick={removeQuestion}></input>
+                                          
                             
 
 
