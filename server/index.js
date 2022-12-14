@@ -272,7 +272,7 @@ app.post("/createCourse", async (req, res) => {
         DB.Courses.create({
             course_title: req.body.courseName,
             content_path: coursePath,
-            course_hours: req.body.hoursCourse,
+            course_hours: (req.body.hoursCourse === "" ? 1 : req.body.hoursCourse ),
             registrations: 0
         });
 
