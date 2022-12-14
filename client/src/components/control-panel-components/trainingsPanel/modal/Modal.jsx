@@ -6,15 +6,14 @@ import { IoIosArrowBack } from "react-icons/io";
 import {IoIosAdd} from 'react-icons/io'
 import { useState } from "react";
 import Axios from "axios"
-import Question from "./question/Question";
+import CreateExam from "./createExam/createExam"
 
 
 export default function ModalCreateTraining(props){
-
-    const [courseName, setCourseName] = useState("");
+    
     const [hoursCourse, setHoursCourse] = useState("");
     const [courseFile, setCourseFile] = useState();
-    const [courseDescrit, setCourseDescrit] = useState("");
+    const [questions, setQuestions] = useState([{ num: 0, pergunta: "", alternativas: {a: "", b: "", c: "", d: ""}, resposta: "a" }])
 
     const closeModal = () =>{
         props.closeModal()
@@ -43,6 +42,7 @@ export default function ModalCreateTraining(props){
         formData.append("hoursCourse", hoursCourse);
         formData.append("courseFile", courseFile, courseFile.name);
         formData.append("courseDescrit", values.content)
+        formData.append("examQuestion", questions)
         
         let route = `${require("../../../../defaultRoute")}/createCourse`
         await Axios.post(route, formData, {
@@ -133,13 +133,13 @@ export default function ModalCreateTraining(props){
 
 
                             <p>Adicione a prova</p>
-                            <Question number={'Primeira Questão'}/>
-                            <Question number={'Segunda Questão'}/>
-                            <Question number={'Terceira Questão'}/>
-                            <Question number={'Quarta Questão'}/>
-                            <Question number={'Quinta Questão'}/>
-                            
 
+                            <CreateExam questions={questions} setQuestions={setQuestions} />
+                            {/* <Question number={'Primeira Questão'} />
+                            <Question number={'Segunda Questão'} />
+                            <Question number={'Terceira Questão'} />
+                            <Question number={'Quarta Questão'} />
+                            <Question number={'Quinta Questão'} /> */}
 
                             <div id="sucessMessage" className={styles.sucessMessage}>
                                 <p>Treinamento adicionado com sucesso!</p>
