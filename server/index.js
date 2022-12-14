@@ -253,7 +253,7 @@ app.post("/editUser", async (req, res) => {
         }
     })
 });
-
+//uepa
 app.post("/createCourse", async (req, res) => {
     console.log(typeof(JSON.parse(req.body.examQuestion)), JSON.parse(req.body.examQuestion), req.body.examQuestion.length)
     let courseName = req.body.courseName.replace(/[ ]/g, "_").toLowerCase()
