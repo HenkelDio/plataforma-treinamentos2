@@ -339,8 +339,10 @@ app.get("/getCourse/:courseId", async (req, res) => {
 
 app.get("/getCourseExam/:courseId", async (req, res) => {
     const course = DB.Courses.findByPk(req.params.courseId);
+    console.log(course, req.params.courseId)
+    console.log(readFileSync(readdirSync(course.dataValues.content_path)[0]))
 
-    console.log(readFileSync(readdirSync(course.dataValues.content_path)))
+    res.send("UEPAA")
 })
 
 app.delete("/deleteCourse/:courseId", async (req, res) => {
