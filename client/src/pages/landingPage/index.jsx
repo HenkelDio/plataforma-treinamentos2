@@ -1,13 +1,22 @@
 import styles from './index.module.css';
 import logo from '../../assets/logo.png'
+import {TiThMenu} from "react-icons/ti"
 
 window.onscroll = function() {onscrollHeader()}
 
+
+
 function onscrollHeader(){
-  if(document.documentElement.scrollTop > 600 && window.innerWidth > 700){
-    let innerHeader = document.getElementById("innerHeader")
-    innerHeader.style.position = "fixed"
-    innerHeader.style.backgroundColor = "rgb(63, 63, 63)"
+  if(document.documentElement.scrollTop > 499){
+    if(window.innerWidth > 700){
+      let innerHeader = document.getElementById("innerHeader")
+      innerHeader.style.position = "fixed"
+      innerHeader.style.backgroundColor = "rgb(63, 63, 63)"
+    } else {
+      let innerHeader = document.getElementById("innerHeader")
+      innerHeader.style.position = "relative"
+      innerHeader.style.backgroundColor = "transparent"
+    }
 
     let card1 = document.getElementById("card1")
     card1.style.opacity = 1;
@@ -23,7 +32,6 @@ function onscrollHeader(){
     if(window.innerWidth < 700){
       let innerHeader = document.getElementById("innerHeader")
       innerHeader.style.position = "relative"
-      console.log('habilitado mobile')
     } else{
       let innerHeader = document.getElementById("innerHeader")
       innerHeader.style.position = "sticky"
@@ -32,23 +40,27 @@ function onscrollHeader(){
     
   }
 }
+
+function openSideMenu() {
+  let mobileMenu = document.getElementById("mobileMenu")
+  mobileMenu.style.height = '100%';
+  let menu = document.getElementById("menu")
+  menu.style.display = 'block';
+}
   
 
 export default function LandingPage(){
   return(
     <div className={styles.LandingPage}>
 
-      <div className={styles.mobileMenu}>
-        <div className={styles.menu}>
+      <div className={styles.mobileMenu} id="mobileMenu">
+        <div className={styles.menu} id="menu">
           <div className={styles.innerMenu}>
-            <div className={styles.logo}>
-              <img src={logo}></img>
-            </div>
             <ul>
-              <li>Sobre</li>
-              <li>Treinamentos</li>
-              <li>Contato</li>
-              <li><a href="/login"><button className={styles.btnOpenLogin}>ENTRAR</button></a></li>
+              <li><a href='/'><p>Sobre</p></a></li>
+              <li><a href='/'><p>Treinamentos</p></a></li>
+              <li><a href='/'><p>Contato</p></a></li>
+              <li><a href="/login"><button className={styles.btnOpenLoginMobile}>ENTRAR</button></a></li>
             </ul>
           </div>
         </div>
@@ -59,6 +71,11 @@ export default function LandingPage(){
           <div className={styles.logo}>
             <img src={logo}></img>
           </div>
+          
+          <div onClick={openSideMenu} className={styles.openMenuIcon}>
+            <TiThMenu />
+          </div>
+
           <div className={styles.menu}>
             <ul>
               <li><a href="#">Sobre</a></li>
@@ -74,6 +91,7 @@ export default function LandingPage(){
             <button>ACESSAR</button>
           </div>
           <div className={styles.image}>
+            <h2 className={styles.labelImage}>O curso mais completo do brasil</h2>
           </div>
         </div>
       </div>
@@ -95,7 +113,7 @@ export default function LandingPage(){
                   <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos repellat labore voluptatibus quod neque.</p>
                 </div>
                 <div className={styles.acessButton}>
-                  <button>Acessar Curso</button>
+                  <button>Acessar Cursos</button>
                 </div>
               </div>
             </div>
@@ -112,7 +130,7 @@ export default function LandingPage(){
                   <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos repellat labore voluptatibus quod neque.</p>
                 </div>
                 <div className={styles.acessButton}>
-                  <button>Acessar Curso</button>
+                  <button>Acessar Cursos</button>
                 </div>
               </div>
             </div>
@@ -129,7 +147,7 @@ export default function LandingPage(){
                   <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos repellat labore voluptatibus quod neque.</p>
                 </div>
                 <div className={styles.acessButton}>
-                  <button>Acessar Curso</button>
+                  <button>Acessar Cursos</button>
                 </div>
               </div>
             </div>
@@ -149,6 +167,12 @@ export default function LandingPage(){
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore distinctio atque numquam temporibus odio corrupti sed qui, praesentium ipsum, rerum nobis quisquam repudiandae voluptatum doloribus consectetur, molestias perferendis rem. Temporibus.
             </p>
+        </section>
+
+        <section className={styles.contact}>
+          <div className={styles.title}>
+            <h2>Contato</h2>
+          </div>
         </section>
 
       </div>

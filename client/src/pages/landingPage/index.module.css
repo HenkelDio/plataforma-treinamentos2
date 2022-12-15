@@ -8,7 +8,7 @@
 .header .innerHeader{
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 2;
 
   display: flex;
   width: 100%;
@@ -116,6 +116,10 @@
   background-image: url('https://ead.nrtreinamentos.com.br/files/1628269540curso-reciclagem-nr-20-avancado-1.jpg');
 }
 
+.labelImage{
+  display: none;
+}
+
 .details .image:hover{
   opacity: 1;
 }
@@ -150,7 +154,7 @@
 
 .bodyPage{
   width: 100%;
-  height: 50vh;
+  height: auto;
 }
 
 .title{
@@ -164,6 +168,7 @@
 
 .about{
   width: 1000px;
+  height: 400px;
 
   text-align: left;
   margin: 0 auto;
@@ -178,7 +183,7 @@
 .courses{
   width: 100%;
 
-  height: 650px;
+  height: 700px;
 
   margin-top: 50px;
 }
@@ -275,64 +280,187 @@
 
 }
 
+.contact{
+  color: white;
+
+  padding: 30px;
+
+  width: 100%;
+  height: 400px;
+
+  background-color: rgb(63, 63, 63);
+}
+
 /*mobile menu */
 .mobileMenu{
-  display: none;
-
-  position: absolute;
+  position: relative;
   
   width: 100%;
-  height: 100vh;
+  height: 0%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  z-index: 3;
+
+  transition: 0.5;
+}
+
+.openMenuIcon{
+  display: none;
+
+  color: white;
+  font-size: 1.5rem;
+
 }
 
 .mobileMenu .menu{
+  height: 100%;
+
+  display: none;
+
   background-color: white;
 }
+
+.mobileMenu .menu .innerMenu ul li{
+  padding: 20px;
+
+  border-bottom: 2px solid #ccc;
+
+  font-weight: bold;
+
+  list-style: none;
+}
+
+.mobileMenu .menu .innerMenu ul li a{
+  color: black;
+
+  font-size: 1.2rem;
+}
+
+.btnOpenLoginMobile{
+  width: 100%;
+  height: 50px;
+
+  cursor: pointer;
+
+  border: none;
+  border-radius: 20px;
+
+  font-weight: 500;
+
+  background: rgb(9, 72, 30);
+
+  color: white;
+}
+
 
 @media (max-width: 1200px){
   .detailsText{
     font-size: 1.3rem;
   }
   .details .image{
-    width: 400px;
+    width: 100%;
+  }
+  .details{
+    flex-wrap: wrap;
+  }
+  .detailsText button{
+    width: 100%;
+    height: 50px;
   }
 }
 
 @media (max-width: 900px){
+  .openMenuIcon{
+    display: block;
+  }
   .mobileMenu{
-    display: none;
+    width: 100%;
+    height: 0px;
+  }
+  .header{
+    height: auto;
+
+    background: rgb(1,120,40);
+    background: linear-gradient(180deg, rgb(5, 82, 31) 0%, rgb(17, 176, 80) 100%);
+  }
+  .header .innerHeader{
+    padding: 0;
+
+    padding-right: 20px;
+
+    height: 60px;
+    
+    align-items: center;
+
+    z-index: 999;
+    position: relative;
+  }
+  .header .innerHeader .logo img{
+    width: 100%;
+    top: -25px;
   }
   .header .innerHeader .menu{
     display: none;
   }
   .details .image{
-    width: 700px;
+    display: none;
   }
   .details{
-    flex-wrap: wrap;
-  }
-}
-
-@media (max-width: 700px){
-  .header .innerHeader .logo img{
+    margin-top: 20px;
     width: 100%;
-    top: -10px;
+   
+    flex-direction: column-reverse;
+   
+    left: auto;
+    top: auto;
+    transform: translate(0, 0);
+
+    position: relative; 
   }
-  .header .innerHeader{
-    padding: 0;
-    height: 60px;
-    
-    z-index: 999;
-    position: relative;
+  .detailsText button{
+    width: 100%;
+    height: 50px;
   }
   .detailsText{
     width: 100%;
+
+    padding: 0 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
-  .details{
+  .detailsText p{
+    font-family: var(--inter);
+  }
+  .about{
     width: 100%;
-    position: relative; 
+    padding: 20px;
+
+    height: auto;
   }
-  .header{
-    background: rgb(1,120,40);
+  .courses{
+    height: auto;
+  }
+  .displayCoursesContainer{
+    flex-direction: column;
+    width: 100%;
+  }
+  .displayCoursesContainer .card{
+    width: 100%;
+    margin: 0;
+    margin-bottom: 20px;
+    height: 400px;
+  }
+  .displayCoursesContainer .card:hover{
+    margin: 0;
+    margin-bottom: 20px;
+  }
+  .acessButton{
+    position: relative;
+    margin-top: 20px;
+  }
+  .acessButton button{
+    width: 100%;
   }
 }
+
