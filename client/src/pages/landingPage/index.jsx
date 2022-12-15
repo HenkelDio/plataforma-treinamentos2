@@ -43,9 +43,11 @@ function onscrollHeader(){
 
 function openSideMenu() {
   let mobileMenu = document.getElementById("mobileMenu")
-  mobileMenu.style.height = '100%';
+  mobileMenu.style.height = 'auto';
   let menu = document.getElementById("menu")
   menu.style.display = 'block';
+
+
 }
   
 

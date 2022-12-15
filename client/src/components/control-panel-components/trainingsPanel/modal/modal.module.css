@@ -245,6 +245,37 @@
     font-size: 1rem !important; 
 }
 
+.addQuestionButton{
+    margin-top: 20px;
+
+    cursor: pointer;
+
+    border-radius: 20px;
+    border: none;
+
+    background-color: #ccc;
+
+    font-weight: 500;
+
+    width: 50%;
+    height: 30px;
+}
+
+.removeQuestionButton{
+    margin-top: 20px;
+
+    cursor: pointer;
+
+    border-radius: 20px;
+    border: none;
+
+    background-color: #ccc;
+
+    font-weight: 500;
+
+    width: 50%;
+    height: 30px;
+}
 
 
 /* MODAL MOBILE */
@@ -288,6 +319,20 @@
     }
     .fileBox{
         width: 100%;
+    }
+    .addQuestionButton{
+        width: 100%;
+        height: 50px;
+
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .removeQuestionButton{
+        width: 100%;
+        height: 50px;
+
+        font-size: 1.2rem;
+        font-weight: bold;
     }
     
 }

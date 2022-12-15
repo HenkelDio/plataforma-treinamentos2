@@ -66,3 +66,19 @@
 
   outline: none;
 }
+
+@media (max-width: 700px){
+  .exercisesContainer{
+    width: 100%;
+    padding: 10px;
+  }
+  .option input{
+    height: 50px;
+  }
+  .answer select{
+    width: 100px;
+    padding: 10px;
+
+    font-size: 1.1rem;
+  }
+}

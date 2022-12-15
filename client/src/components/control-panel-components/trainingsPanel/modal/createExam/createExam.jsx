@@ -1,4 +1,4 @@
-
+import styles from '../modal.module.css';
 import { useEffect } from "react"
 import Question from "./question/Question"
 
@@ -35,8 +35,8 @@ function CreateExam(props) {
                     return <Question questionNumber={question.num} questions={questions} setQuestions={setQuestions} />
                 })
             }
-            <input type="button" value="+" onClick={addQuestion}/>
-            <input type="button" value="-" onClick={removeQuestion}/>
+            <input className={styles.addQuestionButton} type="button" value=" + Adicionar Questão" onClick={addQuestion}/>
+            <input className={styles.removeQuestionButton} type="button" value="- Remover Questão" onClick={removeQuestion}/>
         </>
     )
 }
