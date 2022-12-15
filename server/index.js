@@ -253,9 +253,8 @@ app.post("/editUser", async (req, res) => {
         }
     })
 });
-//uepa
+
 app.post("/createCourse", async (req, res) => {
-    console.log(typeof(JSON.parse(req.body.examQuestion)), JSON.parse(req.body.examQuestion), req.body.examQuestion.length)
     let courseName = req.body.courseName.replace(/[ ]/g, "_").toLowerCase()
 
     if (!readdirSync(`${__dirname}/treinamentos`).includes(courseName)) {
@@ -274,6 +273,10 @@ app.post("/createCourse", async (req, res) => {
             course_hours: (req.body.hoursCourse === "" ? 1 : req.body.hoursCourse ),
             registrations: 0
         });
+        
+        let questionsFile = openSync(coursePath + "/3." + courseName + ".json", "w", "777");
+        appendFileSync(coursePath + "/3." + courseName + ".json", req.body.examQuestion);
+        closeSync(questionsFile);
 
         res.send({ registeredCourse: true })
 
