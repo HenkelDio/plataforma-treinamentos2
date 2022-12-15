@@ -280,6 +280,15 @@
 
 }
 
+.separator{
+  width: 5px;
+  height: 200px;
+
+  background-color: rgb(123, 123, 123);
+  
+  border-radius: 5px;
+}
+
 .contact{
   color: white;
 
@@ -290,6 +299,71 @@
 
   background-color: rgb(63, 63, 63);
 }
+
+.contactContainer{
+  display: flex;
+  align-items: center;
+  
+  width: 100%;
+  height: 100%;
+}
+
+.mark{
+  margin-right: 200px;
+}
+
+.contactContainer .logo{
+  width: 400px;
+}
+
+.contactContainer .logo img{
+  width: 100%;
+}
+
+.contactUsButton{
+  text-align: center;
+}
+
+.contactUsButton button{
+  width: 250px;
+  height: 60px;
+
+  background-color: transparent;
+  color: rgb(27, 202, 86);
+
+  font-weight: bold;
+  font-family: var(--inter);
+
+  border-radius: 10px;
+  border: 5px solid rgb(27, 202, 86);
+
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+.contactUsButton button:hover{
+  background-color: rgb(27, 202, 86);
+  color: black;
+}
+
+.contactContainer .menu{
+  margin-right: 200px;
+  margin-left: 0px;
+}
+
+.contactContainer .menu ul li{
+  list-style: none;
+
+  padding: 20px;
+}
+
+.contactContainer .menu ul li a{
+  font-size: 1.2rem;
+  color: white;
+  text-decoration: none;
+}
+
 
 /*mobile menu */
 .mobileMenu{

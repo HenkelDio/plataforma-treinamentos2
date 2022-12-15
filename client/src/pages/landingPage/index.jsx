@@ -176,8 +176,32 @@ export default function LandingPage(){
         </section>
 
         <section className={styles.contact}>
-          <div className={styles.title}>
-            <h2>Contato</h2>
+          <div className={styles.contactContainer}>
+            <div className={styles.mark}>
+              <div className={styles.logo}>
+                <img src={logo}></img>
+              </div>
+              <div className={styles.contactUsButton}>
+                <button>ENTRE EM CONTATO</button>
+              </div>
+            </div>
+
+            <div className={styles.separator}></div>
+            
+            <div className={styles.menu}>
+              <ul>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Treinamentos</a></li>
+                <li><a href="#">Contato</a></li>
+              </ul>
+            </div>
+            <div className={styles.contactMenu}>
+              <ul>
+                <li><a href="#">E-mail</a></li>
+                <li><a href="#">Whatsapp</a></li>
+                <li><a href="#">Endereço</a></li>
+              </ul>
+            </div>
           </div>
         </section>
 
