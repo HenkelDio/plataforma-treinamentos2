@@ -337,6 +337,12 @@ app.get("/getCourse/:courseId", async (req, res) => {
 
 })
 
+app.get("/getCourseExam/:courseId", async (req, res) => {
+    const course = DB.Courses.findByPk(req.params.courseId);
+
+    console.log(readFileSync(readdirSync(course.dataValues.content_path)))
+})
+
 app.delete("/deleteCourse/:courseId", async (req, res) => {
     let course = await DB.Courses.findOne({
         where: {

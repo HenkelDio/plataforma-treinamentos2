@@ -1,11 +1,26 @@
 import styles from "./modalQuestions.module.css";
 import Modal from "react-modal";
 import { AuthContext } from "../../../../../contexts/AuthContext";
-import { useContext } from "react";
+import Axios from "axios"
+import { useState, useContext, useEffect } from "react";
 
 export default function ModalQuestion(props){
   const { name, email } = useContext(AuthContext)
 
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(_ => {
+    const getQuestions = async _ => {
+      console.log(props.data.data.data.course_id)
+      const route = `${require("../../../../../defaultRoute")}/getCourseExam/${props.data.data.data.course_id}`
+      await Axios.get(route).then(res => {
+        if (res) {
+          console.log(res)
+        }
+      })
+    }
+    getQuestions();
+  })
 
   const completeCourse = () =>{
     alert("Treinamento Concluído!")

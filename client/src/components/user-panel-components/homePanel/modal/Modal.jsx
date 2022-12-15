@@ -3,7 +3,6 @@ import styles from "./modal.module.css";
 import FramePdf from './pdf/FramePdf';
 import ModalConclusion from './confirm-conclusion-modal/ModalConclusion';
 import { useState } from 'react';
-import sample from "./pdf/firstlook.pdf"
 
 export default function ModalTraining(props){
   const [isOpen, setIsOpen] = useState(false);
