@@ -1,6 +1,7 @@
 import styles from './index.module.css';
 import logo from '../../assets/logo.png'
-import {TiThMenu} from "react-icons/ti"
+import {TiThMenu} from "react-icons/ti";
+import {RiCloseCircleFill} from "react-icons/ri";
 
 window.onscroll = function() {onscrollHeader()}
 
@@ -64,6 +65,9 @@ export default function LandingPage(){
               <li><a href='/'><p>Contato</p></a></li>
               <li><a href="/login"><button className={styles.btnOpenLoginMobile}>ENTRAR</button></a></li>
             </ul>
+            <div className={styles.closeMenu}>
+              <RiCloseCircleFill />
+            </div>
           </div>
         </div>
       </div>
