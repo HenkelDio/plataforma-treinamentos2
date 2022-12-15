@@ -15,12 +15,12 @@ export default function ModalQuestion(props){
       const route = `${require("../../../../../defaultRoute")}/getCourseExam/${props.data.data.data.course_id}`
       await Axios.get(route).then(res => {
         if (res) {
-          console.log(res)
+          setQuestions(res.data);
         }
       })
     }
     getQuestions();
-  })
+  }, [])
 
   const completeCourse = () =>{
     alert("Treinamento Concluído!")
