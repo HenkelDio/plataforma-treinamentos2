@@ -189,17 +189,22 @@ export default function LandingPage(){
             <div className={styles.separator}></div>
             
             <div className={styles.menu}>
+              <h2>- Menu -</h2>
               <ul>
                 <li><a href="#">Sobre</a></li>
                 <li><a href="#">Treinamentos</a></li>
                 <li><a href="#">Contato</a></li>
               </ul>
             </div>
+
+            <div className={styles.separator}></div>
+
             <div className={styles.contactMenu}>
+              <h2>- Contato -</h2>
               <ul>
-                <li><a href="#">E-mail</a></li>
-                <li><a href="#">Whatsapp</a></li>
-                <li><a href="#">Endereço</a></li>
+                <li>E-mail: <b>souzatreinamentos@hotmail.com.br</b></li>
+                <li><a href="">Whatsapp: <b>(41) 9 9809-3723</b></a></li>
+                <li>Endereço: <b>R. Reksidler, 180-262 - Thomaz Coelho, Araucária - PR, 83707-080</b></li>
               </ul>
             </div>
           </div>
