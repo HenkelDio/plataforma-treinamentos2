@@ -195,13 +195,6 @@ export default function LandingPage(){
                 <li><a href="#">Contato</a></li>
               </ul>
             </div>
-            <div className={styles.contactMenu}>
-              <ul>
-                <li><a href="#">E-mail</a></li>
-                <li><a href="#">Whatsapp</a></li>
-                <li><a href="#">Endereço</a></li>
-              </ul>
-            </div>
           </div>
         </section>
 
