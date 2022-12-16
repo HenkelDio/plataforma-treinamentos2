@@ -189,18 +189,10 @@ export default function LandingPage(){
             <div className={styles.separator}></div>
             
             <div className={styles.menu}>
-              <h2>- Menu -</h2>
               <ul>
                 <li><a href="#">Sobre</a></li>
                 <li><a href="#">Treinamentos</a></li>
                 <li><a href="#">Contato</a></li>
-              </ul>
-            </div>
-            <div className={styles.contactMenu}>
-              <ul>
-                <li><a href="#">E-mail</a></li>
-                <li><a href="#">Whatsapp</a></li>
-                <li><a href="#">Endereço</a></li>
               </ul>
             </div>
           </div>
