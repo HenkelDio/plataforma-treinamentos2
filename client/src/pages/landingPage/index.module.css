@@ -353,6 +353,10 @@
   margin-left: 0px;
 }
 
+.contactContainer .menu h2{
+  padding: 5px 20px;
+}
+
 .contactContainer .menu ul li{
   list-style: none;
 
@@ -364,6 +368,32 @@
   color: white;
   text-decoration: none;
 }
+
+.contactMenu{
+  margin-right: 200px;
+  margin-left: 0px;
+}
+
+.contactMenu h2{
+  padding: 5px 20px;
+}
+
+.contactMenu ul li{
+  list-style: none;
+
+  padding: 20px;
+
+  font-size: 1.2rem;
+  color: white;
+  text-decoration: none;
+}
+
+.contactMenu ul li a{
+  font-size: 1.2rem;
+  color: white;
+  text-decoration: none;
+}
+
 
 
 /*mobile menu */
