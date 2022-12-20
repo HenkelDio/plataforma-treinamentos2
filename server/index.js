@@ -215,7 +215,23 @@ app.get("/getUsersCompany/:companyEmail", async (req, res) => {
 
     res.send(usersCompany)
 
-})
+});
+
+app.get("/searchUser/:userType/:register", async (req, res) => {
+    const userType = req.params.userType;
+    const register = req.params.register;
+
+    const user = await DB[userType].findOne({
+        where: (userType === "Users" ? {user_register: register} : {company_register: register})
+    })
+    
+    if (user) {
+        res.send(user)
+    } else {
+        res.send("User was not found")
+    }
+
+});
 
 app.post("/removeUser", async (req, res) => {
     let type = req.body.type;
@@ -335,7 +351,7 @@ app.get("/getCourse/:courseId", async (req, res) => {
     let coursePdf = readdirSync(course.dataValues.content_path)[0];
     res.send({ "courseDir": courseDir, "coursePdf": coursePdf })
 
-})
+});
 
 app.get("/getCourseExam/:courseId", async (req, res) => {
     let course = await DB.Courses.findByPk(req.params.courseId);
