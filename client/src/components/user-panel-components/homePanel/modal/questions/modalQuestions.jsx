@@ -12,7 +12,6 @@ export default function ModalQuestion(props){
 
   useEffect(_ => {
     const getQuestions = async _ => {
-      console.log(props.data.data.data.course_id)
       const route = `${require("../../../../../defaultRoute")}/getCourseExam/${props.data.data.data.course_id}`
       await Axios.get(route).then(res => {
         if (res) {
@@ -24,11 +23,26 @@ export default function ModalQuestion(props){
   }, [])
 
   const completeCourse = () =>{
-    alert("Treinamento Concluído!")
+    const point = questions.length / questions.length;
+    let score = "";
+    
+    for(let i = 0; i < questions.length; i++){
+      if(questions[i].resposta === questions[i].userSelecionou){
+        score = Number(score + point)
+      }
+    }
 
-    window.open(`https://wa.me/5541996588728?text=Treinamento Finalizado! Nome: ${name} / E-mail: ${email} `, '_blank')
+    console.log(score)
+    console.log((questions.length + questions.length) / questions.length)
 
-    document.location.reload()
+    if(score >= ((questions.length + questions.length) / questions.length)){
+      console.log("Aprovado")
+    } else {
+      console.log("Reprovado")
+    }
+
+
+
   }
 
 
@@ -48,7 +62,7 @@ export default function ModalQuestion(props){
       
       {
         questions.map((val)=>{
-          return <InputBoxQuestion data={val} />
+          return <InputBoxQuestion data={val} setQuestions={setQuestions} questions={questions} />
         })
       }
 

@@ -22,28 +22,17 @@ export default function UsersPanel(props){
         setIsOpen(false)
     }
 
-    const users = [];
-    
     useEffect(_ => {
         const getUsers = async _ => {
             let route = `${require("../../../defaultRoute")}/getUsers/${userType}`
             await Axios.get(route).then(res => {
                 if (res) {
                     setListUsers(res.data)
-                    
-                    for(let i = 0; i < res.data.length; i++){
-                        users.push(res.data[i].admin_name)
-                    }
-
-                    console.log(users);
-                
                 }
             })
         }
         getUsers()
     }, [userType])
-
-    const usersFiltered = users.filter((user) => user.startWith(search));
 
     return(
         <div className={styles.UsersPanel}>
@@ -71,12 +60,6 @@ export default function UsersPanel(props){
                     </select>
                 </div>
                 <div className={styles.list}>
-                    <input 
-                    type='text' 
-                    placeholder="Procurar"
-                    value={search}
-                    onChange={e => setSearch(e.target.value)}
-                    ></input>
                     {
                         (userType === "Admins") && listUsers.map((val)=>{
                             return <Admin 
