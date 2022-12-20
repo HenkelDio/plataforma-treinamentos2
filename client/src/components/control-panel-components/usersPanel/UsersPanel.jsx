@@ -36,7 +36,7 @@ export default function UsersPanel(props) {
     }, [userType])
 
     function search() {
-        const route = `${require("../../../defaultRoute")}/${userType}/${(userType === "Users" ? searchUser : searchCompany)}`
+        const route = `${require("../../../defaultRoute")}/searchUser/${userType}/${(userType === "Users" ? searchUser : searchCompany)}`
         Axios.get(route).then(res => {
             if (res) {
                 console.log(res)
