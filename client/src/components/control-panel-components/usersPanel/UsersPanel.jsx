@@ -39,7 +39,9 @@ export default function UsersPanel(props) {
         const route = `${require("../../../defaultRoute")}/searchUser/${userType}/${(userType === "Users" ? searchUser : searchCompany)}`
         Axios.get(route).then(res => {
             if (res) {
-                console.log(res)
+                if (res.data !== "User was not found") {
+                    setListUsers([res.data])
+                }
             }
         })
     }

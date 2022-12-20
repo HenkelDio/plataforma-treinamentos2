@@ -224,11 +224,11 @@ app.get("/searchUser/:userType/:register", async (req, res) => {
     const user = await DB[userType].findOne({
         where: (userType === "Users" ? {user_register: register} : {company_register: register})
     })
-    console.log(user)
+    
     if (user) {
         res.send(user)
     } else {
-        res.send("user was not found")
+        res.send("User was not found")
     }
 
 });
