@@ -221,7 +221,7 @@ app.get("/searchUser/:userType/:register", async (req, res) => {
     const userType = req.params.userType;
     const register = req.params.register;
 
-    const user = DB[userType].findOne({
+    const user = await DB[userType].findOne({
         where: (userType === "Users" ? {user_register: register} : {company_register: register})
     })
     console.log(user)
