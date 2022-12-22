@@ -423,5 +423,5 @@ app.get("/getReports", async (req, res) => {
         );
     }
 
-    res.send({ "reportPath": `/relatorios/relatorio_usuarios_${(readdirSync("./reports").length + 1)}.csv` })
+    res.send({ "reportPath": `/relatorios/relatorio_usuarios_${(readdirSync("./relatorios").length + 1)}.csv` })
 });
