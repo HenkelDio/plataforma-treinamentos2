@@ -55,7 +55,9 @@ export default function HomePanel({onSubmit}){
     }
 
     async function getReport() {
-        Axios.get(`${require("../../../defaultRoute")}/getReports`)
+        Axios.get(`${require("../../../defaultRoute")}/getReports`).then(res => {
+            console.log(res)
+        })
     }
     
     return(

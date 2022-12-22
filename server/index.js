@@ -23,7 +23,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(fileUpload())
 app.use(express.static(`${__dirname}/treinamentos`));
-app.use(express.static(`${__dirname}/relatorios`))
+app.use(express.static(`${__dirname}/relatorios`));
 
 const DB = require("./STDB").models;
 
@@ -398,7 +398,7 @@ app.delete("/deleteCourse/:courseId", async (req, res) => {
 app.get("/getReports", async (req, res) => {
     const usersRegistrations = await DB.UsersRegistrations.findAll();
 
-    const report = openSync(`./relatorios/relatorio_usuarios_${readdirSync("./reports").length}.csv`, "w", "777");
+    const report = openSync(`./relatorios/relatorio_usuarios_${readdirSync("./relatorios").length}.csv`, "w", "777");
     appendFileSync(report, "nome_empresa;responsável_empresa;cnpj_empresa;telefone_empresa;curso;status;nome_usuário;cpf_usuário;telefone_usuário");
 
     for (let registration of usersRegistrations) {
