@@ -393,3 +393,13 @@ app.delete("/deleteCourse/:courseId", async (req, res) => {
     res.sendStatus(200)
 
 });
+
+app.get("/getReports", async (req, res) => {
+    const usersRegistrations = await DB.UsersRegistrations.findAll();
+
+    const report = openSync(`./reports/relatorio_usuarios_${readdirSync("./reports").length}`)
+
+    for (let registration of usersRegistrations) {
+        console.log(registration)
+    }
+});
