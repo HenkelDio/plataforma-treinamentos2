@@ -23,6 +23,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(fileUpload())
 app.use(express.static(`${__dirname}/treinamentos`));
+app.use(express.static(`${__dirname}/relatorios`))
 
 const DB = require("./STDB").models;
 
@@ -397,16 +398,30 @@ app.delete("/deleteCourse/:courseId", async (req, res) => {
 app.get("/getReports", async (req, res) => {
     const usersRegistrations = await DB.UsersRegistrations.findAll();
 
-    const report = openSync(`./reports/relatorio_usuarios_${readdirSync("./reports").length}.csv`, "w", "777")
+    const report = openSync(`./relatorios/relatorio_usuarios_${readdirSync("./reports").length}.csv`, "w", "777");
+    appendFileSync(report, "nome_empresa;responsável_empresa;cnpj_empresa;telefone_empresa;curso;status;nome_usuário;cpf_usuário;telefone_usuário");
 
     for (let registration of usersRegistrations) {
         let company = await DB.Companies.findByPk(registration.dataValues.company_id);
         company = company.dataValues;
-        let course = await DB.Courses.findByPk(registration.dataValues.course_id)
-        course = course.dataValues
-        let userInfo = await DB.Users.findByPk(registration.dataValues.user_id)
-        userInfo = userInfo.dataValues
+        let course = await DB.Courses.findByPk(registration.dataValues.course_id);
+        course = course.dataValues;
+        let userInfo = await DB.Users.findByPk(registration.dataValues.user_id);
+        userInfo = userInfo.dataValues;
 
-        console.log(company.company_name, company.company_contact, company.company_register, company.company_telephone)
+        appendFileSync(
+            report, 
+            company.company_name + ";" +
+            company.company_contact + ";" +
+            company.company_register + ";" +
+            company.company_telephone + ";" +
+            course.course_title + ";" +
+            registration.dataValues.status + ";" +
+            userInfo.user_name + ";" +
+            userInfo.user_register + ";" +
+            userInfo.user_telephone
+        );
     }
+
+    res.send({ "reportPath": `/relatorios/relatorio_usuarios_${(readdirSync("./reports").length + 1)}.csv` })
 });
