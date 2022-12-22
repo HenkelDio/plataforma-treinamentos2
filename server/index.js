@@ -397,7 +397,7 @@ app.delete("/deleteCourse/:courseId", async (req, res) => {
 app.get("/getReports", async (req, res) => {
     const usersRegistrations = await DB.UsersRegistrations.findAll();
 
-    const report = openSync(`./reports/relatorio_usuarios_${readdirSync("./reports").length}`)
+    const report = openSync(`./reports/relatorio_usuarios_${readdirSync("./reports").length}.csv`, "w", "777")
 
     for (let registration of usersRegistrations) {
         console.log(registration)
