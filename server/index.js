@@ -399,7 +399,7 @@ app.get("/getReports", async (req, res) => {
     const usersRegistrations = await DB.UsersRegistrations.findAll();
 
     const report = openSync(`./relatorios/relatorio_usuarios_${(readdirSync("./relatorios").length + 1)}.csv`, "w", "777");
-    appendFileSync(report, "nome_empresa;responsável_empresa;cnpj_empresa;telefone_empresa;curso;status;nome_usuário;cpf_usuário;telefone_usuário");
+    appendFileSync(report, "nome_empresa;responsável_empresa;cnpj_empresa;telefone_empresa;curso;status;nome_usuário;cpf_usuário;telefone_usuário\r\n");
 
     for (let registration of usersRegistrations) {
         let company = await DB.Companies.findByPk(registration.dataValues.company_id);
@@ -419,7 +419,7 @@ app.get("/getReports", async (req, res) => {
             registration.dataValues.status + ";" +
             userInfo.user_name + ";" +
             userInfo.user_register + ";" +
-            userInfo.user_telephone
+            userInfo.user_telephone + "\r\n"
         );
     }
 
