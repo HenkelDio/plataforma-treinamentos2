@@ -230,7 +230,7 @@ app.get("/searchUser/:userType/:register", async (req, res) => {
     } else {
         res.send("User was not found")
     }
-
+//a
 });
 
 app.post("/removeUser", async (req, res) => {
