@@ -72,23 +72,12 @@ export default function UsersPanel(props) {
                     </select>
                 </div>
                 <div className={styles.list}>
-                    {
-                        (
-                            userType === "Users" ? (
-                                <>
-                                    <input type="text" placeholder="CPF do Usuário" onChange={e => {setSearchUser(e.target.value)}} />
-                                    <input type="button" value="buscar" onClick={search} />
-                                </>
-                            ) : (
-                                userType === "Companies" ? (
-                                    <>
-                                        <input type="text" placeholder="CNPJ da Empresa" onChange={e => {setSearchCompany(e.target.value)}} />
-                                        <input type="button" value="buscar" onClick={search} />
-                                    </>
-                                ) : (<></>)
-                            )
-                        )
-                    }
+                    <input 
+                    type='text' 
+                    placeholder="Procurar"
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                    ></input>
                     {
                         (userType === "Admins") && listUsers.map((val) => {
                             return <Admin

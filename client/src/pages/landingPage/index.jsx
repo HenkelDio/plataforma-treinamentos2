@@ -43,12 +43,15 @@ function onscrollHeader(){
 }
 
 function openSideMenu() {
-  let mobileMenu = document.getElementById("mobileMenu")
-  mobileMenu.style.height = 'auto';
   let menu = document.getElementById("menu")
   menu.style.display = 'block';
 
 
+}
+
+function closeMobileMenu() {
+  let menu = document.getElementById("menu")
+  menu.style.display = 'none';
 }
   
 
@@ -65,7 +68,7 @@ export default function LandingPage(){
               <li><a href='/'><p>Contato</p></a></li>
               <li><a href="/login"><button className={styles.btnOpenLoginMobile}>ENTRAR</button></a></li>
             </ul>
-            <div className={styles.closeMenu}>
+            <div onClick={closeMobileMenu} className={styles.closeMenu}>
               <RiCloseCircleFill />
             </div>
           </div>
