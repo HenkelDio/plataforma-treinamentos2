@@ -4,6 +4,7 @@ import { HiUsers } from "react-icons/hi"
 import { FaBook } from "react-icons/fa"
 import { AiFillSetting } from "react-icons/ai"
 import { useState } from "react"
+import Axios from "axios"
 
 export default function HomePanel({onSubmit}){
     const [usersPage, setUsersPage] = useState('users')
@@ -52,6 +53,10 @@ export default function HomePanel({onSubmit}){
         let settingsLabel = document.getElementById("settings")
         settingsLabel.style.borderBottom = "2px solid #ccc"
     }
+
+    async function getReport() {
+        Axios.get(`${require("../../../defaultRoute")}/getReports`)
+    }
     
     return(
         <>
@@ -78,6 +83,9 @@ export default function HomePanel({onSubmit}){
                         <p><AiFillSetting /></p>
                     </div>
                     <p>Configurações de conta</p>
+                </div>
+                <div>
+                    <button onClick={getReport} value="teste" />
                 </div>
             </div>
         </div>
