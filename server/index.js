@@ -400,6 +400,13 @@ app.get("/getReports", async (req, res) => {
     const report = openSync(`./reports/relatorio_usuarios_${readdirSync("./reports").length}.csv`, "w", "777")
 
     for (let registration of usersRegistrations) {
-        console.log(registration)
+        let company = DB.Companies.findByPk(registration.dataValues.company_id);
+        company = company.dataValues;
+        let course = DB.Courses.findByPk(registration.dataValues.course_id)
+        course = course.dataValues
+        let userInfo = DB.Users.findByPk(registration.dataValues.user_id)
+        userInfo = userInfo.dataValues
+
+        console.log(company.company_name, company.company_contact, company.company_register, company.company_telephone)
     }
 });
