@@ -61,7 +61,7 @@ export default function UsersPanel(props) {
         return (
             !reportPath ? (
                 <div className={styles.report} onClick={genReport}>
-                    <p><AiFillPrinter /></p>
+                    <p>Clique para gerar o relatório</p>
                 </div>
             ) : (
                 <div className={styles.report}>
