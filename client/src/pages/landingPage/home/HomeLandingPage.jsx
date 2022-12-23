@@ -1,24 +1,14 @@
 import styles from './index.module.css';
-import logo from '../../assets/logo.png'
-import {TiThMenu} from "react-icons/ti";
-import {RiCloseCircleFill} from "react-icons/ri";
+import logo from '../../../assets/logo.png'
+import HeaderLandingPage from '../components/header/HeaderLandingPage';
 
 window.onscroll = function() {onscrollHeader()}
 
 
 
 function onscrollHeader(){
+  console.log(document.documentElement.scrollTop )
   if(document.documentElement.scrollTop > 499){
-    if(window.innerWidth > 700){
-      let innerHeader = document.getElementById("innerHeader")
-      innerHeader.style.position = "fixed"
-      innerHeader.style.backgroundColor = "rgb(63, 63, 63)"
-    } else {
-      let innerHeader = document.getElementById("innerHeader")
-      innerHeader.style.position = "relative"
-      innerHeader.style.backgroundColor = "transparent"
-    }
-
     let card1 = document.getElementById("card1")
     card1.style.opacity = 1;
     card1.style.left = 0;
@@ -27,83 +17,17 @@ function onscrollHeader(){
     card2.style.left = 0;
     let card3 = document.getElementById("card3")
     card3.style.opacity = 1;
-    card3.style.left = 0;
-
-  } else {
-    if(window.innerWidth < 700){
-      let innerHeader = document.getElementById("innerHeader")
-      innerHeader.style.position = "relative"
-    } else{
-      let innerHeader = document.getElementById("innerHeader")
-      innerHeader.style.position = "sticky"
-      innerHeader.style.backgroundColor = "transparent"
-    }
-    
+    card3.style.left = 0;  
   }
-}
-
-function openSideMenu() {
-  let menu = document.getElementById("menu")
-  menu.style.display = 'block';
-
-
-}
-
-function closeMobileMenu() {
-  let menu = document.getElementById("menu")
-  menu.style.display = 'none';
 }
   
 
-export default function LandingPage(){
+export default function HomeLandingPage(){
   return(
     <div className={styles.LandingPage}>
 
-      <div className={styles.mobileMenu} id="mobileMenu">
-        <div className={styles.menu} id="menu">
-          <div className={styles.innerMenu}>
-            <ul>
-              <li><a href='/'><p>Sobre</p></a></li>
-              <li><a href='/'><p>Treinamentos</p></a></li>
-              <li><a href='/'><p>Contato</p></a></li>
-              <li><a href="/login"><button className={styles.btnOpenLoginMobile}>ENTRAR</button></a></li>
-            </ul>
-            <div onClick={closeMobileMenu} className={styles.closeMenu}>
-              <RiCloseCircleFill />
-            </div>
-          </div>
-        </div>
-      </div>
+      <HeaderLandingPage />
 
-      <div className={styles.header}>
-        <div id="innerHeader" className={styles.innerHeader}>
-          <div className={styles.logo}>
-            <img src={logo}></img>
-          </div>
-          
-          <div onClick={openSideMenu} className={styles.openMenuIcon}>
-            <TiThMenu />
-          </div>
-
-          <div className={styles.menu}>
-            <ul>
-              <li><a href="#">Sobre</a></li>
-              <li><a href="#">Treinamentos</a></li>
-              <li><a href="#">Contato</a></li>
-              <li><a href="/login"><button className={styles.btnOpenLogin}>ENTRAR</button></a></li>
-            </ul>
-          </div>
-        </div>
-        <div className={styles.details}>
-          <div className={styles.detailsText}>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias excepturi aperiam molestias veritatis! Cumque consectetur mollitia voluptate aliquid eius modi aut quo reiciendis distinctio. Reprehenderit ipsum corrupti nesciunt ipsam. Vitae.</p>
-            <button>ACESSAR</button>
-          </div>
-          <div className={styles.image}>
-            <h2 className={styles.labelImage}>O curso mais completo do brasil</h2>
-          </div>
-        </div>
-      </div>
       <div className={styles.bodyPage}>
         <section className={styles.courses}>
           <div className={styles.title}>
@@ -180,23 +104,12 @@ export default function LandingPage(){
 
         <section className={styles.contact}>
           <div className={styles.contactContainer}>
-            <div className={styles.mark}>
-              <div className={styles.logo}>
-                <img src={logo}></img>
-              </div>
-              <div className={styles.contactUsButton}>
-                <button>ENTRE EM CONTATO</button>
-              </div>
+            <div className={styles.logo}>
+              <img src={logo}></img>
             </div>
-
             <div className={styles.separator}></div>
-            
-            <div className={styles.menu}>
-              <ul>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Treinamentos</a></li>
-                <li><a href="#">Contato</a></li>
-              </ul>
+            <div className={styles.contactUsButton}>
+              <button>ENTRE EM CONTATO</button>
             </div>
           </div>
         </section>

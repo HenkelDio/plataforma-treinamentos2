@@ -1,0 +1,303 @@
+.header{
+  width: 100%;
+  height: 100vh;
+  background: rgb(1,120,40);
+  background: linear-gradient(180deg, rgb(5, 82, 31) 0%, rgb(17, 176, 80) 100%);
+}
+
+.header .innerHeader{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  display: flex;
+  width: 100%;
+  height: 100px;
+  padding: 0px 50px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  transition: 0.5s;
+}
+
+.header .innerHeader .logo{
+  position: relative;
+  width: 200px;
+  height: 100%;
+}
+
+.header .innerHeader .logo img{
+  position: absolute;
+  top: -5px;
+  width: 100%;
+}
+
+.header .innerHeader .menu ul{
+  list-style: none;
+
+  display: flex;
+  align-items: center;
+}
+
+.header .innerHeader .menu ul li{
+  margin-left: 50px;
+}
+
+.header .innerHeader .menu ul li{
+  margin-left: 50px;
+
+  padding: 5px;
+}
+
+.header .innerHeader .menu ul a:hover{
+  opacity: 1;
+}
+
+.header .innerHeader .menu ul a{
+  text-decoration: none;
+
+  font-family: var(--inter);
+  color: white;
+  opacity: 0.8;
+}
+
+.btnOpenLogin{
+  width: 120px;
+  height: 40px;
+
+  cursor: pointer;
+
+  border: none;
+  border-radius: 20px;
+
+  font-weight: 500;
+
+  background: rgb(9, 72, 30);
+
+  color: white;
+}
+
+.details{
+  display: flex;
+
+  position: absolute; 
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  margin-top: 20px;
+}
+
+.detailsText{
+  width: 700px;
+
+  font-size: 1.5rem;
+
+  text-align: left;
+
+  margin-top: 100px;
+  padding: 20px 60px;
+
+  color: white;
+}
+
+.details .image{
+  width: 500px;
+  height: 476px;
+
+  border-radius: 20px;
+
+  opacity: 0.8;
+
+  transition: 0.2s;
+
+  background-image: url('https://ead.nrtreinamentos.com.br/files/1628269540curso-reciclagem-nr-20-avancado-1.jpg');
+}
+
+.labelImage{
+  display: none;
+}
+
+.details .image:hover{
+  opacity: 1;
+}
+
+.detailsText p{
+  margin-bottom: 40px;
+}
+
+.detailsText button{
+  background-color: white;
+
+  border: none;
+  padding: 10px;
+  
+  width: 200px;
+
+  border-radius: 20px;
+
+  font-weight: bold;
+  
+  transition: 0.1s;
+
+  cursor: pointer;
+}
+
+.detailsText button:hover{
+  background-color: rgb(63, 63, 63);
+
+  color: white;
+}
+
+/*mobile menu */
+.mobileMenu{
+  display: none;
+
+  position: relative;
+  
+  width: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  z-index: 3;
+
+  transition: 1;
+}
+
+.closeMenu{
+  text-align: center;
+  padding: 20px;
+
+  color: rgb(229, 51, 51);
+
+  font-size: 3rem;
+}
+
+.openMenuIcon{
+  display: none;
+
+  color: white;
+  font-size: 1.5rem;
+
+}
+
+.mobileMenu .menu{
+  height: 100%;
+
+  background-color: white;
+}
+
+.mobileMenu .menu .innerMenu ul li{
+  padding: 20px;
+
+  border-bottom: 2px solid #ccc;
+
+  font-weight: bold;
+
+  list-style: none;
+}
+
+.mobileMenu .menu .innerMenu ul li a{
+  color: black;
+
+  font-size: 1.2rem;
+}
+
+.btnOpenLoginMobile{
+  width: 100%;
+  height: 50px;
+
+  cursor: pointer;
+
+  border: none;
+  border-radius: 20px;
+
+  font-weight: 500;
+
+  background: rgb(9, 72, 30);
+
+  color: white;
+}
+
+@media (max-width: 1200px){
+  .detailsText{
+    font-size: 1.3rem;
+  }
+  .details .image{
+    display: none;
+  }
+  .details{
+    flex-wrap: wrap;
+  }
+  .detailsText button{
+    width: 100%;
+    height: 50px;
+  }
+}
+
+
+@media (max-width: 900px){
+  .openMenuIcon{
+    display: block;
+  }
+  .mobileMenu{
+    width: 100%;
+    height: 370px;
+  }
+  .header{
+    height: auto;
+
+    background: rgb(1,120,40);
+    background: linear-gradient(180deg, rgb(5, 82, 31) 0%, rgb(17, 176, 80) 100%);
+  }
+  .header .innerHeader{
+    padding: 0;
+
+    padding-right: 20px;
+
+    height: 60px;
+    
+    align-items: center;
+
+    z-index: 999;
+    position: relative;
+  }
+  .header .innerHeader .logo img{
+    width: 100%;
+    top: -25px;
+  }
+  .header .innerHeader .menu{
+    display: none;
+  }
+  .details .image{
+    display: none;
+  }
+  .details{
+    margin-top: 20px;
+    width: 100%;
+   
+    flex-direction: column-reverse;
+   
+    left: auto;
+    top: auto;
+    transform: translate(0, 0);
+
+    position: relative; 
+  }
+  .detailsText button{
+    width: 100%;
+    height: 50px;
+  }
+  .detailsText{
+    width: 100%;
+
+    padding: 0 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .detailsText p{
+    font-family: var(--inter);
+  }
+}

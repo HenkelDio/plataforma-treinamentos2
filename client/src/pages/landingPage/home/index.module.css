@@ -1,0 +1,239 @@
+.bodyPage{
+  width: 100%;
+  height: auto;
+}
+
+.title{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.title h2{
+  font-family: var(--inter);
+}
+
+.about{
+  width: 1000px;
+  height: 400px;
+
+  text-align: left;
+  margin: 0 auto;
+}
+
+.about p{
+  font-size: 1.1rem;
+  
+  margin-bottom: 20px;
+} 
+
+.courses{
+  width: 100%;
+
+  height: 700px;
+
+  margin-top: 50px;
+}
+
+.displayCoursesContainer{
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: row;
+
+  width: 80%;
+
+  padding: 20px;
+}
+
+.displayCoursesContainer .card{
+  position: relative;
+
+  left: 20px;
+
+  opacity: 0;
+
+  margin: 10px;
+
+  width: 33.3%;
+
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.3);
+
+  border-radius: 20px;
+  
+  height: 500px;
+
+  transition: 0.2s;
+}
+
+.displayCoursesContainer .card:hover{
+  box-shadow: 0px 10px 20px -3px rgba(0,0,0,0.5);
+
+  margin: 15px;
+}
+
+.card .headerCard img{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+
+  width: 100%; 
+  height: 200px; 
+  object-fit:cover;
+  object-position: 50% 30%; 
+}
+
+.card .headerCard{
+  width: 100%;
+}
+
+.card .bodyCard{
+  position: relative;
+
+  height: calc(480px - 200px);
+
+  padding: 15px;
+}
+
+.card .bodyCard .titleCard h2{
+  opacity: 0.8;
+
+  font-family: var(--inter);
+
+  margin-bottom: 15px;
+}
+
+.card .bodyCard .detailsCard{
+  opacity: 0.8;
+}
+
+.acessButton{
+  position: absolute;
+  bottom: 0;
+}
+
+.acessButton button{
+  padding: 10px;
+
+  width: 200px;
+
+  cursor: pointer;
+
+  background-color: #017828;
+  color: white;
+  font-weight: 500;
+
+  border: none;
+  border-radius: 10px;
+
+}
+
+.separator{
+  width: 5px;
+  height: 200px;
+
+  background-color: rgb(123, 123, 123);
+  
+  border-radius: 5px;
+}
+
+.contact{
+  color: white;
+
+  padding: 30px;
+
+  width: 100%;
+  height: 400px;
+
+  background-color: rgb(63, 63, 63);
+}
+
+.contactContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  
+  width: 100%;
+  height: 100%;
+}
+
+
+.contactContainer .logo{
+  width: 400px;
+}
+
+.contactContainer .logo img{
+  width: 100%;
+}
+
+.contactUsButton{
+  text-align: center;
+}
+
+.contactUsButton button{
+  width: 250px;
+  height: 60px;
+
+  background-color: transparent;
+  color: rgb(27, 202, 86);
+
+  font-weight: bold;
+  font-family: var(--inter);
+
+  border-radius: 10px;
+  border: 5px solid rgb(27, 202, 86);
+
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+.contactUsButton button:hover{
+  background-color: rgb(27, 202, 86);
+  color: black;
+}
+
+@media (max-width: 900px){
+  .about{
+    width: 100%;
+    padding: 20px;
+
+    height: auto;
+  }
+  .courses{
+    height: auto;
+  }
+  .displayCoursesContainer{
+    flex-direction: column;
+    width: 100%;
+  }
+  .displayCoursesContainer .card{
+    width: 100%;
+    margin: 0;
+    margin-bottom: 20px;
+    height: 400px;
+  }
+  .displayCoursesContainer .card:hover{
+    margin: 0;
+    margin-bottom: 20px;
+  }
+  .acessButton{
+    position: relative;
+    margin-top: 20px;
+  }
+  .acessButton button{
+    width: 100%;
+  }
+  .contactContainer{
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contactContainer .logo{
+    width: 300px;
+  }
+  .contact{
+    height: 300px;
+  }
+  .separator{
+    display: none;
+  }
+}
+

@@ -1,4 +1,6 @@
 .headerUsers{
+    position: relative;
+
     font-family: var(--inter);
     opacity: 0.8;
     font-size: 1.3rem;
@@ -78,10 +80,67 @@
     padding: 20px;
 }
 
+.searchInput{
+    width: calc(90% - 100px);
+    height: 35px;
+
+    padding-left: 10px;
+
+    border: 2px solid rgb(159, 159, 159);
+
+    outline: none;
+}
+
+.searchInput:hover,
+.searchInput:focus{
+    border: 2px solid rgb(0, 0, 0);
+}
+
+.searchButton{
+    width: 100px;
+    height: 35px;
+
+    background-color: rgb(159, 159, 159);
+
+    cursor: pointer;
+
+    font-weight: bold;
+    color: rgb(31, 31, 31);
+
+    border: none;
+}
+
+.searchButton:hover{
+    background-color: rgb(188, 188, 188);
+}
+
+.report{    
+    position:absolute;
+    right: 50px;
+
+    color: white;
+    background-color: black;
+
+    width: 40px;
+    padding: 5px;
+    padding-top: 10px;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+}
+
 /*USER PANEL MOBILE*/
 
 @media (max-width: 700px){
     .selectTypeAccount select{
         height: 50px;
+    }
+    .searchInput,
+    .searchButton{
+        height: 50px;
+    }
+    .report{
+        display: none;
     }
 }

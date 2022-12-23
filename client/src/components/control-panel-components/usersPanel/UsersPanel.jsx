@@ -5,6 +5,7 @@ import User from "./usersSelect/user/user"
 import Company from "./usersSelect/company/company"
 import { useState, useEffect } from "react"
 import { IoIosAdd } from 'react-icons/io'
+import { AiFillPrinter } from 'react-icons/ai'
 import Axios from "axios"
 
 
@@ -47,11 +48,16 @@ export default function UsersPanel(props) {
     }
 
     return (
-        <div className={styles.UsersPanel}>
+        <div className={styles.UsersPanel}> 
 
             <ModalAddUser openModal={modalIsOpen} closeModal={closeModal} />
 
             <div className={styles.headerUsers}>
+
+                <div className={styles.report}>
+                    <p><AiFillPrinter /></p>
+                </div>
+
                 <h2>Gerenciamento de Contas</h2>
                 <p>Gerencie, edite e crie usuários.</p>
             </div>
@@ -62,7 +68,7 @@ export default function UsersPanel(props) {
                 </div>
             </div>
             <div className={styles.listUsers}>
-                <p>Selecione o Usuário</p>
+                <p>Selecione o Usuário</p>                
                 <div className={styles.selectTypeAccount}>
                     <select onChange={e => setUserType(e.target.value)}>
                         <option disabled selected="selected">Selecione o Tipo</option>
@@ -76,14 +82,14 @@ export default function UsersPanel(props) {
                         (
                             userType === "Users" ? (
                                 <>
-                                    <input type="text" placeholder="CPF do Usuário" onChange={e => {setSearchUser(e.target.value)}} />
-                                    <input type="button" value="buscar" onClick={search} />
+                                    <input className={styles.searchInput} type="text" placeholder="CPF do Usuário" onChange={e => {setSearchUser(e.target.value)}} />
+                                    <input type="button" className={styles.searchButton} value="buscar" onClick={search} />
                                 </>
                             ) : (
                                 userType === "Companies" ? (
                                     <>
-                                        <input type="text" placeholder="CNPJ da Empresa" onChange={e => {setSearchCompany(e.target.value)}} />
-                                        <input type="button" value="buscar" onClick={search} />
+                                        <input className={styles.searchInput} type="text" placeholder="CNPJ da Empresa" onChange={e => {setSearchCompany(e.target.value)}} />
+                                        <input type="button" className={styles.searchButton} value="buscar" onClick={search} />
                                     </>
                                 ) : (<></>)
                             )
