@@ -47,16 +47,38 @@ export default function UsersPanel(props) {
         })
     }
 
+    function GenerateReport() {
+        const [reportPath, setReportPath] = useState(null);
+        
+        async function genReport() {
+            await Axios.get(`${require("../../../defaultRoute")}/getReports`).then(res => {
+                if (res) {
+                    setReportPath(res.data.reportPath)
+                    console.log(res.data.reportPath)
+                }
+            })
+        }
+        return (
+            !reportPath ? (
+                <div className={styles.report} onClick={genReport}>
+                    <p><AiFillPrinter /></p>
+                </div>
+            ) : (
+                <div className={styles.report}>
+                    <a href={`${require("../../../defaultRoute")}${reportPath}`} download>Download</a>
+                </div>
+            )
+        )
+    }
+
     return (
-        <div className={styles.UsersPanel}> 
+        <div className={styles.UsersPanel}>
 
             <ModalAddUser openModal={modalIsOpen} closeModal={closeModal} />
 
             <div className={styles.headerUsers}>
 
-                <div className={styles.report}>
-                    <p><AiFillPrinter /></p>
-                </div>
+                <GenerateReport />
 
                 <h2>Gerenciamento de Contas</h2>
                 <p>Gerencie, edite e crie usuários.</p>
@@ -68,7 +90,7 @@ export default function UsersPanel(props) {
                 </div>
             </div>
             <div className={styles.listUsers}>
-                <p>Selecione o Usuário</p>                
+                <p>Selecione o Usuário</p>
                 <div className={styles.selectTypeAccount}>
                     <select onChange={e => setUserType(e.target.value)}>
                         <option disabled selected="selected">Selecione o Tipo</option>
@@ -82,13 +104,13 @@ export default function UsersPanel(props) {
                         (
                             userType === "Users" ? (
                                 <>
-                                    <input className={styles.searchInput} type="text" placeholder="CPF do Usuário" onChange={e => {setSearchUser(e.target.value)}} />
+                                    <input className={styles.searchInput} type="text" placeholder="CPF do Usuário" onChange={e => { setSearchUser(e.target.value) }} />
                                     <input type="button" className={styles.searchButton} value="buscar" onClick={search} />
                                 </>
                             ) : (
                                 userType === "Companies" ? (
                                     <>
-                                        <input className={styles.searchInput} type="text" placeholder="CNPJ da Empresa" onChange={e => {setSearchCompany(e.target.value)}} />
+                                        <input className={styles.searchInput} type="text" placeholder="CNPJ da Empresa" onChange={e => { setSearchCompany(e.target.value) }} />
                                         <input type="button" className={styles.searchButton} value="buscar" onClick={search} />
                                     </>
                                 ) : (<></>)
