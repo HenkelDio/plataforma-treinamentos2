@@ -7,8 +7,6 @@ import { useState } from 'react';
 export default function ModalTraining(props){
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(props)
-
   const openModal = () =>{
     setIsOpen(true)
   }

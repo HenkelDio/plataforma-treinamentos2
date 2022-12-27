@@ -425,3 +425,25 @@ app.get("/getReports", async (req, res) => {
 
     res.send({ "reportPath": `/${reportName}` })
 });
+
+app.get("/changeStatus", async (req, res) => {
+    const status =  req.body.status;
+    const course_id = req.body.courseId;
+    const user_id = req.body.user_id;
+
+    if (status === "aprovado") {
+        DB.UsersRegistrations.update({ status: status}, {
+            where: {
+                course_id: course_id,
+                user_id: user_id
+            }
+        })
+    } else {
+        DB.UsersRegistrations.update({ status: status}, {
+            where: {
+                course_id: course_id,
+                user_id: user_id
+            }
+        })
+    }
+})
