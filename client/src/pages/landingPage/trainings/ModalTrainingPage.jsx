@@ -1,6 +1,18 @@
 import Modal from "react-modal";
+import ModalBuy from "./modal-buy/ModalBuy";
+import { useState } from "react";
 
 export default function ModalTrainingPage(props) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () =>{
+    setIsOpen(true)
+  }
+
+  const closeModal = () =>{
+    setIsOpen(false)
+  }
+
 
   const closeModalTrainingPage = () => {
     let modal = document.querySelector(".modalTrainingPage")
@@ -10,7 +22,11 @@ export default function ModalTrainingPage(props) {
   }
 
   return (
+    
     <>
+
+      <ModalBuy openModal={isOpen} closeModal={closeModal} title={props.title}/>
+
       <div className="modalTrainingPage">
         <div className="innerModal">
           
@@ -32,7 +48,7 @@ export default function ModalTrainingPage(props) {
             </div>
           </div>
 
-          <div className="BuyTrainingPage">
+          <div onClick={openModal} className="BuyTrainingPage">
             <button>Comprar</button>
           </div>
           <div onClick={closeModalTrainingPage} className="closeModalTrainingPage">
