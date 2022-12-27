@@ -426,7 +426,7 @@ app.get("/getReports", async (req, res) => {
     res.send({ "reportPath": `/${reportName}` })
 });
 
-app.get("/changeStatus", async (req, res) => {
+app.post("/changeStatus", async (req, res) => {
     const status =  req.body.status;
     const course_id = req.body.courseId;
     const user_id = req.body.user_id;
