@@ -177,7 +177,7 @@ if (conex) {
         status: {
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: "incomplete"
+            defaultValue: "incompleto"
         }
     })
 
