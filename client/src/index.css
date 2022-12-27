@@ -155,6 +155,18 @@ body{
     width: 1500px;
 }
 
+@media (max-width: 700px){
+    .modalTrainingPage{
+        position: absolute;
+        width: 100%;
+        display: none;
+    }
+    .animation{
+        display: block;
+        width: 100%;
+    }
+}
+
 /*
 ------ modal training page END
 */
