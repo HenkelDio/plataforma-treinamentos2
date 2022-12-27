@@ -1,5 +1,6 @@
 import styles from "./about.module.css";
 import HeaderPages from "../components/home-pages/HeaderPages";
+import Footer from "../components/footer/Footer";
 
 export default function AboutPage(){
   return(
@@ -17,8 +18,15 @@ export default function AboutPage(){
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error molestiae ratione nihil ut eaque alias, aperiam eum cumque dicta iure, repellat officiis consectetur facere necessitatibus fugit! Ipsum, veniam? Id, impedit.</p>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error molestiae ratione nihil ut eaque alias, aperiam eum cumque dicta iure, repellat officiis consectetur facere necessitatibus fugit! Ipsum, veniam? Id, impedit.</p>
         </div>
+        
+        <div className={styles.image}>
+
+        </div>
+
       </div>
     </div>
+
+    <Footer />
 
     </>
   )

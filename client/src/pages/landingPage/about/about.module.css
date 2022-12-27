@@ -1,0 +1,52 @@
+.about{
+  padding: 20px;
+
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.about .title{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.about .title h1{
+  font-family: var(--inter);
+}
+
+.content{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.text {
+  width: 500px;
+}
+
+.text p{
+  margin-bottom: 20px;
+}
+
+.image{
+  width: 500px;
+  height: 476px;
+
+  border-radius: 20px;
+
+  background-image: url('https://ead.nrtreinamentos.com.br/files/1628269540curso-reciclagem-nr-20-avancado-1.jpg');
+}
+
+@media(max-width: 700px){
+  .image{
+    height: 300px;
+    border-radius: 0px;
+  }
+  .about{
+    padding: 0;
+  }
+  .text{
+    padding: 20px;
+  }
+}

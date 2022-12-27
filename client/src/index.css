@@ -26,3 +26,135 @@ body{
 
 } 
 
+/*
+------ modal training page 
+*/
+
+.modalTrainingPage{
+    position:relative;
+
+    z-index: 1;
+
+    opacity: 0;
+
+    width: 0px;
+    height: 100vh;
+    background-color: #fff;
+
+    transition: 0.5s;
+
+    overflow-y: auto;
+}
+
+.modalTrainingPage::-webkit-scrollbar{
+    width: 5px;
+}
+
+.modalTrainingPage::-webkit-scrollbar-track{
+    background-color: transparent;
+}
+
+.modalTrainingPage::-webkit-scrollbar-thumb{
+    background-color: #ccc;
+}
+
+.innerModal{
+    display: none;
+
+    padding: 20px;
+}
+
+.headerModalTrainingPage .title h1{    
+    font-family: var(--inter);
+
+    margin-bottom: 20px;
+}
+
+.bodyModalTrainingPage{
+    margin-bottom: 20px;
+}
+
+.bodyModalTrainingPage .image img{
+    width: 100%; 
+    height: 200px; 
+    object-fit:cover;
+    object-position: 50% 30%; 
+}
+
+.bodyModalTrainingPage .description{
+    margin-top: 20px;
+    
+    overflow-y: auto;
+
+    opacity: 0.8;
+
+    height: 300px;
+}
+.bodyModalTrainingPage .price{
+    margin-top: 20px;
+}
+
+.bodyModalTrainingPage .description::-webkit-scrollbar{
+    width: 5px;
+}
+
+.bodyModalTrainingPage .description::-webkit-scrollbar-track{
+    background-color: transparent;
+}
+
+.bodyModalTrainingPage .description::-webkit-scrollbar-thumb{
+    background-color: #ccc;
+}
+
+.BuyTrainingPage button{
+    cursor: pointer;
+
+    background-color: #2a7142;
+    color: #fff;
+
+    border-radius: 10px;
+    border: none;
+
+    width: 100%;
+    height: 40px;
+
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: var(--inter);
+
+    margin-bottom: 10px;
+}
+
+.BuyTrainingPage button:hover{
+    background-color: #1d542f;
+}
+
+.closeModalTrainingPage button{
+    cursor: pointer;
+
+    background-color: rgb(196, 90, 90);
+    color: #fff;
+
+    border-radius: 10px;
+    border: none;
+
+    width: 100%;
+    height: 40px;
+
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: var(--inter);
+}
+
+.closeModalTrainingPage button:hover{
+    background-color: rgb(196, 68, 68);
+}
+
+.animation{
+    opacity: 1;
+    width: 1500px;
+}
+
+/*
+------ modal training page END
+*/

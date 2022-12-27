@@ -6,7 +6,6 @@ import { useState, useContext, useEffect } from "react";
 import InputBoxQuestion from "./inputBoxQuestion";
 
 export default function ModalQuestion(props){
-  const { name, email } = useContext(AuthContext)
 
   const [questions, setQuestions] = useState([]);
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./modalQuestions.module.css";
+
 export default function InputBoxQuestion(props){
 
   const { setQuestions } = props;

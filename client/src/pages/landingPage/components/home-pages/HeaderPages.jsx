@@ -49,9 +49,9 @@ export default function HeaderPages(){
         <div className={styles.menu} id="menu">
           <div className={styles.innerMenu}>
             <ul>
-              <li><a href='/'><p>Sobre</p></a></li>
-              <li><a href='/'><p>Treinamentos</p></a></li>
-              <li><a href='/'><p>Contato</p></a></li>
+              <li><a href='/pages/sobre'><p>Sobre</p></a></li>
+              <li><a href='/pages/loja'><p>Treinamentos</p></a></li>
+              <li><a href='/pages/contato'><p>Contato</p></a></li>
               <li><a href="/login"><button className={styles.btnOpenLoginMobile}>ENTRAR</button></a></li>
             </ul>
             <div onClick={closeMobileMenu} className={styles.closeMenu}>
@@ -73,9 +73,9 @@ export default function HeaderPages(){
 
           <div className={styles.menu}>
             <ul>
-              <li><a href="#">Sobre</a></li>
-              <li><a href="#">Treinamentos</a></li>
-              <li><a href="#">Contato</a></li>
+              <li><a href="/pages/sobre">Sobre</a></li>
+              <li><a href="/pages/loja">Treinamentos</a></li>
+              <li><a href="/pages/contato">Contato</a></li>
               <li><a href="/login"><button className={styles.btnOpenLogin}>ENTRAR</button></a></li>
             </ul>
           </div>

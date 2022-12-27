@@ -1,0 +1,80 @@
+.separator{
+  width: 5px;
+  height: 200px;
+
+  background-color: rgb(123, 123, 123);
+  
+  border-radius: 5px;
+}
+
+.contact{
+  color: white;
+
+  padding: 30px;
+
+  width: 100%;
+  height: 300px;
+
+  background-color: rgb(63, 63, 63);
+}
+
+.contactContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  
+  width: 100%;
+  height: 100%;
+}
+
+
+.contactContainer .logo{
+  width: 400px;
+}
+
+.contactContainer .logo img{
+  width: 100%;
+}
+
+.contactUsButton{
+  text-align: center;
+}
+
+.contactUsButton button{
+  width: 250px;
+  height: 60px;
+
+  background-color: transparent;
+  color: rgb(27, 202, 86);
+
+  font-weight: bold;
+  font-family: var(--inter);
+
+  border-radius: 10px;
+  border: 5px solid rgb(27, 202, 86);
+
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+.contactUsButton button:hover{
+  background-color: rgb(27, 202, 86);
+  color: black;
+}
+
+@media (max-width: 900px){
+  .contactContainer{
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contactContainer .logo{
+    width: 300px;
+  }
+  .contact{
+    height: 300px;
+  }
+  .separator{
+    display: none;
+  }
+}
