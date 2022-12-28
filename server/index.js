@@ -253,22 +253,24 @@ app.post("/removeUser", async (req, res) => {
 });
 
 app.post("/editUser", async (req, res) => {
-    let type = req.body.type;
-    let typeId = (
+    const type = req.body.type;
+    const typeId = (
         type === "Admins" ? "admin_id" : (
             type === "Companies" ? "company_id" : (
                 type === "Users" ? "user_id" : ""
             )
         )
     )
-    let id = req.body.id;
-    let userInfo = req.body.userInfo;
+    const id = req.body.id;
+    const userInfo = req.body.userInfo;
+    const selectedCourses = req.body.selected
 
     DB[type].update(userInfo, {
         where: {
             [typeId]: id
         }
     })
+    
 });
 
 app.post("/createCourse", async (req, res) => {
@@ -316,7 +318,6 @@ app.get("/Courses/:userType/:userId", async (req, res) => {
 
         res.send(courses)
     } else if (userType === "company") {
-        console.log(userType, userId)
         let courses = []
 
         for (let companyRegister of await DB.CompaniesRegistrations.findAll({ where: { company_id: userId }})) {
@@ -324,7 +325,6 @@ app.get("/Courses/:userType/:userId", async (req, res) => {
             course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "utf8");
             courses.push(course)
         }
-        console.log(courses)
         res.send(courses)
 
     } else if (userType === "usualUser") {

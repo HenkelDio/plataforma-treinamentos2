@@ -15,15 +15,25 @@ const SelectRegistration = (props) => {
       let userId = "0"
       await Axios.get(`${require("../../../../../defaultRoute")}/Courses/${userType}/${userId}`).then(res => {
         if (res) {
-          let courses = []
-          res.data.map(course => {
-            courses.push({label: course.course_title, value: course.course_id})
-          })
-          setOptions(courses)
+          setOptions(res.data.map(course => ({ label: course.course_title, value: course.course_id })))
         }
       })
     }
     getCourses();
+  }, [])
+
+  useEffect(_ => {
+    const getUserRegistrations = async _ => {
+      let userType = "usualUser";
+      let userId = JSON.parse(localStorage["user"]).id
+      let route = `${require("../../../../../defaultRoute")}/Courses/${userType}/${userId}`
+      await Axios.get(route).then(res => {
+        if (res) {
+          setSelected(res.data.map(registration => ({ label: registration.course_title, value: registration.course_id })))
+        }
+      })
+    }
+    getUserRegistrations()
   }, [])
 
   const customValueRenderer = (selected, _options) => {
@@ -41,7 +51,6 @@ const SelectRegistration = (props) => {
         onChange={setSelected}
         labelledBy={("labelledBy", "Select Fruits")}
         valueRenderer={customValueRenderer}
-
       />
     </div>
   );
