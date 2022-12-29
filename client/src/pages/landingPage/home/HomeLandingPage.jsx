@@ -86,7 +86,7 @@ export default function HomeLandingPage(){
         <div className={styles.details}>
           <div className={styles.detailsText}>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias excepturi aperiam molestias veritatis! Cumque consectetur mollitia voluptate aliquid eius modi aut quo reiciendis distinctio. Reprehenderit ipsum corrupti nesciunt ipsam. Vitae.</p>
-            <button>ACESSAR</button>
+            <button><a href="/login">ACESSAR</a></button>
           </div>
           <div className={styles.image}>
           </div>
@@ -111,7 +111,7 @@ export default function HomeLandingPage(){
                   <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos repellat labore voluptatibus quod neque.</p>
                 </div>
                 <div className={styles.acessButton}>
-                  <button>Acessar Cursos</button>
+                  <button><a href="/pages/loja">Acessar Cursos</a></button>
                 </div>
               </div>
             </div>
@@ -128,7 +128,7 @@ export default function HomeLandingPage(){
                   <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos repellat labore voluptatibus quod neque.</p>
                 </div>
                 <div className={styles.acessButton}>
-                  <button>Acessar Cursos</button>
+                  <button><a href="/pages/loja">Acessar Cursos</a></button>
                 </div>
               </div>
             </div>
@@ -145,7 +145,7 @@ export default function HomeLandingPage(){
                   <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos repellat labore voluptatibus quod neque.</p>
                 </div>
                 <div className={styles.acessButton}>
-                  <button>Acessar Cursos</button>
+                  <button><a href="/pages/loja">Acessar Cursos</a></button>
                 </div>
               </div>
             </div>

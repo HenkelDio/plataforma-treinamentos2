@@ -10,7 +10,7 @@ export default function Footer(){
         </div>
         <div className={styles.separator}></div>
         <div className={styles.contactUsButton}>
-          <button>ENTRE EM CONTATO</button>
+          <button><a href='/pages/contato'>ENTRE EM CONTATO</a></button>
         </div>
       </div>
     </section>

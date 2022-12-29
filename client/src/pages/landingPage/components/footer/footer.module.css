@@ -58,6 +58,11 @@
   transition: .2s;
 }
 
+.contactUsButton button a{
+  text-decoration: none;
+  color: white;
+}
+
 .contactUsButton button:hover{
   background-color: rgb(27, 202, 86);
   color: black;

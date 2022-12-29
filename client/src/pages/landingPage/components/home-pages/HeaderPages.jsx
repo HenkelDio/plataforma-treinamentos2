@@ -64,7 +64,7 @@ export default function HeaderPages(){
       <div className={styles.header}>
         <div id="innerHeader" className={styles.innerHeader}>
           <div className={styles.logo}>
-            <img src={logo}></img>
+            <a href="/"><img src={logo}></img></a>
           </div>
           
           <div onClick={openSideMenu} className={styles.openMenuIcon}>

@@ -147,8 +147,13 @@
   cursor: pointer;
 }
 
+.detailsText button a{
+  text-decoration: none;
+  color: black;
+}
+
 .detailsText button:hover{
-  background-color: rgb(63, 63, 63);
+  background-color: rgb(212, 212, 212);
 
   color: white;
 }
@@ -431,7 +436,11 @@
 
   border: none;
   border-radius: 10px;
+}
 
+.acessButton button a{
+  text-decoration: none;
+  color: #fff;
 }
 
 .separator{
