@@ -10,15 +10,13 @@ export default function ModalEditUser(props) {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [selected, setSelected] = useState([]);
 
-    const openModal = () =>{
+    const openModal = () => {
         setIsOpen(true)
     }
 
-    const closeModal = () =>{
+    const closeModal = () => {
         setIsOpen(false)
     }
-
-    
 
     function editInfo(field, value) {
         let previousState = userInfo
@@ -28,15 +26,17 @@ export default function ModalEditUser(props) {
 
     function sendEdit() {
         let route = `${require("../../../../../defaultRoute")}/editUser`
-        Axios.post(route, {
+        let data = {
             type: "Users",
             id: props.id,
-            userInfo
-        })
-        setTimeout(()=>{
+            userInfo,
+            selected
+        }
+        Axios.post(route, data)
+        setTimeout(() => {
             alert("Usuário editado com sucesso")
             document.location.reload()
-        },1000)
+        }, 1000)
     }
 
     return (
@@ -48,7 +48,7 @@ export default function ModalEditUser(props) {
             className={styles.modal}
             ariaHideApp={false}>
 
-            <ModalDeleteUser openModal={modalIsOpen} closeModal={closeModal} id={props.id}/>
+            <ModalDeleteUser openModal={modalIsOpen} closeModal={closeModal} id={props.id} />
 
             <div className={styles.headerModal}>
                 <h2>Editar</h2>
