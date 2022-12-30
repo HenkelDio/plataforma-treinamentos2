@@ -271,6 +271,7 @@ app.post("/editUser", async (req, res) => {
         }
     })
     
+    const coursesId = selectedCourses.map(course => { console.log(course) })
 });
 
 app.post("/createCourse", async (req, res) => {
