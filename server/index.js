@@ -297,7 +297,7 @@ app.post("/editUser", async (req, res) => {
             }
         }
 
-        for (let courseId of selectedCourses) {
+        for (let courseId of selectedCoursesId) {
             if (!registrationsId.includes(courseId)) {
                 DB.UsersRegistrations.create({
                     course_id: courseId,
