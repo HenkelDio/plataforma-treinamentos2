@@ -271,7 +271,19 @@ app.post("/editUser", async (req, res) => {
         }
     })
     
-    const coursesId = selectedCourses.map(course => { console.log(course) })
+    if (type === "User") {
+        
+        const selectedCoursesId = selectedCourses.map(course => (course.value));
+        const coursesRegistrations = await DB.UsersRegistrations.findAll({
+            where: {
+                user_id: id
+            }
+        });
+        console.log(coursesRegistrations)
+    }
+
+
+
 });
 
 app.post("/createCourse", async (req, res) => {
