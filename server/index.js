@@ -280,11 +280,34 @@ app.post("/editUser", async (req, res) => {
             }
         });
         const registrationsId = coursesRegistrations.map(course => (course.dataValues.course_id));
-        
-        console.log(selectedCoursesId, registrationsId)
+        const user = await DB.Users.findOne({
+            where: {
+                user_id: id
+            }
+        })
+
+        for (let courseId of registrationsId) {
+            if (!selectedCoursesId.includes(courseId)) {
+                DB.UsersRegistrations.destroy({
+                    where: {
+                        user_id: id,
+                        course_id: courseId
+                    }
+                })
+            }
+        }
+
+        for (let courseId of selectedCourses) {
+            if (!registrationsId.includes(courseId)) {
+                DB.UsersRegistrations.create({
+                    course_id: courseId,
+                    user_id: id, 
+                    company_id: user.dataValues.user_company_id
+                });
+            }
+        }
+
     }
-
-
 
 });
 
