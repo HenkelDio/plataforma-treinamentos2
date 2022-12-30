@@ -271,7 +271,7 @@ app.post("/editUser", async (req, res) => {
         }
     })
     
-    if (type === "User") {
+    if (type === "Users") {
         
         const selectedCoursesId = selectedCourses.map(course => (course.value));
         const coursesRegistrations = await DB.UsersRegistrations.findAll({
