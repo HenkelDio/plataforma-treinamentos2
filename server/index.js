@@ -113,7 +113,7 @@ app.post("/registerAdmin", async (req, res) => {
                 admin_email: values.email,
                 admin_password: values.password
             })
-            
+
             res.send({ "gotRegistred": true })
         } else {
             res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
@@ -143,7 +143,7 @@ app.post("/registerCompany", async (req, res) => {
                     course_id: course.value
                 })
             }
-            
+
             res.send({ "gotRegistred": true })
         } else {
             res.send({ "gotRegistred": false, "reason": "alreadyRegistred" })
@@ -223,9 +223,9 @@ app.get("/searchUser/:userType/:register", async (req, res) => {
     const register = req.params.register;
 
     const user = await DB[userType].findOne({
-        where: (userType === "Users" ? {user_register: register} : {company_register: register})
+        where: (userType === "Users" ? { user_register: register } : { company_register: register })
     })
-    
+
     if (user) {
         res.send(user)
     } else {
@@ -270,7 +270,45 @@ app.post("/editUser", async (req, res) => {
             [typeId]: id
         }
     })
-    
+
+    if (type === "Users") {
+
+        const selectedCoursesId = selectedCourses.map(course => (course.value));
+        const coursesRegistrations = await DB.UsersRegistrations.findAll({
+            where: {
+                user_id: id
+            }
+        });
+        const registrationsId = coursesRegistrations.map(course => (course.dataValues.course_id));
+        const user = await DB.Users.findOne({
+            where: {
+                user_id: id
+            }
+        })
+
+        for (let courseId of registrationsId) {
+            if (!selectedCoursesId.includes(courseId)) {
+                DB.UsersRegistrations.destroy({
+                    where: {
+                        user_id: id,
+                        course_id: courseId
+                    }
+                })
+            }
+        }
+
+        for (let courseId of selectedCoursesId) {
+            if (!registrationsId.includes(courseId)) {
+                DB.UsersRegistrations.create({
+                    course_id: courseId,
+                    user_id: id, 
+                    company_id: user.dataValues.user_company_id
+                });
+            }
+        }
+
+    }
+
 });
 
 app.post("/createCourse", async (req, res) => {
@@ -289,10 +327,10 @@ app.post("/createCourse", async (req, res) => {
         DB.Courses.create({
             course_title: req.body.courseName,
             content_path: coursePath,
-            course_hours: (req.body.hoursCourse === "" ? 1 : req.body.hoursCourse ),
+            course_hours: (req.body.hoursCourse === "" ? 1 : req.body.hoursCourse),
             registrations: 0
         });
-        
+
         let questionsFile = openSync(coursePath + "/3." + courseName + ".json", "w", "777");
         appendFileSync(coursePath + "/3." + courseName + ".json", req.body.examQuestion);
         closeSync(questionsFile);
@@ -320,7 +358,7 @@ app.get("/Courses/:userType/:userId", async (req, res) => {
     } else if (userType === "company") {
         let courses = []
 
-        for (let companyRegister of await DB.CompaniesRegistrations.findAll({ where: { company_id: userId }})) {
+        for (let companyRegister of await DB.CompaniesRegistrations.findAll({ where: { company_id: userId } })) {
             let course = await DB.Courses.findOne({ where: { course_id: companyRegister.dataValues.course_id } });
             course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "utf8");
             courses.push(course)
@@ -372,7 +410,7 @@ app.delete("/deleteCourse/:courseId", async (req, res) => {
         unlinkSync(courseDir + "/" + obj)
     }
     rmdirSync(courseDir)
-    
+
     await DB.UsersRegistrations.destroy({
         where: {
             course_id: req.params.courseId
@@ -410,7 +448,7 @@ app.get("/getReports", async (req, res) => {
         userInfo = userInfo.dataValues;
 
         appendFileSync(
-            report, 
+            report,
             company.company_name + ";" +
             company.company_contact + ";" +
             company.company_register + ";" +
@@ -427,19 +465,19 @@ app.get("/getReports", async (req, res) => {
 });
 
 app.post("/changeStatus", async (req, res) => {
-    const status =  req.body.status;
+    const status = req.body.status;
     const course_id = req.body.courseId;
     const user_id = req.body.user_id;
 
     if (status === "aprovado") {
-        DB.UsersRegistrations.update({ status: status}, {
+        DB.UsersRegistrations.update({ status: status }, {
             where: {
                 course_id: course_id,
                 user_id: user_id
             }
         })
     } else {
-        DB.UsersRegistrations.update({ status: status}, {
+        DB.UsersRegistrations.update({ status: status }, {
             where: {
                 course_id: course_id,
                 user_id: user_id
