@@ -20,6 +20,10 @@ export default function ModalQuestion(props) {
     getQuestions();
   }, [])
 
+  const makePdf = () =>{
+    
+  }
+
   const completeCourse = () => {
     const point = 100 / questions.length
     let score = 0;
