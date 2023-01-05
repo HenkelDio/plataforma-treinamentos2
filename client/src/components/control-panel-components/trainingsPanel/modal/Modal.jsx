@@ -7,6 +7,7 @@ import {IoIosAdd} from 'react-icons/io'
 import { useState } from "react";
 import Axios from "axios"
 import CreateExam from "./createExam/createExam"
+import Certificate from "./createCertificate/Certificate";
 
 
 export default function ModalCreateTraining(props){
@@ -130,6 +131,9 @@ export default function ModalCreateTraining(props){
                                     <Field as="textarea" className={styles.content} name="content" placeholder="Digite o conteúdo aqui" ></Field>
                                 </div>
                             </div>
+
+                            <p>Adicione o certificado</p>
+                            <Certificate />
 
 
                             <p>Adicione a prova</p>

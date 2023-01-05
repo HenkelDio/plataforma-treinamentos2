@@ -1,0 +1,39 @@
+.certificate{
+  margin-bottom: 50px;
+  width: 100%;
+  padding: 0px 50px;
+}
+
+
+.formCertificate .inputBox{
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  margin-top: 20px;
+
+  text-align: left;
+}
+
+.formCertificate .inputBox label{
+  font-family: var(--inter);
+  color: rgba(0, 0, 0, 0.878);
+}
+
+.formCertificate .inputBox input{
+  height: 40px;
+
+  border: 0;
+  border-bottom: 2px solid #ccc;
+  padding-left: 10px;
+  outline: none;
+
+  font-size: 1rem;
+
+}
+
+@media (max-width: 700px){
+  .certificate{
+    padding: 0;
+  }
+}
