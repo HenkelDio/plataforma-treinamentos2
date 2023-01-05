@@ -72,17 +72,16 @@ export default function ModalQuestion(props) {
   });
   }
 
-
-
   return (
     <>
       <Modal
         isOpen={props.openModal}
-        onRequestClose={props.closeModal}
         contentLabel="Exemplo"
         overlayClassName={styles.modalOverlay}
         className={styles.ModalQuestion}
-        ariaHideApp={false}>
+        ariaHideApp={false}
+        id="modalQuestion"
+        >
         <div id="headerModal" className={styles.headerModal}>
           <h1>Questões de {props.data.data.data.course_title}</h1>
         </div>
@@ -98,6 +97,11 @@ export default function ModalQuestion(props) {
           {
             (approved) && 
             <div className={styles.complete}>
+
+                <div className={styles.close}>
+                  <a href="#" onClick={props.closeModal}>Fechar Aba</a>
+                </div>
+
               <div className={styles.detailsComplete}>
                 <div className={styles.icon}>
                   <p><BsPatchCheck /></p>
@@ -107,7 +111,7 @@ export default function ModalQuestion(props) {
                   <p>Parabéns pela dedicação!</p>
                 </div>
                 <div className={styles.downloadCertificate}>
-                  <a href="javascript:void(0);" onClick={getCertificate} >Gerar Certificado</a>
+                  <a href="#" onClick={getCertificate} >Gerar Certificado</a>
                 </div>
               </div>
               <Certificate 

@@ -23,7 +23,8 @@ export default function ModalConclusion(props) {
         contentLabel="Exemplo"
         overlayClassName={styles.modalOverlay}
         className={styles.ModalLogout}
-        ariaHideApp={false}>
+        ariaHideApp={false}
+        >
 
           <ModalQuestion openModal={isOpen} closeModal={closeModal} data={props.data}/>
 

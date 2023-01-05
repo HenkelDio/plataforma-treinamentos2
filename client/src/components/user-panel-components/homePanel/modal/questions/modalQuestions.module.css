@@ -1,3 +1,14 @@
+.ModalQuestion{
+  width: 100%;
+  height: 100%;
+
+  padding: 20px;
+
+  background-color: white;
+
+  overflow-y: auto;
+}
+
 .inputBox{
   display:flex;
 
@@ -100,12 +111,24 @@
 .certificate .background{
   position: absolute;
 
-  width: 200px;
+  display: flex;
+
+  width: calc(50px + 20px);
   height: 100%;
 }
 
 .certificate .background .asset1{
-  
+  width: 50px;
+  height: 100%;
+
+  background-color: #076025;
+}
+
+.certificate .background .asset2{
+  width: 20px;
+  height: 100%;
+
+  background-color: #068731;
 }
 
 .certificate .container{
@@ -126,11 +149,19 @@
 }
 
 .certificate .container .content{
-  margin-left: 100px;
+  margin-left: 60px;
 }
 
 .certificate .container .content h2{
   margin-bottom: 10px;
+}
+
+.close{
+  z-index: 999;
+
+  position: absolute;
+  top: 10px;
+  right: 50px;
 }
 
 @media (max-width: 700px){

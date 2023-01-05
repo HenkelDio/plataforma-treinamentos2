@@ -23,7 +23,9 @@ export default function ModalTraining(props){
     contentLabel="Exemplo"
     overlayClassName={styles.modalOverlay}
     className={styles.modal}
-    ariaHideApp={false}>
+    ariaHideApp={false}
+    id="ModalTrainingUser"
+    >
 
       <ModalConclusion openModal={isOpen} closeModal={closeModal} data={props}/>
 
