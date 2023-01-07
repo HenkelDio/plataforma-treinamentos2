@@ -17,10 +17,7 @@
     "react-icons": "^4.6.0",
     "react-modal": "^3.16.1",
     "react-multi-select-component": "^4.3.4",
-<<<<<<< HEAD
     "react-pdf": "^6.2.1",
-=======
->>>>>>> b6d311c3983184af6927c9c549e79d99d34d5119
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "react-text-mask": "^5.5.0",
