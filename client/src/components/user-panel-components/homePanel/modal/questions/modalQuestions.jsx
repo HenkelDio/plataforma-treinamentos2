@@ -115,7 +115,7 @@ export default function ModalQuestion(props) {
                 </div>
               </div>
               <Certificate 
-              name={JSON.parse(localStorage["user"]).id} 
+              name={JSON.parse(localStorage["user"]).name} 
               course={props.data.data.data.course_title}
               hours={props.data.data.data.course_hours}
               />
