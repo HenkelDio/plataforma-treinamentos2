@@ -1,9 +1,21 @@
 import styles from './Certificate.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CertificateBox from './certificate-box/CertificateBox';
+import Axios from "axios";
 
 export default function CertificatePanel({ onSubmit }){
   const [certificatePage, setCertificatePage] = useState('certificate');
+  const [certificatesCourses, setCertificatesCourses] = useState([])
+
+  useEffect(_ => {
+    const getCompleteCourses = async _ => {
+      Axios.get(`${require("../../../defaultRoute")}/getCompleteCourses/${sessionStorage["user"].id}`).then( res => {
+        console.log(res)
+      })
+    }
+    getCompleteCourses();
+
+  }, [])
 
   const setPageCertificate = () => {
     setCertificatePage("certificate");
