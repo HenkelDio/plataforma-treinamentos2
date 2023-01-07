@@ -1,5 +1,6 @@
 import Header from "../../components/user-panel-components/header/Header";
 import HomePanel from "../../components/user-panel-components/homePanel/HomePanel";
+import CertificatePanel from "../../components/user-panel-components/certificatesPanel/CertificatePanel";
 import { useState } from "react";
 import styles from "./userPanel.module.css";
 
@@ -30,6 +31,7 @@ export default function UserPanel() {
         </div>
         <div className={styles.bodyPanel}>
           {page === "home" && <HomePanel onSubmit={handlePageHomePanel} />}
+          {page === "certificates" && <CertificatePanel onSubmit={handlePageHomePanel} />}
         </div>
       </section>
     </>

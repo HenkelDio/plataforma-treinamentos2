@@ -10,9 +10,7 @@ import ModalLogout from "./modal-logout/ModalLogout"
 
 function Header({ onSubmit }) {
   const [homePage, setHomePage] = useState("home");
-  const [usersPage, setUsersPage] = useState("users");
-  const [trainingsPage, setTrainingsPage] = useState("trainings");
-  const [settingsPage, setSettingsPage] = useState("settings");
+  const [certificatePage, setCertificatePage] = useState('certificate');
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const { name, logoutUser } = useContext(AuthContext)
@@ -49,31 +47,19 @@ const closeModal = () =>{
     homeLabel.style.borderBottom = "2px solid #ccc";
   };
 
-  const setPageUsers = () => {
-    setUsersPage("users");
-    handlePage(usersPage);
+  const setPageCertificate = () => {
+    setCertificatePage("certificate");
+    handlePage(certificatePage);
 
     let menuLabels = document.querySelectorAll("#menu ul li");
     for (let i = 0; i < menuLabels.length; i++) {
       menuLabels[i].style.borderBottom = "none";
     }
 
-    let userLabel = document.getElementById("users");
-    userLabel.style.borderBottom = "2px solid #ccc";
+    let homeLabel = document.getElementById("certificate");
+    homeLabel.style.borderBottom = "2px solid #ccc";
   };
 
-  const setPageSettings = () => {
-    setSettingsPage("settings");
-    handlePage(settingsPage);
-
-    let menuLabels = document.querySelectorAll("#menu ul li");
-    for (let i = 0; i < menuLabels.length; i++) {
-      menuLabels[i].style.borderBottom = "none";
-    }
-
-    let settingsLabel = document.getElementById("settings");
-    settingsLabel.style.borderBottom = "2px solid #ccc";
-  };
 
   const openProfile = () => {
     let profileInfo = document.getElementById("profileInfo");
@@ -118,6 +104,7 @@ const closeModal = () =>{
           <div className={styles.menuMobile}>
             <ul>
               <li onClick={setPageHome}>TREINAMENTOS</li>
+              <li onClick={setPageCertificate}>CERTIFICADOS</li>
             </ul>
           </div>
           <button className={styles.buttonAcessAccount}>MINHA CONTA</button>
@@ -133,6 +120,9 @@ const closeModal = () =>{
           <ul>
             <li onClick={setPageHome} id="home" className={styles.selected}>
               treinamentos
+            </li>
+            <li onClick={setPageCertificate} id="certificate">
+              certificados
             </li>
           </ul>
         </div>
