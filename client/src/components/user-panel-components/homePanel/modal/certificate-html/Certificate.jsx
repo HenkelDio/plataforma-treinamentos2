@@ -2,6 +2,7 @@ import styles from '../questions/modalQuestions.module.css'
 import { useEffect, useState } from 'react';
 import signature from '../../../../../assets/assinatura.png'
 
+
 export default function Certificate(props) {
 
   useEffect(()=> {
@@ -32,10 +33,10 @@ export default function Certificate(props) {
           <h1>Certificado</h1>
         </div>
         <div className={styles.content}>
-          <h2>{props.course}</h2>
+          <h2>TREINAMENTO NR 35 - Trabalho em Altura com Caminhões</h2>
           <div className={styles.text}>
             <p>
-              Certifica que, {props.name}, CPF: 000.000.000.00. Participou do treinamento de {props.course}, de acordo com a Norma Regulamentadora 35 (NR 35), da Portaria SIT Nº 313, de 23/03/2012 do Ministério do Trabalho, com, carga horária de {props.hours} horas.
+              Certifica que, Willian Henkel de Deus, CPF: 124.400.389-11. Participou do treinamento de Trabalho em Altura com Caminhões, de acordo com a Norma Regulamentadora 35 (NR 35), da Portaria SIT Nº 313, de 23/03/2012 do Ministério do Trabalho, com, carga horária de 8 horas, sendo 4 horas com aulas téoricas e 4 horas com aulas práticas.
             </p>
           </div>
           
@@ -47,7 +48,7 @@ export default function Certificate(props) {
               </div>
             </div>
             <div className={styles.praticalContent}>
-              <p><b>I) Conteúdo progrático prático</b></p>
+              <p><b>II) Conteúdo progrático prático</b></p>
               <div className={styles.info}>
                 <p>1) Condutas em situação de emergência, incluindo noções de técnicas de resgate e primeiros socorros.</p>
               </div>
@@ -79,9 +80,37 @@ export default function Certificate(props) {
               </div>
             </div>
           </div>
-          <p id="today"></p>
-          <img src={signature} alt="signure"></img>
+
+          <div className={styles.expiration}>
+            <h2>Souza Segurança do trabalho</h2>
+            <p><b>VALIDADE ATÉ 06/11/2023</b></p>
+          </div>
+
+          <div className={styles.signature}>
+            <p id="today"></p>
+            <div className={styles.signatureContainer}>
+              <p>Reny de Souza - TST - BPC - INST. NR20<br /> Reg. MTE 6255/SC</p>
+              <p>Thomas Bernardo <br /> Participante</p>
+            </div>
+            
+          </div>
         </div>
+
+        <div className={styles.footer}>
+          <p>ST CAPACITAÇÃO EM SEGURANÇA DO TRABALHO</p>
+          <p>CENTRO DE TREINAMENTO</p>
+          <p>NR 12, 18, 20, 33, 35</p>
+          <p>CIPA - BRIG. COMB. INCÊNDIO</p>
+          <p>PPRA - PCMSO</p>
+
+          <hr />
+
+          <p>RENY DE SOUZA BUENO - ME</p>
+          <p>CNPJ: 19.003.553/0001-26</p>
+          <p>www.souzatreinamentosst.com.br</p>
+
+        </div>
+
       </div>
     </div>
   )

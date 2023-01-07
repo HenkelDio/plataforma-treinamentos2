@@ -6,6 +6,7 @@
   margin-bottom: 50px;
 }
 
+
 .bodyCertificatePanel{
   display: flex;
   flex-direction: row;
@@ -52,6 +53,7 @@
   flex-wrap: wrap;
   align-items: center;
 
+  overflow-y: auto;
   background-color: white;
 }
 
@@ -63,7 +65,7 @@
 
   border-radius: 5px;
 
-  padding: 20px;
+  padding: 5px;
 
   margin-left: 50px;
 }

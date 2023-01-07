@@ -3,8 +3,13 @@ import styles from '../Certificate.module.css'
 import Certificate from '../../homePanel/modal/certificate-html/Certificate';
 import * as htmlToImage from 'html-to-image';
 import { toJpeg } from 'html-to-image';
+import MyDocument from '../../homePanel/modal/certificate-html/CertificatePdf';
+import { PDFViewer } from '@react-pdf/renderer';
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 export default function ModalCertificateBox(props){
+
+  console.log(props)
 
   function getCertificate(){
     htmlToImage.toJpeg(document.getElementById('certificateContainer'), { quality: 1.0 })
@@ -28,14 +33,19 @@ export default function ModalCertificateBox(props){
     >
     
     <div className={styles.modalContainerCertificate}>
-      <Certificate 
-      name={JSON.parse(localStorage["user"]).name} 
-      course={"algum curso"}
-      hours={"8 horas"}
-      />
+    
+
+        {/* <Certificate /> */}
 
       <div className={styles.downloadCertificate}>
-        <a href="#" onClick={getCertificate} >Gerar Certificado</a>
+
+        <PDFViewer width='1000' height='500'>
+          <MyDocument/>
+        </PDFViewer>
+
+        <a href="#"><PDFDownloadLink document={<MyDocument />} filename="FORM">
+      {({loading}) => (loading ? <button>Loading Document...</button> : <button>Download</button> )}
+      </PDFDownloadLink></a>
       </div>
 
       <div className={styles.closeModal}>
