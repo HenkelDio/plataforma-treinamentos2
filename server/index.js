@@ -498,8 +498,8 @@ app.get("/getCompleteCourses/:userId", async (req, res) => {
     const approveRegistrations = await DB.UsersRegistrations.findAll({ where: { user_id: userId, status: "aprovado" } });
     approveRegistrations.map(async registration => {
         const course = await DB.Courses.findOne({ where: { course_id: registration.dataValues.course_id } })
-        registration.courseInformation = course.dataValues;
-        registration.userInformation = userInfo.dataValues;
+        registration.dataValues.courseInformation = course.dataValues;
+        registration.dataValues.userInformation = userInfo.dataValues;
     });
     res.send(approveRegistrations)
 });
