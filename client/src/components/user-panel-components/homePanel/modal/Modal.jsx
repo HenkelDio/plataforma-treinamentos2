@@ -2,10 +2,22 @@ import Modal from 'react-modal';
 import styles from "./modal.module.css";
 import FramePdf from './pdf/FramePdf';
 import ModalConclusion from './confirm-conclusion-modal/ModalConclusion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Axios from "axios";
 
 export default function ModalTraining(props){
   const [isOpen, setIsOpen] = useState(false);
+  const [pdfInfo, setPdfInfo] = useState(null);
+
+  useEffect(_ => {
+    const getCourse = async _ => {
+      let route = `${require("../../../../defaultRoute")}/getCourse/${props.data.data.course_id}`;
+      await Axios.get(route).then(res => {
+        setPdfInfo(res.data)
+      })
+    }
+    getCourse()
+  }, []);
 
   const openModal = () =>{
     setIsOpen(true)
@@ -15,7 +27,12 @@ export default function ModalTraining(props){
     setIsOpen(false)
   }
   
-
+  function DownloadPdf() {
+    return (
+      pdfInfo ? <a href={`https://souzatreinamentosst.com.br:4000/${pdfInfo.courseDir}/${pdfInfo.coursePdf}`}>Ou faça download PDF</a> : <></>
+    )
+  }
+  
   return(
     <Modal 
     isOpen={props.openModal}
@@ -35,9 +52,9 @@ export default function ModalTraining(props){
         </div>
         <div className={styles.bodyModal}>
           <div className={styles.pdf}>
-            <FramePdf courseId={props.data.data.course_id}/>
+            <FramePdf pdfInfo={pdfInfo} />
           </div>
-          {/* <a href={sample}>Ou faça download PDF</a> */}
+          <DownloadPdf />
           <div className={styles.content}>
             <p>
               {props.data.data.content}
