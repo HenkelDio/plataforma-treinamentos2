@@ -497,7 +497,7 @@ app.get("/getCompleteCourses/:userId", async (req, res) => {
     const userInfo = await DB.Users.findByPk( userId );
     const approveRegistrations = await DB.UsersRegistrations.findAll({ where: { user_id: userId, status: "aprovado" } });
     for (let registrationN in approveRegistrations) {
-        const course = await DB.Courses.findOne({ where: { course_id: registration.dataValues.course_id } })
+        const course = await DB.Courses.findOne({ where: { course_id: approveRegistrations[registrationN].dataValues.course_id } })
         approveRegistrations[registrationN].dataValues.courseInformation = course.dataValues;
         approveRegistrations[registrationN].dataValues.userInformation = userInfo.dataValues;
     }
