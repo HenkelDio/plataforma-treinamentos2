@@ -496,11 +496,11 @@ app.get("/getCompleteCourses/:userId", async (req, res) => {
     const userId = req.params.userId;
     const userInfo = await DB.Users.findByPk( userId );
     const approveRegistrations = await DB.UsersRegistrations.findAll({ where: { user_id: userId, status: "aprovado" } });
-    approveRegistrations.map(async registration => {
+    for (let registrationN in approveRegistrations) {
         const course = await DB.Courses.findOne({ where: { course_id: registration.dataValues.course_id } })
-        registration.dataValues.courseInformation = course.dataValues;
-        registration.dataValues.userInformation = userInfo.dataValues;
-    });
+        approveRegistrations[registrationN].dataValues.courseInformation = course.dataValues;
+        approveRegistrations[registrationN].dataValues.userInformation = userInfo.dataValues;
+    }
     console.log(approveRegistrations)
     res.send(approveRegistrations)
 });
