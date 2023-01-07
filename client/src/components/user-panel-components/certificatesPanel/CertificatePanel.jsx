@@ -10,7 +10,7 @@ export default function CertificatePanel({ onSubmit }){
   useEffect(_ => {
     const getCompleteCourses = async _ => {
       Axios.get(`${require("../../../defaultRoute")}/getCompleteCourses/${JSON.parse(localStorage["user"]).id}`).then( res => {
-        console.log(res)
+        setCertificatesCourses(res.data)
       })
     }
     getCompleteCourses();
@@ -29,11 +29,11 @@ export default function CertificatePanel({ onSubmit }){
             <h2>Certificados:</h2>
           </div>
           <div className={styles.bodyCertificatePanel}>
-            {/* {
+            {
               certificatesCourses.map( certificateCourse => (
                 <CertificateBox certificateCourse={certificateCourse} />
               ) )
-            } */}
+            }
           </div>
       </div>
     </>

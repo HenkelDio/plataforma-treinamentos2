@@ -24,8 +24,8 @@ export default function CertificateBox(props){
           <p><TbCertificate /></p>
         </div>
         <div className={styles.bodyCertificateBox}>
-          <p><b>Como Andar de Bicicleta</b></p>
-          <p>8 horas</p>
+          <p><b>{certificateCourse.course_title}</b></p>
+          <p>Duração: {certificateCourse.course_hours} Horas</p>
         </div>
       </div>
     </>
