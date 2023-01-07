@@ -301,7 +301,7 @@ app.post("/editUser", async (req, res) => {
             if (!registrationsId.includes(courseId)) {
                 DB.UsersRegistrations.create({
                     course_id: courseId,
-                    user_id: id, 
+                    user_id: id,
                     company_id: user.dataValues.user_company_id
                 });
             }
@@ -312,6 +312,7 @@ app.post("/editUser", async (req, res) => {
 });
 
 app.post("/createCourse", async (req, res) => {
+    
     let courseName = req.body.courseName.replace(/[ ]/g, "_").toLowerCase()
 
     if (!readdirSync(`${__dirname}/treinamentos`).includes(courseName)) {
@@ -334,6 +335,10 @@ app.post("/createCourse", async (req, res) => {
         let questionsFile = openSync(coursePath + "/3." + courseName + ".json", "w", "777");
         appendFileSync(coursePath + "/3." + courseName + ".json", req.body.examQuestion);
         closeSync(questionsFile);
+
+        let certificateFile = openSync(coursePath + "/4." + courseName + ".json", "w", "777");
+        appendFileSync(certificateFile, req.body.certficateInformation);
+        closeSync(certificateFile)
 
         res.send({ registeredCourse: true })
 
