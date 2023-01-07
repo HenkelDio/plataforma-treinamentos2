@@ -15,6 +15,7 @@ export default function ModalCreateTraining(props){
     const [hoursCourse, setHoursCourse] = useState("");
     const [courseFile, setCourseFile] = useState();
     const [questions, setQuestions] = useState([{ "num": 0, "pergunta": "", "alternativas": {"a": "", "b": "", "c": "", "d": ""}, "resposta": "a" }])
+    const [certificateInformation, setCertificateInformation] = useState({"norm": "", "teoricContent": "", "praticalContent": ""})
 
     const closeModal = () =>{
         props.closeModal()
@@ -44,6 +45,7 @@ export default function ModalCreateTraining(props){
         formData.append("courseFile", courseFile, courseFile.name);
         formData.append("courseDescrit", values.content)
         formData.append("examQuestion", JSON.stringify(questions))
+        formData.append("certficateInformation", JSON.stringify(certificateInformation))
         
         let route = `${require("../../../../defaultRoute")}/createCourse`
         await Axios.post(route, formData, {
@@ -133,7 +135,7 @@ export default function ModalCreateTraining(props){
                             </div>
 
                             <p>Adicione o certificado</p>
-                            <Certificate />
+                            <Certificate certificateInformation={certificateInformation} setCertificateInformation={setCertificateInformation} />
 
 
                             <p>Adicione a prova</p>

@@ -301,7 +301,7 @@ app.post("/editUser", async (req, res) => {
             if (!registrationsId.includes(courseId)) {
                 DB.UsersRegistrations.create({
                     course_id: courseId,
-                    user_id: id, 
+                    user_id: id,
                     company_id: user.dataValues.user_company_id
                 });
             }
@@ -312,34 +312,38 @@ app.post("/editUser", async (req, res) => {
 });
 
 app.post("/createCourse", async (req, res) => {
-    let courseName = req.body.courseName.replace(/[ ]/g, "_").toLowerCase()
+    console.log(req.body)
+    // let courseName = req.body.courseName.replace(/[ ]/g, "_").toLowerCase()
 
-    if (!readdirSync(`${__dirname}/treinamentos`).includes(courseName)) {
+    // if (!readdirSync(`${__dirname}/treinamentos`).includes(courseName)) {
 
-        let coursePath = `${__dirname}/treinamentos/${courseName}`
-        mkdirSync(coursePath)
+    //     let coursePath = `${__dirname}/treinamentos/${courseName}`
+    //     mkdirSync(coursePath)
 
-        req.files.courseFile.mv(coursePath + "/1." + req.files.courseFile.name)
-        let fileDescriptor = openSync(coursePath + "/2." + courseName + ".txt", "w", "777");
-        appendFileSync(coursePath + "/2." + courseName + ".txt", req.body.courseDescrit);
-        closeSync(fileDescriptor);
+    //     req.files.courseFile.mv(coursePath + "/1." + req.files.courseFile.name)
+    //     let fileDescriptor = openSync(coursePath + "/2." + courseName + ".txt", "w", "777");
+    //     appendFileSync(coursePath + "/2." + courseName + ".txt", req.body.courseDescrit);
+    //     closeSync(fileDescriptor);
 
-        DB.Courses.create({
-            course_title: req.body.courseName,
-            content_path: coursePath,
-            course_hours: (req.body.hoursCourse === "" ? 1 : req.body.hoursCourse),
-            registrations: 0
-        });
+    //     DB.Courses.create({
+    //         course_title: req.body.courseName,
+    //         content_path: coursePath,
+    //         course_hours: (req.body.hoursCourse === "" ? 1 : req.body.hoursCourse),
+    //         registrations: 0
+    //     });
 
-        let questionsFile = openSync(coursePath + "/3." + courseName + ".json", "w", "777");
-        appendFileSync(coursePath + "/3." + courseName + ".json", req.body.examQuestion);
-        closeSync(questionsFile);
+    //     let questionsFile = openSync(coursePath + "/3." + courseName + ".json", "w", "777");
+    //     appendFileSync(coursePath + "/3." + courseName + ".json", req.body.examQuestion);
+    //     closeSync(questionsFile);
 
-        res.send({ registeredCourse: true })
+    //     let certificateFile = openSync(coursePath + "/4." + courseName + ".json", "w", "777");
+        
 
-    } else {
-        res.send({ registeredCourse: false, reason: "Already registred" })
-    }
+    //     res.send({ registeredCourse: true })
+
+    // } else {
+    //     res.send({ registeredCourse: false, reason: "Already registred" })
+    // }
 
 });
 
