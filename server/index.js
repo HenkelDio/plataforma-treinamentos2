@@ -496,7 +496,7 @@ app.get("/getCompleteCourses/:userId", async (req, res) => {
     const completeCourses = await DB.UsersRegistrations.findAll({ where: { user_id: userId, status: "aprovado" } });
     const coursesId = completeCourses.map(completeCourse => (completeCourse.dataValues.course_id))
     
-    const courses = DB.Courses.findAll({ where: { course_id: coursesId } });
+    const courses = await DB.Courses.findAll({ where: { course_id: coursesId } });
     console.log(courses)
 
     res.send(courses)
