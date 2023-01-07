@@ -1,19 +1,9 @@
 
-import Axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function FramePdf(props) {
-  const [pdfInfo, setPdfInfo] = useState(null);
-
-  useEffect(_ => {
-    const getCourse = async _ => {
-      let route = `${require("../../../../../defaultRoute")}/getCourse/${props.courseId}`;
-      await Axios.get(route).then(res => {
-        setPdfInfo(res.data)
-      })
-    }
-    getCourse()
-  }, []);
+  
+  const { pdfInfo } = props
 
   return( pdfInfo ? 
     <> 

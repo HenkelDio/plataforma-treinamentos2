@@ -5,19 +5,19 @@ import Axios from "axios";
 
 export default function HomePanel() {
   const [listTraining, setListTraining] = useState([])
-  useEffect(_=>{
+  useEffect(_ => {
     const getCourse = async _ => {
       let userType = "usualUser"
       let userId = JSON.parse(localStorage["user"]).id
       let route = `${require("../../../defaultRoute")}/Courses/${userType}/${userId}`
-        await Axios.get(route).then(res => {
-            if (res) {
-                setListTraining(res.data)
-            }
-        })
+      await Axios.get(route).then(res => {
+        if (res) {
+          setListTraining(res.data)
+        }
+      })
     }
     getCourse()
-}, []);
+  }, []);
 
   return (
     <>
@@ -27,14 +27,12 @@ export default function HomePanel() {
         </div>
         <div className={styles.bodyHomePanel}>
           {
-            listTraining.map((val)=>{
-              return <TrainingBox 
-              data={val}
+            listTraining.map((val) => {
+              return <TrainingBox
+                data={val}
               />
             })
           }
-          
-          
         </div>
       </div>
     </>

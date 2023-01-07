@@ -312,7 +312,7 @@ app.post("/editUser", async (req, res) => {
 });
 
 app.post("/createCourse", async (req, res) => {
-    
+
     let courseName = req.body.courseName.replace(/[ ]/g, "_").toLowerCase()
 
     if (!readdirSync(`${__dirname}/treinamentos`).includes(courseName)) {
@@ -374,7 +374,7 @@ app.get("/Courses/:userType/:userId", async (req, res) => {
 
         let courses = [];
 
-        for (let userRegister of await DB.UsersRegistrations.findAll({ where: { user_id: userId } })) {
+        for (let userRegister of await DB.UsersRegistrations.findAll({ where: { user_id: userId, status: "incompleto" } })) {
             let course = await DB.Courses.findOne({ where: { course_id: userRegister.dataValues.course_id } });
             course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "utf8");
             courses.push(course)
