@@ -21,7 +21,7 @@ export default function Certificate(props) {
 
   
   return (
-    <div id='certificate' className={styles.certificate}>
+    <div id='certificateContainer' className={styles.certificate}>
 
       <div className={styles.background}>
         <div className={styles.asset1}></div>

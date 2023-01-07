@@ -63,10 +63,10 @@ export default function ModalQuestion(props) {
 
 
   function getCertificate(){
-    htmlToImage.toJpeg(document.getElementById('certificate'), { quality: 1.0 })
+    htmlToImage.toJpeg(document.getElementById('certificateContainer'), { quality: 1.0 })
   .then(function (dataUrl) {
     var link = document.createElement('a');
-    link.download = 'my-image-name.jpeg';
+    link.download = 'certificado.jpeg';
     link.href = dataUrl;
     link.click();
   });

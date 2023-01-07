@@ -31,7 +31,7 @@ export default function UserPanel() {
         </div>
         <div className={styles.bodyPanel}>
           {page === "home" && <HomePanel onSubmit={handlePageHomePanel} />}
-          {page === "certificates" && <CertificatePanel onSubmit={handlePageHomePanel} />}
+          {page === "certificate" && <CertificatePanel onSubmit={handlePageHomePanel} />}
         </div>
       </section>
     </>

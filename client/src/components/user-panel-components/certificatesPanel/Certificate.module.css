@@ -1,0 +1,100 @@
+.headerCertificatePanel{
+  font-family: var(--inter);
+  opacity: 0.8;
+  font-size: 1.3rem;
+
+  margin-bottom: 50px;
+}
+
+.bodyCertificatePanel{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  width: 850px;
+
+  margin: 0 auto;
+}
+
+.CertificateBox{
+  height: 150px;
+  padding: 5px;
+
+  background-color: rgb(229, 229, 229);
+
+  border-radius: 10px;
+
+  margin-left: 20px;
+  margin-bottom: 20px;
+
+  cursor: pointer;
+}
+
+.CertificateBox:hover{
+  background-color: rgb(212, 212, 212);
+}
+
+.headerCertificateBox p{
+  font-size: 3rem;
+}
+
+.bodyCertificateBox p:nth-child(1){
+  font-family: var(--inter);
+}
+
+.modalContainerCertificate{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  background-color: white;
+}
+
+.downloadCertificate a{
+  text-decoration: none;
+
+  background-color: #017828;
+  color: white;
+
+  border-radius: 5px;
+
+  padding: 20px;
+
+  margin-left: 50px;
+}
+
+@media (max-width: 700px){
+  .CertificateBox{
+    width: 100%;
+
+    margin-left: 0;
+  }
+  .bodyCertificatePanel{
+    width: 100%;
+
+    padding: 10px;
+  }
+  .bodyCertificateBox p{
+    font-family: var(--inter);
+
+    font-size: 1.2rem;
+  }
+  .ModalCertificateBox{
+    width: 100%;
+
+    background-color: white;  
+  }
+  .downloadCertificate a{
+    margin:0;
+    margin-top: 50px;
+
+  }
+}
+
+@media (max-width: 1115px){
+  .bodyCertificatePanel{
+    width: 100%;
+
+    padding: 10px;
+  }
+}
