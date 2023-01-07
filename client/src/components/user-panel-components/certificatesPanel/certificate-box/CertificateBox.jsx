@@ -7,6 +7,7 @@ export default function CertificateBox(props){
   const { certificateCourse } = props
   const [isOpen, setIsOpen] = useState(false);
   
+  
   const openModal = () =>{
     setIsOpen(true)
   }
@@ -17,14 +18,14 @@ export default function CertificateBox(props){
 
   return(
     <>
-      <ModalCertificateBox openModal={isOpen} closeModal={closeModal} ></ModalCertificateBox>
+      <ModalCertificateBox openModal={isOpen} closeModal={closeModal} data={certificateCourse}></ModalCertificateBox>
 
       <div onClick={openModal} className={styles.CertificateBox}>
         <div className={styles.headerCertificateBox}>
           <p><TbCertificate /></p>
         </div>
         <div className={styles.bodyCertificateBox}>
-          <p><b>{certificateCourse.course_title}</b></p>
+          <p><b>Treinamento NR 35</b></p>
           <p>Duração: {certificateCourse.course_hours} Horas</p>
         </div>
       </div>

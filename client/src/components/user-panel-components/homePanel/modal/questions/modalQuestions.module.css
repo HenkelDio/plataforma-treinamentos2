@@ -100,10 +100,11 @@
   display: flex;
   flex-direction: column;
 
-  height: 600px;
-  width: 900px;
-  min-width: 900px;
-  min-height: 600px;
+  width: 1400px;
+  height: 850px;
+
+  min-width: 1400px;
+  min-height: 850px;
 
   border: 2px solid black;
 
@@ -142,20 +143,134 @@
 } 
 
 .certificate .header h1{
-  text-align: right;
-
-  margin-bottom: 20px;
+  text-align: left;
 
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 3rem;
   color: #017828;
+
+  margin-left: 60px;
+  margin-bottom: 20px;
 }
 
 .certificate .container .content{
   margin-left: 60px;
 }
 
+.containerContent{
+  display: flex;
+}
+
 .certificate .container .content h2{
+  margin-bottom: 10px;
+}
+
+.certificate .container .content .text{
+  margin-bottom: 20px;
+
+  font-size: 1.2rem;
+}
+
+.teoricalContent{
+  border: 1px solid black; 
+
+  max-width: 400px;
+  height: auto;
+}
+
+.teoricalContent p{
+  padding: 5px;
+}
+
+.praticalContent{
+  border: 1px solid black; 
+
+  max-width: 400px;
+  height: auto;
+}
+.praticalContent p{
+  padding: 5px;
+}
+
+.responsavel{
+  border: 1px solid black; 
+  padding:5px;
+
+  width: 400px;
+  text-align: center;
+}
+
+.first p:nth-child(4){
+  font-size: 1rem;
+}
+
+.first{
+  border: 1px solid black;
+  padding: 2px; 
+
+  margin-top: 2px;
+
+  font-size: 1rem;
+}
+
+.first ul li{
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.expiration{
+  margin-top: 10px;
+  background-color: rgb(234, 234, 234);
+
+  border-radius: 10px;
+
+  padding: 10px;
+}
+
+.expiration h2{
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.signature{
+  position: absolute;
+  right: 30px;
+
+  margin-top: 20px;
+}
+
+.signature .signatureContainer{
+  display: flex;
+
+  align-items:stretch;
+}
+
+.signature .signatureContainer p{
+  border-top: 2px solid black;
+
+  width: 250px;
+
+  margin-top: 50px;
+  margin-left: 20px;
+}
+
+.footer{
+  position: absolute;
+  bottom: -190px;
+
+  margin-left: 55px;
+  padding: 10px;
+}
+
+.footer p:nth-child(1){
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+
+  color: #017828;
+}
+
+.footer hr{
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
