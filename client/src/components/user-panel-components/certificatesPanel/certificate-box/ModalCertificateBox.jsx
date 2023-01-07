@@ -37,6 +37,10 @@ export default function ModalCertificateBox(props){
       <div className={styles.downloadCertificate}>
         <a href="#" onClick={getCertificate} >Gerar Certificado</a>
       </div>
+
+      <div className={styles.closeModal}>
+        <a href="#" onClick={props.closeModal} >Fechar</a>
+      </div>
     </div>
 
     </Modal>
