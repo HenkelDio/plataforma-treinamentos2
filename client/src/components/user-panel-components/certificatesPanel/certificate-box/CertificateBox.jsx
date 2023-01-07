@@ -3,9 +3,10 @@ import { TbCertificate } from 'react-icons/tb'
 import ModalCertificateBox from './ModalCertificateBox'
 import { useState } from 'react';
 
-export default function CertificateBox(){
+export default function CertificateBox(props){
+  const { certificateCourse } = props
   const [isOpen, setIsOpen] = useState(false);
-
+  
   const openModal = () =>{
     setIsOpen(true)
   }
@@ -16,7 +17,6 @@ export default function CertificateBox(){
 
   return(
     <>
-
       <ModalCertificateBox openModal={isOpen} closeModal={closeModal} ></ModalCertificateBox>
 
       <div onClick={openModal} className={styles.CertificateBox}>

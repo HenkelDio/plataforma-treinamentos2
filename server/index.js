@@ -493,6 +493,11 @@ app.post("/changeStatus", async (req, res) => {
 
 app.get("/getCompleteCourses/:userId", async (req, res) => {
     const userId = req.params.userId;
-    res.send(await DB.UsersRegistrations.findAll({ where: { user_id: userId, status: "aprovado" } }))
+    const completeCourses = await DB.UsersRegistrations.findAll({ where: { user_id: userId, status: "aprovado" } });
+    const coursesId = completeCourses.map(completeCourse => (completeCourse.dataValues.course_id))
+
+    const courses = DB.Courses.findAll({ where: { course: coursesId } });
+
+    res.send(courses)
 });
 
