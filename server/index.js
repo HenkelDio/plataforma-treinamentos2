@@ -494,14 +494,11 @@ app.post("/changeStatus", async (req, res) => {
 
 app.get("/getCompleteCourses/:userId", async (req, res) => {
     const userId = req.params.userId;
-    const completeCourses = await DB.UsersRegistrations.findAll({ where: { user_id: userId, status: "aprovado" } });
-    const coursesId = completeCourses.map(completeCourse => (completeCourse.dataValues.course_id));
-    
-    const courses = await DB.Courses.findAll({ where: { course_id: coursesId } });
+    const userInfo = await DB.Users.findByPk( userId );
+    const approveRegistrations = await DB.UsersRegistrations.findAll({ where: { user_id: userId, status: "aprovado" } });
+    approveRegistrations.map(async registration => {
+        const course = await DB.Courses.findOne({ where: { course_id: registration.dataValues.course_id } })
+        console.log(course)
+    });
 
-    res.send(courses);
 });
-
-app.get("/getCertificateInfo", async (req, res) => {
-    
-})
