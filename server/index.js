@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const { mkdirSync, openSync, appendFileSync, readdirSync,
     readFileSync, unlinkSync, closeSync, rmdirSync } = require("fs");
+const { allowedNodeEnvironmentFlags } = require("process");
 
 const certPath = "/etc/letsencrypt/live/souzatreinamentosst.com.br/cert.pem"
 const keyPath = "/etc/letsencrypt/live/souzatreinamentosst.com.br/privkey.pem"
@@ -501,3 +502,6 @@ app.get("/getCompleteCourses/:userId", async (req, res) => {
     res.send(courses);
 });
 
+app.get("/getCertificateInfo", async (req, res) => {
+    
+})
