@@ -499,7 +499,7 @@ app.get("/getCompleteCourses/:userId", async (req, res) => {
     for (let registrationN in approveRegistrations) {
         const course = await DB.Courses.findOne({ where: { course_id: approveRegistrations[registrationN].dataValues.course_id } })
         const courseContentPath = course.dataValues.content_path;
-        approveRegistrations[registrationN].dataValues.certificateInfo = readFileSync(readdirSync(courseContentPath)[3], "utf-8")
+        approveRegistrations[registrationN].dataValues.certificateInfo = readFileSync(courseContentPath + "/" + readdirSync(courseContentPath)[3], "utf-8")
         approveRegistrations[registrationN].dataValues.courseInformation = course.dataValues;
         approveRegistrations[registrationN].dataValues.userInformation = userInfo.dataValues;
     }
