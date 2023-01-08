@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 export default function CertificateBox(props){
   const { certificateCourse } = props
+  console.log(certificateCourse)
   const [isOpen, setIsOpen] = useState(false);
   
   
@@ -25,8 +26,8 @@ export default function CertificateBox(props){
           <p><TbCertificate /></p>
         </div>
         <div className={styles.bodyCertificateBox}>
-          <p><b>Treinamento NR 35</b></p>
-          <p>Duração: {certificateCourse.course_hours} Horas</p>
+          <p><b>{certificateCourse.courseInformation.course_title}</b></p>
+          <p>Duração: {certificateCourse.courseInformation.course_hours} Horas</p>
         </div>
       </div>
     </>

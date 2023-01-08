@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const { mkdirSync, openSync, appendFileSync, readdirSync,
     readFileSync, unlinkSync, closeSync, rmdirSync } = require("fs");
+const { allowedNodeEnvironmentFlags } = require("process");
 
 const certPath = "/etc/letsencrypt/live/souzatreinamentosst.com.br/cert.pem"
 const keyPath = "/etc/letsencrypt/live/souzatreinamentosst.com.br/privkey.pem"
@@ -493,11 +494,16 @@ app.post("/changeStatus", async (req, res) => {
 
 app.get("/getCompleteCourses/:userId", async (req, res) => {
     const userId = req.params.userId;
-    const completeCourses = await DB.UsersRegistrations.findAll({ where: { user_id: userId, status: "aprovado" } });
-    const coursesId = completeCourses.map(completeCourse => (completeCourse.dataValues.course_id));
-    
-    const courses = await DB.Courses.findAll({ where: { course_id: coursesId } });
-
-    res.send(courses);
+    const userInfo = await DB.Users.findByPk( userId );
+    const approveRegistrations = await DB.UsersRegistrations.findAll({ where: { user_id: userId, status: "aprovado" } });
+    for (let registrationN in approveRegistrations) {
+        const course = await DB.Courses.findOne({ where: { course_id: approveRegistrations[registrationN].dataValues.course_id } })
+        const courseContentPath = course.dataValues.content_path;
+        approveRegistrations[registrationN].dataValues.certificateInfo = readFileSync(courseContentPath + "/" + readdirSync(courseContentPath)[3], "utf-8")
+        console.log(readFileSync(courseContentPath + "/" + readdirSync(courseContentPath)[3], "utf-8"))
+        approveRegistrations[registrationN].dataValues.courseInformation = course.dataValues;
+        approveRegistrations[registrationN].dataValues.userInformation = userInfo.dataValues;
+    }
+    console.log(approveRegistrations)
+    res.send(approveRegistrations)
 });
-
