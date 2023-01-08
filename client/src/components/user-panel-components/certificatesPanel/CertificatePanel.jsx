@@ -10,7 +10,7 @@ export default function CertificatePanel({ onSubmit }){
   useEffect(_ => {
     const getCompleteCourses = async _ => {
       Axios.get(`${require("../../../defaultRoute")}/getCompleteCourses/${JSON.parse(localStorage["user"]).id}`).then( res => {
-        console.log(res.data)
+        setCertificatesCourses(res.data)
       })
     }
     getCompleteCourses();
