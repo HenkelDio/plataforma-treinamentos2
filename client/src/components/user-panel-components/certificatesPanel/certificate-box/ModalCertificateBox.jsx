@@ -11,15 +11,15 @@ export default function ModalCertificateBox(props){
 
   console.log(props)
 
-  function getCertificate(){
-    htmlToImage.toJpeg(document.getElementById('certificateContainer'), { quality: 1.0 })
-  .then(function (dataUrl) {
-    var link = document.createElement('a');
-    link.download = 'certificado.jpeg';
-    link.href = dataUrl;
-    link.click();
-  });
-  }
+  // function getCertificate(){
+  //   htmlToImage.toJpeg(document.getElementById('certificateContainer'), { quality: 1.0 })
+  // .then(function (dataUrl) {
+  //   var link = document.createElement('a');
+  //   link.download = 'certificado.jpeg';
+  //   link.href = dataUrl;
+  //   link.click();
+  // });
+  // }
 
 
   return(
@@ -39,13 +39,13 @@ export default function ModalCertificateBox(props){
 
       <div className={styles.downloadCertificate}>
 
-        <PDFViewer width='1000' height='500'>
+        <PDFViewer className={styles.pdfViewerContainer}>
           <MyDocument/>
         </PDFViewer>
 
-        <a href="#"><PDFDownloadLink document={<MyDocument />} filename="FORM">
-      {({loading}) => (loading ? <button>Loading Document...</button> : <button>Download</button> )}
-      </PDFDownloadLink></a>
+          <a href="#"><PDFDownloadLink document={<MyDocument />} filename="CERTIFICADO">
+            {({loading}) => (loading ? <button>Loading Document...</button> : <button className={styles.downloadButton}>Download</button> )}
+          </PDFDownloadLink></a>
       </div>
 
       <div className={styles.closeModal}>
