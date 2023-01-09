@@ -250,7 +250,15 @@ app.post("/removeUser", async (req, res) => {
         where: {
             [typeId]: id
         }
-    })
+    });
+
+    if (type === "Users") {
+        DB.UsersRegistrations.destroy({
+            where: {
+                user_id: id
+            }
+        })
+    }
 });
 
 app.post("/editUser", async (req, res) => {
