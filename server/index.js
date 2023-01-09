@@ -33,7 +33,7 @@ async function searchEmail(email) {
     for (let modelColumn of [
         ["Admins", "admin_email"],
         ["Companies", "company_email"],
-        ["Users", "user_email"]
+        ["U sers", "user_email"]
     ]) {
         if (await DB[modelColumn[0]].findOne({ where: { [modelColumn[1]]: email } })) {
             cond = "alreadyRegistred"
@@ -446,6 +446,7 @@ app.get("/getReports", async (req, res) => {
     appendFileSync(report, "nome_empresa;responsável_empresa;cnpj_empresa;telefone_empresa;curso;status;nome_usuário;cpf_usuário;telefone_usuário\r\n");
 
     for (let registration of usersRegistrations) {
+        console.log(registration)
         let company = await DB.Companies.findByPk(registration.dataValues.company_id);
         company = company.dataValues;
         let course = await DB.Courses.findByPk(registration.dataValues.course_id);
