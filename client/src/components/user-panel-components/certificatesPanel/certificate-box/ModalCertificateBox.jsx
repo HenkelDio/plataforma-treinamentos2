@@ -3,13 +3,15 @@ import styles from '../Certificate.module.css'
 import Certificate from '../../homePanel/modal/certificate-html/Certificate';
 import * as htmlToImage from 'html-to-image';
 import { toJpeg } from 'html-to-image';
-import MyDocument from '../../homePanel/modal/certificate-html/CertificatePdf';
-import { PDFViewer } from '@react-pdf/renderer';
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import CertificatePdf from '../../homePanel/modal/certificate-html/CertificatePdf';
+import { PDFViewer, PDFDownloadLink, pdf } from '@react-pdf/renderer';
+import * as FileSaver from "file-saver";
+
 
 export default function ModalCertificateBox(props){
 
-  console.log(props)
+  const { data } = props
+  console.log(data)
 
   // function getCertificate(){
   //   htmlToImage.toJpeg(document.getElementById('certificateContainer'), { quality: 1.0 })
@@ -20,6 +22,13 @@ export default function ModalCertificateBox(props){
   //   link.click();
   // });
   // }
+
+  const generatePdfDocument = async (data, fileName) =>{
+    const blob = await pdf(
+      <CertificatePdf data={data}/>
+    ).toBlob();
+    FileSaver.saveAs(blob, fileName);
+  }
 
 
   return(
@@ -39,13 +48,17 @@ export default function ModalCertificateBox(props){
 
       <div className={styles.downloadCertificate}>
 
-        <PDFViewer className={styles.pdfViewerContainer}>
-          <MyDocument/>
-        </PDFViewer>
+        
+          <h1>{data.courseInformation.course_title}</h1>
 
-          <a href="#"><PDFDownloadLink document={<MyDocument />} filename="CERTIFICADO">
+          <button 
+          className={styles.downloadButton} 
+          onClick={()=> generatePdfDocument(data, 'certificado')}
+          >DOWNLOAD DO CERTIFICADO</button>
+{/* 
+          <a href="#"><PDFDownloadLink document={<CertificatePdf />} filename="CERTIFICADO">
             {({loading}) => (loading ? <button>Loading Document...</button> : <button className={styles.downloadButton}>Download</button> )}
-          </PDFDownloadLink></a>
+          </PDFDownloadLink></a> */}
       </div>
 
       <div className={styles.closeModal}>

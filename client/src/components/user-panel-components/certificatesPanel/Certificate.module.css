@@ -17,6 +17,7 @@
 }
 
 .CertificateBox{
+  width: 250px;
   height: 150px;
   padding: 5px;
 
@@ -59,13 +60,16 @@
 .downloadCertificate{
   display: flex;
   align-items: center;
+  flex-direction: column;
   flex-wrap: wrap;
 
   width: 100%;
 }
 
 .downloadButton{
-  width: 100px;
+  margin: 20px auto;
+
+  width: 200px;
   height: 50px;
 
   background-color: #017828;
@@ -74,8 +78,6 @@
   border-radius: 5px;
 
   padding: 5px;
-
-  margin-left: 50px;
 
   cursor: pointer;
 }
