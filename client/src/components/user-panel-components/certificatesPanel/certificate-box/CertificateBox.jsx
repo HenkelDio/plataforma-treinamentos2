@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 export default function CertificateBox(props){
   const { certificateCourse } = props
-  console.log(certificateCourse)
+  
   const [isOpen, setIsOpen] = useState(false);
   
   

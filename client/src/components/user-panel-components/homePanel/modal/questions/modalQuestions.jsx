@@ -4,13 +4,8 @@ import Axios from "axios"
 import { useState, useEffect } from "react";
 import InputBoxQuestion from "./inputBoxQuestion";
 import { BsPatchCheck } from "react-icons/bs"
-import * as htmlToImage from 'html-to-image';
-import { toJpeg } from 'html-to-image';
-import Certificate from "../certificate-html/Certificate";
-
 
 export default function ModalQuestion(props) {
-  
   const [questions, setQuestions] = useState([]);
   const [approved, setApproved] = useState(false)
 
@@ -62,16 +57,6 @@ export default function ModalQuestion(props) {
   }
 
 
-  function getCertificate(){
-    htmlToImage.toJpeg(document.getElementById('certificateContainer'), { quality: 1.0 })
-  .then(function (dataUrl) {
-    var link = document.createElement('a');
-    link.download = 'certificado.jpeg';
-    link.href = dataUrl;
-    link.click();
-  });
-  }
-
   return (
     <>
       <Modal
@@ -109,17 +94,13 @@ export default function ModalQuestion(props) {
                 <div className={styles.details}>
                   <h1>Curso Completo!</h1>
                   <p>Parabéns pela dedicação!</p>
+                  <p>O certificado do curso está disponível na aba 'certificados'</p>
                 </div>
                 <div className={styles.downloadCertificate}>
-                  <a href="#" onClick={getCertificate} >Gerar Certificado</a>
+                  <a 
+                  href="/painel-usuario">Fechar Aba</a>
                 </div>
               </div>
-              <Certificate 
-              name={JSON.parse(localStorage["user"]).name} 
-              course={props.data.data.data.course_title}
-              hours={props.data.data.data.course_hours}
-              />
-             
             </div>
 
           }

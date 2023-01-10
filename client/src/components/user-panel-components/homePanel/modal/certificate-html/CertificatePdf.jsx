@@ -1,5 +1,6 @@
 import { Document, Page, Text, View, StyleSheet, Font } from '@react-pdf/renderer';
 import imagem from './certificate.jpg'
+import { useState } from 'react';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -84,7 +85,8 @@ const styles = StyleSheet.create({
   padding: 5
  },
  secondPage: {
-  padding: 5
+  padding: 5,
+  marginTop: 50
  },
  boxSecondPage: {
   width: 300,
@@ -133,10 +135,17 @@ Font.register({
   src: 'https://fonts.gstatic.com/s/oswald/v13/Y_TKV6o8WovbUd3m_X9aAA.ttf'
 });
 
-// Create Document Component
-const MyDocument = () => (
+function CertificatePdf(props){
+  
+  const { data } = props
+  const {certificateInfo} = data
 
-  <>
+  const jsonCertificateInfo = JSON.parse(certificateInfo)
+
+  const { norm, teoricContent, praticalContent} = jsonCertificateInfo
+
+return(
+<>
   <Document>
     <Page style={styles.body} orientation="landscape">
       <View style={styles.header}>
@@ -147,12 +156,12 @@ const MyDocument = () => (
       <View style={styles.section}>
         <View>
           <Text style={styles.title}>
-            TREINAMENTO NR-35 - TRABALHO EM ALTURA COM CAMINHÕES
+            {data.courseInformation.course_title}
           </Text>
         </View>
         <View>
           <Text>
-            Certifica que, Willian Henkel de Deus, CPF: 124.400.389-11. Participou do treinamento de Trabalho em Altura com Caminhões, de acordo com a Norma Regulamentadora 35 (NR 35), da Portaria SIT Nº 313, de 23/03/2012 do Ministério do Trabalho, com, carga horária de 8 horas, sendo 4 horas com aulas téoricas e 4 horas com aulas práticas.
+            Certifica que, {data.userInformation.user_name}, CPF: {data.userInformation.user_register}. Participou do treinamento de {data.courseInformation.course_title}, de acordo com a {norm}, com, carga horária de {data.courseInformation.course_hours} horas.
           </Text>
         </View>
         <View style={styles.date}>
@@ -223,8 +232,9 @@ const MyDocument = () => (
         <View style={styles.container}>
           <View style={styles.headerSecondPageMain}>
             <Text>
-              TREINAMENTO DA NR 35 - SEGURANÇA E SAÚDE NO TRABALHO: TRABALHO EM ALTURA CARGA E DESCARGA {'\n'}
-              Carga Horária: 8 horas
+              {data.courseInformation.course_title}
+              {'\n'}
+              Carga Horária: {data.courseInformation.course_hours} horas
             </Text>
           </View>
           <View style={styles.bodySecondPage}>
@@ -239,7 +249,7 @@ const MyDocument = () => (
                   I) Conteúdo programático teórico:
                   {'\n'}
                   {'\n'}
-                  1) Normas e Regulamentos aplicáveis ao trabalho em altura; 2) Análise de risco e condições impeditivas; 3) Riscos pontenciais inerentes ao trabalho em altura e medidas de prevenção e controle; 4) Sistemas, equipamentos e procedimentos de proteção coletiva (EPC's); 5) Equipamento de proteção individual (EPI's), para trabalho em altura: seleção, inspeção, conservação e limitação de uso; 6) Acidentes típicos em realiação de trabalho em altura;
+                  {teoricContent}
                 </Text>
               </View>
             </View>
@@ -254,7 +264,7 @@ const MyDocument = () => (
                   II) Conteúdo programático prático:
                   {'\n'}
                   {'\n'}
-                  1) Condutas em situação de emergência, incluindo noções de técnicas de resgate e primeiros socorros.
+                  {praticalContent}
                 </Text>
             </View>
             
@@ -323,6 +333,9 @@ const MyDocument = () => (
   </Document>
 
   </>
-);
+)
+}
 
-export default MyDocument;    
+
+
+export default CertificatePdf;    
