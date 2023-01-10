@@ -29,6 +29,7 @@ const SelectRegistration = (props) => {
       let route = `${require("../../../../../defaultRoute")}/Courses/${userType}/${userId}`
       await Axios.get(route).then(res => {
         if (res) {
+          console.log(res)
           setSelected(res.data.map(registration => ({ label: registration.course_title, value: registration.course_id })))
         }
       })

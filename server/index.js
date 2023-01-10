@@ -357,9 +357,10 @@ app.post("/createCourse", async (req, res) => {
 
 });
 
-app.get("/Courses/:userType/:userId", async (req, res) => {
-    const userType = req.params.userType;
-    const userId = req.params.userId
+app.post("/Courses", async (req, res) => {
+    const userType = req.body.userType;
+    const userId = req.body.userId
+    const selectCrets = req.body.selectCrets
     if (userType === "admin") {
 
         let courses = await DB.Courses.findAll();
@@ -383,7 +384,7 @@ app.get("/Courses/:userType/:userId", async (req, res) => {
 
         let courses = [];
 
-        for (let userRegister of await DB.UsersRegistrations.findAll({ where: { user_id: userId, status: "incompleto" } })) {
+        for (let userRegister of await DB.UsersRegistrations.findAll({ where: selectCrets })) {
             let course = await DB.Courses.findOne({ where: { course_id: userRegister.dataValues.course_id } });
             course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "utf8");
             courses.push(course)
@@ -451,10 +452,9 @@ app.get("/getReports", async (req, res) => {
     const usersRegistrations = await DB.UsersRegistrations.findAll();
     const reportName = `relatorio_usuarios_${(readdirSync("./relatorios").length + 1)}.csv`
     const report = openSync(`./relatorios/${reportName}`, "w", "777");
-    appendFileSync(report, "nome_empresa;responsável_empresa;cnpj_empresa;telefone_empresa;curso;status;nome_usuário;cpf_usuário;telefone_usuário\r\n");
+    appendFileSync(report, "nome_empresa;responsavel_empresa;cnpj_empresa;telefone_empresa;curso;status;nome_usuario;cpf_usuario;telefone_usuario\r\n");
 
     for (let registration of usersRegistrations) {
-        console.log(registration)
         let company = await DB.Companies.findByPk(registration.dataValues.company_id);
         company = company.dataValues;
         let course = await DB.Courses.findByPk(registration.dataValues.course_id);
