@@ -6,27 +6,44 @@ import styles from "../modalEdit.module.css";
 
 const SelectRegistration = (props) => {
 
-  const { selected, setSelected } = props
-
+  const { selected, setSelected, companyId } = props
   const [options, setOptions] = useState([]);
 
   useEffect(_ => {
     const getCourses = async _ => {
       let userType = "admin"
-      let userId = "0"
       await Axios.post(`${require("../../../../../defaultRoute")}/Courses`, {
         userType
       }).then(res => {
         if (res) {
           let courses = []
           res.data.map(course => {
-            courses.push({label: course.course_title, value: course.course_id})
+            courses.push({ label: course.course_title, value: course.course_id })
           })
           setOptions(courses)
         }
       })
     }
     getCourses();
+  }, [])
+
+  useEffect(_ => {
+    const getCompanyRegistrations = async _ => {
+      let userType = "company";
+      let route = `${require("../../../../../defaultRoute")}/Courses`;
+      await Axios.post(route, {
+        userType,
+        selectCrets: {
+          company_id: companyId
+        }
+      }).then(res => {
+        if (res) {
+          setSelected(res.data.map(registration => ({ label: registration.course_title, value: registration.course_id })))
+        }
+      })
+    }
+
+    getCompanyRegistrations();
   }, [])
 
   const customValueRenderer = (selected, _options) => {
