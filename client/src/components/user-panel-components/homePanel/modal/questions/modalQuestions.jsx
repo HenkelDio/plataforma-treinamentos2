@@ -4,6 +4,7 @@ import Axios from "axios"
 import { useState, useEffect } from "react";
 import InputBoxQuestion from "./inputBoxQuestion";
 import { BsPatchCheck } from "react-icons/bs"
+import { RiErrorWarningLine } from "react-icons/ri"
 
 export default function ModalQuestion(props) {
   const [questions, setQuestions] = useState([]);
@@ -104,6 +105,11 @@ export default function ModalQuestion(props) {
             </div>
 
           }
+
+          <div className={styles.disapproved}>
+            <p><RiErrorWarningLine /></p>
+            <p>Infelizmente, você não conseguiu tirar a nota necessária para completar o curso.</p>
+          </div>
           
 
           <button
