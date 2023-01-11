@@ -42,7 +42,10 @@ export default function ModalQuestion(props) {
       let headerModal = document.getElementById('headerModal')
       headerModal.style.display = "none"
     } else {
-      console.log("reprovado")
+      let disapproved = document.getElementById('disapproved')
+      disapproved.style.display = "flex"
+      let completeCouseButton = document.getElementById('completeCouseButton')
+      completeCouseButton.style.display = "none"
     }
 
     const route = `${require("../../../../../defaultRoute")}/changeStatus`;
@@ -69,7 +72,7 @@ export default function ModalQuestion(props) {
         id="modalQuestion"
         >
         <div id="headerModal" className={styles.headerModal}>
-          <h1>Questões de {props.data.data.data.course_title}</h1>
+          <h1>Questões de <b>{props.data.data.data.course_title}</b></h1>
         </div>
         <div class={styles.bodyModal}>
           {
@@ -84,10 +87,6 @@ export default function ModalQuestion(props) {
             (approved) && 
             <div className={styles.complete}>
 
-                <div className={styles.close}>
-                  <a href="#" onClick={props.closeModal}>Fechar Aba</a>
-                </div>
-
               <div className={styles.detailsComplete}>
                 <div className={styles.icon}>
                   <p><BsPatchCheck /></p>
@@ -95,6 +94,7 @@ export default function ModalQuestion(props) {
                 <div className={styles.details}>
                   <h1>Curso Completo!</h1>
                   <p>Parabéns pela dedicação!</p>
+                  <br />
                   <p>O certificado do curso está disponível na aba 'certificados'</p>
                 </div>
                 <div className={styles.downloadCertificate}>
@@ -106,9 +106,11 @@ export default function ModalQuestion(props) {
 
           }
 
-          <div className={styles.disapproved}>
+          <div id="disapproved" className={styles.disapproved}>
             <p><RiErrorWarningLine /></p>
             <p>Infelizmente, você não conseguiu tirar a nota necessária para completar o curso.</p>
+            <p><i>Entre em contato com sua empresa ou responsável para realizar a avaliação novamente.</i></p>
+            <a href="/painel-usuario">OK</a>
           </div>
           
 

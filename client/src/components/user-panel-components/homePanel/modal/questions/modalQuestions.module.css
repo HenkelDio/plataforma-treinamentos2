@@ -2,11 +2,20 @@
   width: 100%;
   height: 100%;
 
-  padding: 20px;
-
   background-color: white;
 
   overflow-y: auto;
+}
+
+.headerModal{
+  background-color: rgb(63, 63, 63);
+
+  padding: 20px;
+}
+
+.headerModal h1{
+  font-family: var(--inter);
+  color: rgb(222, 222, 222);
 }
 
 .inputBox{
@@ -21,6 +30,14 @@
 
 .questionContainer{
   margin-bottom: 50px;
+  padding: 10px;
+
+  border-radius: 10px;
+  background-color: rgb(208, 208, 208);
+}
+
+.questionContainer .titleQuestion{
+  color: rgb(34, 34, 34);
 }
 
 .questions{
@@ -34,12 +51,11 @@
 .boxQuestion input{
   margin-right: 5px;
 }
+.boxQuestion label{
+  cursor: pointer;
+}
 
 .completeCourse{
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-
     width: 250px;
     padding: 10px 0px;
 
@@ -98,7 +114,7 @@
   width: 100%;
   height: auto;
 
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -117,192 +133,12 @@
   font-size: 2rem;
 }
 
-.certificate{
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-
-  width: 1400px;
-  height: 850px;
-
-  min-width: 1400px;
-  min-height: 850px;
-
-  border: 2px solid black;
-
-  background-color: white;
-
-}
-
-.certificate .background{
-  position: absolute;
-
-  display: flex;
-
-  width: calc(50px + 20px);
-  height: 100%;
-}
-
-.certificate .background .asset1{
-  width: 50px;
-  height: 100%;
-
-  background-color: #076025;
-}
-
-.certificate .background .asset2{
-  width: 20px;
-  height: 100%;
-
-  background-color: #068731;
-}
-
-.certificate .container{
-  padding: 20px;
-  
-  position: relative;
-  
-} 
-
-.certificate .header h1{
-  text-align: left;
-
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 3rem;
-  color: #017828;
-
-  margin-left: 60px;
-  margin-bottom: 20px;
-}
-
-.certificate .container .content{
-  margin-left: 60px;
-}
-
-.containerContent{
-  display: flex;
-}
-
-.certificate .container .content h2{
-  margin-bottom: 10px;
-}
-
-.certificate .container .content .text{
-  margin-bottom: 20px;
-
-  font-size: 1.2rem;
-}
-
-.teoricalContent{
-  border: 1px solid black; 
-
-  max-width: 400px;
-  height: auto;
-}
-
-.teoricalContent p{
-  padding: 5px;
-}
-
-.praticalContent{
-  border: 1px solid black; 
-
-  max-width: 400px;
-  height: auto;
-}
-.praticalContent p{
-  padding: 5px;
-}
-
-.responsavel{
-  border: 1px solid black; 
-  padding:5px;
-
-  width: 400px;
-  text-align: center;
-}
-
-.first p:nth-child(4){
-  font-size: 1rem;
-}
-
-.first{
-  border: 1px solid black;
-  padding: 2px; 
-
-  margin-top: 2px;
-
-  font-size: 1rem;
-}
-
-.first ul li{
-  list-style: none;
-  font-size: 0.9rem;
-}
-
-.expiration{
+.disapproved a{
   margin-top: 10px;
-  background-color: rgb(234, 234, 234);
 
-  border-radius: 10px;
+  color: rgb(229, 229, 229);
 
-  padding: 10px;
-}
-
-.expiration h2{
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.signature{
-  position: absolute;
-  right: 30px;
-
-  margin-top: 20px;
-}
-
-.signature .signatureContainer{
-  display: flex;
-
-  align-items:stretch;
-}
-
-.signature .signatureContainer p{
-  border-top: 2px solid black;
-
-  width: 250px;
-
-  margin-top: 50px;
-  margin-left: 20px;
-}
-
-.footer{
-  position: absolute;
-  bottom: -190px;
-
-  margin-left: 55px;
-  padding: 10px;
-}
-
-.footer p:nth-child(1){
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-
-  color: #017828;
-}
-
-.footer hr{
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.close{
-  z-index: 999;
-
-  position: absolute;
-  top: 10px;
-  right: 50px;
+  font-size: 1.3rem;
 }
 
 @media (max-width: 700px){

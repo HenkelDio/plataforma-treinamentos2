@@ -33,11 +33,17 @@ export default function HomePanel() {
         </div>
         <div className={styles.bodyHomePanel}>
           {
+
+            (listTraining.length !== 0) &&
             listTraining.map((val) => {
               return <TrainingBox
                 data={val}
               />
             })
+          }
+          {
+             (listTraining.length === 0) && 
+             <p>Sem cursos matriculados no momento*</p>
           }
         </div>
       </div>
