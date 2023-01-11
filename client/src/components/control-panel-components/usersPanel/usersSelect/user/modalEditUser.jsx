@@ -80,7 +80,7 @@ export default function ModalEditUser(props) {
                 </div>
                 <div className={styles.boxInput}>
                     <label>Matrículado em</label>
-                    <SelectRegistration selected={selected} setSelected={setSelected} />
+                    <SelectRegistration selected={selected} setSelected={setSelected} userId={props.id} />
                 </div>
             </div>
             <div className={styles.footerModal}>

@@ -69,7 +69,6 @@ export default function ModalUser() {
         values.selectedCourses = selected
         await Axios.post("https://souzatreinamentosst.com.br:4000/registerUser", { values }).then(res => {
             if (res.data.gotRegistred === true) {
-                console.log(res.data)
                 let alertMessage = document.getElementById("alertMessage")
                 alertMessage.style.display = "none"
 
@@ -80,7 +79,6 @@ export default function ModalUser() {
                 },2000)
                 
             } else {
-                console.log(res.data)
                 let alertMessage = document.getElementById("alertMessage")
                 alertMessage.style.display = "block"
             }

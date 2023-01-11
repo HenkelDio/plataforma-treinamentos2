@@ -29,7 +29,8 @@ export default function ModalEditCompany(props){
         Axios.post(route, {
             type: "Companies",
             id: props.id,
-            userInfo
+            userInfo,
+            selected
         })
         setTimeout(()=>{
             alert("Usuário editado com sucesso")
@@ -78,7 +79,7 @@ export default function ModalEditCompany(props){
                 </div>
                 <div className={styles.boxInput}>
                     <label>Treinamentos disponíveis nessa empresa</label>
-                    <SelectRegistration selected={selected} setSelected={setSelected} />
+                    <SelectRegistration selected={selected} setSelected={setSelected} companyId={props.id} />
                 </div>
             </div>
             <div className={styles.footerModal}>

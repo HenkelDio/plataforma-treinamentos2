@@ -33,7 +33,7 @@ async function searchEmail(email) {
     for (let modelColumn of [
         ["Admins", "admin_email"],
         ["Companies", "company_email"],
-        ["U sers", "user_email"]
+        ["Users", "user_email"]
     ]) {
         if (await DB[modelColumn[0]].findOne({ where: { [modelColumn[1]]: email } })) {
             cond = "alreadyRegistred"
