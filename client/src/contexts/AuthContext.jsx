@@ -29,8 +29,7 @@ export const AuthProvider = ({ children }) =>{
 
   },[])
 
-  const login = (id, email, password, name, permission) => {
-    console.log("login auth", {id, email, name, permission})    
+  const login = (id, email, password, name, permission) => {  
 
     const loggedUser = {
         id,

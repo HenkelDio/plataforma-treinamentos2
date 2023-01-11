@@ -10,8 +10,6 @@ export default function ModalQuestion(props) {
   const [questions, setQuestions] = useState([]);
   const [approved, setApproved] = useState(false)
 
-  console.log(props)
-
   useEffect(_ => {
     const getQuestions = async _ => {
       const route = `${require("../../../../../defaultRoute")}/getCourseExam/${props.data.data.data.course_id}`

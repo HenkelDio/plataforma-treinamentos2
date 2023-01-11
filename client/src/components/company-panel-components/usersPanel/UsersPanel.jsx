@@ -21,7 +21,6 @@ export default function UsersPanel(props){
     
     useEffect(_ => {
         const getUsers = async _ => {
-            console.log(companyEmail)
             let route = `${require("../../../defaultRoute")}/getUsersCompany/${companyEmail}`
             await Axios.get(route).then(res => {
                 if (res) {
