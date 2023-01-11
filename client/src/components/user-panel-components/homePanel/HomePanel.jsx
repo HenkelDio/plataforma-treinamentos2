@@ -9,7 +9,7 @@ export default function HomePanel() {
     const getCourse = async _ => {
       let userType = "usualUser"
       let userId = JSON.parse(localStorage["user"]).id
-      let route = `${require("../../../defaultRoute")}/Courses/${userType}/${userId}`
+      let route = `${require("../../../defaultRoute")}/Courses`
       await Axios.post(route, {
         userType,
         selectCrets: {

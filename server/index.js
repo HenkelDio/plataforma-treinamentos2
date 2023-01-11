@@ -280,7 +280,11 @@ app.post("/editUser", async (req, res) => {
         }
     })
 
-    if (type === "Users") {
+    if (type === "Companies") {
+        
+        
+
+    } else if (type === "Users") {
 
         const selectedCoursesId = selectedCourses.map(course => (course.value));
         const coursesRegistrations = await DB.UsersRegistrations.findAll({
@@ -360,7 +364,7 @@ app.post("/createCourse", async (req, res) => {
 app.post("/Courses", async (req, res) => {
     const userType = req.body.userType;
     const selectCrets = req.body.selectCrets;
-    
+
     if (userType === "admin") {
 
         let courses = await DB.Courses.findAll();
@@ -502,7 +506,7 @@ app.post("/changeStatus", async (req, res) => {
 
 app.get("/getCompleteCourses/:userId", async (req, res) => {
     const userId = req.params.userId;
-    const userInfo = await DB.Users.findByPk( userId );
+    const userInfo = await DB.Users.findByPk(userId);
     const approveRegistrations = await DB.UsersRegistrations.findAll({ where: { user_id: userId, status: "aprovado" } });
     for (let registrationN in approveRegistrations) {
         const course = await DB.Courses.findOne({ where: { course_id: approveRegistrations[registrationN].dataValues.course_id } })
