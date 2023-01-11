@@ -282,7 +282,45 @@ app.post("/editUser", async (req, res) => {
 
     if (type === "Companies") {
         
-        
+        const selectedCoursesId = selectedCourses.map(course => (course.value));
+        const coursesRegistrations = await DB.CompaniesRegistrations.findAll({
+            where: {
+                company_id: id
+            }
+        });
+        const registrationsId = coursesRegistrations.map(course => (course.dataValues.course_id));
+        const company = await DB.Companies.findOne({
+            where: {
+                company_id: id
+            }
+        });
+
+        for (let courseId of registrationsId) {
+            if (!selectedCoursesId.includes(courseId)) {
+                DB.CompaniesRegistrations.destroy({
+                    where: {
+                        company_id: id,
+                        course_id: courseId
+                    }
+                })
+
+                DB.UsersRegistrations.destroy({
+                    where: {
+                        company_id: id,
+                        course_id: courseId
+                    }
+                });
+            }
+        } 
+
+        for (let courseId of selectedCoursesId) {
+            if (!registrationsId.includes(courseId)) {
+                DB.CompaniesRegistrations.create({
+                    course_id: courseId,
+                    company_id: company.dataValues.company_id
+                })
+            }
+        }
 
     } else if (type === "Users") {
 
