@@ -7,14 +7,13 @@ const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const { mkdirSync, openSync, appendFileSync, readdirSync,
     readFileSync, unlinkSync, closeSync, rmdirSync } = require("fs");
-const { allowedNodeEnvironmentFlags } = require("process");
 
 const certPath = "/etc/letsencrypt/live/souzatreinamentosst.com.br/cert.pem"
 const keyPath = "/etc/letsencrypt/live/souzatreinamentosst.com.br/privkey.pem"
 
 const options = {
     cert: readFileSync(certPath),
-    key: readFileSync(keyPath)
+    key: readFileSync(keyPath)  
 }
 
 const httpsPort = 4000
@@ -281,7 +280,7 @@ app.post("/editUser", async (req, res) => {
     })
 
     if (type === "Companies") {
-        
+
         const selectedCoursesId = selectedCourses.map(course => (course.value));
         const coursesRegistrations = await DB.CompaniesRegistrations.findAll({
             where: {
@@ -311,7 +310,7 @@ app.post("/editUser", async (req, res) => {
                     }
                 });
             }
-        } 
+        }
 
         for (let courseId of selectedCoursesId) {
             if (!registrationsId.includes(courseId)) {
