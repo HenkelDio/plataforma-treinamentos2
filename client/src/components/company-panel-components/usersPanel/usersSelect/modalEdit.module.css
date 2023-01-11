@@ -4,7 +4,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     
-    width: 30%;
+    width: 400px;
     height: 500px;
 
     padding: 20px;
@@ -29,6 +29,23 @@
     border-radius: 20px;
 }
 
+.selectRegistration{
+    text-align: left;
+
+    background-color: transparent;
+
+    border-radius: 5px;
+
+    color: rgb(72, 72, 72);
+    font-family: inherit;
+    font-size: inherit;
+
+    cursor:pointer;
+
+    line-height: inherit;
+
+    height: 50px;
+}
 
 
 .bodyModal{

@@ -1,7 +1,10 @@
 import Modal from "react-modal";
 import styles from "../modalEdit.module.css";
+import SelectRegistration from "./SelectRegistrations";
+import { useState } from "react";
 
 export default function ModalEditUser(props){
+    const [selected, setSelected] = useState([]);
 
     return(
         <Modal
@@ -38,6 +41,10 @@ export default function ModalEditUser(props){
                 <div className={styles.boxInput}>
                     <label htmlFor="id_company">Registrado na empresa</label>
                     <input type="text" name="id_company" defaultValue={props.id_company}></input>
+                </div>
+                <div className={styles.boxInput}>
+                    <label>Treinamentos disponíveis nessa empresa</label>
+                    <SelectRegistration selected={selected} setSelected={setSelected} />
                 </div>
             </div>
             <div className={styles.footerModal}>
