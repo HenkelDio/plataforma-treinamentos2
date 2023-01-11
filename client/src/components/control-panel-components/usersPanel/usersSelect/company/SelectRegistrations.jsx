@@ -14,7 +14,9 @@ const SelectRegistration = (props) => {
     const getCourses = async _ => {
       let userType = "admin"
       let userId = "0"
-      await Axios.get(`${require("../../../../../defaultRoute")}/Courses/${userType}/${userId}`).then(res => {
+      await Axios.post(`${require("../../../../../defaultRoute")}/Courses`, {
+        userType
+      }).then(res => {
         if (res) {
           let courses = []
           res.data.map(course => {

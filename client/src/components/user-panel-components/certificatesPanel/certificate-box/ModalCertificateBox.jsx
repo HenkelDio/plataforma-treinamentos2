@@ -5,23 +5,13 @@ import * as htmlToImage from 'html-to-image';
 import { toJpeg } from 'html-to-image';
 import CertificatePdf from '../../homePanel/modal/certificate-html/CertificatePdf';
 import { PDFViewer, PDFDownloadLink, pdf } from '@react-pdf/renderer';
-import * as FileSaver from "file-saver";
+import FileSaver from "file-saver"
 
 
 export default function ModalCertificateBox(props){
 
   const { data } = props
   console.log(data)
-
-  // function getCertificate(){
-  //   htmlToImage.toJpeg(document.getElementById('certificateContainer'), { quality: 1.0 })
-  // .then(function (dataUrl) {
-  //   var link = document.createElement('a');
-  //   link.download = 'certificado.jpeg';
-  //   link.href = dataUrl;
-  //   link.click();
-  // });
-  // }
 
   const generatePdfDocument = async (data, fileName) =>{
     const blob = await pdf(

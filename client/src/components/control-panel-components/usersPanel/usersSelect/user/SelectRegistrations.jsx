@@ -13,7 +13,9 @@ const SelectRegistration = (props) => {
     const getCourses = async _ => {
       let userType = "admin"
       let userId = "0"
-      await Axios.get(`${require("../../../../../defaultRoute")}/Courses/${userType}/${userId}`).then(res => {
+      await Axios.post(`${require("../../../../../defaultRoute")}/Courses`, {
+        userType
+      }).then(res => {
         if (res) {
           setOptions(res.data.map(course => ({ label: course.course_title, value: course.course_id })))
         }
@@ -26,8 +28,13 @@ const SelectRegistration = (props) => {
     const getUserRegistrations = async _ => {
       let userType = "usualUser";
       let userId = JSON.parse(localStorage["user"]).id
-      let route = `${require("../../../../../defaultRoute")}/Courses/${userType}/${userId}`
-      await Axios.get(route).then(res => {
+      let route = `${require("../../../../../defaultRoute")}/Courses`
+      await Axios.post(route, {
+        userType,
+        selectCrets: {
+          user_id: userId
+        }
+      }).then(res => {
         if (res) {
           console.log(res)
           setSelected(res.data.map(registration => ({ label: registration.course_title, value: registration.course_id })))

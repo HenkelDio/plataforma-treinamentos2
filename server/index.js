@@ -359,8 +359,8 @@ app.post("/createCourse", async (req, res) => {
 
 app.post("/Courses", async (req, res) => {
     const userType = req.body.userType;
-    const userId = req.body.userId
-    const selectCrets = req.body.selectCrets
+    const selectCrets = req.body.selectCrets;
+    
     if (userType === "admin") {
 
         let courses = await DB.Courses.findAll();
@@ -373,7 +373,7 @@ app.post("/Courses", async (req, res) => {
     } else if (userType === "company") {
         let courses = []
 
-        for (let companyRegister of await DB.CompaniesRegistrations.findAll({ where: { company_id: userId } })) {
+        for (let companyRegister of await DB.CompaniesRegistrations.findAll({ where: selectCrets })) {
             let course = await DB.Courses.findOne({ where: { course_id: companyRegister.dataValues.course_id } });
             course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "utf8");
             courses.push(course)
@@ -389,7 +389,6 @@ app.post("/Courses", async (req, res) => {
             course.dataValues.content = readFileSync(course.dataValues.content_path + "/2." + course.dataValues.course_title.replace(/[ ]/g, "_").toLowerCase() + ".txt", "utf8");
             courses.push(course)
         }
-
         res.send(courses)
     }
 });

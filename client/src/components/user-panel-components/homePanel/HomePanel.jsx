@@ -10,7 +10,13 @@ export default function HomePanel() {
       let userType = "usualUser"
       let userId = JSON.parse(localStorage["user"]).id
       let route = `${require("../../../defaultRoute")}/Courses/${userType}/${userId}`
-      await Axios.get(route).then(res => {
+      await Axios.post(route, {
+        userType,
+        selectCrets: {
+          user_id: userId,
+          status: "incompleto"
+        }
+      }).then(res => {
         if (res) {
           setListTraining(res.data)
         }
