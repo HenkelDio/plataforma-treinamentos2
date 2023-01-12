@@ -76,7 +76,7 @@ export default function ModalEditUser(props) {
                 </div>
                 <div className={styles.boxInput}>
                     <label htmlFor="id_company">Registrado na empresa</label>
-                    <input type="text" name="id_company" disabled defaultValue={props.id_company}></input>
+                    <input type="text" name="id_company" disabled defaultValue={props.companyName}></input>
                 </div>
                 <div className={styles.boxInput}>
                     <label>Matrículado em</label>

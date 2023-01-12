@@ -24,6 +24,7 @@ export default function User(props){
         id_company={props.id_company}
         register={props.register}
         phone={props.phone}
+        companyName={props.companyName}
         />
         
         <div onClick={openModal} className={styles.card}>

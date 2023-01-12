@@ -135,6 +135,7 @@ export default function UsersPanel(props) {
                                 register={val.user_register}
                                 phone={val.user_telephone}
                                 id_company={val.user_company_id}
+                                companyName={val.companyName}
                             />
                         })
                     }
