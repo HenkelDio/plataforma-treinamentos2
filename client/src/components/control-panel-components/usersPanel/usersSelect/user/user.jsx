@@ -12,7 +12,7 @@ export default function User(props){
     const closeModal = () =>{
         setIsOpen(false)
     }
-
+    
     return(
         <>
         <ModalEditUser 
