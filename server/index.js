@@ -215,9 +215,10 @@ app.get("/getUsersCompany/:companyEmail", async (req, res) => {
             user_company_id: companyId
         }
     })
-    usersCompany.map(userCompany => {
-        return userCompany.dataValues
-    })
+    for (let userN in usersCompany) {
+        const company = await DB.Companies.findByPk(usersCompany[userN].dataValues.user_company_id)
+        usersCompany[userN].dataValues.company_name = company.dataValues.company_name
+    }
 
     res.send(usersCompany)
 
