@@ -138,11 +138,15 @@ Font.register({
 function CertificatePdf(props){
   
   const { data } = props
-  const {certificateInfo} = data
+  const {certificateInfo, updatedAt} = data
 
   const jsonCertificateInfo = JSON.parse(certificateInfo)
-
   const { norm, teoricContent, praticalContent} = jsonCertificateInfo
+
+  const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+
+  const cpfMask = data.userInformation.user_register.slice(0,3) + "." + data.userInformation.user_register.slice(2,5) + "." + data.userInformation.user_register.slice(5,8) + "-" + data.userInformation.user_register.slice(8,10)
+  
 
 return(
 <>
@@ -161,12 +165,12 @@ return(
         </View>
         <View>
           <Text>
-            Certifica que, {data.userInformation.user_name}, CPF: {data.userInformation.user_register}. Participou do treinamento de {data.courseInformation.course_title}, de acordo com a {norm}, com, carga horária de {data.courseInformation.course_hours} horas.
+            Certifica que, {data.userInformation.user_name}, CPF: {cpfMask}. Participou do treinamento de {data.courseInformation.course_title}, de acordo com a {norm}, com, carga horária de {data.courseInformation.course_hours} horas.
           </Text>
         </View>
         <View style={styles.date}>
           <Text>
-            07 de Janeiro de 2023
+            {updatedAt.slice(8,10) + " de " + months[(Number(updatedAt.slice(5,7)) - 1)] + " de " + updatedAt.slice(0,4)}
           </Text>
         </View>
         <View style={styles.assign}>

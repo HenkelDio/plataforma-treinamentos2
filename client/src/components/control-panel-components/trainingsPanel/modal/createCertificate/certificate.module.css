@@ -32,6 +32,14 @@
 
 }
 
+.errorMessage{
+  text-align: left;
+  font-size: 20px;
+  color: red;
+  opacity: 0.8;
+  font-size: 1rem !important; 
+}
+
 @media (max-width: 700px){
   .certificate{
     padding: 0;
