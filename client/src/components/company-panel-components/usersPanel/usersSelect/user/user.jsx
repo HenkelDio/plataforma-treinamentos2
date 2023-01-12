@@ -5,8 +5,6 @@ import ModalEditUser from "./modalEditUser"
 export default function User(props){
     const [modalIsOpen, setIsOpen] = useState(false);
 
-    console.log("user", props)
-
     const openModal = () =>{
         setIsOpen(true)
     }

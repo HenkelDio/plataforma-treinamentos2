@@ -4,8 +4,6 @@ import Axios from "axios";
 
 export default function ModalDeleteTraining(props) {
 
-  console.log(props.data)
-
   function deleteCourse() {
     let { course_id } =  props.data
     let route = `${require("../../../../../defaultRoute")}/deleteCourse/${course_id}`

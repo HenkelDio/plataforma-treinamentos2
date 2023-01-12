@@ -54,7 +54,6 @@ export default function UsersPanel(props) {
             await Axios.get(`${require("../../../defaultRoute")}/getReports`).then(res => {
                 if (res) {
                     setReportPath(res.data.reportPath)
-                    console.log(res.data.reportPath)
                 }
             })
         }

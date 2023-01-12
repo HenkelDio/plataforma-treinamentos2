@@ -11,7 +11,6 @@ import FileSaver from "file-saver"
 export default function ModalCertificateBox(props){
 
   const { data } = props
-  console.log(data)
 
   const generatePdfDocument = async (data, fileName) =>{
     const blob = await pdf(

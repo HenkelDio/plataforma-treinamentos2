@@ -61,7 +61,6 @@ export default function ModalCreateTraining(props){
                     document.location.reload()
                 },2000)
             } else {
-                console.log(res.data.registeredCourse)
                 let alertMessage = document.getElementById("alertMessage")
                 alertMessage.style.display = "block"
             }
