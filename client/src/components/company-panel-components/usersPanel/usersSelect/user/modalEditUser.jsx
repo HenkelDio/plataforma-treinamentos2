@@ -63,11 +63,11 @@ export default function ModalEditUser(props) {
                 </div>
                 <div className={styles.boxInput}>
                     <label htmlFor="id_company">Registrado na empresa</label>
-                    <input type="text" name="id_company" disabled defaultValue={props.id_company}></input>
+                    <input type="text" name="id_company" disabled defaultValue={props.companyName}></input>
                 </div>
                 <div className={styles.boxInput}>
                     <label>Treinamentos disponíveis nessa empresa</label>
-                    <SelectRegistration selected={selected} setSelected={setSelected} userId={props.id} />
+                    <SelectRegistration selected={selected} setSelected={setSelected} userId={props.id} companyId={props.id_company} />
                 </div>
             </div>
             <div className={styles.footerModal}>

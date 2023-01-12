@@ -12,7 +12,7 @@ export default function User(props){
     const closeModal = () =>{
         setIsOpen(false)
     }
-
+    
     return(
         <>
         <ModalEditUser 
@@ -24,6 +24,7 @@ export default function User(props){
         id_company={props.data.user_company_id}
         register={props.data.user_register}
         phone={props.data.user_telephone}
+        companyName={props.data.company_name}
         />
         
         <div onClick={openModal} className={styles.card}>

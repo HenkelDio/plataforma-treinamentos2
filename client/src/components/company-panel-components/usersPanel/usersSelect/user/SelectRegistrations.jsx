@@ -5,26 +5,21 @@ import styles from "../modalEdit.module.css";
 
 const SelectRegistration = (props) => {
 
-  const { selected, setSelected, userId } = props
+  const { selected, setSelected, userId, companyId } = props
 
   const [options, setOptions] = useState([]);
   
   useEffect(_ => {
     const getCourses = async _ => {
       let userType = "company"
-      let userId = props.companyId
       await Axios.post(`${require("../../../../../defaultRoute")}/Courses`, {
         userType,
         selectCrets: {
-          company_id: userId
+          company_id: companyId
         }
       }).then(res => {
         if (res) {
-          let courses = []
-          res.data.map(course => {
-            courses.push({ label: course.course_title, value: course.course_id })
-          })
-          setOptions(courses)
+          setOptions(res.data.map(course => ({ label: course.course_title, value: course.course_id })))
         }
       })
     }
