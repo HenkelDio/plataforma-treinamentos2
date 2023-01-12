@@ -17,13 +17,6 @@ export default function CertificatePanel({ onSubmit }){
 
   }, [])
 
-  console.log()
-
-  const setPageCertificate = () => {
-    setCertificatePage("certificate");
-    onSubmit(certificatePage);
-  };
-
   return(
     <>
       <div className={styles.CertificatePanel}>
