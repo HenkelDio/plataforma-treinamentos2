@@ -15,7 +15,7 @@ export default function ModalCreateTraining(props){
     const [hoursCourse, setHoursCourse] = useState("");
     const [courseFile, setCourseFile] = useState();
     const [questions, setQuestions] = useState([{ "num": 0, "pergunta": "", "alternativas": {"a": "", "b": "", "c": "", "d": ""}, "resposta": "a" }])
-    const [certificateInformation, setCertificateInformation] = useState({"norm": "", "teoricContent": "", "praticalContent": ""})
+    const [certificateInformation, setCertificateInformation] = useState({"norm": "", "teoricContent": "", "praticalContent": "", "certificateExpiration": ""})
 
     const closeModal = () =>{
         props.closeModal()

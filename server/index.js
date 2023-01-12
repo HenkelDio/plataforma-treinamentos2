@@ -559,6 +559,5 @@ app.get("/getCompleteCourses/:userId", async (req, res) => {
         approveRegistrations[registrationN].dataValues.courseInformation = course.dataValues;
         approveRegistrations[registrationN].dataValues.userInformation = userInfo.dataValues;
     }
-    console.log(approveRegistrations)
     res.send(approveRegistrations)
 });

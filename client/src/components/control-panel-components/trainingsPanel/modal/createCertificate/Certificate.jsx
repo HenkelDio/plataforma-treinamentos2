@@ -42,7 +42,7 @@ export default function Certificate(props) {
               </div>
               <div className={styles.inputBox}>
                 <label htmlFor="validade">Validade de:</label>
-                <Field name="validade" placeholder="ex. 2"></Field>
+                <Field name="validade" placeholder="ex. 2" onChange={e => setCertInfo(e.target.value, "certificateExpiration")}></Field>
                 <ErrorMessage 
                 component="p"
                 name="validade"
