@@ -44,6 +44,13 @@ export default function ContactPage(){
          initialValues={{}}
          >
           <Form className={styles.form}>
+            <form
+            action="https://formsubmit.co/willianhenkel@gmail.com"
+            method="POST"
+            >
+            <div className={styles.inputBox}>
+              <Field name="email" className={styles.email} placeholder="Seu e-mail"></Field>
+            </div>
             <div className={styles.inputBox}>
               <Field name="subject" className={styles.subject} placeholder="Assunto"></Field>
             </div>
@@ -52,7 +59,7 @@ export default function ContactPage(){
             </div>
 
             <button className={styles.sendEmail} type="submit">Enviar</button>
-
+            </form>
           </Form>
          </Formik>
         </div>
