@@ -141,9 +141,9 @@ function CertificatePdf(props){
   const {certificateInfo, updatedAt} = data
 
   const jsonCertificateInfo = JSON.parse(certificateInfo)
-  const { norm, teoricContent, praticalContent, CertificateExpiration} = jsonCertificateInfo
+  const { norm, teoricContent, praticalContent, certificateExpiration} = jsonCertificateInfo
 
-  const expiration = Number(CertificateExpiration);
+  const expiration = Number(certificateExpiration);
 
   const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 
