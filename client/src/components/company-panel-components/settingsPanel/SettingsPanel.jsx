@@ -30,10 +30,7 @@ export default function SettingsPanel(){
                         <div style={{marginBottom: "10px"}} className={styles.type}>
                             <h4>Empresa</h4>
                         </div>
-                        <div className={styles.options}>
-                            <button>Editar</button>
-                            <button>Sair da conta</button>
-                        </div>
+
                     </div>
                     
                 </div>

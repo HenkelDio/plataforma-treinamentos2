@@ -39,37 +39,6 @@
   border-radius: 100px;
 }
 
-.options button{
-  width: 150px;
-  padding: 7px;
-
-  border: none;
-  border-radius: 20px;
-
-  cursor: pointer;
-
-  margin-right: 10px;
-
-}
-
-.options button:nth-child(1){
-  background-color: rgba(2, 2, 255, 0.649);
-  color: white;
-}
-
-.options button:nth-child(1):hover{
-  background-color: rgb(2, 2, 255);
-}
-
-.options button:nth-child(2){
-  background-color: rgba(255, 2, 2, 0.649);
-  color: white;
-}
-
-.options button:nth-child(2):hover{
-  background-color: rgb(255, 2, 2);
-}
-
 @media (max-width: 700px){
   .bodySettings .profileBox{
     justify-content: center;
@@ -82,19 +51,5 @@
   .bodySettings .profileBox .profileData{
     margin-left: 0;
     margin-top: 20px;
-  }
-  .options{
-    margin-top: 50px;
-
-    display: flex;
-    flex-direction: column;
-  }
-  .options button{
-    width: 100%;
-    height: 50px;
-
-    font-size: 1.2rem;
-
-    margin-bottom: 20px;
   }
 }
