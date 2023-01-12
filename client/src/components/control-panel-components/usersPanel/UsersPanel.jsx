@@ -30,6 +30,7 @@ export default function UsersPanel(props) {
             await Axios.get(route).then(res => {
                 if (res) {
                     setListUsers(res.data)
+                    console.log(res.data)
                 }
             })
         }
@@ -134,6 +135,7 @@ export default function UsersPanel(props) {
                                 register={val.user_register}
                                 phone={val.user_telephone}
                                 id_company={val.user_company_id}
+                                companyName={val.company_name}
                             />
                         })
                     }
