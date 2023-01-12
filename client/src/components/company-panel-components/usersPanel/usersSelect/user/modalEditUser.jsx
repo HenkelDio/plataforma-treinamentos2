@@ -2,6 +2,7 @@ import Modal from "react-modal";
 import styles from "../modalEdit.module.css";
 import SelectRegistration from "./SelectRegistrations";
 import { useState } from "react";
+import Axios from "axios"
 
 export default function ModalEditUser(props) {
     const [userInfo, setUserInfo] = useState({});
