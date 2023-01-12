@@ -9,7 +9,6 @@ import ContactPage from "../pages/landingPage/contact/ContactPage";
 import TrainingsPage from "../pages/landingPage/trainings/Trainings";
 import { AuthProvider } from "../contexts/AuthContext";
 import { AuthContext } from "../contexts/AuthContext";
-import { QuestionProvider } from "../contexts/QuestionContext";
 import { useContext } from "react";
 
 const PrivateRoutes = () => {
@@ -79,7 +78,6 @@ const PrivateRoutes = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/painel" element={<PrivateAdmin><ControlPanel /></PrivateAdmin>} />
           <Route path="/painel-empresa" element={<PrivateCompany><CompanyPanel /></PrivateCompany>} />
-          <Route path="/painel-usuario" element={<PrivateUser><QuestionProvider><UserPanel /></QuestionProvider></PrivateUser>} />
         </Routes>
       </AuthProvider>
     </Router>

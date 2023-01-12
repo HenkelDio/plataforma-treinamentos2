@@ -30,6 +30,7 @@ export default function UsersPanel(props) {
             await Axios.get(route).then(res => {
                 if (res) {
                     setListUsers(res.data)
+                    console.log(res.data)
                 }
             })
         }

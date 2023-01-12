@@ -191,7 +191,7 @@ app.get("/getUsers/:userType", async (req, res) => {
     let users = await DB[userType].findAll();
     if (userType === "Users") {
         for (let userN in users) {
-            users[userN].dataValues.company_name = await DB.Companies.findByPk(users[userN].dataValues.company_id)
+            users[userN].dataValues.company_name = await DB.Companies.findByPk(users[userN].dataValues.user_company_id)
         }
     }
     res.send(users);
