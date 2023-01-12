@@ -332,7 +332,7 @@ return(
           SOUZA SEGURANÇA DO TRABALHO
         </Text>
         <Text>
-          VALIDADE ATÉ {updatedAt.slice(8,10) + " de " + months[(Number(updatedAt.slice(5,7)) - 1)] + " de " + expiration + Number(updatedAt.slice(0,4))}
+          VALIDADE ATÉ {updatedAt.slice(8,10) + " de " + months[(Number(updatedAt.slice(5,7)) - 1)] + " de " + (expiration + Number(updatedAt.slice(0,4)))}
         </Text>
       </View>
     </Page>
