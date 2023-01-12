@@ -1,10 +1,7 @@
 import Modal from 'react-modal';
 import styles from '../Certificate.module.css'
-import Certificate from '../../homePanel/modal/certificate-html/Certificate';
-import * as htmlToImage from 'html-to-image';
-import { toJpeg } from 'html-to-image';
 import CertificatePdf from '../../homePanel/modal/certificate-html/CertificatePdf';
-import { PDFViewer, PDFDownloadLink, pdf } from '@react-pdf/renderer';
+import { pdf } from '@react-pdf/renderer';
 import FileSaver from "file-saver"
 
 
