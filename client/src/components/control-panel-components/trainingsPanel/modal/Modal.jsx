@@ -133,7 +133,7 @@ export default function ModalCreateTraining(props){
                                 </div>
                             </div>
 
-                            <p>Adicione o certificado</p>
+                            <p>Adicione as informações do certificado</p>
                             <Certificate certificateInformation={certificateInformation} setCertificateInformation={setCertificateInformation} />
 
 

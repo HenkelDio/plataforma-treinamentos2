@@ -1,32 +1,14 @@
 import styles from './settingsPanel.module.css';
-import { useState } from 'react';
 import { CgProfile } from "react-icons/cg"
 import { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthContext';
-import ModalEditUser from './modal/edit-user/modal';
 
 export default function SettingsPanel(props){
-    const [modalEditIsOpen, setIsOpenEdit] = useState(false);
 
     const { name, email } = useContext(AuthContext)
 
-    const openModalEdit = () =>{
-        setIsOpenEdit(true)
-    }
-
-    const closeModalEdit = () =>{
-        setIsOpenEdit(false)
-    }
-
     return(
         <div className={styles.settingsPanel}>
-
-        <ModalEditUser 
-            openModal={modalEditIsOpen} 
-            closeModal={closeModalEdit} 
-            name={name}
-            email={email}
-        />  
 
             <div className={styles.headerSettings}>
                 <h2>Configurações</h2>
@@ -47,9 +29,6 @@ export default function SettingsPanel(props){
                         </div>
                         <div style={{marginBottom: "10px"}} className={styles.type}>
                             <h4>Administrador</h4>
-                        </div>
-                        <div className={styles.options}>
-                            <button onClick={openModalEdit}>Editar</button>
                         </div>
                     </div>
                     

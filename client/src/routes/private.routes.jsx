@@ -78,6 +78,7 @@ const PrivateRoutes = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/painel" element={<PrivateAdmin><ControlPanel /></PrivateAdmin>} />
           <Route path="/painel-empresa" element={<PrivateCompany><CompanyPanel /></PrivateCompany>} />
+          <Route path="/painel-usuario" element={<PrivateUser><UserPanel /></PrivateUser>} />
         </Routes>
       </AuthProvider>
     </Router>
