@@ -1,6 +1,7 @@
 import styles from '../login.module.css'
 import { useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import Loading from '../../../components/loading/Loading';
 import * as yup from "yup";
 import Axios from "axios";
 
@@ -8,6 +9,7 @@ export default function InsertNewPassword(props) {
 
   const { userEmail, userType } = props
   const [showPassword, setShowPassword] = useState("password")
+  const [loading, setLoading] = useState(false)
 
   const showPasswordHandle = () => {
     let showPass = document.getElementById("showPass")
@@ -28,6 +30,7 @@ export default function InsertNewPassword(props) {
   });
 
   const submitPassword = (values) => {
+    setLoading(true)
     const route = `${require("../../../defaultRoute")}/redefinePassword`
     const data = {
       userEmail: userEmail,
@@ -35,6 +38,11 @@ export default function InsertNewPassword(props) {
       newPassword: values.password
     }
     Axios.post(route, data)
+    setTimeout(_=>{
+      setLoading(false)
+      window.location.reload()
+    }, 2000)
+
   }
 
 
@@ -46,6 +54,12 @@ export default function InsertNewPassword(props) {
         onSubmit={submitPassword}
       >
         <Form className={styles.loginForm}>
+
+        {
+          (loading) &&
+          <Loading />
+        }
+
         <label htmlFor="email">Criar nova senha</label>
           <div className={styles.inputBox}>
             <Field

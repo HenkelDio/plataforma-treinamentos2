@@ -1,9 +1,12 @@
 .trainingBox{
   display: flex;
-  justify-content:left;
+  justify-content:center;
   align-items: center;
+  flex-direction: column;
 
-  width: 500px;
+  width: 300px;
+  height: 200px;
+
   padding: 20px 10px;
 
   font-size: 1.3rem;
@@ -14,7 +17,7 @@
 
   cursor: pointer;
   color: white;
-  background-color: #017828;
+  background-color: #01a738ea;
 
   transition: 0.1s;
 
@@ -22,6 +25,10 @@
 .trainingBox:hover{
   background-color: var(--button-color-hover);
   padding: 22px 10px;
+}
+
+.trainingBox p:nth-child(1){
+  font-size: 3rem;
 }
 
 
