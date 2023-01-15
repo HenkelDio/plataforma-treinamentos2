@@ -60,7 +60,7 @@ export default function Login() {
           <div className={styles.loginForm}>
             {
               (!emailExists && !passwordExists) &&
-              <InsertEmail setEmailExists={setEmailExists} setPasswordExists={setPasswordExists} setUserType={setUserType} setUserEmail={setUserEmail} />
+              <InsertEmail setEmailExists={setEmailExists} setPasswordExists={setPasswordExists} setUserType={setUserType} setUserEmail={setUserEmail} setNewPassword={setNewPassword} />
             }
             {
               (emailExists && passwordExists) &&
