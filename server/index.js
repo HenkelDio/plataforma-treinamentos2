@@ -28,7 +28,7 @@ app.use(express.static(`${__dirname}/relatorios`));
 const DB = require("./STDB").models;
 
 async function searchEmail(email) {
-    let cond = ["notFound"]
+    let cond = "notFound"
     for (let modelColumn of [
         ["Admins", "admin_email", "admin_password"],
         ["Companies", "company_email", "company_password"],
@@ -108,7 +108,7 @@ app.post("/registerAdmin", async (req, res) => {
     let values = req.body.values;
     let DBColumns = ["name", "email", "password"];
     if (valuesVerification(values, DBColumns)) {
-        if (await searchEmail(values.email)[1] === "notFound") {
+        if (await searchEmail(values.email) === "notFound") {
             await DB.Admins.create({
                 admin_name: values.name,
                 admin_email: values.email,
@@ -128,7 +128,7 @@ app.post("/registerCompany", async (req, res) => {
     let values = req.body.values
     let DBColumns = ["name", "email", "cnpj", "telephone", "contact"]
     if (valuesVerification(values, DBColumns)) {
-        if (await searchEmail(values.email)[1] === "notFound") {
+        if (await searchEmail(values.email) === "notFound") {
             let company = await DB.Companies.create({
                 company_name: values.name,
                 company_email: values.email,
@@ -158,7 +158,8 @@ app.post("/registerUser", async (req, res) => {
     let DBColumns = ["name", "email", "cpf", "telephone", "companyId"]
 
     if (valuesVerification(values, DBColumns)) {
-        if (await searchEmail(values.email)[1] === "notFound") {
+        console.log(await searchEmail(values.email), await searchEmail(values.email)[0], await searchEmail(values.email)[0] === "notFound")
+        if (await searchEmail(values.email) === "notFound") {
             let user = await DB.Users.create({
                 user_name: values.name,
                 user_email: values.email,
