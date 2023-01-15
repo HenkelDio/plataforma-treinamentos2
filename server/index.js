@@ -104,6 +104,14 @@ app.post("/redefinePassword", async (req, res) => {
     res.send()
 });
 
+app.post("/resetPassword", async (req, res) => {
+    const userId = req.body.userId;
+    const userType = req.body.userType
+
+    console.log(userType)
+
+})
+
 app.post("/registerAdmin", async (req, res) => {
     let values = req.body.values;
     let DBColumns = ["name", "email", "password"];

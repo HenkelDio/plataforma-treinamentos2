@@ -4,6 +4,18 @@ import Axios from "axios";
 
 export default function ModalConfirmPassword(props) {
 
+  function redefinePassword() {
+    const route = `${require("../../../../../defaultRoute")}/resetPassword`
+    const data = {
+      userId: props.userId,
+      userType: JSON.parse(localStorage["user"])
+    }
+
+    Axios.post(route, data).then(res => {
+      console.log(res)
+    })
+  }
+
   return(
     <>
     <Modal
@@ -17,7 +29,7 @@ export default function ModalConfirmPassword(props) {
           <div className={styles.containerModalDeleteUser}>
             <h2>Tem certeza que gostaria de redefinir a senha desse usuário?</h2>
             <div className={styles.optionsModalDeleteUser}>
-              <button>Sim, redefinir</button>
+              <button onClick={redefinePassword} >Sim, redefinir</button>
               <button onClick={props.closeModal}>Não</button>
             </div>
             <div id="sucessMessage" className={styles.sucessMessage}>

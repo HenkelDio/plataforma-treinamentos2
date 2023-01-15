@@ -62,6 +62,7 @@ export default function ModalEditCompany(props){
             
             <ModalConfirmPassword openModal={modalConfirmPasswordIsOpen} 
             closeModal={closeModalConfirmPassword}
+            userId={props.id}
             />
 
             <div className={styles.headerModal}>
