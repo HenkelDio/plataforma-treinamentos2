@@ -107,9 +107,17 @@ app.post("/redefinePassword", async (req, res) => {
 app.post("/resetPassword", async (req, res) => {
     const userId = req.body.userId;
     const userType = req.body.userType
+    const userDB = (userType === "admin" ? "Admins" : (userType === "company" ? "Companies" : "Users"));
+    const idColumn = (userType === "admin" ? "admin_id" : (userType === "company" ? "company_id" : "user_id"));
+    const passwordCol = (userDB === "Admins" ? "admin_password" : (userDB === "Companies" ? "company_password" : "user_password"));
 
-    console.log(userType)
+    DB[userDB].update({ [passwordCol]: null }, {
+        where: {
+            [idColumn]: userId
+        }
+    })
 
+    res.send()
 })
 
 app.post("/registerAdmin", async (req, res) => {
