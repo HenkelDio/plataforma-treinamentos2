@@ -56,9 +56,6 @@ export default function ModalUser() {
         email: yup.string()
         .email("Digite um e-mail válido")
         .required("O campo 'e-mail' é obrigatório"),
-        password: yup.string()
-        .min(6, "Campo 'senha' muito curto (min. 6)")
-        .required("O campo 'senha' é obrigatório"),
         cpf: yup.string()
         .max(14, 'Digite no máximo 11 digitos')
     })
@@ -70,6 +67,7 @@ export default function ModalUser() {
         values.cpf = values.cpf.replace(/[. -]/g,'')
         let route = `${require("../../../../../../defaultRoute")}/registerUser`
         await Axios.post(route, { values }).then(res => {
+            console.log(res)
             if (res.data.gotRegistred === true) {
                 let alertMessage = document.getElementById("alertMessage")
                 alertMessage.style.display = "none"

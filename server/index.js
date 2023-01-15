@@ -155,7 +155,7 @@ app.post("/registerCompany", async (req, res) => {
 
 app.post("/registerUser", async (req, res) => {
     let values = req.body.values
-    let DBColumns = ["name", "email", "cpf", "telephone", "companyId", "password"]
+    let DBColumns = ["name", "email", "cpf", "telephone", "companyId"]
 
     if (valuesVerification(values, DBColumns)) {
         if (await searchEmail(values.email)[1] === "notFound") {

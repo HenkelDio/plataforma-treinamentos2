@@ -57,9 +57,6 @@ export default function ModalCompany() {
         email: yup.string()
         .email("Digite um e-mail válido")
         .required("O campo 'e-mail' é obrigatório"),
-        password: yup.string()
-        .min(6, "Campo 'senha' muito curto (min. 6)")
-        .required("O campo 'senha' é obrigatório"),
         telephone: yup.string()
         .min(16, "Digite no máximo 16 digitos")
         .max(16, "Digite no máximo 16 digitos"),
