@@ -15,7 +15,7 @@ function Header({onSubmit}){
     const [settingsPage, setSettingsPage] = useState('settings')
     const [modalIsOpen, setIsOpen] = useState(false);
 
-    const { name, logoutUser } = useContext(AuthContext)
+    const { name } = useContext(AuthContext)
 
     const openModal = () =>{
         setIsOpen(true)
@@ -135,7 +135,7 @@ function Header({onSubmit}){
 
             <div className={styles.innerHeader}>
                 <div className={styles.logo}>
-                    <img src={logo}></img>
+                    <img src={logo} alt="logo"></img>
                 </div>
                 <div className={styles.menu} id="menu">
                     <ul>

@@ -6,7 +6,7 @@ import Axios from "axios";
 import Loading from '../../../components/loading/Loading';
 
 export default function InsertEmail(props) {
-  const { setUserEmail, setEmailExists, setPasswordExists, setUserType, setNewPassword, setEmailValue } = props;
+  const { setUserEmail, setEmailExists, setPasswordExists, setUserType, setNewPassword } = props;
   const [loading, setLoading] = useState(false)
 
   const validationEmail = yup.object().shape({
