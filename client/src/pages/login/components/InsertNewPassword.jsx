@@ -4,7 +4,9 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import Axios from "axios";
 
-export default function InsertNewPassword() {
+export default function InsertNewPassword(props) {
+
+  const { userEmail, userType } = props
   const [showPassword, setShowPassword] = useState("password")
 
   const showPasswordHandle = () => {
@@ -28,8 +30,11 @@ export default function InsertNewPassword() {
   const submitPassword = (values) => {
     const route = `${require("../../../defaultRoute")}/redefinePassword`
     const data = {
-      
+      userEmail: userEmail,
+      userType: userType,
+      newPassword: values.password
     }
+    Axios.post(route, data)
   }
 
 
@@ -66,7 +71,7 @@ export default function InsertNewPassword() {
                 type="checkbox"
                 onClick={showPasswordHandle}
               ></input>
-              <label htmlFor="showPass">mostrar senha</label>
+              <label htmlFor="showPass">Mostrar senha</label>
             </div>
             <ErrorMessage
               name="password"
@@ -78,8 +83,6 @@ export default function InsertNewPassword() {
               component="p"
               className={styles.errorMessageNewPassword}
             />
-            
-           
           
           <div className={styles.loginButton}>
             <button type="submit">CRIAR SENHA</button>

@@ -23,9 +23,9 @@ export default function InsertEmail(props) {
       if (res) {
         setUserEmail(values.email);
         setEmailExists(res.data.emailExists);
-        setPasswordExists(false);
+        setPasswordExists(res.data.passwordExists);
         setUserType(res.data.userType);
-        setNewPassword(true)
+        setNewPassword(!res.data.passwordExists)
       }
     })
   }
