@@ -124,11 +124,6 @@
     position: relative;
 }
 
-.loginBody .loginForm .inputBox{
-    position: relative;
-}
-
-
 .loginBody .loginForm .inputBox input{
     width: 90%;
     height: 60px;
@@ -188,7 +183,7 @@
 
 .loginOpt{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
     width: 90%;
     
@@ -259,6 +254,30 @@
     color: #016723;
 }
 
+.forgotPassword{
+    position: relative;
+
+    margin-bottom: 20px;
+
+    display: none;
+    align-items: center;
+
+    background-color: rgba(242, 245, 69, 0.881);
+
+    padding: 5px;
+    
+    border-radius: 20px;
+
+    color: rgb(53, 53, 53);
+}
+
+.forgotPassword p:nth-child(1){
+    font-size: 1.5rem;
+}
+
+
+
+
 
 
 /*
@@ -285,8 +304,8 @@
         position: static;
     }
     .back{
-        top: -50px;
-        left: 80px;
+        top: -150px;
+        left: 0px;
 
         width: 100px;
     }

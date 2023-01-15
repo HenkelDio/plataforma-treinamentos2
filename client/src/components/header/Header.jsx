@@ -126,7 +126,6 @@ function Header({onSubmit}){
                             <li onClick={setPageHome}>HOME</li>
                             <li onClick={setPageUsers}>USUÁRIOS</li>
                             <li onClick={setPageTrainings}>TREINAMENTOS</li>
-                            <li onClick={setPageSettings}>CONFIGURAÇÕES</li>
                         </ul>
                     </div>
                     <button className={styles.buttonAcessAccount}>MINHA CONTA</button>
@@ -143,7 +142,7 @@ function Header({onSubmit}){
                         <li onClick={setPageHome} id="home" className={styles.selected}>home</li>
                         <li onClick={setPageUsers} id="users">usuários</li>
                         <li onClick={setPageTrainings} id="trainings" >treinamentos</li>
-                        <li onClick={setPageSettings} id="settings">configurações</li>
+                        <li onClick={setPageSettings} id="settings">perfil</li>
                     </ul>
                 </div>
                 <div className={styles.profile}>
