@@ -2,8 +2,11 @@ import styles from '../login.module.css'
 import { useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
+import Axios from "axios";
 
-export default function InsertPassword() {
+export default function InsertPassword(props) {
+
+  const { userEmail, userType, setAuthorized } = props
   const [showPassword, setShowPassword] = useState("password")
 
   const showPasswordHandle = () =>{
@@ -22,7 +25,18 @@ export default function InsertPassword() {
   });
 
   const submitPassword = (values) => {
-    console.log(values)
+    const route = `${require("../../../defaultRoute")}/loginPasswordUser`
+    const data = {
+      userEmail: userEmail,
+      userPassword: values.password,
+      userType: userType,
+    }
+
+    Axios.post(route, data).then(res => {
+      if (res) {
+        setAuthorized(res.data.authorized)
+      }
+    })
   }
 
 

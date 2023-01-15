@@ -11,9 +11,12 @@ import InsertNewPassword from "./components/InsertNewPassword";
 
 export default function Login() {
   const { authenticated, login, setPermission } = useContext(AuthContext);
+  const [ authorized, setAuthorized ] = useState(false);
   const [passwordExists, setPasswordExists] = useState(false)
+  const [userEmail, setUserEmail] = useState("")
   const [emailExists, setEmailExists] = useState(false)
   const [newPassword, setNewPassword] = useState(false)
+  const [userType, setUserType] = useState("")
 
   const navigate = useNavigate();
 
@@ -55,20 +58,25 @@ export default function Login() {
         </div>
         <div className={styles.loginBody}>
           <div className={styles.loginForm}>
-          {
-            (!emailExists) && 
-            <InsertEmail setEmailExists={setEmailExists} setNewPassword={setNewPassword}/>
-          }
-          {
-            (passwordExists) && 
-            <InsertPassword />
-          }
-          {
-            (newPassword) && 
-            <InsertNewPassword />
-          }
+            {
+              (!emailExists && !passwordExists) &&
+              <InsertEmail setEmailExists={setEmailExists} setPasswordExists={setPasswordExists} setUserType={setUserType} setUserEmail={setUserEmail} setNewPassword={setNewPassword} />
+            }
+            {
+              (emailExists && passwordExists) &&
+              <InsertPassword userEmail={userEmail} userType={userType} setAuthorized={setAuthorized} />
+            }
+            {
+              (emailExists && !passwordExists && newPassword) &&
+              <InsertNewPassword />
+            }
 
-        </div>
+
+            <div className={styles.loginOpt}>
+              <a href="https://wa.me/5541996588728/">Esqueceu a senha?</a>
+              <a href='https://wa.me/5541996588728?text=Tenho interesse em criar uma conta na ST Treinamentos!'>Não tem uma conta?</a>
+            </div>
+          </div>
         </div>
         <div className="loginFooter">
           <p>Copyright © Souza Treinamentos 2022.</p>

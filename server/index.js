@@ -34,9 +34,10 @@ async function searchEmail(email) {
         ["Companies", "company_email", "company_password"],
         ["Users", "user_email", "user_password"]
     ]) {
-        const userInformation = await DB[modelColumn[0]].findOne({ where: { [modelColumn[1]]: email } })
+        const userInformation = await DB[modelColumn[0]].findOne({ where: { [modelColumn[1]]: email } });
         if (userInformation) {
-            cond = ["alreadyRegistred", userInformation, modelColumn[2]]
+            cond = ["alreadyRegistred", userInformation, modelColumn[0], modelColumn[2]];
+            break
         }
     }
     return cond;
@@ -63,10 +64,10 @@ function valuesVerification(values, expValues) {
 
 app.post("/loginEmailUser", async (req, res) => {
     const userEmail = req.body.userEmail
-    const userStats = searchEmail(userEmail)
+    const userStats = await searchEmail(userEmail)
 
     if (userStats[0] === "alreadyRegistred") {
-        res.send({ emailExists: true, passwordExists: !!userStats[1].dataValues[userStats[2]], userType: userStats[2] });
+        res.send({ emailExists: true, passwordExists: !!userStats[1].dataValues[userStats[3]], userType: userStats[2] });
     } else {
         res.send({ emailExists: false });
     }
@@ -100,7 +101,6 @@ app.post("/redefinePassword", async (req, res) => {
 
 app.post("/registerAdmin", async (req, res) => {
     let values = req.body.values;
-    console.log(values)
     let DBColumns = ["name", "email", "password"];
     if (valuesVerification(values, DBColumns)) {
         if (await searchEmail(values.email)[1] === "notFound") {

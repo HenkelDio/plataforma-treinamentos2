@@ -1,9 +1,10 @@
 import styles from '../login.module.css'
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
+import Axios from "axios";
 
 export default function InsertEmail(props) {
-  const { setEmailExists, setNewPassword } = props;
+  const { setUserEmail, setEmailExists, setPasswordExists, setUserType, setNewPassword } = props;
 
   const validationEmail = yup.object().shape({
     email: yup
@@ -13,11 +14,21 @@ export default function InsertEmail(props) {
   });
 
   const submitEmail = (values) => {
-    console.log(values)
-    setEmailExists(true)
-    setNewPassword(true)
-  }
+    const route = `${require("../../../defaultRoute")}/loginEmailUser`;
+    const data = {
+      userEmail: values.email
+    }
 
+    Axios.post(route, data).then(res => {
+      if (res) {
+        setUserEmail(values.email);
+        setEmailExists(res.data.emailExists);
+        setPasswordExists(res.data.passwordExists);
+        setUserType(res.data.userType);
+        setNewPassword(!res.data.passwordExists)
+      }
+    })
+  }
 
   return (
     <>
