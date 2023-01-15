@@ -158,6 +158,7 @@ app.post("/registerUser", async (req, res) => {
     let DBColumns = ["name", "email", "cpf", "telephone", "companyId"]
 
     if (valuesVerification(values, DBColumns)) {
+        console.log(await searchEmail(values.email))
         if (await searchEmail(values.email)[0] === "notFound") {
             let user = await DB.Users.create({
                 user_name: values.name,
