@@ -16,10 +16,6 @@ export default function InsertEmail(props) {
       .required("O campo 'e-mail' é obrigatório"),
   });
 
-  const setEmail = (e) => {
-    setEmailValue(e)
-  }
-
   const submitEmail = (values) => {
     const route = `${require("../../../defaultRoute")}/loginEmailUser`;
     const data = {
