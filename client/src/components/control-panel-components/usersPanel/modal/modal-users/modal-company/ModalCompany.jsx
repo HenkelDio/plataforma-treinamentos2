@@ -60,9 +60,6 @@ export default function ModalCompany() {
         password: yup.string()
         .min(6, "Campo 'senha' muito curto (min. 6)")
         .required("O campo 'senha' é obrigatório"),
-        confirmPassword: yup.string()
-        .oneOf([yup.ref("password"), null], "As senhas devem ser iguais")
-        .required("O campo 'confirme a senha é obrigatório"),
         telephone: yup.string()
         .min(16, "Digite no máximo 16 digitos")
         .max(16, "Digite no máximo 16 digitos"),
@@ -150,22 +147,6 @@ export default function ModalCompany() {
                 </div>
                 <div className={styles.inputBox}>
                     <Field name="contact" placeholder="Responsável"></Field>
-                </div>
-                <div className={styles.inputBox}>
-                    <Field name="password" placeholder="Crie uma senha"></Field>
-                    <ErrorMessage 
-                    name='password'
-                    component='p'
-                    className={styles.errorMessage}
-                    />
-                </div>
-                <div className={styles.inputBox}>
-                    <Field name="confirmPassword" placeholder="Confirme a senha"></Field>
-                    <ErrorMessage 
-                    name='confirmPassword'
-                    component='p'
-                    className={styles.errorMessage}
-                    />
                 </div>
                 <div className={styles.inputBox}>
                     <SelectRegistration selected={selected} setSelected={setSelected} />

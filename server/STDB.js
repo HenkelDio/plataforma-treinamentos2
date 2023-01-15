@@ -66,7 +66,8 @@ if (conex) {
         },
         company_password: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true,
+            defaultValue: null
         }
         
     })
@@ -102,7 +103,8 @@ if (conex) {
         },
         user_password: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true,
+            defaultValue: null
         }
     })
 
