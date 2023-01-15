@@ -6,7 +6,7 @@ import Axios from "axios";
 
 export default function InsertPassword(props) {
 
-  const { userEmail, userType, setAuthorized } = props
+  const { userEmail, userType, setAuthorized, setUserInfo} = props
   const [showPassword, setShowPassword] = useState("password")
 
   const showPasswordHandle = () =>{
@@ -35,6 +35,7 @@ export default function InsertPassword(props) {
     Axios.post(route, data).then(res => {
       if (res) {
         setAuthorized(res.data.authorized)
+        setUserInfo(res.data.userInfo)
       }
     })
   }

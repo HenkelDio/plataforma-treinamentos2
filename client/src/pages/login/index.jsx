@@ -11,37 +11,29 @@ import InsertNewPassword from "./components/InsertNewPassword";
 
 export default function Login() {
   const { authenticated, login, setPermission } = useContext(AuthContext);
-  const [ authorized, setAuthorized ] = useState(false);
+  const [authorized, setAuthorized] = useState(false);
   const [passwordExists, setPasswordExists] = useState(false)
   const [userEmail, setUserEmail] = useState("")
   const [emailExists, setEmailExists] = useState(false)
   const [newPassword, setNewPassword] = useState(false)
   const [userType, setUserType] = useState("")
+  const [userInfo, setUserInfo] = useState("");
 
   const navigate = useNavigate();
 
-  const handleLogin = async (values) => {
-    // //recebe valores do form e verifica na rota loginUser. Rsultado retorna se usuário foi authenticado e permissão
-    // let route = `${require("../../defaultRoute")}/loginUser`
-    // await Axios.post(route, { values }).then(
-    //   (res) => {
-    //     if (res) {
-    //       if (res.data.permission === "company") {
-    //         navigate("/painel-empresa");
-    //       } else if (res.data.permission === "admin") {
-    //         navigate("/painel");
-    //       } else if (res.data.permission === "user") {
-    //         navigate("/painel-usuario");
-    //       } else {
-    //         let alertMessage = document.getElementById("alertMessage")
-    //         alertMessage.style.display = "block";
-    //         return;
-    //       }
-    //     }
-    //     login(res.data.id, values.email, values.password, res.data.name, res.data.permission) // integração com o context
-    //   }
-    // );
-  };
+  const { permission, id, name } = userInfo
+
+  const handleLogin = () => {
+    if (permission === "company") {
+      navigate("/painel-empresa");
+    } else if (permission === "admin") {
+      navigate("/painel");
+    } else if (permission === "user") {
+      navigate("/painel-usuario");
+    } else {
+    }
+    // login(res.data.id, values.email, values.password, res.data.name, res.data.permission) // integração com o context
+  }
 
   return (
     <div className={styles.loginContainer}>
@@ -60,16 +52,20 @@ export default function Login() {
           <div className={styles.loginForm}>
             {
               (!emailExists && !passwordExists) &&
-              <InsertEmail setEmailExists={setEmailExists} setPasswordExists={setPasswordExists} setUserType={setUserType} setUserEmail={setUserEmail} setNewPassword={setNewPassword} />
+              <InsertEmail setEmailExists={setEmailExists} setPasswordExists={setPasswordExists} setUserEmail={setUserEmail} setNewPassword={setNewPassword} setUserType={setUserType} />
             }
             {
               (emailExists && passwordExists && !newPassword) &&
-              <InsertPassword userEmail={userEmail} userType={userType} setAuthorized={setAuthorized} />
+              <InsertPassword userEmail={userEmail} userType={userType} setAuthorized={setAuthorized} setUserInfo={setUserInfo} />
             }
             {
               (emailExists && !passwordExists && newPassword) &&
               <InsertNewPassword />
             }
+
+            <div id="alertMessage" className={styles.alertMessage}>
+              <p>E-mail ou senha incorreta</p>
+            </div>
           </div>
         </div>
         <div className="loginFooter">

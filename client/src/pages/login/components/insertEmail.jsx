@@ -28,7 +28,9 @@ export default function InsertEmail(props) {
           setUserType(res.data.userType);
           setNewPassword(!res.data.passwordExists)
         } else {
-          console.log("erro")
+          let alertMessage = document.getElementById("alertMessage")
+          alertMessage.style.display = "block";
+          return;
         }
        
       }
