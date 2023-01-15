@@ -23,17 +23,15 @@ export default function Login() {
 
   const { permission, id, name, email } = userInfo
 
-  console.log(userInfo)
-
-  const handleLogin = () => {
+  function Nav() {
     if (permission === "company") {
       navigate("/painel-empresa");
     } else if (permission === "admin") {
       navigate("/painel");
     } else if (permission === "user") {
       navigate("/painel-usuario");
-    } 
-    login(id, email, name, permission) // integração com o context
+    }
+    login(id, email, name, permission)
   }
 
   return (
@@ -62,6 +60,10 @@ export default function Login() {
             {
               (emailExists && !passwordExists && newPassword) &&
               <InsertNewPassword userEmail={userEmail} userType={userType} />
+            }
+            {
+              (authorized) &&
+              <Nav />
             }
 
             <div id="alertMessage" className={styles.alertMessage}>
