@@ -85,7 +85,8 @@ app.post("/loginPasswordUser", async (req, res) => {
     const userInfo = {
         permission: (userDB === "Admins" ? "admin" : (userDB === "Companies" ? "company" : "user")),
         name: user.dataValues[(userDB === "Admins" ? "admin_name" : (userDB === "Companies" ? "company_name" : "user_name"))],
-        id: (userDB === "Admins" ? "admin_id" : (userDB === "Companies" ? "company_id" : "user_id"))
+        id: user.dataValues[(userDB === "Admins" ? "admin_id" : (userDB === "Companies" ? "company_id" : "user_id"))].Admins,
+        email: user.dataValues[(userDB === "Admins" ? "admin_email" : (userDB === "Companies" ? "company_email" : "user_email"))]
     }
     res.send({ authorized: user.dataValues[passwordCol] === userPassword, userInfo })
 
