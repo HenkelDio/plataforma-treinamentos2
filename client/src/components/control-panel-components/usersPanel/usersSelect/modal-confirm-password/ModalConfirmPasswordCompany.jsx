@@ -8,12 +8,11 @@ export default function ModalConfirmPassword(props) {
     const route = `${require("../../../../../defaultRoute")}/resetPassword`
     const data = {
       userId: props.userId,
-      userType: JSON.parse(localStorage["user"]).permission
+      userType: "company"
     }
 
-    Axios.post(route, data).then(res => {
-      console.log(res)
-    })
+    Axios.post(route, data)
+    props.closeModal()
   }
 
   return(
