@@ -11,7 +11,9 @@ import InsertNewPassword from "./components/InsertNewPassword";
 
 export default function Login() {
   const { authenticated, login, setPermission } = useContext(AuthContext);
+  const [ authorized, setAuthorized ] = useState(false);
   const [passwordExists, setPasswordExists] = useState(false)
+  const [userEmail, setUserEmail] = useState("")
   const [emailExists, setEmailExists] = useState(false)
   const [newPassword, setNewPassword] = useState(false)
   const [userType, setUserType] = useState("")
@@ -57,15 +59,15 @@ export default function Login() {
         <div className={styles.loginBody}>
           <div className={styles.loginForm}>
             {
-              (!emailExists) &&
-              <InsertEmail setEmailExists={setEmailExists} setPasswordExists={setPasswordExists} setUserType={setUserType} />
+              (!emailExists && !passwordExists) &&
+              <InsertEmail setEmailExists={setEmailExists} setPasswordExists={setPasswordExists} setUserType={setUserType} setUserEmail={setUserEmail} />
             }
             {
-              (passwordExists) &&
-              <InsertPassword />
+              (emailExists && passwordExists) &&
+              <InsertPassword userEmail={userEmail} userType={userType} setAuthorized={setAuthorized} />
             }
             {
-              (newPassword) &&
+              (emailExists && !passwordExists && newPassword) &&
               <InsertNewPassword />
             }
 

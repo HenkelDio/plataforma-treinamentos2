@@ -101,7 +101,6 @@ app.post("/redefinePassword", async (req, res) => {
 
 app.post("/registerAdmin", async (req, res) => {
     let values = req.body.values;
-    console.log(values)
     let DBColumns = ["name", "email", "password"];
     if (valuesVerification(values, DBColumns)) {
         if (await searchEmail(values.email)[1] === "notFound") {
