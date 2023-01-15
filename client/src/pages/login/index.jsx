@@ -10,7 +10,7 @@ import InsertNewPassword from "./components/InsertNewPassword";
 
 
 export default function Login() {
-  const { authenticated, login, setPermission } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const [authorized, setAuthorized] = useState(false);
   const [passwordExists, setPasswordExists] = useState(false)
   const [userEmail, setUserEmail] = useState("")
@@ -21,7 +21,7 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const { permission, id, name } = userInfo
+  const { permission, id, name, email } = userInfo
 
   console.log(userInfo)
 
@@ -32,9 +32,8 @@ export default function Login() {
       navigate("/painel");
     } else if (permission === "user") {
       navigate("/painel-usuario");
-    } else {
-    }
-    // login(res.data.id, values.email, values.password, res.data.name, res.data.permission) // integração com o context
+    } 
+    login(id, email, name, permission) // integração com o context
   }
 
   return (
@@ -66,7 +65,7 @@ export default function Login() {
             }
 
             <div id="alertMessage" className={styles.alertMessage}>
-              <p>E-mail ou senha incorreta</p>
+              <p>E-mail incorreto</p>
             </div>
           </div>
         </div>

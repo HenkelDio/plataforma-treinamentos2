@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) =>{
 
   },[])
 
-  const login = (id, email, password, name, permission) => {  
+  const login = (id, email, name, permission) => {  
 
     const loggedUser = {
         id,
@@ -56,7 +56,7 @@ const logoutUser = () =>{
 }
 
   return (
-    <AuthContext.Provider value={{authenticated: !!user, user, loading, login, logoutUser, name, email, permission, setPermission}}>
+    <AuthContext.Provider value={{authenticated: !!user, user, loading, login, logoutUser, name, email, permission}}>
       {children}
     </AuthContext.Provider>
   );
