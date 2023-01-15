@@ -1,7 +1,7 @@
 import Modal from "react-modal";
 import styles from "../modalEdit.module.css";
 import ModalDeleteUser from "../modal-delete-user/ModalDeleteUser";
-import ModalConfirmPassword from "../modal-confirm-password/ModalConfirmPassword";
+import ModalConfirmPasswordUser from "../modal-confirm-password/ModalConfirmPasswordUser";
 import SelectRegistration from "./SelectRegistrations";
 import { useState } from "react"
 import Axios from "axios"
@@ -60,7 +60,7 @@ export default function ModalEditUser(props) {
 
             <ModalDeleteUser openModal={modalIsOpen} closeModal={closeModal} id={props.id} />
 
-            <ModalConfirmPassword openModal={modalConfirmPasswordIsOpen} 
+            <ModalConfirmPasswordUser openModal={modalConfirmPasswordIsOpen} 
             closeModal={closeModalConfirmPassword}
             />
 

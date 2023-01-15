@@ -1,14 +1,12 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import ModalDeleteAdmin from "../modal-delete-user/ModalDeleteAdmin";
-import ModalConfirmPassword from "../modal-confirm-password/ModalConfirmPassword";
 import styles from "../modalEdit.module.css";
 import Axios from "axios";
 
 export default function ModalEditAdmin(props) {
     const [userInfo, setuserInfo] = useState({});
     const [modalIsOpen, setIsOpen] = useState(false);
-    const [modalConfirmPasswordIsOpen, setModalConfirmPasswordIsOpen] = useState(false)
 
     const openModal = () => {
         setIsOpen(true)
@@ -17,17 +15,6 @@ export default function ModalEditAdmin(props) {
     const closeModal = () => {
         setIsOpen(false)
     }
-
-    const openModalConfirmPassword = () => {
-        setModalConfirmPasswordIsOpen(true)
-    }
-
-    const closeModalConfirmPassword = () => {
-        setModalConfirmPasswordIsOpen(false)
-    }
-
-
-
 
     function editInfo(field, value) {
         let previousState = userInfo;
@@ -59,11 +46,6 @@ export default function ModalEditAdmin(props) {
 
             <ModalDeleteAdmin openModal={modalIsOpen} closeModal={closeModal} id={props.id} />
 
-            
-            <ModalConfirmPassword openModal={modalConfirmPasswordIsOpen} 
-            closeModal={closeModalConfirmPassword}
-            />
-
             <div className={styles.headerModal}>
                 <h2>Editar</h2>
             </div>
@@ -79,11 +61,6 @@ export default function ModalEditAdmin(props) {
                 <div className={styles.boxInput}>
                     <label htmlFor="email">E-mail</label>
                     <input type="text" name="email" onChange={e => editInfo("admin_email", e.target.value)} defaultValue={props.email}></input>
-                </div>
-                <div className={styles.boxInput}>
-                    <button
-                        onClick={openModalConfirmPassword}
-                        className={styles.newPasswordBtn}>Redefinir senha</button>
                 </div>
             </div>
             <div className={styles.footerModal}>
