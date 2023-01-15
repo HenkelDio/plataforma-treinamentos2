@@ -3,7 +3,7 @@ import styles from "../modalEdit.module.css";
 import SelectRegistration from "./SelectRegistrations";
 import { useState } from "react";
 import Axios from "axios"
-import ModalConfirmPassword from "../../../../control-panel-components/usersPanel/usersSelect/modal-confirm-password/ModalConfirmPasswordCompany";
+import ModalConfirmPassword from "../modal-confirm-password/ModalConfirmPassword";
 import ModalDeleteUser from "../modal-delete-user/ModalDeleteUser";
 
 export default function ModalEditUser(props) {
@@ -60,7 +60,7 @@ export default function ModalEditUser(props) {
             ariaHideApp={false}>
 
             <ModalConfirmPassword openModal={modalConfirmPasswordIsOpen}
-                closeModal={closeModalConfirmPassword}
+                closeModal={closeModalConfirmPassword} userId={props.id}
             />
 
             <ModalDeleteUser openModal={modalIsOpen} closeModal={closeModal} id={props.id} />

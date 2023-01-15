@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import Axios from "axios";
 
 export default function ModalConfirmPasswordUser(props) {
-
+  
   function redefinePassword() {
     const route = `${require("../../../../../defaultRoute")}/resetPassword`
     const data = {
