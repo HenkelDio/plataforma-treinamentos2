@@ -55,7 +55,9 @@ export default function Login() {
             }
             {
               (emailExists && passwordExists && !newPassword) &&
-              <InsertPassword userEmail={userEmail} userType={userType} setAuthorized={setAuthorized} setUserInfo={setUserInfo} />
+              <InsertPassword userEmail={userEmail} userType={userType} setAuthorized={setAuthorized} setUserInfo={setUserInfo} 
+              setEmailExists={setEmailExists} setPasswordExists={setPasswordExists}
+              />
             }
             {
               (emailExists && !passwordExists && newPassword) &&
@@ -68,6 +70,10 @@ export default function Login() {
 
             <div id="alertMessage" className={styles.alertMessage}>
               <p>E-mail incorreto</p>
+            </div>
+
+            <div id="alertMessagePassword" className={styles.alertMessage}>
+              <p>Senha incorreta</p>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import Header from "../../components/user-panel-components/header/Header";
 import HomePanel from "../../components/user-panel-components/homePanel/HomePanel";
 import CertificatePanel from "../../components/user-panel-components/certificatesPanel/CertificatePanel";
+import Footer from "../../components/footer/Footer";
 import { useState } from "react";
 import styles from "./userPanel.module.css";
 

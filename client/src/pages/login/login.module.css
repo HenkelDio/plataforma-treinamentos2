@@ -9,7 +9,32 @@
     width: 100%;
     height: 100%;
 
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='250' preserveAspectRatio='none' viewBox='0 0 1440 250'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1126%26quot%3b)' fill='none'%3e%3cpath d='M 0%2c19 C 96%2c29.4 288%2c69.8 480%2c71 C 672%2c72.2 768%2c30.2 960%2c25 C 1152%2c19.8 1344%2c41 1440%2c45L1440 250L0 250z' fill='rgba(54%2c 172%2c 26%2c 0.56)'%3e%3c/path%3e%3cpath d='M 0%2c95 C 288%2c103 1152%2c127 1440%2c135L1440 250L0 250z' fill='rgba(35%2c 110%2c 38%2c 0.73)'%3e%3c/path%3e%3cpath d='M 0%2c188 C 288%2c200.2 1152%2c236.8 1440%2c249L1440 250L0 250z' fill='rgba(93%2c 206%2c 122%2c 0.74)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1126'%3e%3crect width='1440' height='250' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: 0px 470px;
+
+    animation: bg-animation 5s ease-in infinite;
 }
+
+@keyframes bg-animation {
+    0% {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='250' preserveAspectRatio='none' viewBox='0 0 1440 250'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1128%26quot%3b)' fill='none'%3e%3cpath d='M 0%2c71 C 96%2c61.4 288%2c21.8 480%2c23 C 672%2c24.2 768%2c75.2 960%2c77 C 1152%2c78.8 1344%2c41 1440%2c32L1440 250L0 250z' fill='rgba(54%2c 172%2c 26%2c 0.56)'%3e%3c/path%3e%3cpath d='M 0%2c160 C 96%2c148.4 288%2c106.8 480%2c102 C 672%2c97.2 768%2c139.4 960%2c136 C 1152%2c132.6 1344%2c95.2 1440%2c85L1440 250L0 250z' fill='rgba(35%2c 110%2c 38%2c 0.73)'%3e%3c/path%3e%3cpath d='M 0%2c177 C 288%2c189.8 1152%2c228.2 1440%2c241L1440 250L0 250z' fill='rgba(93%2c 206%2c 122%2c 0.74)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1128'%3e%3crect width='1440' height='250' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+
+        background-position: 0px 470px;
+    }
+  
+    50% {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='250' preserveAspectRatio='none' viewBox='0 0 1440 250'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1129%26quot%3b)' fill='none'%3e%3cpath d='M 0%2c21 C 96%2c26.8 288%2c53.6 480%2c50 C 672%2c46.4 768%2c0 960%2c3 C 1152%2c6 1344%2c52.6 1440%2c65L1440 250L0 250z' fill='rgba(54%2c 172%2c 26%2c 0.56)'%3e%3c/path%3e%3cpath d='M 0%2c121 C 96%2c123.6 288%2c136 480%2c134 C 672%2c132 768%2c104.8 960%2c111 C 1152%2c117.2 1344%2c154.2 1440%2c165L1440 250L0 250z' fill='rgba(35%2c 110%2c 38%2c 0.73)'%3e%3c/path%3e%3cpath d='M 0%2c177 C 144%2c184.2 432%2c211.8 720%2c213 C 1008%2c214.2 1296%2c189 1440%2c183L1440 250L0 250z' fill='rgba(93%2c 206%2c 122%2c 0.74)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1129'%3e%3crect width='1440' height='250' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+
+        background-position: 0px 465px;
+    }
+
+    100% {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='250' preserveAspectRatio='none' viewBox='0 0 1440 250'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1128%26quot%3b)' fill='none'%3e%3cpath d='M 0%2c71 C 96%2c61.4 288%2c21.8 480%2c23 C 672%2c24.2 768%2c75.2 960%2c77 C 1152%2c78.8 1344%2c41 1440%2c32L1440 250L0 250z' fill='rgba(54%2c 172%2c 26%2c 0.56)'%3e%3c/path%3e%3cpath d='M 0%2c160 C 96%2c148.4 288%2c106.8 480%2c102 C 672%2c97.2 768%2c139.4 960%2c136 C 1152%2c132.6 1344%2c95.2 1440%2c85L1440 250L0 250z' fill='rgba(35%2c 110%2c 38%2c 0.73)'%3e%3c/path%3e%3cpath d='M 0%2c177 C 288%2c189.8 1152%2c228.2 1440%2c241L1440 250L0 250z' fill='rgba(93%2c 206%2c 122%2c 0.74)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1128'%3e%3crect width='1440' height='250' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+
+        background-position: 0px 470px;
+    }
+  }
 
 .innerLoginContainer{
     position: absolute;
@@ -24,6 +49,7 @@
 
     padding: 20px;
 
+    
 }
 
 /*
@@ -76,6 +102,10 @@
     font-size: 17px;
 
     width: 88%;
+}
+
+.loginBody .loginForm .inputBox{
+    position: relative;
 }
 
 
@@ -190,6 +220,34 @@
     margin-bottom: 20px;
 }
 
+.back{
+    position: absolute;
+    left: -50px;
+    top: 5px;
+
+    text-align: center;
+
+    margin: 0 auto;
+
+    background-color: #017828;
+
+    width:45px;
+    padding: 10px;
+
+    border-radius: 50px;
+
+    color: white;
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.back:hover{
+    background-color: #016723;
+}
+
+
+
 /*
 *  END LOGIN BODY STYLES
 */
@@ -199,8 +257,13 @@
 *  MEDIA QUERIES
 */
 
-@media (max-width:360px){
+@media (max-width:700px){
     .loginBody .loginForm{
-        width: 90%;
+        width: 100%;
+    }
+
+    .loginContainer{
+        background-position: 0px 550px;
+        animation: none;
     }
 }

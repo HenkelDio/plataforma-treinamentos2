@@ -4,13 +4,16 @@ import Training from './trainingsSelect/Training';
 import { useEffect, useState } from 'react';
 import Axios from "axios";
 import {IoIosAdd} from 'react-icons/io'
+import Loading from '../../loading/Loading';
 
 export default function TrainingsPanel(props){
     const [modalIsOpen, setIsOpen] = useState(false);
     const [listTraining, setListTraining] = useState([]);
     const [search, setSearch] = useState("");
+    const [loading, setLoading] = useState(false);
 
     useEffect(_=>{
+        setLoading(true)
         const getCourses = async _ => {
             let userType = "admin"
             let route = `${require("../../../defaultRoute")}/Courses`
@@ -19,6 +22,7 @@ export default function TrainingsPanel(props){
             }).then(res => {
                 if (res) {
                     setListTraining(res.data)
+                    setLoading(false)
                 }
             })
         }
@@ -34,6 +38,11 @@ export default function TrainingsPanel(props){
 
     return(
         <div className={styles.trainingsPanel}>
+
+            {
+                (loading) &&
+                <Loading />
+            }
 
             <ModalCreateTraining openModal={modalIsOpen} closeModal={closeModal}/>
 

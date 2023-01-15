@@ -3,11 +3,13 @@ import { useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import Axios from "axios";
+import { IoArrowBackOutline } from 'react-icons/io5'
 
 export default function InsertPassword(props) {
 
-  const { userEmail, userType, setAuthorized, setUserInfo} = props
+  const { userEmail, userType, setAuthorized, setUserInfo, setEmailExists, setPasswordExists} = props
   const [showPassword, setShowPassword] = useState("password")
+  const [loading, setLoading] = useState(false)
 
   const showPasswordHandle = () =>{
     let showPass = document.getElementById("showPass")
@@ -25,6 +27,7 @@ export default function InsertPassword(props) {
   });
 
   const submitPassword = (values) => {
+    setLoading(true)
     const route = `${require("../../../defaultRoute")}/loginPasswordUser`
     const data = {
       userEmail: userEmail,
@@ -34,10 +37,24 @@ export default function InsertPassword(props) {
 
     Axios.post(route, data).then(res => {
       if (res) {
-        setAuthorized(res.data.authorized)
-        setUserInfo(res.data.userInfo)
+        if(res.data.authorized){
+          setAuthorized(res.data.authorized)
+          setUserInfo(res.data.userInfo)
+          setLoading(false)
+        } else {
+          let alertMessage = document.getElementById("alertMessagePassword")
+          alertMessage.style.display = "block";
+          setLoading(false)
+          return;
+        }
+       
       }
     })
+  }
+
+  const backEmail = () => {
+    setEmailExists(false)
+    setPasswordExists(false)
   }
 
 
@@ -53,6 +70,15 @@ export default function InsertPassword(props) {
         <Form className={styles.loginForm}>
           <label htmlFor="password">Senha *</label>
           <div className={styles.inputBox}>
+
+
+          <div 
+          onClick={backEmail}
+          className={styles.back}>
+            <p><IoArrowBackOutline/></p>
+          </div>
+
+
             <Field
               name="password"
               className="input"
@@ -74,7 +100,10 @@ export default function InsertPassword(props) {
             />
           </div>
           <div className={styles.loginButton}>
-            <button type="submit">ENTRAR</button>
+            <button 
+            type="submit"
+            disabled={loading}
+            >{loading? "Entrando..." : "ENTRAR"}</button>
           </div>
           </Form>
           </Formik>

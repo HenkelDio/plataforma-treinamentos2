@@ -1,0 +1,23 @@
+.LoadingState{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 120%);
+  z-index: 999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 300px;
+  height: 50px;
+
+  border-radius: 10px;
+  
+  background-color: rgb(237, 237, 237);
+}
+
+.LoadingState p{
+  opacity: 0.8;
+
+  color: black
+}
