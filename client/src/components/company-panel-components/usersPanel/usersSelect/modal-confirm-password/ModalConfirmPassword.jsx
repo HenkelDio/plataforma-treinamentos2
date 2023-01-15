@@ -2,7 +2,7 @@ import styles from "../modalEdit.module.css";
 import Modal from "react-modal";
 import Axios from "axios";
 
-export default function ModalConfirmPassword(props) {
+export default function ModalConfirmPasswordUser(props) {
 
   function redefinePassword() {
     const route = `${require("../../../../../defaultRoute")}/resetPassword`

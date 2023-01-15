@@ -12,7 +12,13 @@ export default function ModalConfirmPasswordUser(props) {
     }
 
     Axios.post(route, data)
-    props.closeModal()
+
+    let sucessMessage = document.getElementById("sucessMessage")
+    sucessMessage.style.display = "block"
+    
+    setTimeout(()=>{
+      props.closeModal()
+  },1000)
   }
 
   return(
