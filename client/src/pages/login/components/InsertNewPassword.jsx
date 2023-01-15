@@ -39,7 +39,7 @@ export default function InsertNewPassword() {
           <div className={styles.inputBox}>
             <Field
               name="password"
-              placeholder="Senha *"
+              placeholder="Criar nova senha *"
               className="input"
               type={showPassword}
             ></Field>
