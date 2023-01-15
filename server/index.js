@@ -28,7 +28,7 @@ app.use(express.static(`${__dirname}/relatorios`));
 const DB = require("./STDB").models;
 
 async function searchEmail(email) {
-    let cond = ["notFound"]
+    let cond = "notFound"
     for (let modelColumn of [
         ["Admins", "admin_email", "admin_password"],
         ["Companies", "company_email", "company_password"],
