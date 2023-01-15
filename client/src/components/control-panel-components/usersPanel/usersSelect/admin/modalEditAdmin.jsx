@@ -1,24 +1,33 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import ModalDeleteAdmin from "../modal-delete-user/ModalDeleteAdmin";
+import ModalConfirmPassword from "../modal-confirm-password/ModalConfirmPassword";
 import styles from "../modalEdit.module.css";
 import Axios from "axios";
 
-export default function ModalEditAdmin(props){
+export default function ModalEditAdmin(props) {
     const [userInfo, setuserInfo] = useState({});
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [modalConfirmPasswordIsOpen, setModalConfirmPasswordIsOpen] = useState(false)
 
-    
-
-    const openModal = () =>{
+    const openModal = () => {
         setIsOpen(true)
     }
 
-    const closeModal = () =>{
+    const closeModal = () => {
         setIsOpen(false)
     }
 
-    
+    const openModalConfirmPassword = () => {
+        setModalConfirmPasswordIsOpen(true)
+    }
+
+    const closeModalConfirmPassword = () => {
+        setModalConfirmPasswordIsOpen(false)
+    }
+
+
+
 
     function editInfo(field, value) {
         let previousState = userInfo;
@@ -33,22 +42,27 @@ export default function ModalEditAdmin(props){
             id: props.id,
             userInfo
         })
-        setTimeout(()=>{
+        setTimeout(() => {
             alert("Usuário editado com sucesso")
             document.location.reload()
-        },1000)
+        }, 1000)
     }
 
-    return(
+    return (
         <Modal
-        isOpen={props.openModal}
-        onRequestClose={props.closeModal}
-        contentLabel="Exemplo"
-        overlayClassName={styles.modalOverlay}
-        className={styles.modal}
-        ariaHideApp={false}>
+            isOpen={props.openModal}
+            onRequestClose={props.closeModal}
+            contentLabel="Exemplo"
+            overlayClassName={styles.modalOverlay}
+            className={styles.modal}
+            ariaHideApp={false}>
 
-            <ModalDeleteAdmin openModal={modalIsOpen} closeModal={closeModal} id={props.id}/>
+            <ModalDeleteAdmin openModal={modalIsOpen} closeModal={closeModal} id={props.id} />
+
+            
+            <ModalConfirmPassword openModal={modalConfirmPasswordIsOpen} 
+            closeModal={closeModalConfirmPassword}
+            />
 
             <div className={styles.headerModal}>
                 <h2>Editar</h2>
@@ -65,6 +79,11 @@ export default function ModalEditAdmin(props){
                 <div className={styles.boxInput}>
                     <label htmlFor="email">E-mail</label>
                     <input type="text" name="email" onChange={e => editInfo("admin_email", e.target.value)} defaultValue={props.email}></input>
+                </div>
+                <div className={styles.boxInput}>
+                    <button
+                        onClick={openModalConfirmPassword}
+                        className={styles.newPasswordBtn}>Redefinir senha</button>
                 </div>
             </div>
             <div className={styles.footerModal}>

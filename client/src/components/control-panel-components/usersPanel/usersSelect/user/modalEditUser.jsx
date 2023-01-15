@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import styles from "../modalEdit.module.css";
 import ModalDeleteUser from "../modal-delete-user/ModalDeleteUser";
+import ModalConfirmPassword from "../modal-confirm-password/ModalConfirmPassword";
 import SelectRegistration from "./SelectRegistrations";
 import { useState } from "react"
 import Axios from "axios"
@@ -8,6 +9,7 @@ import Axios from "axios"
 export default function ModalEditUser(props) {
     const [userInfo, setUserInfo] = useState({});
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [modalConfirmPasswordIsOpen, setModalConfirmPasswordIsOpen] = useState(false)
     const [selected, setSelected] = useState([]);
 
     const openModal = () => {
@@ -16,6 +18,14 @@ export default function ModalEditUser(props) {
 
     const closeModal = () => {
         setIsOpen(false)
+    }
+
+    const openModalConfirmPassword = () => {
+        setModalConfirmPasswordIsOpen(true)
+    }
+
+    const closeModalConfirmPassword = () => {
+        setModalConfirmPasswordIsOpen(false)
     }
 
     function editInfo(field, value) {
@@ -50,6 +60,10 @@ export default function ModalEditUser(props) {
 
             <ModalDeleteUser openModal={modalIsOpen} closeModal={closeModal} id={props.id} />
 
+            <ModalConfirmPassword openModal={modalConfirmPasswordIsOpen} 
+            closeModal={closeModalConfirmPassword}
+            />
+
             <div className={styles.headerModal}>
                 <h2>Editar</h2>
             </div>
@@ -77,6 +91,11 @@ export default function ModalEditUser(props) {
                 <div className={styles.boxInput}>
                     <label htmlFor="id_company">Registrado na empresa</label>
                     <input type="text" name="id_company" disabled defaultValue={props.companyName}></input>
+                </div>
+                <div className={styles.boxInput}>
+                    <button 
+                    onClick={openModalConfirmPassword} 
+                    className={styles.newPasswordBtn}>Redefinir senha</button>
                 </div>
                 <div className={styles.boxInput}>
                     <label>Matrículado em</label>

@@ -2,6 +2,7 @@ import Modal from "react-modal";
 import styles from "../modalEdit.module.css";
 import Axios from "axios"
 import ModalDeleteCompany from "../modal-delete-user/ModalDeleteCompany";
+import ModalConfirmPassword from "../modal-confirm-password/ModalConfirmPassword";
 import { useState } from "react";
 import SelectRegistration from "./SelectRegistrations";
 
@@ -9,6 +10,7 @@ export default function ModalEditCompany(props){
     const [userInfo, setUserInfo] = useState({});
     const [modalIsOpen, setIsOpen] = useState(false);
     const [selected, setSelected] = useState([]);
+    const [modalConfirmPasswordIsOpen, setModalConfirmPasswordIsOpen] = useState(false)
 
     const openModal = () =>{
         setIsOpen(true)
@@ -16,6 +18,14 @@ export default function ModalEditCompany(props){
 
     const closeModal = () =>{
         setIsOpen(false)
+    }
+
+    const openModalConfirmPassword = () => {
+        setModalConfirmPasswordIsOpen(true)
+    }
+
+    const closeModalConfirmPassword = () => {
+        setModalConfirmPasswordIsOpen(false)
     }
 
     function editInfo(field, value) {
@@ -49,6 +59,11 @@ export default function ModalEditCompany(props){
 
             <ModalDeleteCompany openModal={modalIsOpen} closeModal={closeModal} id={props.id}/>
 
+            
+            <ModalConfirmPassword openModal={modalConfirmPasswordIsOpen} 
+            closeModal={closeModalConfirmPassword}
+            />
+
             <div className={styles.headerModal}>
                 <h2>Editar</h2>
             </div>
@@ -76,6 +91,11 @@ export default function ModalEditCompany(props){
                 <div className={styles.boxInput}>
                     <label htmlFor="phone">Telefone</label>
                     <input type="text" name="phone" defaultValue={props.phone} onChange={e => editInfo("company_telephone", e.target.value)} ></input>
+                </div>
+                <div className={styles.boxInput}>
+                    <button 
+                    onClick={openModalConfirmPassword}
+                    className={styles.newPasswordBtn}>Redefinir senha</button>
                 </div>
                 <div className={styles.boxInput}>
                     <label>Treinamentos disponíveis nessa empresa</label>
