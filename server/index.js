@@ -35,6 +35,7 @@ async function searchEmail(email) {
         ["Users", "user_email", "user_password"]
     ]) {
         const userInformation = await DB[modelColumn[0]].findOne({ where: { [modelColumn[1]]: email } })
+        console.log(userInformation)
         if (userInformation) {
             cond = ["alreadyRegistred", userInformation, modelColumn[2]]
         }

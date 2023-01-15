@@ -1,6 +1,7 @@
 import styles from '../login.module.css'
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
+import Axios from "axios";
 
 export default function InsertEmail(props) {
   const { setEmailExists, setPasswordExists } = props;
@@ -13,11 +14,17 @@ export default function InsertEmail(props) {
   });
 
   const submitEmail = (values) => {
-    console.log(values)
-    setEmailExists(true)
-    setPasswordExists(true)
+    const route = `${require("../../../defaultRoute")}/loginEmailUser`;
+    const data = {
+      userEmail: values.email
+    }
+    
+    Axios.post(route, data).then(res => {
+      if (res) {
+        console.log(res)
+      }
+    })
   }
-
 
   return (
     <>
