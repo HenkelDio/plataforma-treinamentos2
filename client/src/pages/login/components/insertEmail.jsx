@@ -6,7 +6,7 @@ import Axios from "axios";
 import Loading from '../../../components/loading/Loading';
 
 export default function InsertEmail(props) {
-  const { setUserEmail, setEmailExists, setPasswordExists, setUserType, setNewPassword } = props;
+  const { setUserEmail, setEmailExists, setPasswordExists, setUserType, setNewPassword, setEmailValue } = props;
   const [loading, setLoading] = useState(false)
 
   const validationEmail = yup.object().shape({
@@ -15,6 +15,10 @@ export default function InsertEmail(props) {
       .email("Digite um e-mail válido")
       .required("O campo 'e-mail' é obrigatório"),
   });
+
+  const setEmail = (e) => {
+    setEmailValue(e)
+  }
 
   const submitEmail = (values) => {
     const route = `${require("../../../defaultRoute")}/loginEmailUser`;
