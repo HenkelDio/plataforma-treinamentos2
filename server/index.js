@@ -34,10 +34,10 @@ async function searchEmail(email) {
         ["Companies", "company_email", "company_password"],
         ["Users", "user_email", "user_password"]
     ]) {
-        const userInformation = await DB[modelColumn[0]].findOne({ where: { [modelColumn[1]]: email } })
-        console.log(userInformation)
+        const userInformation = await DB[modelColumn[0]].findOne({ where: { [modelColumn[1]]: email } });
         if (userInformation) {
-            cond = ["alreadyRegistred", userInformation, modelColumn[2]]
+            cond = ["alreadyRegistred", userInformation, modelColumn[0]];
+            break
         }
     }
     return cond;
@@ -64,7 +64,7 @@ function valuesVerification(values, expValues) {
 
 app.post("/loginEmailUser", async (req, res) => {
     const userEmail = req.body.userEmail
-    const userStats = searchEmail(userEmail)
+    const userStats = await searchEmail(userEmail)
 
     if (userStats[0] === "alreadyRegistred") {
         res.send({ emailExists: true, passwordExists: !!userStats[1].dataValues[userStats[2]], userType: userStats[2] });
