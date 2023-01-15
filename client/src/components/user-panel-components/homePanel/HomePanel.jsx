@@ -43,7 +43,7 @@ export default function HomePanel() {
           }
           {
              (listTraining.length === 0) && 
-             <p>Sem cursos matriculados no momento*</p>
+             <p>Nenhum curso matriculado no momento*</p>
           }
         </div>
       </div>

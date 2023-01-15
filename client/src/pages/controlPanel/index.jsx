@@ -3,6 +3,7 @@ import UsersPanel from "../../components/control-panel-components/usersPanel/Use
 import HomePanel from "../../components/control-panel-components/homePanel/HomePanel"
 import TrainingsPanel from "../../components/control-panel-components/trainingsPanel/TrainingsPanel"
 import SettingsPanel from "../../components/control-panel-components/settingsPanel/SettingsPanel"
+import Footer from "../../components/footer/Footer"
 import { useState } from "react"
 import styles from "./controlPanel.module.css"
 
@@ -50,6 +51,7 @@ export default function ControlPanel(){
                     
                 </div>
             </section>
+            <Footer />
         </>
     )
 }

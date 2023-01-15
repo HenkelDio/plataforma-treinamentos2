@@ -8,7 +8,6 @@ import { IoIosAdd } from 'react-icons/io'
 import { AiFillPrinter } from 'react-icons/ai'
 import Axios from "axios"
 
-
 export default function UsersPanel(props) {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [userType, setUserType] = useState("");

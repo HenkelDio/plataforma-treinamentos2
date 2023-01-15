@@ -1,7 +1,8 @@
 import Header from "../../components/company-panel-components/header/Header"
 import HomePanel from "../../components/company-panel-components/homePanel/HomePanel"
 import UsersPanel from "../../components/company-panel-components/usersPanel/UsersPanel"
-import SettingsPanel from "../../components/company-panel-components/settingsPanel/SettingsPanel"
+import SettingsPanel from "../../components/company-panel-components/settingsPanel/SettingsPanel";
+import Footer from "../../components/footer/Footer";
 import { useState } from "react"
 import styles from "./companyPanel.module.css"
 
@@ -45,6 +46,8 @@ export default function ControlPanel(){
                     
                 </div>
             </section>
+
+            <Footer />
         </>
     )
 }
