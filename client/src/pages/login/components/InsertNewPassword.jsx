@@ -2,6 +2,7 @@ import styles from '../login.module.css'
 import { useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
+import Axios from "axios";
 
 export default function InsertNewPassword() {
   const [showPassword, setShowPassword] = useState("password")
@@ -25,7 +26,10 @@ export default function InsertNewPassword() {
   });
 
   const submitPassword = (values) => {
-    console.log(values)
+    const route = `${require("../../../defaultRoute")}/redefinePassword`
+    const data = {
+      
+    }
   }
 
 

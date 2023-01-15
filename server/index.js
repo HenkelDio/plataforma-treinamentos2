@@ -82,8 +82,12 @@ app.post("/loginPasswordUser", async (req, res) => {
     const passwordCol = (userDB === "Admins" ? "admin_password" : (userDB === "Companies" ? "company_password" : "user_password"))
 
     const user = await DB[userDB].findOne({ where: { [emailCol]: userEmail } })
-
-    res.send({ authorized: user.dataValues[passwordCol] === userPassword })
+    const userInfo = {
+        permission: (userDB === "Admins" ? "admin" : (userDB === "Companies" ? "company" : "user")),
+        name: user.dataValues[(userDB === "Admins" ? "admin_name" : (userDB === "Companies" ? "company_name" : "user_name"))],
+        id: (userDB === "Admins" ? "admin_id" : (userDB === "Companies" ? "company_id" : "user_id"))
+    }
+    res.send({ authorized: user.dataValues[passwordCol] === userPassword, userInfo })
 
 });
 

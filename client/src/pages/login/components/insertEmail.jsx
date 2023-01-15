@@ -21,6 +21,11 @@ export default function InsertEmail(props) {
 
     Axios.post(route, data).then(res => {
       if (res) {
+        setUserEmail(values.email);
+        setEmailExists(res.data.emailExists);
+        setPasswordExists(false);
+        setUserType(res.data.userType);
+        setNewPassword(true)
         if(res.data.emailExists){
           setUserEmail(values.email);
           setEmailExists(res.data.emailExists);
