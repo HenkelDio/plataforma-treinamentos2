@@ -57,7 +57,7 @@ export default function Login() {
           <div className={styles.loginForm}>
           {
             (!emailExists) && 
-            <InsertEmail setEmailExists={setEmailExists} setPasswordExists={setPasswordExists}/>
+            <InsertEmail setEmailExists={setEmailExists} setNewPassword={setNewPassword}/>
           }
           {
             (passwordExists) && 
@@ -68,11 +68,6 @@ export default function Login() {
             <InsertNewPassword />
           }
 
-
-          <div className={styles.loginOpt}>
-            <a href="https://wa.me/5541996588728/">Esqueceu a senha?</a>
-            <a href='https://wa.me/5541996588728?text=Tenho interesse em criar uma conta na ST Treinamentos!'>Não tem uma conta?</a>
-          </div>
         </div>
         </div>
         <div className="loginFooter">

@@ -64,6 +64,21 @@
     width: 100%;
 }
 
+.loginBody .loginForm label{
+    text-align: left;
+
+    margin-bottom: 10px;
+
+    margin: 5px auto;
+
+    opacity: 0.9;
+
+    font-size: 17px;
+
+    width: 88%;
+}
+
+
 .loginBody .loginForm .inputBox input{
     width: 90%;
     height: 60px;
@@ -77,6 +92,8 @@
 
     font-size: 1.2rem;
 }
+
+
 
 .loginBody .loginForm .inputBox input:hover,
 .loginBody .loginForm .inputBox input:focus{
@@ -134,6 +151,11 @@
 
 .errorMessage{
     margin-bottom: 20px;
+    color: rgb(210, 55, 55);
+}
+
+.errorMessageNewPassword{
+    margin-bottom: 10px;
     color: rgb(210, 55, 55);
 }
 

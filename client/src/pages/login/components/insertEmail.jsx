@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 
 export default function InsertEmail(props) {
-  const { setEmailExists, setPasswordExists } = props;
+  const { setEmailExists, setNewPassword } = props;
 
   const validationEmail = yup.object().shape({
     email: yup
@@ -15,7 +15,7 @@ export default function InsertEmail(props) {
   const submitEmail = (values) => {
     console.log(values)
     setEmailExists(true)
-    setPasswordExists(true)
+    setNewPassword(true)
   }
 
 
@@ -27,10 +27,11 @@ export default function InsertEmail(props) {
           onSubmit={submitEmail}
         >
           <Form className={styles.loginForm}>
+            <label htmlFor="email" className={styles.labelEmail}>Email *</label>
             <div className={styles.inputBox}>
               <Field
                 name="email"
-                placeholder="E-mail *"
+                placeholder="exemplo@mail.com"
                 className="input"
               ></Field>
               <ErrorMessage
@@ -42,6 +43,11 @@ export default function InsertEmail(props) {
             <div className={styles.loginButton}>
               <button type="submit">CONTINUAR</button>
             </div>
+
+            <div className={styles.loginOpt}>
+            <a href="https://wa.me/5541996588728/">Esqueceu a senha?</a>
+            <a href='https://wa.me/5541996588728?text=Tenho interesse em criar uma conta na ST Treinamentos!'>Não tem uma conta?</a>
+          </div>
           </Form>
         </Formik>
       </>
