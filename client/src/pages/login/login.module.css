@@ -108,6 +108,10 @@
     position: relative;
 }
 
+.loginBody .loginForm .inputBox{
+    position: relative;
+}
+
 
 .loginBody .loginForm .inputBox input{
     width: 90%;
@@ -260,10 +264,21 @@
 @media (max-width:700px){
     .loginBody .loginForm{
         width: 100%;
+        padding: 0px 5px;
     }
 
     .loginContainer{
         background-position: 0px 550px;
         animation: none;
+    }
+
+    .loginBody .loginForm .inputBox{
+        position: static;
+    }
+    .back{
+        top: -50px;
+        left: 80px;
+
+        width: 100px;
     }
 }
