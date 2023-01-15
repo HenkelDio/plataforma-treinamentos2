@@ -13,7 +13,7 @@ const keyPath = "/etc/letsencrypt/live/souzatreinamentosst.com.br/privkey.pem"
 
 const options = {
     cert: readFileSync(certPath),
-    key: readFileSync(keyPath)  
+    key: readFileSync(keyPath)
 }
 
 const httpsPort = 4000
@@ -28,14 +28,15 @@ app.use(express.static(`${__dirname}/relatorios`));
 const DB = require("./STDB").models;
 
 async function searchEmail(email) {
-    let cond = "notFound"
+    let cond = ["notFound"]
     for (let modelColumn of [
-        ["Admins", "admin_email"],
-        ["Companies", "company_email"],
-        ["Users", "user_email"]
+        ["Admins", "admin_email", "admin_password"],
+        ["Companies", "company_email", "company_password"],
+        ["Users", "user_email", "user_password"]
     ]) {
-        if (await DB[modelColumn[0]].findOne({ where: { [modelColumn[1]]: email } })) {
-            cond = "alreadyRegistred"
+        const userInformation = await DB[modelColumn[0]].findOne({ where: { [modelColumn[1]]: email } })
+        if (userInformation) {
+            cond = ["alreadyRegistred", userInformation, modelColumn[2]]
         }
     }
     return cond;
@@ -60,46 +61,41 @@ function valuesVerification(values, expValues) {
 
 }
 
-app.post("/loginUser", async (req, res) => {
-    let values = req.body.values;
-    let DBColumns = ["email", "password"];
+app.post("/loginEmailUser", async (req, res) => {
+    const userEmail = req.body.userEmail
+    const userStats = searchEmail(userEmail)
 
-    let cond = { "authenticated": false }
-    if (valuesVerification(values, DBColumns)) {
-        let admin = await DB.Admins.findOne({
-            where: {
-                admin_email: values.email
-            }
-        });
-        if (admin) {
-            if (admin.dataValues.admin_password === values.password) {
-                cond = { "authenticated": true, "permission": "admin", "name": admin.dataValues.admin_name, "id": admin.dataValues.admin_id }
-            }
-        } else {
-            let company = await DB.Companies.findOne({
-                where: {
-                    company_email: values.email
-                }
-            });
-            if (company) {
-                if (company.dataValues.company_password === values.password) {
-                    cond = { "authenticated": true, "permission": "company", "name": company.dataValues.company_name, "id": company.dataValues.company_id }
-                }
-            } else {
-                let user = await DB.Users.findOne({
-                    where: {
-                        user_email: values.email
-                    }
-                });
-                if (user) {
-                    if (user.dataValues.user_password === values.password) {
-                        cond = { "authenticated": true, "permission": "user", "name": user.dataValues.user_name, "id": user.dataValues.user_id }
-                    }
-                }
-            }
-        }
+    if (userStats[0] === "alreadyRegistred") {
+        res.send({ emailExists: true, passwordExists: !!userStats[1].dataValues[userStats[2]], userType: userStats[2] });
+    } else {
+        res.send({ emailExists: false });
     }
-    res.send(cond)
+
+});
+
+app.post("/loginPasswordUser", async (req, res) => {
+    const userEmail = req.body.userEmail
+    const userPassword = req.body.userPassword;
+    const userDB = req.body.userType;
+    const emailCol = (userDB === "Admins" ? "admin_email" : (userDB === "Companies" ? "company_email" : "user_email"))
+    const passwordCol = (userDB === "Admins" ? "admin_password" : (userDB === "Companies" ? "company_password" : "user_password"))
+
+    const user = await DB[userDB].findOne({ where: { [emailCol]: userEmail } })
+
+    res.send({ authorized: user.dataValues[passwordCol] === userPassword })
+
+});
+
+app.post("/redefinePassword", async (req, res) => {
+    const userEmail = req.body.userEmail;
+    const newPassword = req.body.newPassword;
+    const userDB = req.body.userType;
+    const emailCol = (userDB === "Admins" ? "admin_email" : (userDB === "Companies" ? "company_email" : "user_email"))
+    const passwordCol = (userDB === "Admins" ? "admin_password" : (userDB === "Companies" ? "company_password" : "user_password"))
+
+    DB[userDB].update({ [passwordCol]: newPassword }, { where: { [emailCol]: userEmail } });
+
+    res.send()
 });
 
 app.post("/registerAdmin", async (req, res) => {
@@ -107,7 +103,7 @@ app.post("/registerAdmin", async (req, res) => {
     console.log(values)
     let DBColumns = ["name", "email", "password"];
     if (valuesVerification(values, DBColumns)) {
-        if (await searchEmail(values.email) === "notFound") {
+        if (await searchEmail(values.email)[1] === "notFound") {
             await DB.Admins.create({
                 admin_name: values.name,
                 admin_email: values.email,
@@ -125,16 +121,15 @@ app.post("/registerAdmin", async (req, res) => {
 
 app.post("/registerCompany", async (req, res) => {
     let values = req.body.values
-    let DBColumns = ["name", "email", "cnpj", "telephone", "contact", "password"]
+    let DBColumns = ["name", "email", "cnpj", "telephone", "contact"]
     if (valuesVerification(values, DBColumns)) {
-        if (await searchEmail(values.email) === "notFound") {
+        if (await searchEmail(values.email)[1] === "notFound") {
             let company = await DB.Companies.create({
                 company_name: values.name,
                 company_email: values.email,
                 company_register: values.cnpj,
                 company_telephone: values.telephone,
-                company_contact: values.contact,
-                company_password: values.password
+                company_contact: values.contact
             })
 
             for (let course of values.selectedCourses) {
@@ -158,14 +153,13 @@ app.post("/registerUser", async (req, res) => {
     let DBColumns = ["name", "email", "cpf", "telephone", "companyId", "password"]
 
     if (valuesVerification(values, DBColumns)) {
-        if (await searchEmail(values.email) === "notFound") {
+        if (await searchEmail(values.email)[1] === "notFound") {
             let user = await DB.Users.create({
                 user_name: values.name,
                 user_email: values.email,
                 user_register: values.cpf,
                 user_telephone: values.telephone,
-                user_company_id: values.companyId,
-                user_password: values.password
+                user_company_id: values.companyId
             });
 
             for (let course of values.selectedCourses) {
@@ -560,3 +554,5 @@ app.get("/getCompleteCourses/:userId", async (req, res) => {
     }
     res.send(approveRegistrations)
 });
+
+
