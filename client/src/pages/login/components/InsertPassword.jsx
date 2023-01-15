@@ -54,7 +54,6 @@ export default function InsertPassword(props) {
           <div className={styles.inputBox}>
             <Field
               name="password"
-              placeholder="Senha *"
               className="input"
               type={showPassword}
             ></Field>
