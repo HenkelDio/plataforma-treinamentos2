@@ -7,9 +7,9 @@ import Axios from "axios";
 export default function InsertNewPassword() {
   const [showPassword, setShowPassword] = useState("password")
 
-  const showPasswordHandle = () =>{
+  const showPasswordHandle = () => {
     let showPass = document.getElementById("showPass")
-    if(showPass.checked){
+    if (showPass.checked) {
       setShowPassword("text")
     } else {
       setShowPassword("password")
@@ -19,7 +19,10 @@ export default function InsertNewPassword() {
   const validationPassword = yup.object().shape({
     password: yup
       .string()
-      .required("O campo 'senha' é obrigatório"),
+      .required("O campo 'senha' é obrigatório")
+      .min(6, "O campo 'senha' deve ter no mínimo 6 caracteres"),
+    confirmPassword: yup.string()
+      .oneOf([yup.ref('password'), null], 'As senhas devem ser iguais')
   });
 
   const submitPassword = (values) => {
@@ -33,20 +36,29 @@ export default function InsertNewPassword() {
   return (
     <>
       <Formik
-        initialValues={{
-          password: ""
-        }}
+        initialValues={{}}
         validationSchema={validationPassword}
         onSubmit={submitPassword}
       >
         <Form className={styles.loginForm}>
+        <label htmlFor="email">Criar nova senha</label>
           <div className={styles.inputBox}>
             <Field
               name="password"
-              placeholder="Criar nova senha *"
               className="input"
               type={showPassword}
             ></Field>
+          </div>
+
+          <label htmlFor="email">Confirme a senha</label>
+          <div className={styles.inputBox}>
+            <Field
+              name="confirmPassword"
+              className="input"
+              type={showPassword}
+            ></Field>
+          </div>
+           
             <div className={styles.showPassword}>
               <input
                 id="showPass"
@@ -59,14 +71,21 @@ export default function InsertNewPassword() {
             <ErrorMessage
               name="password"
               component="p"
-              className={styles.errorMessage}
+              className={styles.errorMessageNewPassword}
             />
-          </div>
+             <ErrorMessage
+              name="confirmPassword"
+              component="p"
+              className={styles.errorMessageNewPassword}
+            />
+            
+           
+          
           <div className={styles.loginButton}>
-            <button type="submit">ENTRAR</button>
+            <button type="submit">CRIAR SENHA</button>
           </div>
-          </Form>
-          </Formik>
-        </>
-        )
+        </Form>
+      </Formik>
+    </>
+  )
 }

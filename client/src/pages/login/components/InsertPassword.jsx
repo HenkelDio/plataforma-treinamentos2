@@ -50,6 +50,7 @@ export default function InsertPassword(props) {
         onSubmit={submitPassword}
       >
         <Form className={styles.loginForm}>
+          <label htmlFor="password">Senha *</label>
           <div className={styles.inputBox}>
             <Field
               name="password"
