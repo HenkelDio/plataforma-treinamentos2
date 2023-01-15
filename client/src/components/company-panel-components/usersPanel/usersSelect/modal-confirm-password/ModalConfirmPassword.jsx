@@ -8,7 +8,7 @@ export default function ModalConfirmPasswordUser(props) {
     const route = `${require("../../../../../defaultRoute")}/resetPassword`
     const data = {
       userId: props.userId,
-      userType: "company"
+      userType: "user"
     }
 
     Axios.post(route, data)
