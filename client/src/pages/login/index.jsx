@@ -23,6 +23,8 @@ export default function Login() {
 
   const { permission, id, name } = userInfo
 
+  console.log(userInfo)
+
   const handleLogin = () => {
     if (permission === "company") {
       navigate("/painel-empresa");
