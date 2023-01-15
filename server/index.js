@@ -36,7 +36,7 @@ async function searchEmail(email) {
     ]) {
         const userInformation = await DB[modelColumn[0]].findOne({ where: { [modelColumn[1]]: email } });
         if (userInformation) {
-            cond = ["alreadyRegistred", userInformation, modelColumn[0]];
+            cond = ["alreadyRegistred", userInformation, modelColumn[0], modelColumn[2]];
             break
         }
     }
@@ -67,7 +67,7 @@ app.post("/loginEmailUser", async (req, res) => {
     const userStats = await searchEmail(userEmail)
 
     if (userStats[0] === "alreadyRegistred") {
-        res.send({ emailExists: true, passwordExists: !!userStats[1].dataValues[userStats[2]], userType: userStats[2] });
+        res.send({ emailExists: true, passwordExists: !!userStats[1].dataValues[userStats[3]], userType: userStats[2] });
     } else {
         res.send({ emailExists: false });
     }

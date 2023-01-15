@@ -4,7 +4,7 @@ import * as yup from "yup";
 import Axios from "axios";
 
 export default function InsertEmail(props) {
-  const { setEmailExists, setPasswordExists } = props;
+  const { setEmailExists, setPasswordExists, setUserType} = props;
 
   const validationEmail = yup.object().shape({
     email: yup
@@ -18,7 +18,7 @@ export default function InsertEmail(props) {
     const data = {
       userEmail: values.email
     }
-    
+
     Axios.post(route, data).then(res => {
       if (res) {
         console.log(res)

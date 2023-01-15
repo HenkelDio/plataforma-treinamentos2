@@ -14,6 +14,7 @@ export default function Login() {
   const [passwordExists, setPasswordExists] = useState(false)
   const [emailExists, setEmailExists] = useState(false)
   const [newPassword, setNewPassword] = useState(false)
+  const [userType, setUserType] = useState("")
 
   const navigate = useNavigate();
 
@@ -55,25 +56,25 @@ export default function Login() {
         </div>
         <div className={styles.loginBody}>
           <div className={styles.loginForm}>
-          {
-            (!emailExists) && 
-            <InsertEmail setEmailExists={setEmailExists} setPasswordExists={setPasswordExists}/>
-          }
-          {
-            (passwordExists) && 
-            <InsertPassword />
-          }
-          {
-            (newPassword) && 
-            <InsertNewPassword />
-          }
+            {
+              (!emailExists) &&
+              <InsertEmail setEmailExists={setEmailExists} setPasswordExists={setPasswordExists} setUserType={setUserType} />
+            }
+            {
+              (passwordExists) &&
+              <InsertPassword />
+            }
+            {
+              (newPassword) &&
+              <InsertNewPassword />
+            }
 
 
-          <div className={styles.loginOpt}>
-            <a href="https://wa.me/5541996588728/">Esqueceu a senha?</a>
-            <a href='https://wa.me/5541996588728?text=Tenho interesse em criar uma conta na ST Treinamentos!'>Não tem uma conta?</a>
+            <div className={styles.loginOpt}>
+              <a href="https://wa.me/5541996588728/">Esqueceu a senha?</a>
+              <a href='https://wa.me/5541996588728?text=Tenho interesse em criar uma conta na ST Treinamentos!'>Não tem uma conta?</a>
+            </div>
           </div>
-        </div>
         </div>
         <div className="loginFooter">
           <p>Copyright © Souza Treinamentos 2022.</p>
