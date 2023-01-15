@@ -243,6 +243,13 @@
     opacity: 0.8;
 }
 
+.containerModalDeleteUser p{
+    font-size: 15px;
+    margin-top: 10px;
+
+    color: rgb(76, 76, 76);
+}
+
 /* end */
 
 .newPasswordBtn{

@@ -33,6 +33,7 @@ export default function ModalConfirmPasswordUser(props) {
 
           <div className={styles.containerModalDeleteUser}>
             <h2>Tem certeza que gostaria de redefinir a senha desse usuário?</h2>
+            <p>A próxima vez que o usuário fazer login na plataforma, será solicitado a redefinição da senha</p>
             <div className={styles.optionsModalDeleteUser}>
               <button onClick={redefinePassword} >Sim, redefinir</button>
               <button onClick={props.closeModal}>Não</button>
