@@ -60,7 +60,7 @@ export default function Login() {
             }
             {
               (emailExists && !passwordExists && newPassword) &&
-              <InsertNewPassword />
+              <InsertNewPassword userEmail={userEmail} userType={userType} />
             }
 
             <div id="alertMessage" className={styles.alertMessage}>
