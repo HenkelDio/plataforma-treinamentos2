@@ -108,7 +108,7 @@ app.post("/registerAdmin", async (req, res) => {
     let values = req.body.values;
     let DBColumns = ["name", "email", "password"];
     if (valuesVerification(values, DBColumns)) {
-        if (await searchEmail(values.email)[1] === "notFound") {
+        if (await searchEmail(values.email)[0] === "notFound") {
             await DB.Admins.create({
                 admin_name: values.name,
                 admin_email: values.email,
@@ -128,7 +128,7 @@ app.post("/registerCompany", async (req, res) => {
     let values = req.body.values
     let DBColumns = ["name", "email", "cnpj", "telephone", "contact"]
     if (valuesVerification(values, DBColumns)) {
-        if (await searchEmail(values.email)[1] === "notFound") {
+        if (await searchEmail(values.email)[0] === "notFound") {
             let company = await DB.Companies.create({
                 company_name: values.name,
                 company_email: values.email,
@@ -158,7 +158,7 @@ app.post("/registerUser", async (req, res) => {
     let DBColumns = ["name", "email", "cpf", "telephone", "companyId"]
 
     if (valuesVerification(values, DBColumns)) {
-        if (await searchEmail(values.email)[1] === "notFound") {
+        if (await searchEmail(values.email)[0] === "notFound") {
             let user = await DB.Users.create({
                 user_name: values.name,
                 user_email: values.email,
