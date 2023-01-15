@@ -275,6 +275,9 @@
     font-size: 1.5rem;
 }
 
+.loginFooter p{
+    width: 100%;
+}
 
 
 
@@ -290,16 +293,22 @@
 */
 
 @media (max-width:700px){
+    .loginBody{
+        padding: 10px;
+    }
     .loginBody .loginForm{
         width: 100%;
-        padding: 0px 5px;
+        padding: 0px 0px;
     }
 
     .loginContainer{
         background-position: 0px 550px;
         animation: none;
     }
-
+    .innerLoginContainer{
+        width: 100%;
+        padding: 0;
+    }
     .loginBody .loginForm .inputBox{
         position: static;
     }
