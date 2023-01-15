@@ -110,7 +110,7 @@ app.post("/resetPassword", async (req, res) => {
     const userDB = (userType === "admin" ? "Admins" : (userType === "company" ? "Companies" : "Users"));
     const idColumn = (userType === "admin" ? "admin_id" : (userType === "company" ? "company_id" : "user_id"));
     const passwordCol = (userDB === "Admins" ? "admin_password" : (userDB === "Companies" ? "company_password" : "user_password"));
-
+    console.log(userDB, passwordCol, userId)
     DB[userDB].update({ [passwordCol]: null }, {
         where: {
             [idColumn]: userId
