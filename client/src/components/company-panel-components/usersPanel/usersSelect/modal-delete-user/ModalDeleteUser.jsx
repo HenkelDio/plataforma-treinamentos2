@@ -2,24 +2,21 @@ import styles from "../modalEdit.module.css";
 import Modal from "react-modal";
 import Axios from "axios";
 
-export default function ModalConfirmPassword(props) {
+export default function ModalDeleteUser(props) {
 
-  function redefinePassword() {
-    const route = `${require("../../../../../defaultRoute")}/resetPassword`
-    const data = {
-      userId: props.userId,
-      userType: "company"
-    }
-
-    Axios.post(route, data)
-
+  function excluirUser() {
+    let route = `${require("../../../../../defaultRoute")}/removeUser`
+    Axios.post(route, {
+        type: "Users",
+        id: props.id
+    })
     let sucessMessage = document.getElementById("sucessMessage")
     sucessMessage.style.display = "block"
-    
+
     setTimeout(()=>{
-      props.closeModal()
-  },1000)
-  }
+        document.location.reload()
+    },1000)
+}
 
   return(
     <>
@@ -28,17 +25,17 @@ export default function ModalConfirmPassword(props) {
         onRequestClose={props.closeModal}
         contentLabel="Exemplo"
         overlayClassName={styles.modalOverlay}
-        className={styles.ModalConfirmPassword}
+        className={styles.ModalDeleteUser}
         ariaHideApp={false}>
 
           <div className={styles.containerModalDeleteUser}>
-            <h2>Tem certeza que gostaria de redefinir a senha desse usuário?</h2>
+            <h2>Tem certeza que gostaria de deletar esse usuário?</h2>
             <div className={styles.optionsModalDeleteUser}>
-              <button onClick={redefinePassword} >Sim, redefinir</button>
+              <button onClick={excluirUser}>Sim, excluir</button>
               <button onClick={props.closeModal}>Não</button>
             </div>
             <div id="sucessMessage" className={styles.sucessMessage}>
-                <p>Senha redefinida com sucesso!</p>
+                <p>Usuário deletado com sucesso!</p>
             </div>
           </div>
           
