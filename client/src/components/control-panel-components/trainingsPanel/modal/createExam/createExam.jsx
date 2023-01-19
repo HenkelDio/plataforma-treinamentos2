@@ -1,5 +1,4 @@
 import styles from '../modal.module.css';
-import { useEffect } from "react"
 import Question from "./question/Question"
 
 function CreateExam(props) {

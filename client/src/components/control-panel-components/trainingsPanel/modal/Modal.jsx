@@ -38,6 +38,13 @@ export default function ModalCreateTraining(props){
         fileReceived.innerText = "ARQUIVO ADICIONADO"
     }
 
+    const videoSelected = () =>{
+        let videoReceived = document.getElementById("videoReceived")
+        let labelAddVideo = document.getElementById('labelAddVideo')
+        labelAddVideo.style.backgroundColor = "rgb(81, 176, 80)";
+        videoReceived.innerText = "VÍDEO ADICIONADO"
+    }
+
     async function createCourse(values) {
         let formData = new FormData();
         formData.append("courseName", values.title);
@@ -110,6 +117,8 @@ export default function ModalCreateTraining(props){
                                 </div>
                             </div>
                             <div id="fileBox" className={styles.fileBox}>
+
+                                
                                 <label 
                                 id="labelAddFile"
                                 className={styles.labelAddFile} 
@@ -126,6 +135,26 @@ export default function ModalCreateTraining(props){
                                     onChange={e => setCourseFile(e.target.files[0])}/>
                                 </label>
                                 <p id="fileReceived"><b></b></p>
+                                
+
+                                <label 
+                                id="labelAddVideo"
+                                className={styles.labelAddFile} 
+                                htmlFor="fileVideo"
+                                onChange={videoSelected}
+                                >
+                                    <IoIosAdd />
+                                    Adicionar Video
+                                    <input 
+                                    type="file" 
+                                    id="fileVideo" 
+                                    className={styles.filePdf} 
+                                    accept=".mp4" 
+                                    onChange={e => setCourseFile(e.target.files[0])}/>
+                                </label>
+                                <p id="videoReceived"><b></b></p>
+
+
                             </div>
                             <div className={styles.inputBox}>
                                 <div className={styles.contentBox}>
