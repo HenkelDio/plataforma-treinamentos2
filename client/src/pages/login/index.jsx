@@ -77,7 +77,7 @@ export default function Login() {
             </div>
           </div>
         </div>
-        <div className="loginFooter">
+        <div className={styles.loginFooter}>
           <p>Copyright © Souza Treinamentos 2022.</p>
         </div>
       </div>

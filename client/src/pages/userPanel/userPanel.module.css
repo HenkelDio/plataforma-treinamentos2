@@ -7,7 +7,20 @@
     background-color: white;
     border-radius: 15px;
     padding-bottom: 20px;
+
+    animation: control-panel 0.5s linear;
 }
+
+@keyframes control-panel{
+    from {
+        opacity: 0;
+        left: 5px;
+    }
+    to {
+        opacity: 1;
+        left: 0px;
+    }
+  }
 
 .headerPanel{
     position: relative;

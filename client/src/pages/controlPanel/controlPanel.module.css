@@ -1,4 +1,6 @@
 .controlPanel{
+    position: relative;
+
     width: 70%;
     height: auto;
 
@@ -7,6 +9,19 @@
     background-color: white;
     border-radius: 15px;
     padding-bottom: 20px;
+
+    animation: control-panel 0.5s linear;
+}
+
+@keyframes control-panel{
+    from {
+        opacity: 0;
+        left: 5px;
+    }
+    to {
+        opacity: 1;
+        left: 0px;
+    }
 }
 
 .headerPanel{
@@ -41,10 +56,14 @@
 }
 
 .bodyPanel{
+    position: relative;
+
     margin-top: 50px;
     width:100%;
     text-align: center;
 }
+
+
 
 
 /*PANEL MOBILE */

@@ -4,6 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import Axios from "axios";
 import { IoArrowBackOutline } from 'react-icons/io5'
+import { RiErrorWarningLine } from "react-icons/ri"
 
 export default function InsertPassword(props) {
 
@@ -57,6 +58,13 @@ export default function InsertPassword(props) {
     setPasswordExists(false)
   }
 
+  const forgotPassword = () => {
+    let btnForgotPass = document.getElementById('btnForgotPass')
+    btnForgotPass.style.display = "none"
+    let forgotPassword = document.getElementById('forgotPassword')
+    forgotPassword.style.display = "flex"
+  }
+
 
   return (
     <>
@@ -71,13 +79,11 @@ export default function InsertPassword(props) {
           <label htmlFor="password">Senha *</label>
           <div className={styles.inputBox}>
 
-
           <div 
           onClick={backEmail}
           className={styles.back}>
             <p><IoArrowBackOutline/></p>
           </div>
-
 
             <Field
               name="password"
@@ -99,12 +105,25 @@ export default function InsertPassword(props) {
               className={styles.errorMessage}
             />
           </div>
+
+          <div className={styles.loginOpt}>
+            <a id="btnForgotPass" href="#" onClick={forgotPassword}>Esqueceu a senha?</a>
+          </div>
+
+          <div id="forgotPassword"  className={styles.forgotPassword}>
+            <p><RiErrorWarningLine /></p>
+            <p>Caso tenha esquecido a senha, entre em contato com sua empresa ou responsável.</p>
+          </div>
+
           <div className={styles.loginButton}>
             <button 
             type="submit"
             disabled={loading}
             >{loading? "Entrando..." : "ENTRAR"}</button>
           </div>
+
+
+
           </Form>
           </Formik>
         </>
