@@ -1,6 +1,5 @@
 import styles from './certificate.module.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as yup from 'yup';
 
 export default function Certificate(props) {
   const { certificateInformation, setCertificateInformation } = props;
@@ -11,21 +10,12 @@ export default function Certificate(props) {
     setCertificateInformation(prev)
   }
 
-  const validateCertificate = yup.object().shape({
-    validade: yup.string()
-    .required("O campo 'validade' é obrigatório")
-    .matches(
-      /^([0-9àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð '])+$/u,
-      'Não é permitido texto')
-  })
-
   return (
     <>
       <div className={styles.certificate}>
         <div className={styles.formCertificate}>
           <Formik
             initialValues={{}}
-            validationSchema={validateCertificate}
           >
             <Form>
               <div className={styles.inputBox}>
@@ -42,7 +32,7 @@ export default function Certificate(props) {
               </div>
               <div className={styles.inputBox}>
                 <label htmlFor="validade">Validade de:</label>
-                <Field name="validade" placeholder="ex. 2" onChange={e => setCertInfo(e.target.value, "certificateExpiration")}></Field>
+                <Field name="validade" placeholder="ex. 2 (Não digite texto, apenas o número de horas)" onChange={e => setCertInfo(e.target.value, "certificateExpiration")}></Field>
                 <ErrorMessage 
                 component="p"
                 name="validade"

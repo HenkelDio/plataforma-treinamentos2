@@ -128,7 +128,7 @@ function Header({onSubmit}){
                             <li onClick={setPageTrainings}>TREINAMENTOS</li>
                         </ul>
                     </div>
-                    <button className={styles.buttonAcessAccount}>MINHA CONTA</button>
+                    <button onClick={setPageSettings} className={styles.buttonAcessAccount}>MINHA CONTA</button>
                     <button onClick={openModal} className={styles.buttonLoggoutAccount}>SAIR</button>
                 </div>
             </div>

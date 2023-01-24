@@ -13,6 +13,16 @@ const textareaStyle = {
   fontSize: "1.2rem"
 }
 
+const sendMessage = (values) => {
+  const {email, subject, content} = values;
+
+  let message = '*Email do Remetente:* ' + '\r\n\r\n' + email + '\r\n\r\n' + '*Assunto:* ' + '\r\n\r\n' + subject + '\r\n\r\n' + '*Conteúdo:* ' + '\r\n\r\n' + content;
+  let urlMessage = window.encodeURIComponent(message);
+
+
+  window.open(`https://wa.me/5541998093723?text=${urlMessage}`);
+}
+
 export default function ContactPage(){
   return(
     <>
@@ -42,12 +52,9 @@ export default function ContactPage(){
         <div className={styles.formContact}>
          <Formik
          initialValues={{}}
+         onSubmit={sendMessage}
          >
           <Form className={styles.form}>
-            <form
-            action="https://formsubmit.co/willianhenkel@gmail.com"
-            method="POST"
-            >
             <div className={styles.inputBox}>
               <Field name="email" className={styles.email} placeholder="Seu e-mail"></Field>
             </div>
@@ -55,11 +62,10 @@ export default function ContactPage(){
               <Field name="subject" className={styles.subject} placeholder="Assunto"></Field>
             </div>
             <div className={styles.inputBox}>
-              <Field name="contentEmail" as="textarea" defaultValue="" style={textareaStyle} placeholder="O que você quer nos perguntar?"></Field>
+              <Field name="content" as="textarea" defaultValue="" style={textareaStyle} placeholder="O que você quer nos perguntar?"></Field>
             </div>
 
             <button className={styles.sendEmail} type="submit">Enviar</button>
-            </form>
           </Form>
          </Formik>
         </div>

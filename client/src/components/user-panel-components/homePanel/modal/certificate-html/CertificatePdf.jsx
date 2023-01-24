@@ -1,5 +1,6 @@
 import { Document, Page, Text, View, StyleSheet, Font } from '@react-pdf/renderer';
 import Signika from './Signika.ttf';
+import Lora from './lora.ttf';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -76,12 +77,40 @@ const styles = StyleSheet.create({
     border: '2px solid #ccc',
     borderRadius: '5px',
     padding: '10px',
+    fontSize: '10px',
+  },
+  headerTecnical:{
+    fontSize: '8px',
   },
   bodyTecnical: {
-    fontSize: '10px'
+    fontSize: '8px',
   },
   tecnicalContent: {
-    marginBottom: '10px'
+    marginBottom: '10px',
+  },
+  footer: {
+    marginTop: '20px'
+  },
+  headerFooter: {
+    color: 'green',
+    fontFamily: 'Signika',
+    fontSize: '25px'
+  },
+  contentFooter: {
+    fontSize: '10px',
+    color: 'rgb(144, 144, 144)',
+  },
+  logo:{
+    position: 'absolute',
+    opacity: '0.2',
+    color: 'green',
+    fontSize: '200px',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontFamily: 'Lora',
   }
 });
 
@@ -90,6 +119,12 @@ Font.register({
   format: "truetype",
   src: Signika
 });
+
+Font.register({
+  family: 'Lora',
+  format: "truetype",
+  src: Lora
+})
 
 
 function CertificatePdf(props) {
@@ -123,6 +158,11 @@ function CertificatePdf(props) {
             </View>
 
             <View style={styles.mainInformation}>
+
+              <View style={styles.logo}>
+                <Text>ST</Text>
+              </View>
+
 
               <View style={styles.title}>
                 <Text>{data.courseInformation.course_title}</Text>
@@ -212,6 +252,19 @@ function CertificatePdf(props) {
 
               </View>
 
+            </View>
+
+            <View style={styles.footer}>
+              <Text style={styles.headerFooter}>
+                ST CAPACITAÇÃO EM SEGURANÇA DO TRABALHO
+              </Text>
+              <Text style={styles.contentFooter}>
+                RENY DE SOUZA BUENO - ME
+                {'\n'}
+                CNPJ: 19.003.553/0001-26
+                {'\n'}
+                https://www.souzatreinamentosst.com.br/
+              </Text>
             </View>
           </View>
 

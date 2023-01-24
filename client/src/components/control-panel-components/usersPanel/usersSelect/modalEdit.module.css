@@ -291,5 +291,19 @@
         margin-top: 10px;
         height: 50px;
     }
+    .ModalConfirmPassword{
+        width: 90%;
+        height: 310px;
+    }
+    .ModalConfirmPassword .containerModalDeleteUser .optionsModalDeleteUser{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .ModalConfirmPassword .containerModalDeleteUser .optionsModalDeleteUser button{
+        width: 90%;
+        margin-top: 10px;
+        height: 50px;
+    }
 
 }
