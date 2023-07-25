@@ -33,11 +33,6 @@ export default function Certificate(props) {
               <div className={styles.inputBox}>
                 <label htmlFor="validade">Validade de:</label>
                 <Field name="validade" placeholder="ex. 2 (Não digite texto, apenas o número de horas)" onChange={e => setCertInfo(e.target.value, "certificateExpiration")}></Field>
-                <ErrorMessage 
-                component="p"
-                name="validade"
-                className={styles.errorMessage}
-                />
               </div>
             </Form>
           </Formik>
